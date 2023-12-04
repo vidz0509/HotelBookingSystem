@@ -7,14 +7,52 @@ export class AppService {
       message: 'Hello World!'
     }
   }
-  getBavo() {
+  sum(value1: number, value2: number) {
     return {
-      message: 'Hello geeta!'
+      sum: value1 + value2
     }
   }
-  getGt() {
+  minus(value1: number, value2: number) {
     return {
-      message: 'Hello bro!'
+      minus: value1 - value2
     }
   }
+  multiply(value1: number, value2: number) {
+    return {
+      multiply: value1 * value2
+    }
+  }
+  divides(value1: number, value2: number) {
+    return {
+      divides: value1 / value2
+    }
+  }
+  per(value1: number, value2: number) {
+    return {
+      percentage: value1 * value2 / 100
+    }
+  }
+  interest(price: number, month: number, rate: number) {
+    return {
+      interest: price * month * rate / 100
+    }
+  }
+  string(text: string) {
+      return{
+        length: text.length
+      }
+  }
+  stringComp(text1: string, text2: string) {
+    var length1 = text1.length;
+    var length2 = text2.length
+    if (length1 > length2)
+    return{
+      answer : `text1 is greater than text2`
+    }
+    else{
+      return{
+        answer : `text2 is greater than text1 `
+      }
+    }
+}
 }
