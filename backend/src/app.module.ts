@@ -3,8 +3,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './users/usres.module';
-
+import { UserModule } from './users/users.module';
+import { ProductModule } from './product/product.module';
 
 import { ConfigModule } from '@nestjs/config';
 @Module({
@@ -13,7 +13,8 @@ import { ConfigModule } from '@nestjs/config';
       isGlobal: true
     }),
   MongooseModule.forRoot(process.env.MONGODB_URI + '/' + process.env.DATABASE_NAME),
-  UserModule
+  UserModule,
+  ProductModule
 ],
 controllers: [AppController],
 providers: [AppService],
