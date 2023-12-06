@@ -14,8 +14,17 @@ export class UsersService {
         private readonly collection: UsersCollection,
     ) { }
 
-    async register(name: string, age: number, hobby: string ){
-        return await this.collection.createUser(name,age,hobby)
+    async getAllUsers(): Promise<User[]> {
+        return await this.collection.getAllUsers();
+    }
+
+    async register(name: string, age: number, hobby: string) {
+        return await this.collection.createUser(name, age, hobby)
+    }
+
+
+    async getUserByName(name: string): Promise<User> {
+        return await this.collection.getUserByName(name);
     }
 
 }

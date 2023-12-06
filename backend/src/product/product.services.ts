@@ -14,8 +14,16 @@ export class ProductService {
         private readonly collection: ProductCollection,
     ) { }
 
-    async Product(ProductName: string, ProductPrice: number, ProductStock: number ){
-        return await this.collection.addProduct(ProductName,ProductPrice,ProductStock)
+    async getAllProducts(): Promise<Product[]> {
+        return await this.collection.getAllProducts();
+    }
+
+    async getProductByProductName(ProductName: string): Promise<Product> {
+        return await this.collection.getProductByProductName(ProductName);
+    }
+
+    async Product(ProductName: string, ProductPrice: number, ProductStock: number) {
+        return await this.collection.addProduct(ProductName, ProductPrice, ProductStock)
     }
 
 }

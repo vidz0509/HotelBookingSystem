@@ -12,11 +12,19 @@ export class ProductCollection {
     async addProduct(ProductName: string, ProductPrice: number, ProductStock: number) {
         const newProduct = await new this.productModel(
             {
-                ProductName : ProductName,
-                ProductPrice : ProductPrice,
-                ProductStock : ProductStock
+                ProductName: ProductName,
+                ProductPrice: ProductPrice,
+                ProductStock: ProductStock
             }
         );
         return newProduct.save();
+    }
+
+    async getAllProducts(): Promise<Product[]> {
+        return await this.productModel.find().exec();
+    }
+
+    async getProductByProductName(ProductName: string): Promise<Product> {
+        return this.productModel.findOne({ ProductName: ProductName });
     }
 }
