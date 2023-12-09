@@ -18,8 +18,10 @@ export class UsersCollection {
             {
                 name: name,
                 age: age,
-                hobby: hobby
-            }
+                hobby: hobby,
+                createdAt: new Date(),
+                isDeleted: false,
+            },
         );
         return newUser.save();
     }
@@ -28,4 +30,28 @@ export class UsersCollection {
         return this.userModel.findOne({ name: name });
     }
 
+    async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
+        return await this.userModel.findByIdAndUpdate(
+            userID,
+            {
+                name: requestData.name,
+                age: requestData.age,
+                hobby: requestData.hobby
+            },
+            { new: true },
+        );
+    }
+
+    async deleteUser(userID: string) {
+        return this.userModel.deleteOne(
+            { _id: userID },
+            { $set: { updatedat: new Date(), isDeleted: true } },
+        );
+    }
+
+    async sortedUsers(order: string): Promise<User[]> {
+        return await this.userModel.aggregate([
+            { $sort: { name: order == 'desc' ? -1 : 1 } },
+        ]);
+    }
 }

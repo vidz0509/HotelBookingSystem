@@ -26,4 +26,16 @@ export class ProductService {
         return await this.collection.addProduct(ProductName, ProductPrice, ProductStock)
     }
 
+    async updateProduct(productID: string, requestData: { ProductName: string, ProductPrice: number, ProductStock: number }) {
+        return await this.collection.updateProduct(productID,requestData);
+    }
+
+    async deleteProduct(productID: string) {
+        return await this.collection.deleteProduct(productID);
+    }
+
+    async sortedProduct(order: string): Promise<Product[]> {
+        return await this.collection.sortedProduct(order);
+      }
+
 }

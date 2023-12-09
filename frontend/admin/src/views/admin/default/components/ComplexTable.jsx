@@ -1,4 +1,4 @@
-import CardMenu from "components/card/CardMenu";
+// import CardMenu from "components/card/CardMenu";
 import Card from "components/card";
 import {
   useGlobalFilter,
@@ -41,7 +41,7 @@ const ComplexTable = (props) => {
         <div class="text-xl font-bold text-navy-700 dark:text-white">
           Complex Table
         </div>
-        <CardMenu />
+        {/* <CardMenu /> */}
       </div>
 
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">

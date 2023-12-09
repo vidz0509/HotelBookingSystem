@@ -22,9 +22,20 @@ export class UsersService {
         return await this.collection.createUser(name, age, hobby)
     }
 
-
     async getUserByName(name: string): Promise<User> {
         return await this.collection.getUserByName(name);
     }
+
+    async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
+        return await this.collection.updateUser(userID,requestData);
+    }
+
+    async deleteUser(userID: string) {
+        return await this.collection.deleteUser(userID);
+    }
+
+    async sortedUsers(order: string): Promise<User[]> {
+        return await this.collection.sortedUsers(order);
+      }
 
 }
