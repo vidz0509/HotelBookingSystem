@@ -5,12 +5,17 @@ import MainDashboard from "views/admin/default";
 import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
 import DataTables from "views/admin/tables";
-import RTLDefault from "views/rtl/default";
+// import RTLDefault from "views/rtl/default";
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
 
 // Icon Imports
+import Customers from "views/admin/customers";
+import Bookings from "views/admin/bookings/customers";
+import Paymentstatus from "views/admin/payment status/customers";
+import Reports from "views/admin/reports/customers";
+import Reviews from "views/admin/reviews/customers";
 import {
   MdHome,
   MdOutlineShoppingCart,
@@ -63,5 +68,45 @@ const routes = [
   //   icon: <MdHome className="h-6 w-6" />,
   //   component: <RTLDefault />,
   // },
+  {
+    name: "Customers",
+    layout: "/admin",
+    path: "customers",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <Customers />,
+    secondary: true,
+  },
+  {
+    name: "Bookings",
+    layout: "/admin",
+    path: "bookings",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <Bookings />,
+    secondary: true,
+  },
+  {
+    name: "Payment status",
+    layout: "/admin",
+    path: "Paymentstatus",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <Paymentstatus />,
+    secondary: true,
+  },
+  {
+    name: "Reports",
+    layout: "/admin",
+    path: "Reports",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <Reports />,
+    secondary: true,
+  },
+  {
+    name: "Reviews",
+    layout: "/admin",
+    path: "Reviews",
+    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    component: <Reviews />,
+    secondary: true,
+  },
 ];
 export default routes;
