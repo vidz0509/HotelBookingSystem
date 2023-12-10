@@ -13,12 +13,13 @@ export class UsersCollection {
         return await this.userModel.find().exec();
     }
 
-    async createUser(name: string, age: number, hobby: string) {
+    async createUser(FullName: string, Email: string, Password: string, ConfirmPassword: string) {
         const newUser = await new this.userModel(
             {
-                name: name,
-                age: age,
-                hobby: hobby,
+                FullName: FullName,
+                Email: Email,
+                Password: Password,
+                ConfirmPassword: ConfirmPassword,
                 createdAt: new Date(),
                 isDeleted: false,
             },

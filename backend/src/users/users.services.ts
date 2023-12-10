@@ -18,8 +18,8 @@ export class UsersService {
         return await this.collection.getAllUsers();
     }
 
-    async register(name: string, age: number, hobby: string) {
-        return await this.collection.createUser(name, age, hobby)
+    async register(FullName: string, Email: string, Password: string, ConfirmPassword: string) {
+        return await this.collection.createUser(FullName, Email, Password, ConfirmPassword)
     }
 
     async getUserByName(name: string): Promise<User> {

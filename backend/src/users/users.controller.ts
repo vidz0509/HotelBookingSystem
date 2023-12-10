@@ -8,8 +8,8 @@ export class UsersController {
     constructor(private readonly userService: UsersService) { }
 
     @Post('/register')
-    async registerUser(@Body() requestData: { name: string, age: number, hobby: string }) {
-        return await this.userService.register(requestData.name, requestData.age, requestData.hobby);
+    async registerUser(@Body() requestData: { FullName: string, Email: string, Password: string, ConfirmPassword: string }) {
+        return await this.userService.register(requestData.FullName, requestData.Email, requestData.Password, requestData.ConfirmPassword);
     }
 
     @Get()
