@@ -27,6 +27,11 @@ export class UsersController {
         return this.userService.getUserByName(name);
     }
 
+    @Get(':email')
+    async find(@Param('email') email: string) {
+        return this.userService.getUserByEmail(email);
+    }
+
     @Put(':id')
     async updateUser(@Param('id') id: string,
         @Body() requestData: { name: string, age: number, hobby: string }) {

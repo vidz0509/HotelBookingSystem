@@ -6,6 +6,7 @@ import { promisify } from 'util';
 
 import { User, UsersDocument, UserSchema } from './users.schema';
 import { UsersCollection } from './users.collection';
+import { HelpersServices } from 'src/auth/services/helpers/helpers.services';
 
 @Injectable()
 export class UsersService {
@@ -18,12 +19,16 @@ export class UsersService {
         return await this.collection.getAllUsers();
     }
 
-    async register(FullName: string, Email: string, Password: string, ConfirmPassword: string) {
-        return await this.collection.createUser(FullName, Email, Password, ConfirmPassword)
+    async register(fullname: string, email: string, password: string, confirmpassword: string) {
+        return await this.collection.createUser(fullname, email, password, confirmpassword);
     }
 
     async getUserByName(name: string): Promise<User> {
         return await this.collection.getUserByName(name);
+    }
+
+    async getUserByEmail(email: string): Promise<User> {
+        return await this.collection.getUserByEmail(email);
     }
 
     async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
