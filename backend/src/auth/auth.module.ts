@@ -9,7 +9,7 @@ import { AuthController } from './auth.controller';
 import { AuthServices } from './auth.services';
 // import { JwtModule } from '@nestjs/jwt';
 // import { jwtConstants } from './constants';
-// import { HelpersServices } from '../services/helpers/helpers.services';
+import { HelpersServices } from './services/helpers/helpers.services';
 @Module({
     imports: [
         MongooseModule.forFeature([
@@ -25,7 +25,7 @@ import { AuthServices } from './auth.services';
         // }),
     ],
     controllers: [AuthController],
-    providers: [AuthServices, UsersCollection, UsersService]
+    providers: [AuthServices, UsersCollection, UsersService, HelpersServices]
 })
 
 export class AuthModule { }
