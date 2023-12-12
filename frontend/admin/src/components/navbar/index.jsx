@@ -157,7 +157,7 @@ const Navbar = (props) => {
           classNames={"py-2 top-6 -left-[250px] md:-left-[330px] w-max"}
           animation="origin-[75%_0%] md:origin-top-right transition-all duration-300 ease-in-out"
         /> */}
-        <div
+        {/* <div
           className="cursor-pointer text-gray-600"
           onClick={() => {
             if (darkmode) {
@@ -174,7 +174,7 @@ const Navbar = (props) => {
           ) : (
             <RiMoonFill className="h-4 w-4 text-gray-600 dark:text-white" />
           )}
-        </div>
+        </div> */}
         {/* Profile & Dropdown */}
         <Dropdown
           button={
@@ -189,7 +189,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋 Hey, Adela
+                    Admin
                   </p>{" "}
                 </div>
               </div>
@@ -202,12 +202,12 @@ const Navbar = (props) => {
                 >
                   Profile Settings
                 </a>
-                <a
+                {/* <a
                   href=" "
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
                   Newsletter Settings
-                </a>
+                </a> */}
                 <a
                   href=" "
                   className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
