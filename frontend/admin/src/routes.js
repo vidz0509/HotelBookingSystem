@@ -9,6 +9,7 @@ import DataTables from "views/admin/tables";
 
 // Auth Imports
 import SignIn from "views/auth/SignIn";
+import ForgotPassword from "views/auth/ForgotPassword";
 
 // Icon Imports
 import Customers from "views/admin/customers";
@@ -60,6 +61,13 @@ const routes = [
     path: "sign-in",
     icon: <MdLock className="h-6 w-6" />,
     component: <SignIn />,
+  },
+  {
+    name: "Forgot Password",
+    layout: "/auth",
+    path: "forgot-password",
+    icon: <MdLock className="h-6 w-6" />,
+    component: <ForgotPassword />,
   },
   // {
   //   name: "RTL Admin",
