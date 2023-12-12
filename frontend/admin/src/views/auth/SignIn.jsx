@@ -55,7 +55,7 @@ export default function SignIn() {
           </div>
           <a
             className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-            href="http://localhost:3000/auth/forgot-password"
+            href="/auth/forgot-password"
           >
             Forgot Password?
           </a>
