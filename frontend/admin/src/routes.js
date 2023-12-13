@@ -20,8 +20,8 @@ import Reviews from "views/admin/reviews/customers";
 import {
   MdHome,
   MdOutlineShoppingCart,
-  MdBarChart,
-  MdPerson,
+  // MdBarChart,
+  // MdPerson,
   MdLock,
 } from "react-icons/md";
 
@@ -29,7 +29,7 @@ const routes = [
   {
     name: "Dashboard",
     layout: "/admin",
-    path: "default",
+    path: "dashboard",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
   },
