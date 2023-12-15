@@ -31,8 +31,12 @@ export class UsersService {
         return await this.collection.getUserByEmail(email);
     }
 
+    async getUserByPassword(password: string): Promise<User> {
+        return await this.collection.getUserByPassword(password);
+    }
+
     async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
-        return await this.collection.updateUser(userID,requestData);
+        return await this.collection.updateUser(userID, requestData);
     }
 
     async deleteUser(userID: string) {
@@ -41,6 +45,6 @@ export class UsersService {
 
     async sortedUsers(order: string): Promise<User[]> {
         return await this.collection.sortedUsers(order);
-      }
+    }
 
 }

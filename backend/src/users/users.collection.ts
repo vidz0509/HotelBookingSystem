@@ -13,6 +13,18 @@ export class UsersCollection {
         return await this.userModel.find().exec();
     }
 
+    async signIn(email: string, password: string) {
+        const newUser = await new this.userModel(
+            {
+                email: email,
+                password: password,
+                createdAt: new Date(),
+                isDeleted: false,
+            },
+        );
+        return newUser.save();
+    }
+
     async createUser(fullname: string, email: string, password: string, confirmpassword: string) {
         const newUser = await new this.userModel(
             {
@@ -32,7 +44,11 @@ export class UsersCollection {
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return await this.userModel.findOne({ email: email });
+        return this.userModel.findOne({ email: email });
+    }
+
+    async getUserByPassword(password: string): Promise<User> {
+        return await this.userModel.findOne({ password: password });
     }
 
     async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
