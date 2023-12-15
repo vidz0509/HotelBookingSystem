@@ -19,8 +19,8 @@ export class UsersService {
         return await this.collection.getAllUsers();
     }
 
-    async register(fullname: string, email: string, password: string, confirmpassword: string) {
-        return await this.collection.createUser(fullname, email, password, confirmpassword);
+    async register(fullname: string, email: string, password: string) {
+        return await this.collection.createUser(fullname, email, password);
     }
 
     async getUserByName(name: string): Promise<User> {
@@ -31,9 +31,9 @@ export class UsersService {
         return await this.collection.getUserByEmail(email);
     }
 
-    async getUserByPassword(password: string): Promise<User> {
-        return await this.collection.getUserByPassword(password);
-    }
+    // async getUserByPassword(password: string): Promise<User> {
+    //     return await this.collection.getUserByPassword(password);
+    // }
 
     async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
         return await this.collection.updateUser(userID, requestData);

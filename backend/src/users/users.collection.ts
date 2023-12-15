@@ -25,13 +25,12 @@ export class UsersCollection {
         return newUser.save();
     }
 
-    async createUser(fullname: string, email: string, password: string, confirmpassword: string) {
+    async createUser(fullname: string, email: string, password: string) {
         const newUser = await new this.userModel(
             {
                 fullname: fullname,
                 email: email,
                 password: password,
-                confirmpassword: confirmpassword,
                 createdAt: new Date(),
                 isDeleted: false,
             },
@@ -44,12 +43,12 @@ export class UsersCollection {
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return this.userModel.findOne({ email: email });
+        return await this.userModel.findOne({ email: email });
     }
 
-    async getUserByPassword(password: string): Promise<User> {
-        return await this.userModel.findOne({ password: password });
-    }
+    // async getUserByPassword(password: string): Promise<User> {
+    //     return await this.userModel.findOne({ password: password });
+    // }
 
     async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
         return await this.userModel.findByIdAndUpdate(

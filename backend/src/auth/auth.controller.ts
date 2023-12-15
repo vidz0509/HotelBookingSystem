@@ -10,14 +10,14 @@ export class AuthController {
 
     constructor(private readonly authService: AuthServices) { }
 
-    @Get('/login')
+    @Post('/login')
     async signIn(@Body() requestData: { email: string, password: string }) {
         return await this.authService.signIn(requestData.email, requestData.password);
     }
 
-    @Post('/authregister')
-    async registerUser(@Body() requestData: { fullname: string, email: string, password: string, confirmpassword: string }) {
-        return await this.authService.registerUSer(requestData.fullname, requestData.email, requestData.password, requestData.confirmpassword);
+    @Post('/register')
+    async registerUser(@Body() requestData: { fullname: string, email: string, password: string}) {
+        return await this.authService.registerUSer(requestData.fullname, requestData.email, requestData.password);
     }
 }
 // @Post('/refreshToken')
