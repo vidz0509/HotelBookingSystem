@@ -1,7 +1,7 @@
 // import Banner from "./components/Banner";
 import tableDataComplex from "./variables/tableDataComplex.json";
-import ComplexTable from "../default/components/ComplexTable";
-import { columnsDataComplex } from "../default/variables/columnsData";
+import ComplexTable from "../dashboard/components/ComplexTable";
+import { columnsDataComplex } from "../dashboard/variables/columnsData";
 
 // import NFt2 from "assets/img/nfts/Nft2.png";
 // import NFt4 from "assets/img/nfts/Nft4.png";

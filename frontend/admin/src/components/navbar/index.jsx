@@ -5,26 +5,30 @@ import { Link } from "react-router-dom";
 // import navbarimage from "assets/img/layout/Navbar.png";
 // import { BsArrowBarUp } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
+// import { RiMoonFill, RiSunFill } from "react-icons/ri";
 // import {
 //   IoMdNotificationsOutline,
 //   IoMdInformationCircleOutline,
 // } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
+// import Dashboard from "views/admin/dashboard";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
-  const [darkmode, setDarkmode] = React.useState(false);
+  // const [darkmode, setDarkmode] = React.useState(false);
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
       <div className="ml-[6px]">
-        {/* <div className="h-6 w-[224px] pt-1">
+        {
+          brandText !== "Dashboard" &&
+        
+        <div className="h-6 w-[224px] pt-1">
           <a
             className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
             href=" "
           >
-            Pages
+            Dashboard
             <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
               {" "}
               /{" "}
@@ -36,7 +40,8 @@ const Navbar = (props) => {
           >
             {brandText}
           </Link>
-        </div> */}
+        </div>
+}
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <Link
             to="#"
@@ -200,14 +205,14 @@ const Navbar = (props) => {
                   href=" "
                   className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
-                  Profile Settings
+                  My Profile 
                 </a>
-                {/* <a
+                <a
                   href=" "
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
-                  Newsletter Settings
-                </a> */}
+                 Change Password
+                </a>
                 <a
                   href=" "
                   className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"

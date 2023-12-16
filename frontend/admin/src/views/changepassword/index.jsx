@@ -6,7 +6,7 @@
 // import Upload from "./components/Upload";
 import InputField from "components/fields/InputField";
 
-const ProfileOverview = () => {
+const Changepassword = () => {
   
 // import { FcGoogle } from "react-icons/fc";
 // import Checkbox from "components/checkbox";
@@ -39,15 +39,15 @@ const ProfileOverview = () => {
         <InputField
           variant="auth"
           extra="mb-3"
-          label="fullname*"
+          label="password*"
           placeholder="profilename"
-          id="email"
+          id="name"
           type="text"
         />
         <InputField
           variant="auth"
           extra="mb-3"
-          label="Email*"
+          label="change password*"
           placeholder="mail@simmmple.com"
           id="email"
           type="text"
@@ -57,9 +57,9 @@ const ProfileOverview = () => {
         <InputField
           variant="auth"
           extra="mb-3"
-          label="phone no*"
+          label="new password*"
           placeholder="phone no"
-          id="password"
+          id="number"
           type="text"
         />
         {/* Checkbox */}
@@ -130,4 +130,4 @@ const ProfileOverview = () => {
   // );
 
 
-export default ProfileOverview;
+export default Changepassword;

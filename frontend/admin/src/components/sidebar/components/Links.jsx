@@ -26,7 +26,7 @@ export function SidebarLinks(props) {
           <>
             {route.path !== "forgot-password" &&
               <Link key={index} to={route.layout + "/" + route.path}>
-                {route.path !== "log-in" &&
+                {route.path !== "login" &&
                   <Link key={index} to={route.layout + "/" + route.path}>
                     <div className="relative mb-3 flex hover:cursor-pointer">
                       <li
