@@ -1,9 +1,9 @@
 import React from "react";
 
 // Admin Imports
-import MainDashboard from "views/admin/default";
+import MainDashboard from "views/admin/dashboard";
 // import NFTMarketplace from "views/admin/marketplace";
-// import Profile from "views/admin/profile";
+import Profile from "views/admin/profile";
 // import DataTables from "views/admin/tables";
 // import RTLDefault from "views/rtl/default";
 
@@ -17,11 +17,12 @@ import Bookings from "views/admin/bookings/customers";
 import Paymentstatus from "views/admin/payment status/customers";
 import Reports from "views/admin/reports/customers";
 import Reviews from "views/admin/reviews/customers";
+import Changepassword from "views/changepassword";
 import {
   MdHome,
   MdOutlineShoppingCart,
   // MdBarChart,
-  // MdPerson,
+  MdPerson, 
   MdLock,
 } from "react-icons/md";
 
@@ -48,17 +49,24 @@ const routes = [
   //   path: "data-tables",
   //   component: <DataTables />,
   // },
-  // {
-  //   name: "Profile",
-  //   layout: "/admin",
-  //   path: "profile",
-  //   icon: <MdPerson className="h-6 w-6" />,
-  //   component: <Profile />,
-  // },
+  {
+    name: "Profile",
+    layout: "/admin",
+    path: "profile",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <Profile />,
+  },
+  {
+    name: "changepassword",
+    layout: "/admin",
+    path: "changepassword",
+    icon: <MdPerson className="h-6 w-6" />,
+    component: <Changepassword />,
+  },
   {
     name: "Log In",
     layout: "/auth",
-    path: "log-in",
+    path: "login",
     icon: <MdLock className="h-6 w-6" />,
     component: <LogIn />,
   },

@@ -21,7 +21,7 @@ export default function Admin(props) {
   }, [location.pathname]);
 
   const getActiveRoute = (routes) => {
-    let activeRoute = "Main Dashboard";
+    let activeRoute = " Dashboard";
     for (let i = 0; i < routes.length; i++) {
       if (
         window.location.href.indexOf(
@@ -81,7 +81,7 @@ export default function Admin(props) {
 
                 <Route
                   path="/"
-                  element={<Navigate to="/auth/log-in" replace />}
+                  element={<Navigate to="/auth/login" replace />}
                 />
               </Routes>
             </div>
