@@ -81,7 +81,7 @@ export default function Admin(props) {
 
                 <Route
                   path="/"
-                  element={<Navigate to="/auth/sign-in" replace />}
+                  element={<Navigate to="/auth/log-in" replace />}
                 />
               </Routes>
             </div>

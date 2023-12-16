@@ -8,7 +8,7 @@ import MainDashboard from "views/admin/default";
 // import RTLDefault from "views/rtl/default";
 
 // Auth Imports
-import SignIn from "views/auth/SignIn";
+import LogIn from "views/auth/LogIn";
 import ForgotPassword from "views/auth/ForgotPassword";
 
 // Icon Imports
@@ -56,11 +56,11 @@ const routes = [
   //   component: <Profile />,
   // },
   {
-    name: "Sign In",
+    name: "Log In",
     layout: "/auth",
-    path: "sign-in",
+    path: "log-in",
     icon: <MdLock className="h-6 w-6" />,
-    component: <SignIn />,
+    component: <LogIn />,
   },
   {
     name: "Forgot Password",
