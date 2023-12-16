@@ -24,7 +24,13 @@ export class User {
   createdAt: Date;
 
   @Prop()
+  updatedAt: Date;
+
+  @Prop()
   isDeleted: boolean;
+
+  @Prop()
+  isActive: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

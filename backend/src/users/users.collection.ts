@@ -1,8 +1,10 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
-
+import { CreateUserDto } from '../auth/dto/register.dto';
+import { SignInUserDto } from '../auth/dto/login.dto';
 import { User } from './users.schema';
+import { UpdateUserDto } from 'src/auth/dto/update.dto';
 
 @Injectable()
 export class UsersCollection {
@@ -25,16 +27,17 @@ export class UsersCollection {
         return newUser.save();
     }
 
-    async createUser(fullname: string, email: string, password: string) {
-        const newUser = await new this.userModel(
-            {
-                fullname: fullname,
-                email: email,
-                password: password,
-                createdAt: new Date(),
-                isDeleted: false,
-            },
-        );
+    async createUser(createUserDto: CreateUserDto) {
+        const newUser = await new this.userModel({
+            fullname: createUserDto.fullname,
+            email: createUserDto.email,
+            password: createUserDto.password,
+            phone: createUserDto.phone,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            isDeleted: false,
+            isActive: true,
+        });
         return newUser.save();
     }
 
@@ -50,13 +53,15 @@ export class UsersCollection {
     //     return await this.userModel.findOne({ password: password });
     // }
 
-    async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
+    async updateUser(userID: string, createUserDto: CreateUserDto) {
         return await this.userModel.findByIdAndUpdate(
             userID,
+            UpdateUserDto,
             {
-                name: requestData.name,
-                age: requestData.age,
-                hobby: requestData.hobby
+                fullname: createUserDto.fullname,
+                email: createUserDto.email,
+                password: createUserDto.password,
+                phone: createUserDto.phone,
             },
             { new: true },
         );
