@@ -24,9 +24,9 @@ const Navbar = (props) => {
         {
           brandText !== "Dashboard" &&
 
-          <div className="h-6 w-[224px] pt-1">
+          <div className="h-6 w-[224px] pt-1 flex">
             <a
-              className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+              className="text-sm font-normal text-navy-700 dark:text-white dark:hover:text-white"
               href=" "
             >
               Dashboard
@@ -35,12 +35,10 @@ const Navbar = (props) => {
                 /{" "}
               </span>
             </a>
-            <Link
-              className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-              to="#"
-            >
-              {brandText}
-            </Link>
+            <p className="text-sm font-normal capitalize text-navy-700 dark:text-white dark:hover:text-white"
+>              {brandText}
+</p>
+           
           </div>
         }
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
