@@ -31,7 +31,7 @@ export default function SignIn() {
                     variant="auth"
                     extra="mb-3"
                     label=" password"
-                    placeholder="Min. 8 characters"
+                    placeholder="Enter Old Password*"
                     id="password"
                     type="password"
                 />
@@ -41,7 +41,7 @@ export default function SignIn() {
                     variant="auth"
                     extra="mb-3"
                     label="new Password*"
-                    placeholder="Min. 8 characters"
+                    placeholder="Enter New Password"
                     id="password"
                     type="password"
                 />
@@ -49,7 +49,7 @@ export default function SignIn() {
                     variant="auth"
                     extra="mb-3"
                     label="confirm Password*"
-                    placeholder="Min. 8 characters"
+                    placeholder="Re-Enter New Password"
                     id="password"
                     type="password"
                 />
