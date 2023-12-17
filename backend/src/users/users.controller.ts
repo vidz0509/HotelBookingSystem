@@ -3,6 +3,8 @@ import { Request } from 'express';
 import { UsersService } from './users.services';
 import { CreateUserDto } from '../auth/dto/register.dto';
 import { SignInUserDto } from '../auth/dto/login.dto';
+import { UpdateUserDto } from 'src/auth/dto/update.dto';
+
 
 @Controller('users')
 export class UsersController {
@@ -25,10 +27,16 @@ export class UsersController {
         return await this.userService.sortedUsers(order);
     }
 
-    @Get(':name')
-    async findOne(@Param('name') name: string) {
-        return this.userService.getUserByName(name);
-    }
+    // @Get(':name')
+    // async findOne(@Param('name') name: string) {
+    //     return this.userService.getUserByName(name);
+    // }
+
+    @Get(':id')
+  async findOne(@Param('id') id: string) {
+    return this.userService.getUser(id)
+;
+  }
 
     @Get(':email')
     async find(@Param('email') email: string) {
@@ -37,8 +45,8 @@ export class UsersController {
 
     @Put(':id')
     async updateUser(@Param('id') id: string,
-        @Body() requestData: { name: string, age: number, hobby: string }) {
-        return this.userService.updateUser(id, requestData);
+        @Body() updateUserDto: UpdateUserDto) {
+        return this.userService.updateUser(id, updateUserDto);
     }
 
     @Delete(':id')

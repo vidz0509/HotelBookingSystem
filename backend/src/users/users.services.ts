@@ -7,6 +7,8 @@ import { promisify } from 'util';
 import { User, UsersDocument, UserSchema } from './users.schema';
 import { UsersCollection } from './users.collection';
 import { HelpersServices } from 'src/auth/services/helpers/helpers.services';
+import { UpdateUserDto } from 'src/auth/dto/update.dto';
+
 
 @Injectable()
 export class UsersService {
@@ -23,8 +25,12 @@ export class UsersService {
         return await this.collection.createUser(createUserDto);
     }
 
-    async getUserByName(name: string): Promise<User> {
-        return await this.collection.getUserByName(name);
+    // async getUserByName(name: string): Promise<User> {
+    //     return await this.collection.getUserByName(name);
+    // }
+
+    async getUser(Id: string) {
+        return await this.collection.getUser(Id);
     }
 
     async getUserByEmail(email: string): Promise<User> {
@@ -35,8 +41,8 @@ export class UsersService {
     //     return await this.collection.getUserByPassword(password);
     // }
 
-    async updateUser(userID: string, requestData: { name: string, age: number, hobby: string }) {
-        return await this.collection.updateUser(userID, requestData);
+    async updateUser(userID: string, updateUserDto: UpdateUserDto) {
+        return await this.collection.updateUser(userID, updateUserDto);
     }
 
     async deleteUser(userID: string) {
