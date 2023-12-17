@@ -1,13 +1,13 @@
 // Chakra Imports
 // Custom Icons
-import React from "react";
+// import React from "react";
 
-import { RiMoonFill, RiSunFill } from "react-icons/ri";
+// import { RiMoonFill, RiSunFill } from "react-icons/ri";
 export default function FixedPlugin(props) {
-  const { ...rest } = props;
-  const [darkmode, setDarkmode] = React.useState(
-    document.body.classList.contains("dark")
-  );
+  // const { ...rest } = props;
+  // const [darkmode, ] = React.useState(
+  //   document.body.classList.contains("dark")
+  // );
 
   // return (
   //   <button

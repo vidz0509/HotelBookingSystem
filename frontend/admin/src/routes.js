@@ -17,12 +17,12 @@ import Bookings from "views/admin/bookings/customers";
 import Paymentstatus from "views/admin/payment status/customers";
 import Reports from "views/admin/reports/customers";
 import Reviews from "views/admin/reviews/customers";
-import Changepassword from "views/changepassword";
+import Changepassword from"views/admin/changepassword";
 import {
   MdHome,
   MdOutlineShoppingCart,
   // MdBarChart,
-  MdPerson, 
+  MdPerson,
   MdLock,
 } from "react-icons/md";
 

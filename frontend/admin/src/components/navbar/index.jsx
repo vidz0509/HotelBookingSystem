@@ -12,6 +12,7 @@ import { FiSearch } from "react-icons/fi";
 // } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
 // import Dashboard from "views/admin/dashboard";
+// import ProfileOverview from "./views/admin/profile";
 
 const Navbar = (props) => {
   const { onOpenSidenav, brandText } = props;
@@ -22,26 +23,26 @@ const Navbar = (props) => {
       <div className="ml-[6px]">
         {
           brandText !== "Dashboard" &&
-        
-        <div className="h-6 w-[224px] pt-1">
-          <a
-            className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            href=" "
-          >
-            Dashboard
-            <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
-              {" "}
-              /{" "}
-            </span>
-          </a>
-          <Link
-            className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
-            to="#"
-          >
-            {brandText}
-          </Link>
-        </div>
-}
+
+          <div className="h-6 w-[224px] pt-1">
+            <a
+              className="text-sm font-normal text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+              href=" "
+            >
+              Dashboard
+              <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
+                {" "}
+                /{" "}
+              </span>
+            </a>
+            <Link
+              className="text-sm font-normal capitalize text-navy-700 hover:underline dark:text-white dark:hover:text-white"
+              to="#"
+            >
+              {brandText}
+            </Link>
+          </div>
+        }
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
           <Link
             to="#"
@@ -194,7 +195,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                  👋Admin
+                    👋Admin
                   </p>{" "}
                 </div>
               </div>
@@ -202,16 +203,16 @@ const Navbar = (props) => {
 
               <div className="flex flex-col p-4">
                 <a
-                  href=" "
+                  href="./profile"
                   className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
-                  My Profile 
+                  My Profile
                 </a>
                 <a
-                  href=" "
+                  href="./changepassword"
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
-                 Change Password
+                  Change Password
                 </a>
                 <a
                   href=" "
