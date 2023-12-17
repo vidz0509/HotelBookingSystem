@@ -4,7 +4,7 @@ import { HelpersServices } from './services/helpers/helpers.services';
 import { UsersCollection } from '../users/users.collection';
 import { UsersService } from 'src/users/users.services';
 
-import { CreateUserDto } from './dto/register.dto';``
+import { CreateUserDto } from './dto/register.dto'; ``
 import { SignInUserDto } from './dto/login.dto';
 // import { RefreshTokenDto } from './dto/refresh-token.dto';
 
@@ -51,6 +51,11 @@ export class AuthServices {
         await this.helper.buildResponse(false, `User is already registered with this email.`),
       );
     }
+    if (! await this.helper.isValidPassword(createUserDto.password)){
+      throw new BadRequestException(
+        await this.helper.buildResponse(false, `Pasword must have Min 8 chars Max 12 chars: 1 digit 1 Uppercase and 1 special char`),
+      );
+    }
     // if (password !== confirmpassword) {
     //   throw new UnauthorizedException(
     //     await this.helper.buildResponse(false, 'Password and confirm password must be same'),
@@ -90,8 +95,7 @@ export class AuthServices {
     }
   }
   async checkIfUserExists(email: string) {
-    const user = await this.usersCollection.getUserByEmail(email)
-      ;
+    const user = await this.usersCollection.getUserByEmail(email);
     return user;
   }
 }
