@@ -1,6 +1,6 @@
 // Chakra Imports
 // Custom Icons
-// import React from "react";
+// import React from "react"; 
 
 // import { RiMoonFill, RiSunFill } from "react-icons/ri";
 export default function FixedPlugin(props) {

@@ -209,7 +209,7 @@ const Navbar = (props) => {
                   My Profile
                 </a>
                 <a
-                  href="./changepassword"
+                  href="./change-password"
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
                   Change Password

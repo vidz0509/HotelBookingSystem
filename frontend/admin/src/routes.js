@@ -57,9 +57,9 @@ const routes = [
     component: <Profile />,
   },
   {
-    name: "changepassword",
+    name: "change password",
     layout: "/admin",
-    path: "changepassword",
+    path: "change-password",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Changepassword />,
   },
