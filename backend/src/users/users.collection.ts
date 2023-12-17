@@ -41,8 +41,12 @@ export class UsersCollection {
         return newUser.save();
     }
 
-    async getUserByName(name: string): Promise<User> {
-        return await this.userModel.findOne({ name: name });
+    // async getUserByName(name: string): Promise<User> {
+    //     return await this.userModel.findOne({ name: name });
+    // }
+
+    async getUser(id: string) {
+        return await this.userModel.findById(id);
     }
 
     async getUserByEmail(email: string): Promise<User> {
@@ -53,16 +57,10 @@ export class UsersCollection {
     //     return await this.userModel.findOne({ password: password });
     // }
 
-    async updateUser(userID: string, createUserDto: CreateUserDto) {
+    async updateUser(userID: string, updateUserDto: UpdateUserDto) {
         return await this.userModel.findByIdAndUpdate(
             userID,
-            UpdateUserDto,
-            {
-                fullname: createUserDto.fullname,
-                email: createUserDto.email,
-                password: createUserDto.password,
-                phone: createUserDto.phone,
-            },
+            updateUserDto,
             { new: true },
         );
     }
