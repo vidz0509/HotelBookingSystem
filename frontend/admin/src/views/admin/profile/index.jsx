@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputField from "components/fields/InputField";
 import { authServices } from "../../../services/auth";
 import { validation } from "../../../services/validations";
@@ -31,6 +31,10 @@ export default function ProfileOverview() {
     setContact(value);
   }
 
+  useEffect(() => {
+    
+  }, []);
+
   const handleSubmit = async (event) => {
     // event.prevntDefault();
     setEmailError('');
@@ -55,10 +59,10 @@ export default function ProfileOverview() {
       phone: contact
     };
     const currentUser = authServices.getCurrentUser();
-    const result = await authServices.updateProfile(currentUser._id,requestBody);
+    const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      
+
       window.location.reload();
     } else {
       setError(result.errorMessage);
