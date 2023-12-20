@@ -77,4 +77,16 @@ export class UsersCollection {
             { $sort: { name: order == 'desc' ? -1 : 1 } },
         ]);
     }
+
+    async changePassword(userId: string, password: string, newpassword: string) {
+        return await this.userModel.findByIdAndUpdate(
+            userId,
+            {
+                password: password
+            },
+            {
+                new: true
+            }
+        );
+    }
 }

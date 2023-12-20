@@ -10,6 +10,7 @@ import { SignInUserDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthServices {
+  private readonly logger = new Logger(AuthServices.name);
   constructor(
     private readonly usersCollection: UsersCollection,
     private readonly usersService: UsersService,
@@ -51,7 +52,7 @@ export class AuthServices {
         await this.helper.buildResponse(false, `User is already registered with this email.`),
       );
     }
-    if (! await this.helper.isValidPassword(createUserDto.password)){
+    if (! await this.helper.isValidPassword(createUserDto.password)) {
       throw new BadRequestException(
         await this.helper.buildResponse(false, `Pasword must have Min 8 chars Max 12 chars: 1 digit 1 Uppercase and 1 special char`),
       );
@@ -97,5 +98,28 @@ export class AuthServices {
   async checkIfUserExists(email: string) {
     const user = await this.usersCollection.getUserByEmail(email);
     return user;
+  }
+
+  async changePassword(requestData: { userID: string, password: string, newpassword: string}) {
+    this.logger.debug(`Request received to reset password : ${requestData.userID}`);
+
+    this.logger.debug(`Check if user registered with email ${requestData.userID}`);
+    const user = await this.usersCollection.getUser(requestData.userID);
+
+    if (!user)
+      throw new BadRequestException(await this.helper.buildResponse(false, 'This user is not registered.'));
+
+    try {
+      this.logger.debug(`Encrypting password for user :  ${user._id}`);
+      // const encryptedPwd = await this.helper.encryptString(requestData.password);
+      await this.usersCollection.changePassword(user._id, user.password, user.newpassword);
+      return await this.helper.buildResponse(true);
+    } catch (error) {
+      if (error) {
+        this.logger.error(`Failed to send email to : ${user._id}`);
+        this.logger.error(JSON.stringify(error, null, 2));
+        throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
+      }
+    }
   }
 }

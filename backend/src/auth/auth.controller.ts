@@ -21,6 +21,11 @@ export class AuthController {
     async registerUser(@Body() createUserDto: CreateUserDto) {
         return await this.authService.register(createUserDto);
     }
+
+    @Put('/changePassword')
+    async changePassword(@Body() requestData: { userID: string, password:string, newpassword: string}) {        
+        return await this.authService.changePassword(requestData);
+    }
 }
 // @Post('/refreshToken')
 // async refreshToken(@Body() refreshTokenDto: RefreshTokenDto) {
