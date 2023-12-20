@@ -4,6 +4,7 @@ import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
 import Footer from "components/footer/Footer";
 import routes from "routes.js";
+import { authServices } from "../../services/auth";
 
 export default function Admin(props) {
   const { ...rest } = props;
@@ -57,6 +58,9 @@ export default function Admin(props) {
   };
 
   document.documentElement.dir = "ltr";
+  if (!authServices.checkIfUserLoggedIn()) {
+    return <Navigate to="/auth/login" replace />;
+  }
   return (
     <div className="flex h-full w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />

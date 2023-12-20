@@ -3,6 +3,7 @@ import authImg from "assets/img/auth/auth.png";
 import { Link, Routes, Route, Navigate } from "react-router-dom";
 import routes from "routes.js";
 import FixedPlugin from "components/fixedPlugin/FixedPlugin";
+import { authServices } from "../../services/auth";
 
 export default function Auth() {
   const getRoutes = (routes) => {
@@ -17,8 +18,10 @@ export default function Auth() {
     });
   };
   document.documentElement.dir = "ltr";
-  
-  return (
+  if (authServices.checkIfUserLoggedIn()) {
+    return <Navigate to="/admin/dashboard" replace />;
+  }
+   return (
     <div>
       <div className="relative float-right h-full min-h-screen w-full !bg-white dark:!bg-navy-900">
         <FixedPlugin />
@@ -49,7 +52,7 @@ export default function Auth() {
                   {getRoutes(routes)}
                   <Route
                     path="/"
-                    element={<Navigate to="/auth/signin" replace />}
+                    element={<Navigate to="/auth/login" replace />}
                   />
                 </Routes>
                 <div className="absolute right-0 hidden h-full min-h-screen md:block lg:w-[49vw] 2xl:w-[44vw]">
