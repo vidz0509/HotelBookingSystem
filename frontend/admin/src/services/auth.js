@@ -4,6 +4,7 @@ export const authServices = {
     checkIfUserLoggedIn,
     login,
     getCurrentUser,
+    updateProfile,
     forgotPassword,
     verifyResetPasswordCode,
     resetPassword,
@@ -17,6 +18,17 @@ function checkIfUserLoggedIn() {
 async function login(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/auth/login`;
     return await axios.post(url, requestBody).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        console.error(errorObj);
+        return errorObj;
+    });
+}
+
+async function updateProfile(userId, requestBody) {
+    const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
+    return await axios.put(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

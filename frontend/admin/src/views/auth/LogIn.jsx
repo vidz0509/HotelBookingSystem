@@ -26,11 +26,8 @@ export default function SignIn() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('adsfsf')
     setEmailError('');
-    console.log(email);
     setPasswordError('');
-    console.log(password);
     if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
       setEmailError("Please enter valid email address.");
       return false;
@@ -44,7 +41,6 @@ export default function SignIn() {
       email: email,
       password: password
     };
-    console.log(requestBody);
     const result = await authServices.login(requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
@@ -99,9 +95,6 @@ export default function SignIn() {
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
               : <span>log In</span>}
           </button>
-          {/* <button className="linear mt-2 w-full rounded-xl bg-brand-500  text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 " onClick={handleSubmit} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-            <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[30px]" /></span>
-          </button> */}
           <div className="mt-4">
             {error !== '' && <>
               <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
