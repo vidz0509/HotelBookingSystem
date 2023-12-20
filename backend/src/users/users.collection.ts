@@ -12,7 +12,7 @@ export class UsersCollection {
     constructor(@InjectModel('User') private userModel: Model<User>) { }
 
     async getAllUsers(): Promise<User[]> {
-        return await this.userModel.find().exec();
+        return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
     async signIn(email: string, password: string) {
@@ -46,11 +46,11 @@ export class UsersCollection {
     // }
 
     async getUser(id: string) {
-        return await this.userModel.findById(id);
+        return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
-    async getUserByEmail(email: string): Promise<User> {
-        return await this.userModel.findOne({ email: email });
+    async getUserByEmail(email: string): Promise<any> {
+        return await this.userModel.find({ email: email }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
     // async getUserByPassword(password: string): Promise<User> {

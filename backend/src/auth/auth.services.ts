@@ -100,26 +100,6 @@ export class AuthServices {
     return user;
   }
 
-  async changePassword(requestData: { userID: string, password: string, newpassword: string}) {
-    this.logger.debug(`Request received to reset password : ${requestData.userID}`);
-
-    this.logger.debug(`Check if user registered with email ${requestData.userID}`);
-    const user = await this.usersCollection.getUser(requestData.userID);
-
-    if (!user)
-      throw new BadRequestException(await this.helper.buildResponse(false, 'This user is not registered.'));
-
-    try {
-      this.logger.debug(`Encrypting password for user :  ${user._id}`);
-      // const encryptedPwd = await this.helper.encryptString(requestData.password);
-      await this.usersCollection.changePassword(user._id, user.password, user.newpassword);
-      return await this.helper.buildResponse(true);
-    } catch (error) {
-      if (error) {
-        this.logger.error(`Failed to send email to : ${user._id}`);
-        this.logger.error(JSON.stringify(error, null, 2));
-        throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
-      }
-    }
+  async changePassword(requestData: { userID: string, password: string, newpassword: string }) {
   }
 }

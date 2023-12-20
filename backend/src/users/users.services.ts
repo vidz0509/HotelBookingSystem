@@ -15,6 +15,7 @@ export class UsersService {
 
     constructor(
         private readonly collection: UsersCollection,
+        private readonly helper: HelpersServices,
     ) { }
 
     async getAllUsers(): Promise<User[]> {
@@ -33,8 +34,9 @@ export class UsersService {
         return await this.collection.getUser(Id);
     }
 
-    async getUserByEmail(email: string): Promise<User> {
-        return await this.collection.getUserByEmail(email);
+    async getUserByEmail(email: string): Promise<any> {
+        let user = await this.collection.getUserByEmail(email);
+        return await this.helper.buildResponse(true, null, user);
     }
 
     // async getUserByPassword(password: string): Promise<User> {

@@ -5,6 +5,7 @@ import { User, UserSchema } from './users.schema';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.services';
 import { UsersCollection } from './users.collection';
+import { HelpersServices } from 'src/auth/services/helpers/helpers.services';
 
 @Module({
     imports: [
@@ -16,7 +17,7 @@ import { UsersCollection } from './users.collection';
         ])
     ],
     controllers: [UsersController],
-    providers: [UsersService, UsersCollection]
+    providers: [UsersService, UsersCollection, HelpersServices]
 })
 
 export class UserModule { }

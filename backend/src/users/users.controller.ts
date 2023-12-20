@@ -31,16 +31,14 @@ export class UsersController {
     // async findOne(@Param('name') name: string) {
     //     return this.userService.getUserByName(name);
     // }
+    @Get('/getByEmail')
+    async find(@Query('email') email: string) {
+        return this.userService.getUserByEmail(email);
+    }
 
     @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.userService.getUser(id)
-;
-  }
-
-    @Get(':email')
-    async find(@Param('email') email: string) {
-        return this.userService.getUserByEmail(email);
+    async findOne(@Param('id') id: string) {
+        return this.userService.getUser(id);
     }
 
     @Put(':id')
