@@ -18,33 +18,6 @@ export class AuthServices {
   ) { }
 
 
-  // async registerUSer(fullname: string, email: string, password: string, confirmpassword: string) {
-  //   try {
-  //     const isUserExists = await this.checkIfUSerExist(email);
-  //     if (!isUserExists){
-  //       throw new ConflictException(
-  //         await this.helper.buildResponse(false, `User is already registered with this email.`),
-  //       );
-  //     }
-  //     if (password !== confirmpassword) {
-  //       throw new UnauthorizedException(
-  //         await this.helper.buildResponse(false, 'Password and confirm password must be same'),
-  //       );
-  //     }
-  //     // const encryptedPwd = await this.helper.encryptString(request.password);
-  //     // const createUserDto = CreateMapper.buildUser(request, encryptedPwd);
-
-  //     const newUser = await this.usersCollection.createUser(fullname, email, password, confirmpassword);
-  //     // const userData = await this.helper.buildAuthResponse(newUser);
-  //     const response = await this.helper.buildResponse(true, null, newUser);
-  //     return response;
-  //   } catch (error) {
-  //     console.debug(`Failed to register user: ${error}`);
-  //     console.debug(JSON.stringify(error, null, 2));
-  //     throw new InternalServerErrorException('Failed to register user');
-  //   }
-  // }
-
   async register(createUserDto: CreateUserDto) {
     const isUserExists = await this.checkIfUserExists(createUserDto.email);
     if (isUserExists) {
@@ -100,6 +73,33 @@ export class AuthServices {
     return user;
   }
 
-  async changePassword(requestData: { userID: string, password: string, newpassword: string }) {
+  async changePassword(requestData: { userId: string, password: string, newpassword: string }) {
+    this.logger.debug(`Request received to reset password : ${requestData.userId}`);
+
+    this.logger.debug(`Check if user registered with email ${requestData.userId}`);
+    const user = await this.usersCollection.getUserWithPassword(requestData.userId);
+
+    if (!user)
+      throw new BadRequestException(await this.helper.buildResponse(false, 'This user id is not registered.'));
+
+      if (user.password !== requestData.password) {
+      throw new UnauthorizedException(
+        await this.helper.buildResponse(false, 'Current password is wrong'),
+      );
+    }
+    if (user.password == requestData.newpassword) {
+      throw new UnauthorizedException(
+        await this.helper.buildResponse(false, 'Current password and new password can not be same'),
+      );
+    }
+    try {
+      await this.usersCollection.changePassword(user._id,requestData.newpassword);
+      return await this.helper.buildResponse(true);
+    } catch (error) {
+      if (error) {
+        this.logger.error(JSON.stringify(error, null, 2));
+        throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
+      }
+    }
   }
 }

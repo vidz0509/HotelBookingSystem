@@ -18,8 +18,10 @@ export class UsersService {
         private readonly helper: HelpersServices,
     ) { }
 
-    async getAllUsers(): Promise<User[]> {
-        return await this.collection.getAllUsers();
+    async getAllUsers(): Promise<any> {
+        let data = await this.collection.getAllUsers();
+        const response = await this.helper.buildResponse(true, null, data);
+        return response;
     }
 
     async register(createUserDto) {
@@ -31,7 +33,9 @@ export class UsersService {
     // }
 
     async getUser(Id: string) {
-        return await this.collection.getUser(Id);
+        let data = await this.collection.getUser(Id);
+        const response = await this.helper.buildResponse(true, null, data);
+        return response;
     }
 
     async getUserByEmail(email: string): Promise<any> {

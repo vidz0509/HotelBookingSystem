@@ -22,12 +22,13 @@ export class AuthController {
         return await this.authService.register(createUserDto);
     }
 
-    @Put('/changePassword')
-    async changePassword(@Body() requestData: { userID: string, password:string, newpassword: string}) {        
+    @Post('/changePassword')
+    async changePassword(@Body() requestData: { userId: string, password: string, newpassword: string }) {
         return await this.authService.changePassword(requestData);
     }
+
+    // @Post('/forgotPassword')
+    // async forgotPassword(@Body() requestData: { email: string }) {        
+    //     return await this.authService.forgotPassword(requestData);
+    // }
 }
-// @Post('/refreshToken')
-// async refreshToken(@Body() refreshTokenDto: RefreshTokenDto) {
-//     return await this.authService.refreshToken(refreshTokenDto);
-// }

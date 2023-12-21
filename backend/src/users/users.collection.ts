@@ -15,6 +15,10 @@ export class UsersCollection {
         return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
+    async getUserWithPassword(id: string) {
+        return await this.userModel.findById(id);
+    }
+
     async signIn(email: string, password: string) {
         const newUser = await new this.userModel(
             {
@@ -78,11 +82,11 @@ export class UsersCollection {
         ]);
     }
 
-    async changePassword(userId: string, password: string, newpassword: string) {
+    async changePassword(userId: string, password: string) {
         return await this.userModel.findByIdAndUpdate(
             userId,
             {
-                password: password
+                password: password,
             },
             {
                 new: true
