@@ -17,7 +17,6 @@ export class AuthServices {
     private readonly helper: HelpersServices,
   ) { }
 
-
   async register(createUserDto: CreateUserDto) {
     const isUserExists = await this.checkIfUserExists(createUserDto.email);
     if (isUserExists) {
@@ -45,7 +44,6 @@ export class AuthServices {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
     }
   }
-
 
   async signIn(signInUserDto: SignInUserDto): Promise<any> {
     const user = await this.usersService.getUserByEmail(signInUserDto.email);

@@ -38,9 +38,14 @@ export class UsersService {
         return response;
     }
 
-    async getUserByEmail(email: string): Promise<any> {
-        let user = await this.collection.getUserByEmail(email);
-        return await this.helper.buildResponse(true, null, user);
+    // async getUserByEmail(email: string): Promise<any> {
+    //     // let user = await this.collection.getUserByEmail(email);
+    //     return await this.helper.buildResponse(true, null, user);
+    // }
+
+    async getUserByEmail(email: string): Promise<User>  {
+        // let user = await this.collection.getUserByEmail(email);
+        return await this.collection.getUserByEmail(email);
     }
 
     // async getUserByPassword(password: string): Promise<User> {

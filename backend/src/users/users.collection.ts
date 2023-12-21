@@ -41,7 +41,7 @@ export class UsersCollection {
             updatedAt: new Date(),
             isDeleted: false,
             isActive: true,
-        });
+        });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
         return newUser.save();
     }
 
@@ -53,8 +53,8 @@ export class UsersCollection {
         return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
-    async getUserByEmail(email: string): Promise<any> {
-        return await this.userModel.find({ email: email }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+    async getUserByEmail(email: string): Promise<User> {
+        return this.userModel.findOne({ email: email }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
     // async getUserByPassword(password: string): Promise<User> {
