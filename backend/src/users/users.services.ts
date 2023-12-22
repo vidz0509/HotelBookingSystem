@@ -6,7 +6,7 @@ import { promisify } from 'util';
 
 import { User, UsersDocument, UserSchema } from './users.schema';
 import { UsersCollection } from './users.collection';
-import { HelpersServices } from 'src/auth/services/helpers/helpers.services';
+import { HelpersServices } from 'src/services/helpers/helpers.services';
 import { UpdateUserDto } from 'src/auth/dto/update.dto';
 
 

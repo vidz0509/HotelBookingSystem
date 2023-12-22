@@ -28,8 +28,18 @@ export class AuthController {
         return await this.authService.changePassword(requestData);
     }
 
-    // @Post('/forgotPassword')
-    // async forgotPassword(@Body() requestData: { email: string }) {        
-    //     return await this.authService.forgotPassword(requestData);
-    // }
+    @Post('/forgotPassword')
+    async forgotPassword(@Body() requestData: { email: string }) {        
+        return await this.authService.forgotPassword(requestData);
+    }
+
+    @Post('/verifyResetPasswordCode')
+    async verifyResetPasswordCode(@Body() requestData: { email: string, code: string }) {        
+        return await this.authService.verifyResetPasswordCode(requestData);
+    }
+
+    @Post('/resetPassword')
+    async resetPassword(@Body() requestData: { email: string, password: string }) {        
+        return await this.authService.resetPassword(requestData);
+    }
 }

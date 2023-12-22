@@ -25,6 +25,14 @@ export class HelpersServices {
     return regex.test(password);
   }
 
+  async generateVerificationCode() {
+    const charset = "0123456789";
+    let code = '';
+    for (var i = 0; i < 4; i++)
+      code += charset.charAt(Math.floor(Math.random() * charset.length));
+    return code;
+  }
+
   async buildAuthResponse(userData: User) {
     const userId = userData._id.toString();
     // const expiresIn = isRefreshToken ? parseInt(process.env.REFRESH_TOKEN_EXPIRATION_HOURS) * 3600 : parseInt(process.env.ACCESS_TOKEN_EXPIRATION_TIME);

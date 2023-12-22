@@ -8,7 +8,9 @@ import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
 
 import { ConfigModule } from '@nestjs/config';
-import { HelpersServices } from './auth/services/helpers/helpers.services';
+import { HelpersServices } from './services/helpers/helpers.services';
+import { EmailModule } from './email/email.module';
+import { VerificationCodesModule } from './verification-codes/verificationCodes.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -17,6 +19,8 @@ import { HelpersServices } from './auth/services/helpers/helpers.services';
   MongooseModule.forRoot(process.env.MONGODB_URI + '/' + process.env.DATABASE_NAME),
   UserModule,
   ProductModule,
+  EmailModule,
+  VerificationCodesModule,
   AuthModule
 ],
 controllers: [AppController],
