@@ -1,31 +1,79 @@
 import InputField from "components/fields/InputField";
-// import { FcGoogle } from "react-icons/fc";
-// import Checkbox from "components/checkbox";
+import React, { useState, useEffect } from "react";
+import { authServices } from "../../../services/auth";
+import { validation } from "../../../services/validations";
+import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 
-export default function SignIn() {
+export default function changepassword() {
+  const [password, setpassword] = useState('');
+  const [newPassword, setnewPassword] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
+
+  const [passwordError, setpasswordError] = useState('');
+  const [newPasswordError, setnewPasswordErro] = useState('');
+  const [confirmPasswordError, setconfirmPasswordErro] = useState('');
+
+  const [error, setError] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+
+  const handlepasswordChange = (event) => {
+    const value = event.target.value;
+    setpassword(value);
+  }
+
+  const handlenewPasswordChange = (event) => {
+    const value = event.target.value;
+    setnewPassword(value);
+  }
+
+  const handleconfirmPasswordChange = (event) => {
+    const value = event.target.value;
+    setconfirmPassword(value);
+  }
+
+  useEffect(() => {
+
+  }, []);
+
+  const handleSubmit = async (event) => {
+    // event.prevntDefault();
+    setpasswordError('');
+    setnewPasswordError('');
+    setconfirmPasswordError('');
+    if (validation.isEmpty(password)) {
+      setpasswordError("Please enter valid password.");
+      return false;
+    }
+    if (validation.isEmpty(newPassword) ) {
+      setnewPasswordError("Please enter valid new Password.");
+      return false;
+    }
+    if (validation.isEmpty(confirmPassword)) {
+      setconfirmPasswordError("Please enter valid confirmPassword.");
+      return false;
+    }
+    setBtnDisabled(true);
+    const requestBody = {
+      password: password,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword
+    };
+    const currentUser = authServices.getCurrentUser();
+    const result = await authServices.changepassword(currentUser._id, requestBody);
+    if (result.isSuccessful) {
+      localStorage.setItem('currentUser', JSON.stringify(result.data));
+      window.location.reload();
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+    }
+  }
+
     return (
         <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
             {/* Sign in section */}
             <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-                {/* <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-                    Log In
-                </h4>
-                <p className="mb-9 ml-1 text-base text-gray-600">
-                    Enter your email and password to sign in!
-                </p> */}
-                {/* <div className="mb-6 flex h-[50px] w-full items-center justify-center gap-2 rounded-xl bg-lightPrimary hover:cursor-pointer dark:bg-navy-800">
-          <div className="rounded-full text-xl">
-            <FcGoogle />
-          </div>
-          <h5 className="text-sm font-medium text-navy-700 dark:text-white">
-            Sign In with Google
-          </h5>
-        </div> */}
-                {/* <div className="mb-6 flex items-center  gap-3">
-          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
-          <p className="text-base text-gray-600 dark:text-white"> or </p>
-          <div className="h-px w-full bg-gray-200 dark:bg-navy-700" />
-        </div> */}
+            
                 {/* Email */}
                 <InputField
                     variant="auth"
@@ -34,6 +82,9 @@ export default function SignIn() {
                     placeholder="Enter Old Password*"
                     id="password"
                     type="password"
+                    onChange={handlepasswordChange}
+          state={passwordError !== "" ? "error" : ""}
+          errorMessage={passwordError !== "" ? passwordError : ""}
                 />
 
                 {/* Password */}
@@ -44,6 +95,9 @@ export default function SignIn() {
                     placeholder="Enter New Password"
                     id="password"
                     type="password"
+                    onChange={handlenewPasswordChange}
+          state={newPasswordError !== "" ? "error" : ""}
+          errorMessage={newPasswordError !== "" ? newPasswordError : ""}
                 />
                  <InputField
                     variant="auth"
@@ -52,6 +106,9 @@ export default function SignIn() {
                     placeholder="Re-Enter New Password"
                     id="password"
                     type="password"
+                    onChange={handleconfirmPasswordChange}
+          state={confirmPasswordError !== "" ? "error" : ""}
+          errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
                 />
                 {/* Checkbox */}
                 <div className="mb-4 flex items-center justify-between px-2">
@@ -69,19 +126,17 @@ export default function SignIn() {
                     </a> */}
                 </div>
                 <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" type="submit">
-                    Update
-                </button>
-                {/* <div className="mt-4">
-          <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
-            Not registered yet?
-          </span>
-          <a
-            href=" "
-            className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-          >
-            Create an account
-          </a>
-        </div> */}
+                {btnDisabled ?
+              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+              : <span>update password</span>}
+          </button>
+          <div className="mt-4">
+            {error !== '' && <>
+              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+            </>}
+          </div>
+            
+              
             </div>
         </div>
     );

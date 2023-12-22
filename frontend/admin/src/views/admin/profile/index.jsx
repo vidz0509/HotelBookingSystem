@@ -14,6 +14,7 @@ export default function ProfileOverview() {
   const [contactError, setContactError] = useState('');
 
   const [error, setError] = useState('');
+  const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   const handleFullNameChange = (event) => {
@@ -32,7 +33,7 @@ export default function ProfileOverview() {
   }
 
   useEffect(() => {
-    
+
   }, []);
 
   const handleSubmit = async (event) => {
@@ -62,7 +63,6 @@ export default function ProfileOverview() {
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-
       window.location.reload();
     } else {
       setError(result.errorMessage);
@@ -119,6 +119,12 @@ export default function ProfileOverview() {
           <div className="mt-4">
             {error !== '' && <>
               <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+            </>}
+          </div>
+
+          <div className="mt-4">
+            {successful !== '' && <>
+              <p className="mb-9 ml-1 text-base text-red-500">{successful}</p>
             </>}
           </div>
         </div>

@@ -5,6 +5,7 @@ export const authServices = {
     login,
     getCurrentUser,
     updateProfile,
+    changepassword,
     forgotPassword,
     verifyResetPasswordCode,
     resetPassword,
@@ -27,6 +28,17 @@ async function login(requestBody) {
 }
 
 async function updateProfile(userId, requestBody) {
+    const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
+    return await axios.put(url, requestBody).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        console.error(errorObj);
+        return errorObj;
+    });
+}
+
+async function changepassword(userId, requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
