@@ -4,14 +4,14 @@ import { authServices } from "../../../services/auth";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 
-export default function changepassword() {
+export default function changePassword() {
   const [password, setpassword] = useState('');
   const [newPassword, setnewPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
 
   const [passwordError, setpasswordError] = useState('');
-  const [newPasswordError, setnewPasswordErro] = useState('');
-  const [confirmPasswordError, setconfirmPasswordErro] = useState('');
+  const [newPasswordError, setnewPasswordError] = useState('');
+  const [confirmPasswordError, setconfirmPasswordError] = useState('');
 
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
