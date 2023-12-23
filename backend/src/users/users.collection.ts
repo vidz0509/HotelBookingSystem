@@ -54,7 +54,7 @@ export class UsersCollection {
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return this.userModel.findOne({ email: email }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+        return this.userModel.findOne({ email: email });
     }
 
     // async getUserByPassword(password: string): Promise<User> {

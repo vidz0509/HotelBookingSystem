@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, InternalServerErrorException, UnauthorizedException, BadRequestException, Logger } from '@nestjs/common';
+import { Injectable, ConflictException, InternalServerErrorException, UnauthorizedException, BadRequestException, Logger, ConsoleLogger } from '@nestjs/common';
 import { HelpersServices } from '../services/helpers/helpers.services';
 
 import { UsersCollection } from '../users/users.collection';
@@ -57,6 +57,7 @@ export class AuthServices {
         await this.helper.buildResponse(false, 'This email is not registered.'),
       );
     }
+    console.log(user);
     if (user.password !== signInUserDto.password) {
       throw new UnauthorizedException(
         await this.helper.buildResponse(false, 'Invalid Credentials'),
