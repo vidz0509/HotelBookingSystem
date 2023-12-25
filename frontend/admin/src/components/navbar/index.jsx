@@ -15,7 +15,7 @@ import avatar from "assets/img/avatars/avatar4.png";
 // import ProfileOverview from "./views/admin/profile";
 
 const Navbar = (props) => {
-  const { onOpenSidenav, brandText } = props;
+  const {brandText } = props;
   // const [darkmode, setDarkmode] = React.useState(false);
 
   return (

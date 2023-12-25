@@ -17,6 +17,12 @@ export default function ProfileOverview() {
   const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
 
+  const [currentUser, setCurrentUser] = useState({
+    fullname: '',
+    email: '',
+    contact: ''
+  })
+
   const handleFullNameChange = (event) => {
     const value = event.target.value;
     setFullname(value);
@@ -33,7 +39,12 @@ export default function ProfileOverview() {
   }
 
   useEffect(() => {
-
+    const userData = authServices.getCurrentUser();
+    setCurrentUser({
+      fullname: userData.fullname,
+      email: userData.email,
+      phone: userData.phone
+    })
   }, []);
 
   const handleSubmit = async (event) => {
@@ -84,6 +95,7 @@ export default function ProfileOverview() {
           onChange={handleFullNameChange}
           state={fullnameError !== "" ? "error" : ""}
           errorMessage={fullnameError !== "" ? fullnameError : ""}
+          value={currentUser.fullname}
         />
         <InputField
           variant="auth"
@@ -95,6 +107,7 @@ export default function ProfileOverview() {
           onChange={handleEmailChange}
           state={emailError !== "" ? "error" : ""}
           errorMessage={emailError !== "" ? emailError : ""}
+          value={currentUser.email}
         />
         <InputField
           variant="auth"
@@ -106,6 +119,7 @@ export default function ProfileOverview() {
           onChange={handleContactChange}
           state={contactError !== "" ? "error" : ""}
           errorMessage={contactError !== "" ? contactError : ""}
+          value={currentUser.phone}
         />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">

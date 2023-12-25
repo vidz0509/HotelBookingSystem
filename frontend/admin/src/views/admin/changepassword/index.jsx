@@ -30,6 +30,7 @@ export default function ChangePassword() {
     const value = event.target.value;
     setconfirmPassword(value);
   }
+  
 
   useEffect(() => {
 
@@ -141,6 +142,7 @@ export default function ChangePassword() {
             <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
           </>}
         </div>
+        
 
 
       </div>

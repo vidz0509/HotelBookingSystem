@@ -2,7 +2,7 @@
 import React from "react";
 
 function InputField(props) {
-  const { label, id, extra, type, placeholder, variant, state, disabled, onChange, onKeyDown, errorMessage, maxLength } =
+  const { label, id, extra, type, placeholder, variant, state, disabled, onChange, onKeyDown, errorMessage, maxLength, value } =
     props;
 
   return (
@@ -32,6 +32,7 @@ function InputField(props) {
         onChange={onChange}
         onKeyDown={onKeyDown}
         maxLength={maxLength}
+        value={value}
         
       />
       {errorMessage !== "" && <p className="mb-3 ml-1 text-red-500 text-sm">{errorMessage}</p>}
