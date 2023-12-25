@@ -57,7 +57,6 @@ export class AuthServices {
         await this.helper.buildResponse(false, 'This email is not registered.'),
       );
     }
-    console.log(user);
     if (user.password !== signInUserDto.password) {
       throw new UnauthorizedException(
         await this.helper.buildResponse(false, 'Invalid Credentials'),
@@ -77,7 +76,6 @@ export class AuthServices {
     return user;
   }
 
-
   async changePassword(requestData: { userId: string, password: string, newpassword: string }) {
     this.logger.debug(`Request received to reset password : ${requestData.userId}`);
 
@@ -87,10 +85,18 @@ export class AuthServices {
     if (!user)
       throw new BadRequestException(await this.helper.buildResponse(false, 'This user id is not registered.'));
 
+      if (user.password !== requestData.password) {
+      throw new UnauthorizedException(
+        await this.helper.buildResponse(false, 'Current password is wrong'),
+      );
+    }
+    if (user.password == requestData.newpassword) {
+      throw new UnauthorizedException(
+        await this.helper.buildResponse(false, 'Current password and new password can not be same'),
+      );   
+    }
     try {
-      this.logger.debug(`Sending email to ${user.email}`);
-      const verificationCode = await this.codeService.generateCode(user._id.toString());
-      await this.emailService.sendTestEmail(user.email, user.fullname, verificationCode);
+      await this.usersCollection.changePassword(user.id,requestData.newpassword);
       return await this.helper.buildResponse(true);
     } catch (error) {
       if (error) {
@@ -99,7 +105,6 @@ export class AuthServices {
       }
     }
   }
-
 
   async forgotPassword(requestData: { email: string }) {
     this.logger.debug(`Request received to reset password : ${requestData.email}`);
@@ -147,6 +152,8 @@ export class AuthServices {
     const response = await this.helper.buildResponse(true);
     return response;
   }
+
+  
   async resetPassword(requestData: { email: string, password: string }) {
     this.logger.debug(`Request received to reset password : ${requestData.email}`);
 
