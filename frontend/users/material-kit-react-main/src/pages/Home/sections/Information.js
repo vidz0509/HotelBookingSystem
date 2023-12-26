@@ -66,16 +66,15 @@ function Information() {
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
                   icon="content_copy"
-                  title="Full Documentation"
-                  description="Built by developers for developers. Check the foundation and you will find
-                    everything inside our documentation."
+                  title="Gym"
+                  description="A gym is a building, or large room, usually containing special equipment, where people go to do physical exercise and get fit."
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
                   icon="flip_to_front"
-                  title="MUI Ready"
-                  description="The world's most popular react components library for building user interfaces."
+                  title="Playground"
+                  description="A playground is an area used by children to play in. They usually have equipment such as slides, swings and seesaws for children to play on."
                 />
               </Grid>
             </Grid>
@@ -83,15 +82,15 @@ function Information() {
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
                   icon="price_change"
-                  title="Save Time & Money"
-                  description="Creating your design from scratch with dedicated designers can be very expensive. Start with our Design System."
+                  title="Swimming Pool"
+                  description="It will have a natural uneven shape, and will often have features around it like rocks and waterfalls to compliment the naturalistic style."
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
                   icon="devices"
-                  title="Fully Responsive"
-                  description="Regardless of the screen size, the website content will naturally fit the given resolution."
+                  title="Club"
+                  description="The club is electric tonight, everyone feeding off of the smiles and fast dancing."
                 />
               </Grid>
             </Grid>

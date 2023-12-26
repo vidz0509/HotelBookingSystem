@@ -51,12 +51,12 @@ function Home() {
     <>
       <DefaultNavbar
         routes={routes}
-        action={{
-          type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
-          color: "info",
-        }}
+        // action={{
+        //   type: "external",
+        //   route: "https://www.creative-tim.com/product/material-kit-react",
+        //   label: "free download",
+        //   color: "info",
+        // }}
         sticky
       />
       <MKBox
@@ -83,7 +83,7 @@ function Home() {
                 },
               })}
             >
-              Material Kit 2 React{" "}
+              Luxury Hotels{" "}
             </MKTypography>
             <MKTypography
               variant="body1"
@@ -92,8 +92,7 @@ function Home() {
               px={{ xs: 6, lg: 12 }}
               mt={1}
             >
-              Free & Open Source Web UI Kit built over ReactJS &amp; MUI. Join over 1.6 million
-              developers around the world.
+              The Best Place In Town To Relax, To Enjoy Heaven
             </MKTypography>
           </Grid>
         </Container>
