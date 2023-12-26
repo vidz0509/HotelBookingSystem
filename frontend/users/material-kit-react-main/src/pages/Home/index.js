@@ -29,15 +29,15 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
 // Presentation page sections
-import Counters from "pages/Presentation/sections/Counters";
-import Information from "pages/Presentation/sections/Information";
-import DesignBlocks from "pages/Presentation/sections/DesignBlocks";
-import Pages from "pages/Presentation/sections/Pages";
-import Testimonials from "pages/Presentation/sections/Testimonials";
-import Download from "pages/Presentation/sections/Download";
+import Counters from "pages/Home/sections/Counters";
+import Information from "pages/Home/sections/Information";
+import DesignBlocks from "pages/Home/sections/DesignBlocks";
+import Pages from "pages/Home/sections/Pages";
+import Testimonials from "pages/Home/sections/Testimonials";
+import Download from "pages/Home/sections/Download";
 
 // Presentation page components
-import BuiltByDevelopers from "pages/Presentation/components/BuiltByDevelopers";
+import BuiltByDevelopers from "pages/Home/components/BuiltByDevelopers";
 
 // Routes
 import routes from "routes";
@@ -46,7 +46,7 @@ import footerRoutes from "footer.routes";
 // Images
 import bgImage from "assets/images/banner.jpg";
 
-function Presentation() {
+function Home() {
   return (
     <>
       <DefaultNavbar
@@ -222,4 +222,4 @@ function Presentation() {
   );
 }
 
-export default Presentation;
+export default Home;
