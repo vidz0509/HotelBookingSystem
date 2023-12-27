@@ -57,9 +57,9 @@ export class UsersCollection {
         return this.userModel.findOne({ email: email });
     }
 
-    // async getUserByPassword(password: string): Promise<User> {
-    //     return await this.userModel.findOne({ password: password });
-    // }
+    async getUserByPassword(password: string): Promise<User> {
+        return await this.userModel.findOne({ password: password });
+    }
 
     async updateUser(userID: string, updateUserDto: UpdateUserDto) {
         return await this.userModel.findByIdAndUpdate(

@@ -48,9 +48,9 @@ export class UsersService {
         return await this.collection.getUserByEmail(email);
     }
 
-    // async getUserByPassword(password: string): Promise<User> {
-    //     return await this.collection.getUserByPassword(password);
-    // }
+    async getUserByPassword(password: string): Promise<User> {
+        return await this.collection.getUserByPassword(password);
+    }
 
     async updateUser(userID: string, updateUserDto: UpdateUserDto) {
         return await this.collection.updateUser(userID, updateUserDto);
