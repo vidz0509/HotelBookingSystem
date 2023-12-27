@@ -38,9 +38,9 @@ async function updateProfile(userId, requestBody) {
     });
 }
 
-async function changepassword(userId, requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
-    return await axios.put(url, requestBody).then(response => {
+async function changepassword(requestBody) {
+    const url = `${process.env.REACT_APP_API_URL}/auth/changePassword`;
+    return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

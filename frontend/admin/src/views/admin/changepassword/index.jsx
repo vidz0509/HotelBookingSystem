@@ -17,27 +17,24 @@ export default function ChangePassword() {
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   const handlepasswordChange = (event) => {
+    clearErrors();
     const value = event.target.value;
     setpassword(value);
   }
-
   const handlenewPasswordChange = (event) => {
+    clearErrors();
     const value = event.target.value;
     setnewPassword(value);
   }
-
   const handleconfirmPasswordChange = (event) => {
+    clearErrors();
     const value = event.target.value;
     setconfirmPassword(value);
   }
-  
-
   useEffect(() => {
-
   }, []);
-
   const handleSubmit = async (event) => {
-    // event.prevntDefault();
+    event.preventDefault();
     setpasswordError('');
     setnewPasswordError('');
     setconfirmPasswordError('');
@@ -53,27 +50,40 @@ export default function ChangePassword() {
       setconfirmPasswordError("Please enter valid confirmPassword.");
       return false;
     }
-    if (newPassword === confirmPassword) {
-      setError("Newpassword and Confirm password can not be same");
+    if (newPassword !== confirmPassword) {
+      setError("New Password and Confirm Password must be same.");
       return false;
     }
+
+    if (confirmPassword.length < 8) {
+      setError("Password must be 8 characters long.");
+      return false;
+    }
+
+    if (!validation.isValidPassword(confirmPassword)) {
+      setError("Password must have at least one digit, one special chacter and one uppercase letter");
+      return false;
+    }
+    clearErrors();
     setBtnDisabled(true);
-    const requestBody = {
-      password: password,
-      newPassword: newPassword,
-      confirmPassword: confirmPassword
-    };
     const currentUser = authServices.getCurrentUser();
-    const result = await authServices.changepassword(currentUser._id, requestBody);
+    const requestBody = {
+      userId: currentUser._id,
+      password: password,
+      newpassword: newPassword,
+    };
+    const result = await authServices.changepassword(requestBody);
     if (result.isSuccessful) {
-      localStorage.setItem('currentUser', JSON.stringify(result.data));
       window.location.reload();
     } else {
       setError(result.errorMessage);
       setBtnDisabled(false);
     }
-
-
+  }
+  const clearErrors = () => {
+    setconfirmPasswordError('');
+    setnewPasswordError('');
+    setpasswordError('');
   }
 
   return (
@@ -86,36 +96,38 @@ export default function ChangePassword() {
           variant="auth"
           extra="mb-3"
           label=" password"
-          placeholder="Enter Current Password*"
+          placeholder="********"
           id="password"
           type="password"
           onChange={handlepasswordChange}
           state={passwordError !== "" ? "error" : ""}
           errorMessage={passwordError !== "" ? passwordError : ""}
+          maxLength={12}
         />
-
         {/* Password */}
         <InputField
           variant="auth"
           extra="mb-3"
-          label="new Password*"
-          placeholder="Enter New Password"
+          label="new Password"
+          placeholder="********"
           id="newPassword"
           type="password"
           onChange={handlenewPasswordChange}
           state={newPasswordError !== "" ? "error" : ""}
           errorMessage={newPasswordError !== "" ? newPasswordError : ""}
+          maxLength={12}
         />
         <InputField
           variant="auth"
           extra="mb-3"
           label="confirm Password*"
-          placeholder="Re-Enter New Password"
+          placeholder="********"
           id="confirmPassword"
           type="password"
           onChange={handleconfirmPasswordChange}
           state={confirmPasswordError !== "" ? "error" : ""}
           errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
+          maxLength={12}
         />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
@@ -142,9 +154,6 @@ export default function ChangePassword() {
             <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
           </>}
         </div>
-        
-
-
       </div>
     </div>
   );
