@@ -65,14 +65,14 @@ function Information() {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
-                  icon="content_copy"
+                  icon="sports_gymnastics"
                   title="Gym"
                   description="A gym is a building, or large room, usually containing special equipment, where people go to do physical exercise and get fit."
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
-                  icon="flip_to_front"
+                  icon="sports_tennis"
                   title="Playground"
                   description="A playground is an area used by children to play in. They usually have equipment such as slides, swings and seesaws for children to play on."
                 />
