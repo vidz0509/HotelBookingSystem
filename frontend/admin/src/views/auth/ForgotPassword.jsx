@@ -1,67 +1,285 @@
-import InputField from "components/fields/InputField";
+import InputField from "../../components/fields/InputField";
+import { authServices } from "../../services/auth";
+import { validation } from "../../services/validations";
+import { useState } from "react";
+import btnLoader from "../../assets/img/layout/btn-loader.gif";
 // import { FcGoogle } from "react-icons/fc";
 // import Checkbox from "components/checkbox";
 
 export default function ForgotPassword() {
-  return (
-    <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
-      <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-          Forgot Password
-        </h4>
-        <p className="mb-9 ml-1 text-base text-gray-600">
-          Enter your email
-        </p>
-        {/* Email */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Email*"
-          placeholder="mail@simmmple.com"
-          id="email"
-          type="text"
-        />
 
-        {/* Password
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Password*"
-          placeholder="Min. 8 characters"
-          id="password"
-          type="password"
-        /> */}
-        {/* Checkbox */}
-        {/* <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center">
-            <Checkbox />
-            <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
-              Keep me logged In
-            </p>
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [error, setError] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [screen, setScreen] = useState('forgotPassword');
+
+  const [verificationCode, setVerificationCode] = useState('');
+  const [codeError, setCodeError] = useState('');
+  const [vbtnDisabled, setVBtnDisabled] = useState(false);
+  const [vbtnLoading, setVBtnLoading] = useState(false);
+
+  const [password, setPassword] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [confPassword, setConfPassword] = useState('');
+  const [confPasswordError, setConfPasswordError] = useState('');
+
+  /* Forget Password */
+
+  const handleEmailChange = (event) => {
+    clearErrors();
+    const value = event.target.value;
+    setEmail(value);
+  }
+
+  const sendVerificationCode = async (event) => {
+    event.preventDefault();
+    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
+      setEmailError("Please enter valid email address.");
+      return false;
+    }
+    clearErrors();
+    setBtnDisabled(true);
+    setVBtnDisabled(true);
+    const requestBody = {
+      email: email
+    };
+    const result = await authServices.forgotPassword(requestBody);
+    if (result.isSuccessful) {
+      setBtnDisabled(false);
+      setVBtnDisabled(false);
+      setScreen("verifyCode");
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+      setVBtnDisabled(false);
+    }
+  }
+
+  /* Verify Code */
+
+  const handleCodeChange = (event) => {
+    clearErrors();
+    const value = event.target.value;
+    setVerificationCode(value);
+  }
+
+  const verifyCode = async (event) => {
+    event.preventDefault();
+    if (validation.isEmpty(verificationCode)) {
+      setCodeError("Invalid verification code.");
+      return false;
+    }
+    clearErrors();
+    setVBtnDisabled(true);
+    setVBtnLoading(true);
+    const requestBody = {
+      email: email,
+      code: verificationCode
+    };
+    const result = await authServices.verifyResetPasswordCode(requestBody);
+    if (result.isSuccessful) {
+      setTimeout(function () {
+        setVBtnDisabled(false);
+        setVBtnLoading(false);
+        setScreen("resetPwd");
+      }, 1000);
+    } else {
+      setCodeError(result.errorMessage);
+      setVBtnDisabled(false);
+      setVBtnLoading(false);
+    }
+  }
+
+  /* Reset Password */
+
+  const handlePasswordChange = (event) => {
+    clearErrors();
+    const value = event.target.value;
+    setPassword(value);
+  }
+
+  const handleConfPasswordChange = (event) => {
+    clearErrors();
+    const value = event.target.value;
+    setConfPassword(value);
+  }
+
+  const resetPassword = async (event) => {
+    event.preventDefault();
+    if (validation.isEmpty(password)) {
+      setPasswordError("Please enter your new password.");
+      return false;
+    }
+    if (validation.isEmpty(confPassword)) {
+      setConfPasswordError("Please enter confirm password.");
+      return false;
+    }
+
+    if (password !== confPassword) {
+      setError("New Password and Confirm Password must be same.");
+      return false;
+    }
+
+    if (confPassword.length < 8) {
+      setError("Password must be 8 characters long.");
+      return false;
+    }
+
+    if (!validation.isValidPassword(confPassword)) {
+      setError("Password must have at least one digit, one special chacter and one uppercase letter");
+      return false;
+    }
+    clearErrors();
+    setBtnDisabled(true);
+    const requestBody = {
+      email: email,
+      password: password
+    };
+    const result = await authServices.resetPassword(requestBody);
+    if (result.isSuccessful) {
+      setTimeout(function () {
+      window.location.replace('/auth/login');
+      },1000);
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+    }
+  }
+
+  const clearErrors = () => {
+    setEmailError('');
+    setConfPasswordError('');
+    setPasswordError('');
+    setError('');
+    setCodeError('');
+  }
+
+  return (
+    <>
+      {
+        screen === "forgotPassword" &&
+        <form method="post" onSubmit={sendVerificationCode}>
+          <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+            {/* Sign in section */}
+            <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+              <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
+                Forgot Your Password?
+              </h4>
+              <p className="mb-9 ml-1 text-base text-gray-600">
+                Don't Worry. Reset your password here!
+              </p>
+              <InputField
+                variant="auth"
+                extra="mb-3"
+                label="Email*"
+                placeholder="mail@simmmple.com"
+                id="email"
+                type="email"
+                onChange={handleEmailChange}
+                state={emailError !== "" ? "error" : ""}
+                errorMessage={emailError !== "" ? emailError : ""}
+              />
+              <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={sendVerificationCode} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                {btnDisabled ?
+                  <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                  : <span>Send</span>}
+              </button>
+              <div className="mt-4">
+                {error !== '' && <>
+                  <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                </>}
+              </div>
+            </div>
           </div>
-          <a
-            className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-            href=" "
-          >
-            Forgot Password?
-          </a>
-        </div> */}
-        <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200">
-          Send OTP
-        </button>
-        {/* <div className="mt-4">
-          <span className=" text-sm font-medium text-navy-700 dark:text-gray-600">
-            Not registered yet?
-          </span>
-          <a
-            href=" "
-            className="ml-1 text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-          >
-            Create an account
-          </a>
-        </div> */}
-      </div>
-    </div>
+        </form>
+      }
+      {
+        screen === "verifyCode" &&
+        <form method="post" onSubmit={verifyCode}>
+          <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+            {/* Sign in section */}
+            <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+              <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
+                Forgot Your Password?
+              </h4>
+              <p className="mb-9 ml-1 text-base text-gray-600">
+                Enter your verification code here!
+              </p>
+              <InputField
+                variant="auth"
+                extra="mb-3"
+                label="Verification Code*"
+                placeholder="****"
+                id="verificationCode"
+                type="text"
+                onChange={handleCodeChange}
+                state={codeError !== "" ? "error" : ""}
+                errorMessage={codeError !== "" ? codeError : ""}
+                maxLength={4}
+              />
+              <div className="mb-4 flex items-center justify-between px-2">
+                <div className="flex items-center">
+                </div>
+                <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="#" onClick={sendVerificationCode}>Didn't recieve code? Resend.</a>
+              </div>
+              <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${vbtnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={verifyCode} type="submit" disabled={vbtnDisabled ? 'disabled' : ''}>
+                {vbtnLoading ?
+                  <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                  : <span>Verify</span>}
+              </button>
+            </div>
+          </div>
+        </form>
+      }
+      {
+        screen === "resetPwd" &&
+        <form method="post" onSubmit={resetPassword}>
+          <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+            <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
+              Reset Password
+            </h4>
+            <p className="mb-9 ml-1 text-base text-gray-600">Enter your new password here!</p>
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="New Password*"
+              placeholder="********"
+              id="new_password"
+              type="password"
+              onChange={handlePasswordChange}
+              state={passwordError !== "" ? "error" : ""}
+              errorMessage={passwordError !== "" ? passwordError : ""}
+              maxLength={12}
+            />
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="Confirm Password*"
+              placeholder="********"
+              id="confirm_password"
+              type="password"
+              onChange={handleConfPasswordChange}
+              state={confPasswordError !== "" ? "error" : ""}
+              errorMessage={confPasswordError !== "" ? confPasswordError : ""}
+              maxLength={12}
+            />
+            {error !== '' && <>
+              <p className="mb-3 ml-1 text-red-500 text-sm">{error}</p>
+            </>}
+            <div className="mb-4 flex items-center justify-between px-2">
+              <div className="flex items-center">
+              </div>
+              <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/auth/login">Back to Login</a>
+            </div>
+            <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={resetPassword} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+              {btnDisabled ?
+                <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                : <span>Reset Password</span>}
+            </button>
+          </div>
+        </form>
+      }
+    </>
   );
 }
