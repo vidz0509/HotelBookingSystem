@@ -40,9 +40,10 @@ Coded by www.creative-tim.com
 import Icon from "@mui/material/Icon";
 
 // @mui icons
-import GitHubIcon from "@mui/icons-material/GitHub";
+// import GitHubIcon from "@mui/icons-material/GitHub";
 
 // Pages
+import Home from "pages/Home";
 import AboutUs from "layouts/pages/landing-pages/about-us";
 import ContactUs from "layouts/pages/landing-pages/contact-us";
 import Author from "layouts/pages/landing-pages/author";
@@ -69,6 +70,24 @@ import Toggles from "layouts/sections/elements/toggles";
 import Typography from "layouts/sections/elements/typography";
 
 const routes = [
+  {
+    name: "Home",
+    icon: <Icon>dashboard</Icon>,
+    route: "/pages/Home/index.js",
+    component: <Home />,
+  },
+  {
+    name: "About Us",
+    icon: <Icon>dashboard</Icon>,
+    route: "/pages/landing-pages/about-us",
+    component: <AboutUs />,
+  },
+  {
+    name: "Contact Us",
+    icon: <Icon>dashboard</Icon>,
+    route: "/pages/landing-pages/contact-us",
+    component: <ContactUs />,
+  },
   {
     name: "pages",
     icon: <Icon>dashboard</Icon>,
@@ -265,9 +284,20 @@ const routes = [
     ],
   },
   {
-    name: "GitHub",
-    icon: <GitHubIcon />,
-    href: "https://www.github.com/creativetimofficial/material-kit-react",
+    name: "Account",
+    icon: <Icon>dashboard</Icon>,
+    collapse: [
+      {
+        name: "sign in",
+        route: "/pages/authentication/sign-in",
+        component: <SignIn />,
+      },
+      {
+        name: "Logout",
+        // route: "/pages/authentication/sign-in",
+        // component: <SignIn />,
+      },
+    ],
   },
 ];
 
