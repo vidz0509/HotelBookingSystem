@@ -38,12 +38,14 @@ export default {
   ],
   menus: [
     {
-      name: "company",
+      name: "Pages",
       items: [
-        { name: "about us", href: "https://www.creative-tim.com/presentation" },
-        { name: "freebies", href: "https://www.creative-tim.com/templates/free" },
-        { name: "premium tools", href: "https://www.creative-tim.com/templates/premium" },
-        { name: "blog", href: "https://www.creative-tim.com/blog" },
+        
+        { name: "Home", route: "/pages/Home/index.js" },
+        { name: "About Us", route: "/pages/landing-pages/about-us" },
+        { name: "Contact Us", route: "/pages/landing-pages/contact-us" },
+        { name: "Account", route: "/pages/authentication/sign-in" },
+
       ],
     },
     {
