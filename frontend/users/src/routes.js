@@ -72,19 +72,19 @@ import Typography from "layouts/sections/elements/typography";
 const routes = [
   {
     name: "Home",
-    icon: <Icon>dashboard</Icon>,
+    icon: <Icon>home_app_logo</Icon>,
     route: "/pages/Home/index.js",
     component: <Home />,
   },
   {
     name: "About Us",
-    icon: <Icon>dashboard</Icon>,
+    icon: <Icon>info</Icon>,
     route: "/pages/landing-pages/about-us",
     component: <AboutUs />,
   },
   {
     name: "Contact Us",
-    icon: <Icon>dashboard</Icon>,
+    icon: <Icon>contact_support</Icon>,
     route: "/pages/landing-pages/contact-us",
     component: <ContactUs />,
   },
@@ -285,15 +285,17 @@ const routes = [
   },
   {
     name: "Account",
-    icon: <Icon>dashboard</Icon>,
+    icon: <Icon>account_circle</Icon>,
     collapse: [
       {
         name: "sign in",
+        icon: <Icon>login</Icon>,
         route: "/pages/authentication/sign-in",
         component: <SignIn />,
       },
       {
         name: "Logout",
+        icon: <Icon>logout</Icon>,
         // route: "/pages/authentication/sign-in",
         // component: <SignIn />,
       },
