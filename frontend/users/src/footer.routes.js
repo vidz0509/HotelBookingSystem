@@ -40,12 +40,10 @@ export default {
     {
       name: "Pages",
       items: [
-        
         { name: "Home", route: "/pages/Home/index.js" },
         { name: "About Us", route: "/pages/landing-pages/about-us" },
         { name: "Contact Us", route: "/pages/landing-pages/contact-us" },
         { name: "Account", route: "/pages/authentication/sign-in" },
-
       ],
     },
     {
