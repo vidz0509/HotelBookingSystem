@@ -29,7 +29,6 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
 // Presentation page sections
-import Counters from "pages/Home/sections/Counters";
 import Information from "pages/Home/sections/Information";
 import DesignBlocks from "pages/Home/sections/DesignBlocks";
 import Pages from "pages/Home/sections/Pages";
@@ -108,7 +107,6 @@ function Home() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Counters />
         <Information />
         <DesignBlocks />
         <Pages />
