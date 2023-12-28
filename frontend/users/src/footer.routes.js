@@ -74,7 +74,7 @@ export default {
   ],
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
-      All rights reserved. Copyright &copy; {date} Material Kit by{" "}
+      All rights reserved. Copyright &copy; {date} Budget Suites{" "}
       <MKTypography
         component="a"
         href="https://www.creative-tim.com"
@@ -83,9 +83,7 @@ export default {
         variant="button"
         fontWeight="regular"
       >
-        Creative Tim
       </MKTypography>
-      .
     </MKTypography>
   ),
 };

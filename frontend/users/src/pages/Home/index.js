@@ -21,12 +21,12 @@ import Card from "@mui/material/Card";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
-import MKSocialButton from "components/MKSocialButton";
+// import MKSocialButton from "components/MKSocialButton";
 
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
-import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
+// import FilledInfoCard from "examples/Cards/InfoCards/FilledInfoCard";
 
 // Presentation page sections
 import Counters from "pages/Home/sections/Counters";
@@ -37,7 +37,7 @@ import Testimonials from "pages/Home/sections/Testimonials";
 import Download from "pages/Home/sections/Download";
 
 // Presentation page components
-import BuiltByDevelopers from "pages/Home/components/BuiltByDevelopers";
+// import BuiltByDevelopers from "pages/Home/components/BuiltByDevelopers";
 
 // Routes
 import routes from "routes";
@@ -112,10 +112,10 @@ function Home() {
         <Information />
         <DesignBlocks />
         <Pages />
-        <Container sx={{ mt: 6 }}>
+        {/* <Container sx={{ mt: 6 }}>
           <BuiltByDevelopers />
-        </Container>
-        <Container>
+        </Container> */}
+        {/* <Container>
           <Grid container spacing={3}>
             <Grid item xs={12} lg={4}>
               <FilledInfoCard
@@ -158,11 +158,11 @@ function Home() {
               />
             </Grid>
           </Grid>
-        </Container>
+        </Container> */}
         <Testimonials />
         <Download />
-        <MKBox pt={18} pb={6}>
-          <Container>
+        {/* <MKBox pt={18} pb={6}> */}
+          {/* <Container>
             <Grid container spacing={3}>
               <Grid item xs={12} lg={5} ml="auto" sx={{ textAlign: { xs: "center", lg: "left" } }}>
                 <MKTypography variant="h4" fontWeight="bold" mb={0.5}>
@@ -211,8 +211,8 @@ function Home() {
                 </MKSocialButton>
               </Grid>
             </Grid>
-          </Container>
-        </MKBox>
+          </Container> */}
+        {/* </MKBox> */}
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
