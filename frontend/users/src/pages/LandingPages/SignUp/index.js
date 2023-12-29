@@ -45,7 +45,7 @@ import SimpleFooter from "examples/Footers/SimpleFooter";
 // Images
 import bgImage from "assets/images/auth.jpg";
 
-function SignInBasic() {
+function SignUpBasic() {
   // const [rememberMe, setRememberMe] = useState(false);
 
   // const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -97,7 +97,7 @@ function SignInBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  Sign in
+                  Sign up
                 </MKTypography>
                 {/* <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
                   <Grid item xs={2}>
@@ -124,11 +124,17 @@ function SignInBasic() {
                   </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
+                <MKBox mb={2}>
+                    <MKInput type="text" label="User Name" fullWidth />
+                  </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="email" label="Email" fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="password" label="Password" fullWidth />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="password" label="Confirm Password" fullWidth />
                   </MKBox>
                   <MKTypography
                     component={Link}
@@ -142,7 +148,7 @@ function SignInBasic() {
                   </MKTypography>
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" color="info" fullWidth>
-                      sign in
+                      sign up
                     </MKButton>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
@@ -150,13 +156,13 @@ function SignInBasic() {
                       Don&apos;t have an account?{" "}
                       <MKTypography
                         component={Link}
-                        to="/authentication/sign-up/cover"
+                        to="/authentication/sign-in/cover"
                         variant="button"
                         color="info"
                         fontWeight="medium"
                         textGradient
                       >
-                        Sign up
+                        Sign in
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
@@ -173,4 +179,4 @@ function SignInBasic() {
   );
 }
 
-export default SignInBasic;
+export default SignUpBasic;
