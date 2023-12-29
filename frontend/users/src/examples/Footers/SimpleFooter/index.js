@@ -19,18 +19,18 @@ import PropTypes from "prop-types";
 // @mui material components
 import Container from "@mui/material/Container";
 import Link from "@mui/material/Link";
-import Icon from "@mui/material/Icon";
+// import Icon from "@mui/material/Icon";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React base styles
-import typography from "assets/theme/base/typography";
+// import typography from "assets/theme/base/typography";
 
-function SimpleFooter({ company, links, light }) {
-  const { href, name } = company;
-  const { size } = typography;
+function SimpleFooter({ links, light }) {
+  // const { href, name } = company;
+  // const { size } = typography;
 
   const renderLinks = () =>
     links.map((link, key) => (
@@ -58,7 +58,7 @@ function SimpleFooter({ company, links, light }) {
         justifyContent="space-between"
         alignItems="center"
       >
-        <MKBox
+        {/* <MKBox
           display="flex"
           justifyContent="center"
           alignItems="center"
@@ -79,7 +79,7 @@ function SimpleFooter({ company, links, light }) {
             </MKTypography>
           </Link>
           for a better web.
-        </MKBox>
+        </MKBox> */}
         <MKBox
           component="ul"
           sx={({ breakpoints }) => ({
@@ -106,12 +106,12 @@ function SimpleFooter({ company, links, light }) {
 
 // Setting default values for the props of SimpleFooter
 SimpleFooter.defaultProps = {
-  company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+  // company: { href: "https://www.creative-tim.com/", name: "Creative Tim" },
   links: [
-    { href: "https://www.creative-tim.com/", name: "Creative Tim" },
-    { href: "https://www.creative-tim.com/presentation", name: "About Us" },
-    { href: "https://www.creative-tim.com/blog", name: "Blog" },
-    { href: "https://www.creative-tim.com/license", name: "License" },
+    // { href: "https://www.creative-tim.com/", name: "Creative Tim" },
+    // { href: "https://www.creative-tim.com/presentation", name: "About Us" },
+    // { href: "https://www.creative-tim.com/blog", name: "Blog" },
+    // { href: "https://www.creative-tim.com/license", name: "License" },
   ],
   light: false,
 };

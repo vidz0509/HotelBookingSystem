@@ -37,7 +37,7 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Icon from "@mui/material/Icon";
+// import Icon from "@mui/material/Icon";
 
 // @mui icons
 // import GitHubIcon from "@mui/icons-material/GitHub";
@@ -72,19 +72,19 @@ import SignIn from "layouts/pages/authentication/sign-in";
 const routes = [
   {
     name: "Home",
-    icon: <Icon>home_app_logo</Icon>,
+    // icon: <Icon>home_app_logo</Icon>,
     route: "/pages/Home/index.js",
     component: <Home />,
   },
   {
     name: "About Us",
-    icon: <Icon>info</Icon>,
+    // icon: <Icon>info</Icon>,
     route: "/pages/landing-pages/about-us",
     component: <AboutUs />,
   },
   {
     name: "Contact Us",
-    icon: <Icon>contact_support</Icon>,
+    // icon: <Icon>contact_support</Icon>,
     route: "/pages/landing-pages/contact-us",
     component: <ContactUs />,
   },
@@ -285,17 +285,17 @@ const routes = [
   // },
   {
     name: "Account",
-    icon: <Icon>account_circle</Icon>,
+    // icon: <Icon>account_circle</Icon>,
     collapse: [
       {
         name: "sign in",
-        icon: <Icon>login</Icon>,
+        // icon: <Icon>login</Icon>,
         route: "/pages/authentication/sign-in",
         component: <SignIn />,
       },
       {
         name: "Sign Out",
-        icon: <Icon>logout</Icon>,
+        // icon: <Icon>logout</Icon>,
         // route: "/pages/authentication/sign-in",
         // component: <SignIn />,
       },
