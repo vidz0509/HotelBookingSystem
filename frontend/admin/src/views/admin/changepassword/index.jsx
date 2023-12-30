@@ -4,6 +4,10 @@ import { authServices } from "../../../services/auth";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 
+import {
+  MdRemoveRedEye,
+} from "react-icons/md";
+
 export default function ChangePassword() {
   const [password, setpassword] = useState('');
   const [newPassword, setnewPassword] = useState('');
@@ -95,7 +99,7 @@ export default function ChangePassword() {
         <InputField
           variant="auth"
           extra="mb-3"
-          label=" password"
+          label=" Password*"
           placeholder="********"
           id="password"
           type="password"
@@ -104,11 +108,12 @@ export default function ChangePassword() {
           errorMessage={passwordError !== "" ? passwordError : ""}
           maxLength={12}
         />
+        <MdRemoveRedEye className="h-6 w-6" />
         {/* Password */}
         <InputField
           variant="auth"
           extra="mb-3"
-          label="new Password"
+          label="New Password*"
           placeholder="********"
           id="newPassword"
           type="password"
@@ -117,10 +122,11 @@ export default function ChangePassword() {
           errorMessage={newPasswordError !== "" ? newPasswordError : ""}
           maxLength={12}
         />
+        <MdRemoveRedEye className="h-6 w-6" />
         <InputField
           variant="auth"
           extra="mb-3"
-          label="confirm Password*"
+          label="Confirm Password*"
           placeholder="********"
           id="confirmPassword"
           type="password"
@@ -129,6 +135,7 @@ export default function ChangePassword() {
           errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
           maxLength={12}
         />
+        <MdRemoveRedEye className="h-6 w-6" />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
@@ -147,7 +154,7 @@ export default function ChangePassword() {
         <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" onClick={(e) => handleSubmit(e)} type="submit">
           {btnDisabled ?
             <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-            : <span>update password</span>}
+            : <span>Update password</span>}
         </button>
         <div className="mt-4">
           {error !== '' && <>

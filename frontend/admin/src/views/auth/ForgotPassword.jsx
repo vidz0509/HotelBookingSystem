@@ -3,6 +3,9 @@ import { authServices } from "../../services/auth";
 import { validation } from "../../services/validations";
 import { useState } from "react";
 import btnLoader from "../../assets/img/layout/btn-loader.gif";
+import {
+  MdRemoveRedEye,
+} from "react-icons/md";
 // import { FcGoogle } from "react-icons/fc";
 // import Checkbox from "components/checkbox";
 
@@ -139,8 +142,8 @@ export default function ForgotPassword() {
     const result = await authServices.resetPassword(requestBody);
     if (result.isSuccessful) {
       setTimeout(function () {
-      window.location.replace('/auth/login');
-      },1000);
+        window.location.replace('/auth/login');
+      }, 1000);
     } else {
       setError(result.errorMessage);
       setBtnDisabled(false);
@@ -252,6 +255,7 @@ export default function ForgotPassword() {
               errorMessage={passwordError !== "" ? passwordError : ""}
               maxLength={12}
             />
+            <MdRemoveRedEye className="h-6 w-6" />
             <InputField
               variant="auth"
               extra="mb-3"
@@ -264,6 +268,7 @@ export default function ForgotPassword() {
               errorMessage={confPasswordError !== "" ? confPasswordError : ""}
               maxLength={12}
             />
+            <MdRemoveRedEye className="h-6 w-6" />
             {error !== '' && <>
               <p className="mb-3 ml-1 text-red-500 text-sm">{error}</p>
             </>}
