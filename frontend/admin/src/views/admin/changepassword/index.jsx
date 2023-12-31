@@ -6,6 +6,7 @@ import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 
 import {
   MdRemoveRedEye,
+  MdOutlineRemoveRedEye,
 } from "react-icons/md";
 
 export default function ChangePassword() {
@@ -13,12 +14,40 @@ export default function ChangePassword() {
   const [newPassword, setnewPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
 
+  const [passwordType, setPasswordType] = useState("password");
+  const [newpasswordType, setNewPasswordType] = useState("password");
+  const [confirmpasswordType, setConfirmPasswordType] = useState("password");
+
   const [passwordError, setpasswordError] = useState('');
   const [newPasswordError, setnewPasswordError] = useState('');
   const [confirmPasswordError, setconfirmPasswordError] = useState('');
 
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
+
+  const toggleNewPassword = () => {
+    if (newpasswordType === "password") {
+      setNewPasswordType("text")
+      return;
+    }
+    setNewPasswordType("password")
+  }
+
+  const toggleConfirmPassword = () => {
+    if (confirmpasswordType === "password") {
+      setConfirmPasswordType("text")
+      return;
+    }
+    setConfirmPasswordType("password")
+  }
 
   const handlepasswordChange = (event) => {
     clearErrors();
@@ -102,13 +131,13 @@ export default function ChangePassword() {
           label=" Password*"
           placeholder="********"
           id="password"
-          type="password"
+          type={passwordType}
           onChange={handlepasswordChange}
           state={passwordError !== "" ? "error" : ""}
           errorMessage={passwordError !== "" ? passwordError : ""}
           maxLength={12}
         />
-        <MdRemoveRedEye className="h-6 w-6" />
+        <button onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-6 w-6" /> : <MdOutlineRemoveRedEye className="h-6 w-6" />}</button>
         {/* Password */}
         <InputField
           variant="auth"
@@ -116,26 +145,26 @@ export default function ChangePassword() {
           label="New Password*"
           placeholder="********"
           id="newPassword"
-          type="password"
+          type={newpasswordType}
           onChange={handlenewPasswordChange}
           state={newPasswordError !== "" ? "error" : ""}
           errorMessage={newPasswordError !== "" ? newPasswordError : ""}
           maxLength={12}
         />
-        <MdRemoveRedEye className="h-6 w-6" />
+        <button onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-6 w-6" /> : <MdOutlineRemoveRedEye className="h-6 w-6" />}</button>
         <InputField
           variant="auth"
           extra="mb-3"
           label="Confirm Password*"
           placeholder="********"
           id="confirmPassword"
-          type="password"
+          type={confirmpasswordType}
           onChange={handleconfirmPasswordChange}
           state={confirmPasswordError !== "" ? "error" : ""}
           errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
           maxLength={12}
         />
-        <MdRemoveRedEye className="h-6 w-6" />
+        <button onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-6 w-6" /> : <MdOutlineRemoveRedEye className="h-6 w-6" />}</button>
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
