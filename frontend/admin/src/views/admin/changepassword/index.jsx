@@ -21,6 +21,7 @@ export default function ChangePassword() {
   const [passwordError, setpasswordError] = useState('');
   const [newPasswordError, setnewPasswordError] = useState('');
   const [confirmPasswordError, setconfirmPasswordError] = useState('');
+  const [isSuccessfull, setSuccessfull] = useState('');
 
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -105,9 +106,15 @@ export default function ChangePassword() {
       password: password,
       newpassword: newPassword,
     };
+    setSuccessfull("Password change successfully");
     const result = await authServices.changepassword(requestBody);
-    if (result.isSuccessful) {
-      window.location.reload();
+    if (result.isSuccessfull) {
+      setSuccessfull(result.isSuccessfullMessage);
+      setBtnDisabled(false);
+      setTimeout(function () {
+        console.log("Password change successfully")
+        window.location.reload();
+      }, 1000);
     } else {
       setError(result.errorMessage);
       setBtnDisabled(false);
@@ -188,6 +195,11 @@ export default function ChangePassword() {
         <div className="mt-4">
           {error !== '' && <>
             <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+          </>}
+        </div>
+        <div className="mt-4">
+          {isSuccessfull !== '' && <>
+            <p className="mb-9 ml-1 text-base text-red-500">{isSuccessfull}</p>
           </>}
         </div>
       </div>
