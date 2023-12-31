@@ -130,49 +130,51 @@ export default function ChangePassword() {
     <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
       <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-
-        {/* Email */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label=" Password*"
-          placeholder="********"
-          id="password"
-          type={passwordType}
-          onChange={handlepasswordChange}
-          state={passwordError !== "" ? "error" : ""}
-          errorMessage={passwordError !== "" ? passwordError : ""}
-          maxLength={12}
-        />
-        <button onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-6 w-6" /> : <MdOutlineRemoveRedEye className="h-6 w-6" />}</button>
-        {/* Password */}
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="New Password*"
-          placeholder="********"
-          id="newPassword"
-          type={newpasswordType}
-          onChange={handlenewPasswordChange}
-          state={newPasswordError !== "" ? "error" : ""}
-          errorMessage={newPasswordError !== "" ? newPasswordError : ""}
-          maxLength={12}
-        />
-        <button onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-6 w-6" /> : <MdOutlineRemoveRedEye className="h-6 w-6" />}</button>
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Confirm Password*"
-          placeholder="********"
-          id="confirmPassword"
-          type={confirmpasswordType}
-          onChange={handleconfirmPasswordChange}
-          state={confirmPasswordError !== "" ? "error" : ""}
-          errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
-          maxLength={12}
-        />
-        <button onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-6 w-6" /> : <MdOutlineRemoveRedEye className="h-6 w-6" />}</button>
-        {/* Checkbox */}
+        <div className="field">
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label=" Password*"
+            placeholder="********"
+            id="password"
+            type={passwordType}
+            onChange={handlepasswordChange}
+            state={passwordError !== "" ? "error" : ""}
+            errorMessage={passwordError !== "" ? passwordError : ""}
+            maxLength={12}
+          />
+          <button className="icon" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+        </div>
+        <div className="field">
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="New Password*"
+            placeholder="********"
+            id="newPassword"
+            type={newpasswordType}
+            onChange={handlenewPasswordChange}
+            state={newPasswordError !== "" ? "error" : ""}
+            errorMessage={newPasswordError !== "" ? newPasswordError : ""}
+            maxLength={12}
+          />
+          <button className="icon" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+        </div>
+        <div className="field">
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Confirm Password*"
+            placeholder="********"
+            id="confirmPassword"
+            type={confirmpasswordType}
+            onChange={handleconfirmPasswordChange}
+            state={confirmPasswordError !== "" ? "error" : ""}
+            errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
+            maxLength={12}
+          />
+          <button className="icon" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+        </div>
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
             {/* <Checkbox />
