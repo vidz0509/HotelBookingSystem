@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputField from "components/fields/InputField";
 import { authServices } from "../../../services/auth";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 
 export default function ProfileOverview() {
-  const [email, setEmail] = useState('');
-  const [fullname, setFullname] = useState('');
-  const [contact, setContact] = useState('');
+  const userData = authServices.getCurrentUser();
+  const [email, setEmail] = useState(userData.email ? userData.email : '');
+  const [fullname, setFullname] = useState(userData.fullname ? userData.fullname : '');
+  const [contact, setContact] = useState(userData.phone ? userData.phone : '');
 
   const [emailError, setEmailError] = useState('');
   const [fullnameError, setFullNameError] = useState('');
@@ -16,12 +17,6 @@ export default function ProfileOverview() {
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
-
-  const [currentUser, setCurrentUser] = useState({
-    fullname: '',
-    email: '',
-    contact: ''
-  })
 
   const handleFullNameChange = (event) => {
     const value = event.target.value;
@@ -38,19 +33,10 @@ export default function ProfileOverview() {
     setContact(value);
   }
 
-  useEffect(() => {
-    const userData = authServices.getCurrentUser();
-    setCurrentUser({
-      fullname: userData.fullname,
-      email: userData.email,
-      phone: userData.phone
-    })
-  }, []);
-
   const handleSubmit = async (event) => {
-    // event.prevntDefault();
+    event.preventDefault();
     setEmailError('');
-    setFullname('');
+    setFullNameError('');
     setContactError('');
     if (validation.isEmpty(fullname)) {
       setFullNameError("Please enter valid fullname.");
@@ -73,17 +59,20 @@ export default function ProfileOverview() {
     const currentUser = authServices.getCurrentUser();
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
+      setBtnDisabled(false);
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      window.location.reload();
+      setTimeout(function () {
+        setSuccessful("Profile change successfully")
+      }, 1000);
     } else {
       setError(result.errorMessage);
+      setSuccessful(result.errorMessage);
       setBtnDisabled(false);
     }
   }
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
       <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <InputField
           variant="auth"
@@ -95,7 +84,8 @@ export default function ProfileOverview() {
           onChange={handleFullNameChange}
           state={fullnameError !== "" ? "error" : ""}
           errorMessage={fullnameError !== "" ? fullnameError : ""}
-          value={currentUser.fullname}
+          value={fullname}
+          maxLength={30}
         />
         <InputField
           variant="auth"
@@ -107,7 +97,8 @@ export default function ProfileOverview() {
           onChange={handleEmailChange}
           state={emailError !== "" ? "error" : ""}
           errorMessage={emailError !== "" ? emailError : ""}
-          value={currentUser.email}
+          value={email}
+          maxLength={40}
         />
         <InputField
           variant="auth"
@@ -119,9 +110,9 @@ export default function ProfileOverview() {
           onChange={handleContactChange}
           state={contactError !== "" ? "error" : ""}
           errorMessage={contactError !== "" ? contactError : ""}
-          value={currentUser.phone}
+          value={contact}
+          maxLength={10}
         />
-        {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
           </div>
@@ -129,23 +120,20 @@ export default function ProfileOverview() {
             {btnDisabled ?
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
               : <span>Save Profile</span>}
-          </button> 
-          <div className="mt-4">
-            {error !== '' && <>
-              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-            </>}
-          </div>
+          </button>
+        </div>
+        <div className="mt-4">
+          {error !== '' && <>
+            <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+          </>}
+        </div>
 
-          <div className="mt-4">
-
-            {successful !== '' && <>
-              <p className="mb-9 ml-1 text-base text-red-500">{successful}</p>
-            </>}
-          </div>
+        <div className="mt-4">
+          {successful !== '' && <>
+            <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+          </>}
         </div>
       </div>
-
-      
     </div>
   );
 }
