@@ -27,7 +27,7 @@ const Navbar = (props) => {
           <div className="h-6 w-[224px] pt-1 flex">
             <a
               className="text-sm font-normal text-navy-700 dark:text-white dark:hover:text-white"
-              href=" "
+              href="/admin/dashboard "
             >
               Dashboard
               <span className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
@@ -193,7 +193,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                    👋Admin
+                  👋Admin  
                   </p>{" "}
                 </div>
               </div>

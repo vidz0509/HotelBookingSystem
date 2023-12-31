@@ -4,3 +4,6 @@
     position: relative;
     right: 15px;
 }
+.dark-border {
+	border-color: #979393;
+}

@@ -6,7 +6,7 @@
 * Product Page: https://www.creative-tim.com/product/material-kit-react
 * Copyright 2023 Creative Tim (https://www.creative-tim.com)
 
-Coded by www.creative-tim.com
+Coded by https://www.creative-tim.com
 
  =========================================================
 
@@ -16,7 +16,7 @@ Coded by www.creative-tim.com
 import { useEffect } from "react";
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -28,7 +28,8 @@ import theme from "assets/theme";
 
 // Material Kit 2 React routes
 import routes from "routes";
-import Home from "pages/Home";
+import Home from "./pages/Home";
+import AboutUs from "./pages/LandingPages/AboutUs";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -57,8 +58,8 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/home" element={<Home />} />
-        <Route path="*" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
       </Routes>
     </ThemeProvider>
   );
