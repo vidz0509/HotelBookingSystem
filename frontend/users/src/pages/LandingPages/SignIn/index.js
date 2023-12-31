@@ -1,17 +1,4 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
 
 // import { useState } from "react";
 
@@ -38,29 +25,65 @@ import MKButton from "components/MKButton";
 // Material Kit 2 React example components
 // import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
-
-// Material Kit 2 React page layout routes
-// import routes from "routes";
-
-// Images
+import { authServices } from "services/auth";
+import { validation } from "services/validation";
+import { useState } from "react";
 import bgImage from "assets/images/auth.jpg";
 
 function SignInBasic() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [error, setError] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  
+
+  const handleEmailChange = (event) => {    
+    const value = event.target.value;
+    setEmail(value);
+  }
+  
+  const handlePasswordChange = (event) => {
+    const value = event.target.value;
+    setPassword(value);
+  }
+
+  const handlesubmit = async (event) => {
+    event.preventDefault();
+    setEmailError('');
+    setPasswordError('');
+    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
+      setEmailError("Please enter valid email address.");
+      return false;
+    }
+    if (validation.isEmpty(password)) {
+      setPasswordError("Please enter valid Password.");
+      return false;
+    }
+    setBtnDisabled(true);
+    const requestBody = {
+      email: email,
+      password: password
+    };
+    const result = await authServices.login(requestBody);
+    if (result.isSuccessful) {
+      localStorage.setItem('currentUser', JSON.stringify(result.data));
+      window.location.reload();
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+   
+    }
+  }
   // const [rememberMe, setRememberMe] = useState(false);
 
   // const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
+    
     <>
       {/* <DefaultNavbar
-        routes={routes}
-        // action={{
-        //   type: "external",
-        //   route: "https://www.creative-tim.com/product/material-kit-react",
-        //   label: "free download",
-        //   color: "info",
-        // }}
-        transparent
         light
       /> */}
       <MKBox
@@ -125,10 +148,17 @@ function SignInBasic() {
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput type="email" label="Email" fullWidth 
+                    onChange={handleEmailChange}
+                    state={emailError !== "" ? "error" : ""}
+                    errorMessage={emailError !== "" ? emailError : ""}/>
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth />
+                    <MKInput type="password" label="Password" fullWidth
+                     onChange={handlePasswordChange}
+                     state={passwordError !== "" ? "error" : ""}
+                     errorMessage={passwordError !== "" ? passwordError : ""}
+                     maxLength={12} />
                   </MKBox>
                   <MKTypography
                     component={Link}
@@ -144,6 +174,13 @@ function SignInBasic() {
                     <MKButton variant="gradient" color="info" fullWidth>
                       sign in
                     </MKButton>
+                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={handlesubmit} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                      </MKButton>           
+                   <MKBox className="mt-4">
+            {error !== '' && <>
+              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+            </>}
+          </MKBox>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">

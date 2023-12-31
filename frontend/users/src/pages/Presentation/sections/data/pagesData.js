@@ -30,7 +30,7 @@ export default [
   {
     image:
       "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/signin-basic.jpg",
-    name: "Sign In Page",
+    name: " Page",
     route: "/pages/authentication/sign-in",
   },
   {
@@ -39,3 +39,4 @@ export default [
     route: "/pages/landing-pages/author",
   },
 ];
+z

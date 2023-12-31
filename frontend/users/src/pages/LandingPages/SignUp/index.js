@@ -162,7 +162,7 @@ function SignUpBasic() {
                         fontWeight="medium"
                         textGradient
                       >
-                        Sign in
+                        
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
