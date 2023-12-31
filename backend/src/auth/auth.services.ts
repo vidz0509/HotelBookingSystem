@@ -40,6 +40,7 @@ export class AuthServices {
     //   );
     // }
     try {
+      await this.usersCollection.createUser(createUserDto);
       const newUser = await this.usersCollection.createUser(createUserDto);
       const response = await this.helper.buildResponse(true, null, newUser);
       return response;
@@ -51,7 +52,8 @@ export class AuthServices {
   }
 
   async signIn(signInUserDto: SignInUserDto): Promise<any> {
-    const user = await this.usersService.getUserByEmail(signInUserDto.email);
+    const user = await this.usersService.getUserByPassword(signInUserDto.email);
+    console.log(user)
     if (!user) {
       throw new BadRequestException(
         await this.helper.buildResponse(false, 'This email is not registered.'),
@@ -63,7 +65,8 @@ export class AuthServices {
       );
     }
     try {
-      const response = await this.helper.buildResponse(true, null, user);
+      const currentuser = await this.usersService.getUserByEmail(signInUserDto.email);
+      const response = await this.helper.buildResponse(true, null, currentuser);
       return response;
     } catch (error) {
       console.debug(`Failed to verify token: ${error}`);
@@ -76,16 +79,16 @@ export class AuthServices {
     return user;
   }
 
-  async changePassword(requestData: { userId: string, password: string, newpassword: string }) {
-    this.logger.debug(`Request received to reset password : ${requestData.userId}`);
+  async changePassword(requestData: { email: string, password: string, newpassword: string }) {
+    this.logger.debug(`Request received to reset password : ${requestData.email}`);
 
-    this.logger.debug(`Check if user registered with email ${requestData.userId}`);
-    const user = await this.usersCollection.getUserWithPassword(requestData.userId);
+    this.logger.debug(`Check if user registered with email ${requestData.email}`);
+    const user = await this.usersCollection.getUserWithPassword(requestData.email);
 
     if (!user)
       throw new BadRequestException(await this.helper.buildResponse(false, 'This user id is not registered.'));
 
-      if (user.password !== requestData.password) {
+    if (user.password !== requestData.password) {
       throw new UnauthorizedException(
         await this.helper.buildResponse(false, 'Current password is wrong'),
       );
@@ -93,10 +96,10 @@ export class AuthServices {
     if (user.password == requestData.newpassword) {
       throw new UnauthorizedException(
         await this.helper.buildResponse(false, 'Current password and new password can not be same'),
-      );   
+      );
     }
     try {
-      await this.usersCollection.changePassword(user.id,requestData.newpassword);
+      await this.usersCollection.changePassword(user.id, requestData.newpassword);
       return await this.helper.buildResponse(true);
     } catch (error) {
       if (error) {
@@ -115,9 +118,9 @@ export class AuthServices {
     if (!user)
       throw new BadRequestException(await this.helper.buildResponse(false, 'This user id is not registered.'));
 
-      
-      try {
-        this.logger.debug(`Sending email to ${user.email}`);
+
+    try {
+      this.logger.debug(`Sending email to ${user.email}`);
       const verificationCode = await this.codeService.generateCode(user._id.toString());
       await this.emailService.sendTestEmail(user.email, user.fullname, verificationCode);
       return await this.helper.buildResponse(true);
@@ -153,7 +156,7 @@ export class AuthServices {
     return response;
   }
 
-  
+
   async resetPassword(requestData: { email: string, password: string }) {
     this.logger.debug(`Request received to reset password : ${requestData.email}`);
 

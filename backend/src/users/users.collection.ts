@@ -45,20 +45,20 @@ export class UsersCollection {
         return newUser.save();
     }
 
-    // async getUserByName(name: string): Promise<User> {
-    //     return await this.userModel.findOne({ name: name });
-    // }
+    async getUserByName(name: string): Promise<User> {
+        return await this.userModel.findOne({ name: name }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+    }
 
     async getUser(id: string) {
         return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return this.userModel.findOne({ email: email });
+        return this.userModel.findOne({ email: email }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
-    async getUserByPassword(password: string): Promise<User> {
-        return await this.userModel.findOne({ password: password });
+    async getUserByPassword(email: string): Promise<User> {
+        return await this.userModel.findOne({ email: email })
     }
 
     async updateUser(userID: string, updateUserDto: UpdateUserDto) {
