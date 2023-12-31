@@ -129,7 +129,7 @@ export default function ProfileOverview() {
             {btnDisabled ?
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
               : <span>Save Profile</span>}
-          </button>
+          </button> 
           <div className="mt-4">
             {error !== '' && <>
               <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
@@ -137,12 +137,15 @@ export default function ProfileOverview() {
           </div>
 
           <div className="mt-4">
+
             {successful !== '' && <>
               <p className="mb-9 ml-1 text-base text-red-500">{successful}</p>
             </>}
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 }
