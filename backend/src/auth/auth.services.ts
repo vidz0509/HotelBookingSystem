@@ -74,6 +74,7 @@ export class AuthServices {
       throw new InternalServerErrorException('Something went wrong.');
     }
   }
+  
   async checkIfUserExists(email: string) {
     const user = await this.usersCollection.getUserByEmail(email);
     return user;

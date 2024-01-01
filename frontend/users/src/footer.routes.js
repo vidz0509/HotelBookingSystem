@@ -63,6 +63,7 @@ export default {
         { name: "sponsorships", href: "https://www.creative-tim.com/sponsorships" },
       ],
     },
+
     {
       name: "legal",
       items: [
@@ -72,7 +73,7 @@ export default {
       ],
     },
   ],
-  
+
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
       All rights reserved. Copyright &copy; {date} Budget Suites{" "}
