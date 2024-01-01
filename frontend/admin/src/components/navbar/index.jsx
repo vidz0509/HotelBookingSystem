@@ -1,4 +1,6 @@
 import React from "react";
+
+import { useEffect, useState } from "react";
 import Dropdown from "components/dropdown";
 // import { FiAlignJustify } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -11,12 +13,25 @@ import { Link } from "react-router-dom";
 //   IoMdInformationCircleOutline,
 // } from "react-icons/io";
 import avatar from "assets/img/avatars/avatar4.png";
+import { authServices } from "../../services/auth";
 // import Dashboard from "views/admin/dashboard";
 // import ProfileOverview from "./views/admin/profile";
 
 const Navbar = (props) => {
-  const {brandText } = props;
-  // const [darkmode, setDarkmode] = React.useState(false);
+  const { onOpenSidenav, brandText } = props;
+  const [darkmode, setDarkmode] = useState(false);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const currentUser = authServices.getCurrentUser();
+    setUser(currentUser);
+  }, []);
+
+  const handleLogout = async (event) => {
+    event.preventDefault();
+    await authServices.logout();
+  }
+
 
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2 backdrop-blur-xl dark:bg-[#0b14374d]">
@@ -216,8 +231,8 @@ const Navbar = (props) => {
                   href=" "
                   className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
                 >
-                  Log Out
                 </a>
+                <a href="#" onClick={handleLogout} className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"> Log Out </a>
               </div>
             </div>
           }
