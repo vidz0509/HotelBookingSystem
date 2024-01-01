@@ -15,8 +15,8 @@ export class UsersCollection {
         return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
-    async getUserWithPassword(id: string) {
-        return await this.userModel.findById(id);
+    async getUserWithPassword(email: string) {
+        return await this.userModel.findOne({ email: email });
     }
 
     async signIn(email: string, password: string) {
@@ -41,7 +41,7 @@ export class UsersCollection {
             updatedAt: new Date(),
             isDeleted: false,
             isActive: true,
-        });                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+        });
         return newUser.save();
     }
 

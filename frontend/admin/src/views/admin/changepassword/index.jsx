@@ -102,7 +102,7 @@ export default function ChangePassword() {
     setBtnDisabled(true);
     const currentUser = authServices.getCurrentUser();
     const requestBody = {
-      userId: currentUser._id,
+      email: currentUser.email,
       password: password,
       newpassword: newPassword,
     };
