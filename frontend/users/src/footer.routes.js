@@ -8,13 +8,13 @@ import YouTubeIcon from "@mui/icons-material/YouTube";
 import MKTypography from "components/MKTypography";
 
 // Images
-import logoCT from "assets/images/logo-ct-dark.png";
+import logoCT from "assets/images/dark-logo.png";
 
 const date = new Date().getFullYear();
 
 export default {
   brand: {
-    name: "Material Kit 2",
+    name: "Budget Suites",
     image: logoCT,
     route: "/",
   },
@@ -72,18 +72,12 @@ export default {
       ],
     },
   ],
+  
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
       All rights reserved. Copyright &copy; {date} Budget Suites{" "}
-      <MKTypography
-        component="a"
-        href="https://www.creative-tim.com"
-        target="_blank"
-        rel="noreferrer"
-        variant="button"
-        fontWeight="regular"
-      >
-      </MKTypography>
     </MKTypography>
   ),
 };
+
+
