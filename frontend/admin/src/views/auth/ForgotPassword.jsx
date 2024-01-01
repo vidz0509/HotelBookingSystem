@@ -5,6 +5,7 @@ import { useState } from "react";
 import btnLoader from "../../assets/img/layout/btn-loader.gif";
 import {
   MdRemoveRedEye,
+  MdOutlineRemoveRedEye,
 } from "react-icons/md";
 // import { FcGoogle } from "react-icons/fc";
 // import Checkbox from "components/checkbox";
@@ -17,6 +18,9 @@ export default function ForgotPassword() {
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [screen, setScreen] = useState('forgotPassword');
 
+  const [newpasswordType, setNewPasswordType] = useState("password");
+  const [confirmpasswordType, setConfirmPasswordType] = useState("password");
+
   const [verificationCode, setVerificationCode] = useState('');
   const [codeError, setCodeError] = useState('');
   const [vbtnDisabled, setVBtnDisabled] = useState(false);
@@ -28,6 +32,22 @@ export default function ForgotPassword() {
   const [confPasswordError, setConfPasswordError] = useState('');
 
   /* Forget Password */
+
+  const toggleNewPassword = () => {
+    if (newpasswordType === "password") {
+      setNewPasswordType("text")
+      return;
+    }
+    setNewPasswordType("password")
+  }
+
+  const toggleConfirmPassword = () => {
+    if (confirmpasswordType === "password") {
+      setConfirmPasswordType("text")
+      return;
+    }
+    setConfirmPasswordType("password")
+  }
 
   const handleEmailChange = (event) => {
     clearErrors();
@@ -243,32 +263,36 @@ export default function ForgotPassword() {
               Reset Password
             </h4>
             <p className="mb-9 ml-1 text-base text-gray-600">Enter your new password here!</p>
-            <InputField
-              variant="auth"
-              extra="mb-3"
-              label="New Password*"
-              placeholder="********"
-              id="new_password"
-              type="password"
-              onChange={handlePasswordChange}
-              state={passwordError !== "" ? "error" : ""}
-              errorMessage={passwordError !== "" ? passwordError : ""}
-              maxLength={12}
-            />
-            <MdRemoveRedEye className="h-6 w-6" />
-            <InputField
-              variant="auth"
-              extra="mb-3"
-              label="Confirm Password*"
-              placeholder="********"
-              id="confirm_password"
-              type="password"
-              onChange={handleConfPasswordChange}
-              state={confPasswordError !== "" ? "error" : ""}
-              errorMessage={confPasswordError !== "" ? confPasswordError : ""}
-              maxLength={12}
-            />
-            <MdRemoveRedEye className="h-6 w-6" />
+            <div className="field">
+              <InputField
+                variant="auth"
+                extra="mb-3"
+                label="New Password*"
+                placeholder="********"
+                id="new_password"
+                type="password"
+                onChange={handlePasswordChange}
+                state={passwordError !== "" ? "error" : ""}
+                errorMessage={passwordError !== "" ? passwordError : ""}
+                maxLength={12}
+              />
+              <button className="icon" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+            </div>
+            <div className="field">
+              <InputField
+                variant="auth"
+                extra="mb-3"
+                label="Confirm Password*"
+                placeholder="********"
+                id="confirm_password"
+                type="password"
+                onChange={handleConfPasswordChange}
+                state={confPasswordError !== "" ? "error" : ""}
+                errorMessage={confPasswordError !== "" ? confPasswordError : ""}
+                maxLength={12}
+              />
+              <button className="icon" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+            </div>
             {error !== '' && <>
               <p className="mb-3 ml-1 text-red-500 text-sm">{error}</p>
             </>}
