@@ -22,13 +22,14 @@ import PropTypes from "prop-types";
 import MKButtonRoot from "components/MKButton/MKButtonRoot";
 
 const MKButton = forwardRef(
-  ({ color, variant, size, circular, iconOnly, children, ...rest }, ref) => (
+  ({ color, variant, size, circular, iconOnly, children, onClick, ...rest }, ref) => (
     <MKButtonRoot
       {...rest}
       ref={ref}
       color="primary"
       variant={variant === "gradient" ? "contained" : variant}
       size={size}
+      onClick={onClick}
       ownerState={{ color, variant, size, circular, iconOnly }}
     >
       {children}
@@ -43,6 +44,7 @@ MKButton.defaultProps = {
   color: "white",
   circular: false,
   iconOnly: false,
+  onclick: onclick,
 };
 
 // Typechecking props for the MKButton
@@ -64,6 +66,7 @@ MKButton.propTypes = {
   circular: PropTypes.bool,
   iconOnly: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default MKButton;

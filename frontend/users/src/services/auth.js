@@ -17,7 +17,10 @@ function checkIfUserLoggedIn() {
 }
 
 async function login(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    const url = `http://localhost:5001/auth/login`;
+    console.log(requestBody)
+    console.log(url)
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {

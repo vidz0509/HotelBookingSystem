@@ -37,13 +37,15 @@ function SignInBasic() {
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
-  
 
-  const handleEmailChange = (event) => {    
+
+  const handleEmailChange = (event) => {
+    // debugger;
     const value = event.target.value;
+    console.log(value)
     setEmail(value);
   }
-  
+
   const handlePasswordChange = (event) => {
     const value = event.target.value;
     setPassword(value);
@@ -51,6 +53,8 @@ function SignInBasic() {
 
   const handlesubmit = async (event) => {
     event.preventDefault();
+    // debugger;
+    console.log(event)
     setEmailError('');
     setPasswordError('');
     if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
@@ -69,11 +73,11 @@ function SignInBasic() {
     const result = await authServices.login(requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      window.location.reload();
+      // window.location.reload();
     } else {
       setError(result.errorMessage);
       setBtnDisabled(false);
-   
+
     }
   }
   // const [rememberMe, setRememberMe] = useState(false);
@@ -81,7 +85,7 @@ function SignInBasic() {
   // const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
-    
+
     <>
       {/* <DefaultNavbar
         light
@@ -122,43 +126,27 @@ function SignInBasic() {
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
                   Sign in
                 </MKTypography>
-                {/* <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <FacebookIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GitHubIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GoogleIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                </Grid> */}
               </MKBox>
-              <MKBox textAlign="center">
-                    <MKTypography variant="button" color="text">
-                    
-                    </MKTypography>
-                  </MKBox>
+              {/* <MKBox textAlign="center">
+                <MKTypography variant="button" color="text">
+
+                </MKTypography>
+              </MKBox> */}
               <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form">
+                {/* <MKBox component="form" role="form"> */}
+                  <form method="post" onSubmit={handlesubmit}>
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth 
-                    onChange={handleEmailChange}
-                    state={emailError !== "" ? "error" : ""}
-                    errorMessage={emailError !== "" ? emailError : ""}/>
+                    <MKInput type="email" label="Email" fullWidth
+                      onChange={handleEmailChange}
+                      state={emailError !== "" ? "error" : ""}
+                      errorMessage={emailError !== "" ? emailError : ""} />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="password" label="Password" fullWidth
-                     onChange={handlePasswordChange}
-                     state={passwordError !== "" ? "error" : ""}
-                     errorMessage={passwordError !== "" ? passwordError : ""}
-                     maxLength={12} />
+                      onChange={handlePasswordChange}
+                      state={passwordError !== "" ? "error" : ""}
+                      errorMessage={passwordError !== "" ? passwordError : ""}
+                      maxLength={12} />
                   </MKBox>
                   <MKTypography
                     component={Link}
@@ -171,16 +159,16 @@ function SignInBasic() {
                     Forgot Password?
                   </MKTypography>
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
+                    <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       sign in
                     </MKButton>
-                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={handlesubmit} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                      </MKButton>           
-                   <MKBox className="mt-4">
-            {error !== '' && <>
-              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-            </>}
-          </MKBox>
+                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >kk
+                    </MKButton>
+                    <MKBox className="mt-4">
+                      {error !== '' && <>
+                        <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                      </>}
+                    </MKBox>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
@@ -197,7 +185,8 @@ function SignInBasic() {
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
-                </MKBox>
+                  </form>
+                {/* </MKBox> */}
               </MKBox>
             </Card>
           </Grid>
