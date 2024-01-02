@@ -38,6 +38,12 @@ export default {
   ],
   menus: [
     {
+      name: "Description",
+      items: [
+        { name: "A hotel is a commercial establishment that provides lodging, meals, and other services to guests, travelers, and tourists." },
+      ],
+    },
+    {
       name: "Pages",
       items: [
         { name: "Home", route: "/pages/Home/index.js" },
@@ -46,14 +52,14 @@ export default {
         { name: "Account", route: "/pages/authentication/sign-in" },
       ],
     },
-    {
-      name: "resources",
-      items: [
-        { name: "illustrations", href: "https://iradesign.io/" },
-        { name: "bits & snippets", href: "https://www.creative-tim.com/bits" },
-        { name: "affiliate program", href: "https://www.creative-tim.com/affiliates/new" },
-      ],
-    },
+    // {
+    //   name: "resources",
+    //   items: [
+    //     { name: "illustrations", href: "https://iradesign.io/" },
+    //     { name: "bits & snippets", href: "https://www.creative-tim.com/bits" },
+    //     { name: "affiliate program", href: "https://www.creative-tim.com/affiliates/new" },
+    //   ],
+    // },
     {
       name: "help & support",
       items: [
