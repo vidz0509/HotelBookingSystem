@@ -36,7 +36,7 @@ import bgImage from "assets/images/illustrations/illustration-reset.jpg";
 function ContactUs() {
   return (
     <>
-      <MKBox position="fixed" top="0.5rem" width="100%">
+      <MKBox position="fixed" top="0.5rem" width="100%" >
         <DefaultNavbar
           routes={routes}
           // action={{

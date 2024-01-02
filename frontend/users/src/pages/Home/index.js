@@ -48,16 +48,18 @@ import bgImage from "assets/images/banner.jpg";
 function Home() {
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        // action={{
-        //   type: "external",
-        //   route: "https://www.creative-tim.com/product/material-kit-react",
-        //   label: "free download",
-        //   color: "info",
-        // }}
-        sticky
-      />
+      <MKBox position="fixed" top="0.5rem" width="100%">
+        <DefaultNavbar
+          routes={routes}
+          // action={{
+          //   type: "external",
+          //   route: "https://www.creative-tim.com/product/material-kit-react",
+          //   label: "free download",
+          //   color: "info",
+          // }}
+          sticky
+        />
+      </MKBox>
       <MKBox
         minHeight="75vh"
         width="100%"
@@ -160,7 +162,7 @@ function Home() {
         <Testimonials />
         <Download />
         {/* <MKBox pt={18} pb={6}> */}
-          {/* <Container>
+        {/* <Container>
             <Grid container spacing={3}>
               <Grid item xs={12} lg={5} ml="auto" sx={{ textAlign: { xs: "center", lg: "left" } }}>
                 <MKTypography variant="h4" fontWeight="bold" mb={0.5}>

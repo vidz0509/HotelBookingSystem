@@ -20,10 +20,10 @@ import { authServices } from "../../services/auth";
 const Navbar = (props) => {
 
   const userData = authServices.getCurrentUser();
-  const [fullname, setFullname] = useState(userData.fullname ? userData.fullname : '');
+  const [fullname] = useState(userData.fullname ? userData.fullname : '');
 
   const { onOpenSidenav, brandText } = props;
-  const [darkmode, setDarkmode] = useState(false);
+  // const [darkmode, setDarkmode] = useState(false);
   const [user, setUser] = useState({});
 
   useEffect(() => {

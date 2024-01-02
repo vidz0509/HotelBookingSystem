@@ -8,7 +8,7 @@ export default [
     items: [
       {
         image: `${images[0]}`,
-        name: "Ice land",
+        name: "Ice Land",
         route: "/sections/page-sections/page-headers",
       },
       {
