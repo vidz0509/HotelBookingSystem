@@ -270,7 +270,7 @@ export default function ForgotPassword() {
                 label="New Password*"
                 placeholder="********"
                 id="new_password"
-                type="password"
+                type={newpasswordType}
                 onChange={handlePasswordChange}
                 state={passwordError !== "" ? "error" : ""}
                 errorMessage={passwordError !== "" ? passwordError : ""}
@@ -285,7 +285,7 @@ export default function ForgotPassword() {
                 label="Confirm Password*"
                 placeholder="********"
                 id="confirm_password"
-                type="password"
+                type={confirmpasswordType}
                 onChange={handleConfPasswordChange}
                 state={confPasswordError !== "" ? "error" : ""}
                 errorMessage={confPasswordError !== "" ? confPasswordError : ""}
