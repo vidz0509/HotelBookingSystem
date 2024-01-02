@@ -16,7 +16,7 @@ Coded by https://www.creative-tim.com
 import { useEffect } from "react";
 
 // react-router components
-import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 
 // @mui material components
 import { ThemeProvider } from "@mui/material/styles";
@@ -29,6 +29,8 @@ import theme from "assets/theme";
 // Material Kit 2 React routes
 import routes from "routes";
 import Home from "pages/Home";
+import AboutUs from "pages/LandingPages/AboutUs";
+import ContactUs from "pages/LandingPages/ContactUs";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -58,7 +60,9 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
         <Route path="/home" element={<Home />} />
-        <Route path="*" element={<Navigate to="/home" />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
       </Routes>
     </ThemeProvider>
   );

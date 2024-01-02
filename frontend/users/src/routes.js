@@ -44,9 +44,8 @@ Coded by www.creative-tim.com
 
 // Pages
 import Home from "pages/Home";
-import AboutUs from "layouts/pages/landing-pages/about-us";
-import ContactUs from "layouts/pages/landing-pages/contact-us";
-// import Author from "layouts/pages/landing-pages/author";
+import AboutUs from "pages/LandingPages/AboutUs";
+import ContactUs from "pages/LandingPages/ContactUs";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
 
@@ -74,19 +73,19 @@ const routes = [
   {
     name: "Home",
     // icon: <Icon>home_app_logo</Icon>,
-    route: "/pages/Home/index.js",
+    route: "/Home",
     component: <Home />,
   },
   {
     name: "About Us",
     // icon: <Icon>info</Icon>,
-    route: "/pages/landing-pages/about-us",
+    route: "/about-us",
     component: <AboutUs />,
   },
   {
     name: "Contact Us",
     // icon: <Icon>contact_support</Icon>,
-    route: "/pages/landing-pages/contact-us",
+    route: "/contact-us",
     component: <ContactUs />,
   },
   // {
@@ -291,13 +290,13 @@ const routes = [
       {
         name: "sign in",
         // icon: <Icon>login</Icon>,
-        route: "/pages/authentication/sign-in",
+        route: "/sign-in",
         component: <SignIn />,
       },
       {
         name: "sign up",
         // icon: <Icon>login</Icon>,
-        route: "/pages/authentication/sign-up",
+        route: "/sign-up",
         component: <SignUp />,
       },
       {
