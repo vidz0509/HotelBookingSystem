@@ -18,6 +18,10 @@ import { authServices } from "../../services/auth";
 // import ProfileOverview from "./views/admin/profile";
 
 const Navbar = (props) => {
+
+  const userData = authServices.getCurrentUser();
+  const [fullname, setFullname] = useState(userData.fullname ? userData.fullname : '');
+
   const { onOpenSidenav, brandText } = props;
   const [darkmode, setDarkmode] = useState(false);
   const [user, setUser] = useState({});
@@ -208,7 +212,7 @@ const Navbar = (props) => {
               <div className="p-4">
                 <div className="flex items-center gap-2">
                   <p className="text-sm font-bold text-navy-700 dark:text-white">
-                  👋Admin  
+                  👋{fullname}  
                   </p>{" "}
                 </div>
               </div>
