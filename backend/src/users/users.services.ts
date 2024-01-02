@@ -43,7 +43,7 @@ export class UsersService {
     //     return await this.helper.buildResponse(true, null, user);
     // }
 
-    async getUserByEmail(email: string): Promise<User>  {
+    async getUserByEmail(email: string): Promise<User> {
         // let user = await this.collection.getUserByEmail(email);
         return await this.collection.getUserByEmail(email);
     }
@@ -52,8 +52,10 @@ export class UsersService {
         return await this.collection.getUserByPassword(password);
     }
 
-    async updateUser(userID: string, updateUserDto: UpdateUserDto) {
-        return await this.collection.updateUser(userID, updateUserDto);
+    async updateUser(userId: string, updateUserDto: UpdateUserDto) {
+        let data = await this.collection.updateUser(userId, updateUserDto);
+        const response = await this.helper.buildResponse(true, null, data);
+        return response;
     }
 
     async deleteUser(userID: string) {
