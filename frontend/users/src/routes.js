@@ -48,6 +48,8 @@ import AboutUs from "pages/LandingPages/AboutUs";
 import ContactUs from "pages/LandingPages/ContactUs";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
+import ForgetPassword from "pages/LandingPages/ForgetPassword";
+
 
 // Sections
 // import PageHeaders from "layouts/sections/page-sections/page-headers";
@@ -298,6 +300,12 @@ const routes = [
         // icon: <Icon>login</Icon>,
         route: "/sign-up",
         component: <SignUp />,
+      },
+      {
+        name: "Forgot Password",
+        // icon: <Icon>login</Icon>,
+        route: "/forgetpassword",
+        component: <ForgetPassword />,
       },
       {
         name: "Sign Out",

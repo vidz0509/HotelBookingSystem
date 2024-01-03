@@ -185,7 +185,7 @@ function SignUpBasic() {
                       </>}
                     </MKBox>
                   </MKBox>
-                  <MKBox mt={3} mb={1} textAlign="center">
+                  <MKBox mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       Don&apos;t have an account?{" "}
                       <MKTypography
