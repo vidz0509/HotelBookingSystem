@@ -44,7 +44,7 @@ function Information() {
           justifyContent="center"
           sx={{ mx: "auto", textAlign: "center" }}
         >
-          <MKTypography variant="h2">Trusted by over</MKTypography>
+          <MKTypography variant="h2">Customers Reviews</MKTypography>
           <MKTypography variant="h2" color="info" textGradient mb={2}>
             1,679,477+ web developers
           </MKTypography>
@@ -53,7 +53,7 @@ function Information() {
             Creative Tim&apos;s products.
           </MKTypography>
         </Grid>
-        <Grid container spacing={3} sx={{ mt: 8 }}>
+        <Grid container spacing={2}>
           <Grid item xs={12} md={6} lg={4}>
             <DefaultReviewCard
               name="Nick Willever"
