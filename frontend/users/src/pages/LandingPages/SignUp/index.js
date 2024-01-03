@@ -93,7 +93,6 @@ function SignUpBasic() {
 
   return (
     <>
-
       <MKBox
         position="absolute"
         top={0}
@@ -130,12 +129,10 @@ function SignUpBasic() {
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
                   Sign up
                 </MKTypography>
-              
               </MKBox>
-      
               <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form">
-                  {/* <form method="post" onSubmit={handlesubmit}> */}
+                {/* <MKBox component="form" role="form"> */}
+                <form method="post" onSubmit={handlesubmit}>
                   <MKBox mb={2}>
                     <MKInput type="text" label="Full name" fullWidth
                       onChange={handlefullNameChange}
@@ -143,7 +140,7 @@ function SignUpBasic() {
                       errorMessage={fullnameError !== "" ? fullnameError : ""}
                       value={fullname}
                       maxLength={30} />
-                      
+
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="email" label="Email" fullWidth
@@ -200,17 +197,16 @@ function SignUpBasic() {
                         textGradient
                       >
                         Sign in
-
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
-                </MKBox>
-                {/* </form> */}
+                </form>
+                {/* </MKBox> */}
               </MKBox>
             </Card>
           </Grid>
         </Grid>
-      </MKBox>
+      </MKBox >
       <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
         <SimpleFooter light />
       </MKBox>

@@ -32,7 +32,7 @@ async function login(requestBody) {
 }
 async function register(requestBody) {
     // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
-    const url = `http://localhost:5001/auth/login`;
+    const url = `http://localhost:5001/auth/register`;
     console.log(requestBody)
     console.log(url)
     return await axios.post(url, requestBody).then(response => {
