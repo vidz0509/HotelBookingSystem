@@ -241,7 +241,14 @@ function ForgetPasswordBasic() {
                                         <form method="post" onSubmit={handlesubmit}>
                                             <MKBox mb={2}
                                                 color="dark">
-                                                <MKInput type="email" label="Email" fullWidth
+                                                <MKInput type="password" label="New Password" fullWidth
+                                                    onChange={handleEmailChange}
+                                                    state={emailError !== "" ? "error" : ""}
+                                                    errorMessage={emailError !== "" ? emailError : ""} />
+                                            </MKBox>
+                                            <MKBox mb={2}
+                                                color="dark">
+                                                <MKInput type="password" label="Confirm Password" fullWidth
                                                     onChange={handleEmailChange}
                                                     state={emailError !== "" ? "error" : ""}
                                                     errorMessage={emailError !== "" ? emailError : ""} />
