@@ -22,8 +22,11 @@ import PropTypes from "prop-types";
 import MKInputRoot from "components/MKInput/MKInputRoot";
 
 
-const MKInput = forwardRef(({ error, success, disabled, onchange, ...rest }, ref) => (
-  <MKInputRoot {...rest} ref={ref} ownerState={{ error, success, disabled, onchange }} />
+const MKInput = forwardRef(({ error, success, disabled, onchange, errorMessage, ...rest }, ref) => (
+  <>
+    <MKInputRoot {...rest} ref={ref} ownerState={{ error, success, disabled, onchange, errorMessage }} />
+    {errorMessage && errorMessage !== '' && <p className="error-msg">{errorMessage}</p>}
+  </>
 ));
 
 // Setting default values for the props of MKInput
@@ -31,7 +34,8 @@ MKInput.defaultProps = {
   error: false,
   success: false,
   disabled: false,
-  onchange: onchange
+  onchange: onchange,
+  errorMessage: ''
 };
 
 // Typechecking props for the MKInput
@@ -40,6 +44,7 @@ MKInput.propTypes = {
   success: PropTypes.bool,
   disabled: PropTypes.bool,
   onchange: PropTypes.func,
+  errorMessage: PropTypes.string,
 };
 
 export default MKInput;

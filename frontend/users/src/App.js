@@ -61,7 +61,6 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-        <Route path="/home" element={<Home />} />
         <Route path="/" element={<Home />} />
         <Route path="/SignIn"element={<SignInPage/>} />
         <Route path="/SignUp"element={<SignUpPage/>} />

@@ -100,11 +100,17 @@ function SignInBasic() {
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 {/* <MKBox component="form" role="form"> */}
+<<<<<<< Updated upstream
                   <form method="post" onSubmit={handlesubmit}>
                   <MKBox mb={2}
                   color="dark">
+=======
+                <form method="post" onSubmit={handlesubmit}>
+                  <MKBox mb={2}>
+>>>>>>> Stashed changes
                     <MKInput type="email" label="Email" fullWidth
                       onChange={handleEmailChange}
+                      error={emailError && emailError !== '' ? true : false}
                       state={emailError !== "" ? "error" : ""}
                       errorMessage={emailError !== "" ? emailError : ""} />
                   </MKBox>
@@ -112,6 +118,7 @@ function SignInBasic() {
                     <MKInput type="password" label="Password" fullWidth
                       onChange={handlePasswordChange}
                       state={passwordError !== "" ? "error" : ""}
+                      error={passwordError && passwordError !== '' ? true : false}
                       errorMessage={passwordError !== "" ? passwordError : ""}
                       maxLength={12} />
                   </MKBox>
@@ -152,7 +159,7 @@ function SignInBasic() {
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
-                  </form>
+                </form>
                 {/* </MKBox> */}
               </MKBox>
             </Card>

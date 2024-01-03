@@ -75,7 +75,7 @@ const routes = [
   {
     name: "Home",
     // icon: <Icon>home_app_logo</Icon>,
-    route: "/Home",
+    route: "/",
     component: <Home />,
   },
   {
