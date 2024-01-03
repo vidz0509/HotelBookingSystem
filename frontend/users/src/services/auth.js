@@ -3,6 +3,7 @@ import axios from 'axios';
 export const authServices = {
     checkIfUserLoggedIn,
     login,
+    register,
     getCurrentUser,
     updateProfile,
     changepassword,
@@ -29,6 +30,20 @@ async function login(requestBody) {
         return errorObj;
     });
 }
+async function register(requestBody) {
+    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    const url = `http://localhost:5001/auth/login`;
+    console.log(requestBody)
+    console.log(url)
+    return await axios.post(url, requestBody).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        console.error(errorObj);
+        return errorObj;
+    });
+}
+
 
 async function updateProfile(userId, requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;

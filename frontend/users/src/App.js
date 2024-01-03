@@ -31,6 +31,8 @@ import routes from "routes";
 import Home from "pages/Home";
 import AboutUs from "pages/LandingPages/AboutUs";
 import ContactUs from "pages/LandingPages/ContactUs";
+import SignInPage from "layouts/pages/authentication/sign-in";
+import SignUpPage from "layouts/pages/authentication/sign-up";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -61,6 +63,8 @@ export default function App() {
         {getRoutes(routes)}
         <Route path="/home" element={<Home />} />
         <Route path="/" element={<Home />} />
+        <Route path="/SignIn"element={<SignInPage/>} />
+        <Route path="/SignUp"element={<SignUpPage/>} />
         <Route path="/about-us" element={<AboutUs />} />
         <Route path="/contact-us" element={<ContactUs />} />
       </Routes>

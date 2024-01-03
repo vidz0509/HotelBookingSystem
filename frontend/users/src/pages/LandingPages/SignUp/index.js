@@ -1,68 +1,99 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// import { useState } from "react";
-
-// react-router-dom components
 import { Link } from "react-router-dom";
-
-// @mui material components
 import Card from "@mui/material/Card";
-// import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
-// import MuiLink from "@mui/material/Link";
-
-// // @mui icons
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import GoogleIcon from "@mui/icons-material/Google";
-
-// Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
-
-// Material Kit 2 React example components
-// import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 
-// Material Kit 2 React page layout routes
-// import routes from "routes";
-
-// Images
+import { authServices } from "services/auth";
+import { validation } from "services/validation";
+import { useState } from "react";
 import bgImage from "assets/images/auth.jpg";
 
 function SignUpBasic() {
-  // const [rememberMe, setRememberMe] = useState(false);
+  const [fullname, setFullName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [contact, setContact] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [contactError, setContactError] = useState('');
+  const [fullnameError, setFullNameError] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [passwordError, setPasswordError] = useState('');
+  const [error, setError] = useState('');
 
-  // const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  const handlefullNameChange = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    setFullName(value);
+  }
+  const handleEmailChange = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    setEmail(value);
+  }
+
+  const handlePasswordChange = (event) => {
+    const value = event.target.value;
+    setPassword(value);
+  }
+
+  const handleContactdChange = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    setContact(value);
+  }
+
+
+  const handlesubmit = async (event) => {
+    event.preventDefault();
+    console.log(event)
+    setEmailError('');
+    setPasswordError('');
+    setFullNameError('');
+    setContactError('')
+
+    if (validation.isEmpty(fullname)) {
+      setFullNameError("Please enter valid fullname.");
+      return false;
+    }
+    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
+      setEmailError("Please enter valid email address.");
+      return false;
+    }
+    if (validation.isEmpty(password)) {
+      setPasswordError("Please enter your new password.");
+      return false;
+    }
+    if (validation.isEmpty(contact)) {
+      setContactError("Please enter phone number.");
+      return false;
+    }
+    setBtnDisabled(true);
+    const requestBody = {
+      fullname: fullname,
+      email: email,
+      password: password,
+      phone: contact
+
+    };
+    const result = await authServices.register(requestBody);
+    if (result.isSuccessful) {
+      localStorage.setItem('currentUser', JSON.stringify(result.data));
+      window.location.replace('/');
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+
+    }
+  }
 
   return (
     <>
-      {/* <DefaultNavbar
-        routes={routes}
-        // action={{
-        //   type: "external",
-        //   route: "https://www.creative-tim.com/product/material-kit-react",
-        //   label: "free download",
-        //   color: "info",
-        // }}
-        transparent
-        light
-      /> */}
+
       <MKBox
         position="absolute"
         top={0}
@@ -99,42 +130,41 @@ function SignUpBasic() {
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
                   Sign up
                 </MKTypography>
-                {/* <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <FacebookIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GitHubIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                  <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                      <GoogleIcon color="inherit" />
-                    </MKTypography>
-                  </Grid>
-                </Grid> */}
+              
               </MKBox>
-              <MKBox textAlign="center">
-                    <MKTypography variant="button" color="text">
-                    
-                    </MKTypography>
-                  </MKBox>
+      
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
-                <MKBox mb={2}>
-                    <MKInput type="text" label="User Name" fullWidth />
+                  {/* <form method="post" onSubmit={handlesubmit}> */}
+                  <MKBox mb={2}>
+                    <MKInput type="text" label="Full name" fullWidth
+                      onChange={handlefullNameChange}
+                      state={fullnameError !== "" ? "error" : ""}
+                      errorMessage={fullnameError !== "" ? fullnameError : ""}
+                      value={fullname}
+                      maxLength={30} />
+                      
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput type="email" label="Email" fullWidth
+                      onChange={handleEmailChange}
+                      state={emailError !== "" ? "error" : ""}
+                      errorMessage={emailError !== "" ? emailError : ""} />
+
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth />
+                    <MKInput type="password" label="Password" fullWidth
+                      onChange={handlePasswordChange}
+                      state={passwordError !== "" ? "error" : ""}
+                      errorMessage={passwordError !== "" ? passwordError : ""}
+                      maxLength={12} />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Confirm Password" fullWidth />
+                    <MKInput type="text" label="conatct" fullWidth
+                      onChange={handleContactdChange}
+                      state={contactError !== "" ? "error" : ""}
+                      errorMessage={contactError !== "" ? contactError : ""}
+                    />
                   </MKBox>
                   <MKTypography
                     component={Link}
@@ -147,16 +177,23 @@ function SignUpBasic() {
                     Forgot Password?
                   </MKTypography>
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
+                    <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       sign up
                     </MKButton>
+                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                    </MKButton>
+                    <MKBox className="mt-4">
+                      {error !== '' && <>
+                        <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                      </>}
+                    </MKBox>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
                       Don&apos;t have an account?{" "}
                       <MKTypography
                         component={Link}
-                        to="/authentication/sign-in/cover"
+                        to="/sign-in"
                         variant="button"
                         color="info"
                         fontWeight="medium"
@@ -168,6 +205,7 @@ function SignUpBasic() {
                     </MKTypography>
                   </MKBox>
                 </MKBox>
+                {/* </form> */}
               </MKBox>
             </Card>
           </Grid>

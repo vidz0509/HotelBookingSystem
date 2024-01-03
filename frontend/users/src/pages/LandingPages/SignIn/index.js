@@ -1,29 +1,10 @@
-
-
-// import { useState } from "react";
-
-// react-router-dom components
 import { Link } from "react-router-dom";
-
-// @mui material components
 import Card from "@mui/material/Card";
-// import Switch from "@mui/material/Switch";
 import Grid from "@mui/material/Grid";
-// import MuiLink from "@mui/material/Link";
-
-// // @mui icons
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import GoogleIcon from "@mui/icons-material/Google";
-
-// Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
-
-// Material Kit 2 React example components
-// import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 import { authServices } from "services/auth";
 import { validation } from "services/validation";
@@ -40,7 +21,6 @@ function SignInBasic() {
 
 
   const handleEmailChange = (event) => {
-    // debugger;
     const value = event.target.value;
     console.log(value)
     setEmail(value);
@@ -53,7 +33,6 @@ function SignInBasic() {
 
   const handlesubmit = async (event) => {
     event.preventDefault();
-    // debugger;
     console.log(event)
     setEmailError('');
     setPasswordError('');
@@ -73,23 +52,15 @@ function SignInBasic() {
     const result = await authServices.login(requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      // window.location.reload();
+      window.location.replace('/');
     } else {
       setError(result.errorMessage);
       setBtnDisabled(false);
 
     }
   }
-  // const [rememberMe, setRememberMe] = useState(false);
-
-  // const handleSetRememberMe = () => setRememberMe(!rememberMe);
-
   return (
-
     <>
-      {/* <DefaultNavbar
-        light
-      /> */}
       <MKBox
         position="absolute"
         top={0}
@@ -127,11 +98,6 @@ function SignInBasic() {
                   Sign in
                 </MKTypography>
               </MKBox>
-              {/* <MKBox textAlign="center">
-                <MKTypography variant="button" color="text">
-
-                </MKTypography>
-              </MKBox> */}
               <MKBox pt={4} pb={3} px={3}>
                 {/* <MKBox component="form" role="form"> */}
                   <form method="post" onSubmit={handlesubmit}>
@@ -162,7 +128,7 @@ function SignInBasic() {
                     <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       sign in
                     </MKButton>
-                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >kk
+                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
                     </MKButton>
                     <MKBox className="mt-4">
                       {error !== '' && <>
@@ -175,7 +141,7 @@ function SignInBasic() {
                       Don&apos;t have an account?{" "}
                       <MKTypography
                         component={Link}
-                        to="/authentication/sign-up/cover"
+                        to="/sign-up"
                         variant="button"
                         color="info"
                         fontWeight="medium"
