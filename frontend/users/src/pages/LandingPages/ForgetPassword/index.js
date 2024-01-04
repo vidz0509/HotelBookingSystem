@@ -9,6 +9,7 @@ import SimpleFooter from "examples/Footers/SimpleFooter";
 import { authServices } from "services/auth";
 import { validation } from "services/validation";
 import { useState } from "react";
+import btnLoader from "assets/images/button-loader/btn-loader.gif";
 import bgImage from "assets/images/auth.jpg";
 
 function ForgetPasswordBasic() {
@@ -16,41 +17,154 @@ function ForgetPasswordBasic() {
     const [emailError, setEmailError] = useState('');
     const [error, setError] = useState('');
     const [btnDisabled, setBtnDisabled] = useState(false);
+    const [screen, setScreen] = useState('forgotPassword');
+
+    // const [newpasswordType, setNewPasswordType] = useState("password");
+    // const [confirmpasswordType, setConfirmPasswordType] = useState("password");
+
+    const [verificationCode, setVerificationCode] = useState('');
+    const [codeError, setCodeError] = useState('');
+    const [vbtnDisabled, setVBtnDisabled] = useState(false);
+    const [vbtnLoading, setVBtnLoading] = useState(false);
+
+    const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [confPassword, setConfPassword] = useState('');
+    const [confPasswordError, setConfPasswordError] = useState('');
 
 
     const handleEmailChange = (event) => {
         const value = event.target.value;
-        console.log(value)
         setEmail(value);
     }
 
-    const handlesubmit = async (event) => {
+    const sendVerificationCode = async (event) => {
         event.preventDefault();
-        console.log(event)
-        setEmailError('');
         if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
             setEmailError("Please enter valid email address.");
             return false;
         }
+        clearErrors();
         setBtnDisabled(true);
+        setVBtnDisabled(true);
         const requestBody = {
-            email: email,
+            email: email
         };
-        const result = await authServices.login(requestBody);
+        const result = await authServices.forgotPassword(requestBody);
         if (result.isSuccessful) {
-            localStorage.setItem('currentUser', JSON.stringify(result.data));
-            window.location.replace('/');
+            setBtnDisabled(false);
+            setVBtnDisabled(false);
+            setScreen("verifycode");
         } else {
             setError(result.errorMessage);
             setBtnDisabled(false);
-
+            setVBtnDisabled(false);
         }
+    }
+
+    /* Verify Code */
+
+    const handleCodeChange = (event) => {
+        clearErrors();
+        const value = event.target.value;
+        setVerificationCode(value);
+    }
+
+    const verifyCode = async (event) => {
+        event.preventDefault();
+        if (validation.isEmpty(verificationCode)) {
+            setCodeError("Invalid verification code.");
+            return false;
+        }
+        clearErrors();
+        setVBtnDisabled(true);
+        setVBtnLoading(true);
+        const requestBody = {
+            email: email,
+            code: verificationCode
+        };
+        const result = await authServices.verifyResetPasswordCode(requestBody);
+        if (result.isSuccessful) {
+            setTimeout(function () {
+                setVBtnDisabled(false);
+                setVBtnLoading(false);
+                setScreen("resetPwd");
+            }, 1000);
+        } else {
+            setCodeError(result.errorMessage);
+            setVBtnDisabled(false);
+            setVBtnLoading(false);
+        }
+    }
+
+    /* Reset Password */
+
+    const handlePasswordChange = (event) => {
+        clearErrors();
+        const value = event.target.value;
+        setPassword(value);
+    }
+
+    const handleConfPasswordChange = (event) => {
+        clearErrors();
+        const value = event.target.value;
+        setConfPassword(value);
+    }
+
+    const resetPassword = async (event) => {
+        event.preventDefault();
+        if (validation.isEmpty(password)) {
+            setPasswordError("Please enter your new password.");
+            return false;
+        }
+        if (validation.isEmpty(confPassword)) {
+            setConfPasswordError("Please enter confirm password.");
+            return false;
+        }
+
+        if (password !== confPassword) {
+            setError("New Password and Confirm Password must be same.");
+            return false;
+        }
+
+        if (confPassword.length < 8) {
+            setError("Password must be 8 characters long.");
+            return false;
+        }
+
+        if (!validation.isValidPassword(confPassword)) {
+            setError("Password must have at least one digit, one special chacter and one uppercase letter");
+            return false;
+        }
+        clearErrors();
+        setBtnDisabled(true);
+        const requestBody = {
+            email: email,
+            password: password
+        };
+        const result = await authServices.resetPassword(requestBody);
+        if (result.isSuccessful) {
+            setTimeout(function () {
+                window.location.replace('/SignIn');
+            }, 1000);
+        } else {
+            setError(result.errorMessage);
+            setBtnDisabled(false);
+        }
+    }
+
+    const clearErrors = () => {
+        setEmailError('');
+        setConfPasswordError('');
+        setPasswordError('');
+        setError('');
+        setCodeError('');
     }
     return (
         <>
             {
                 screen === "forgotPassword" &&
-                <form method="post" onSubmit={sendVerificationCode}>
+                <>
                     <MKBox
                         position="absolute"
                         top={0}
@@ -90,7 +204,7 @@ function ForgetPasswordBasic() {
                                     </MKBox>
                                     <MKBox pt={4} pb={3} px={3}>
                                         {/* <MKBox component="form" role="form"> */}
-                                        <form method="post" onSubmit={handlesubmit}>
+                                        <form method="post" onSubmit={sendVerificationCode}>
                                             <MKBox mb={2}
                                                 color="dark">
                                                 <MKInput type="email" label="Email" fullWidth
@@ -99,10 +213,10 @@ function ForgetPasswordBasic() {
                                                     errorMessage={emailError !== "" ? emailError : ""} />
                                             </MKBox>
                                             <MKBox mt={4} mb={1}>
-                                                <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                                                    Send
-                                                </MKButton>
-                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => sendVerificationCode(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                                                    {btnDisabled ?
+                                                        <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px] btn-loader" alt="loader" /></span>
+                                                        : <span>Send</span>}
                                                 </MKButton>
                                                 <MKBox className="mt-4">
                                                     {error !== '' && <>
@@ -120,11 +234,11 @@ function ForgetPasswordBasic() {
                     <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
                         <SimpleFooter light />
                     </MKBox>
-                </form>
+                </>
             }
             {
                 screen === "verifycode" &&
-                <form method="post" onSubmit={VerifyCode}>
+                <>
                     <MKBox
                         position="absolute"
                         top={0}
@@ -164,19 +278,19 @@ function ForgetPasswordBasic() {
                                     </MKBox>
                                     <MKBox pt={4} pb={3} px={3}>
                                         {/* <MKBox component="form" role="form"> */}
-                                        <form method="post" onSubmit={handlesubmit}>
+                                        <form method="post" onSubmit={verifyCode}>
                                             <MKBox mb={2}
                                                 color="dark">
-                                                <MKInput type="email" label="Email" fullWidth
-                                                    onChange={handleEmailChange}
-                                                    state={emailError !== "" ? "error" : ""}
-                                                    errorMessage={emailError !== "" ? emailError : ""} />
+                                                <MKInput type="string" label="Code" fullWidth
+                                                    onChange={handleCodeChange}
+                                                    state={codeError !== "" ? "error" : ""}
+                                                    errorMessage={codeError !== "" ? codeError : ""} />
                                             </MKBox>
                                             <MKBox mt={4} mb={1}>
-                                                <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                                                    Send
-                                                </MKButton>
-                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${vbtnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => verifyCode(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                                                    {vbtnLoading ?
+                                                        <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px] btn-loader" alt="loader" /></span>
+                                                        : <span>Verify</span>}
                                                 </MKButton>
                                                 <MKBox className="mt-4">
                                                     {error !== '' && <>
@@ -194,11 +308,11 @@ function ForgetPasswordBasic() {
                     <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
                         <SimpleFooter light />
                     </MKBox>
-                </form>
+                </>
             }
             {
-                screen === "resetpwd" &&
-                <form method="post" onSubmit={ResetPassword}>
+                screen === "resetPwd" &&
+                <>
                     <MKBox
                         position="absolute"
                         top={0}
@@ -238,26 +352,27 @@ function ForgetPasswordBasic() {
                                     </MKBox>
                                     <MKBox pt={4} pb={3} px={3}>
                                         {/* <MKBox component="form" role="form"> */}
-                                        <form method="post" onSubmit={handlesubmit}>
+                                        <form method="post" onSubmit={resetPassword}>
                                             <MKBox mb={2}
                                                 color="dark">
                                                 <MKInput type="password" label="New Password" fullWidth
-                                                    onChange={handleEmailChange}
-                                                    state={emailError !== "" ? "error" : ""}
-                                                    errorMessage={emailError !== "" ? emailError : ""} />
+                                                    onChange={handlePasswordChange}
+                                                    state={passwordError !== "" ? "error" : ""}
+                                                    errorMessage={passwordError !== "" ? passwordError : ""} />
                                             </MKBox>
                                             <MKBox mb={2}
                                                 color="dark">
                                                 <MKInput type="password" label="Confirm Password" fullWidth
-                                                    onChange={handleEmailChange}
-                                                    state={emailError !== "" ? "error" : ""}
-                                                    errorMessage={emailError !== "" ? emailError : ""} />
+                                                    onChange={handleConfPasswordChange}
+                                                    state={confPasswordError !== "" ? "error" : ""}
+                                                    errorMessage={confPasswordError !== "" ? confPasswordError : ""} />
                                             </MKBox>
+                                            <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/SignIn">Back to Login</a>
                                             <MKBox mt={4} mb={1}>
-                                                <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                                                    Reset Password
-                                                </MKButton>
-                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                                                    {btnDisabled ?
+                                                        <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px] btn-loader" alt="loader" /></span>
+                                                        : <span>Reset Password</span>}
                                                 </MKButton>
                                                 <MKBox className="mt-4">
                                                     {error !== '' && <>
@@ -275,7 +390,7 @@ function ForgetPasswordBasic() {
                     <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
                         <SimpleFooter light />
                     </MKBox>
-                </form>
+                </>
             }
         </>
     );

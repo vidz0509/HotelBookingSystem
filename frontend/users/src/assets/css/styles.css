@@ -3,3 +3,7 @@
     color: #ac1111;
     font-weight: 700
 }
+
+.btn-loader {
+    max-width: 25%;
+}
