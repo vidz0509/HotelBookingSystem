@@ -5,6 +5,11 @@ import { useState } from "react";
 import btnLoader from "../../assets/img/layout/btn-loader.gif";
 // import { FcGoogle } from "react-icons/fc";
 // import Checkbox from "components/checkbox";
+import {
+  MdRemoveRedEye,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
+
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -13,12 +18,22 @@ export default function SignIn() {
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
+  const [passwordType, setPasswordType] = useState("password");
 
-  const handleEmailChange = (event) => {    
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
+
+
+  const handleEmailChange = (event) => {
     const value = event.target.value;
     setEmail(value);
   }
-  
+
   const handlePasswordChange = (event) => {
     const value = event.target.value;
     setPassword(value);
@@ -57,35 +72,38 @@ export default function SignIn() {
         {/*  section */}
         <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-          Sign In
+            Sign In
           </h4>
           <p className="mb-9 ml-1 text-base text-gray-600">
             Enter your email and password to sign in !
           </p>
-          <InputField
-            variant="auth"
-            extra="mb-3"
-            label="Email*"
-            placeholder="mail@simmmple.com"
-            id="email"
-            type="email"
-            onChange={handleEmailChange}
-            state={emailError !== "" ? "error" : ""}
-            errorMessage={emailError !== "" ? emailError : ""}
-          />
+          <div className="field">
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="Email*"
+              placeholder="mail@simmmple.com"
+              id="email"
+              type="email"
+              onChange={handleEmailChange}
+              state={emailError !== "" ? "error" : ""}
+              errorMessage={emailError !== "" ? emailError : ""}
+            />
+          </div>
           <InputField
             variant="auth"
             extra="mb-3"
             label="Password*"
             placeholder="Min. 8 characters"
             id="password"
-            type="password"
+            type={passwordType}
             onChange={handlePasswordChange}
             state={passwordError !== "" ? "error" : ""}
             errorMessage={passwordError !== "" ? passwordError : ""}
             maxLength={12}
           />
-          
+          <button className="icon" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center">
             </div>
@@ -94,7 +112,7 @@ export default function SignIn() {
           <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={handleSubmit} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
             {btnDisabled ?
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-              : <span>log In</span>}
+              : <span>Log In</span>}
           </button>
           <div className="mt-4">
             {error !== '' && <>
