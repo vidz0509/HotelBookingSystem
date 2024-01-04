@@ -16,13 +16,32 @@ function SignUpBasic() {
   const [fullname, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [contact, setContact] = useState('');
+  const [confirmpassword, setconfirmpassword] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [contactError, setContactError] = useState('');
+  const [confirmpasswordError, setconfirmpasswordError] = useState('');
   const [fullnameError, setFullNameError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
+  // const [passwordType, setPasswordType] = useState("password");
+  // const [confirmpasswordType, setConfirmPasswordType] = useState("password");
+  
+  // const togglePassword = () => {
+  //   if (passwordType === "password") {
+  //     setPasswordType("text")
+  //     return;
+  //   }
+  //   setPasswordType("password")
+  // }
+
+  // const toggleConfirmPassword = () => {
+  //   if (confirmpasswordType === "password") {
+  //     setConfirmPasswordType("text")
+  //     return;
+  //   }
+  //   setConfirmPasswordType("password")
+  // }
+
 
 
   const handlefullNameChange = (event) => {
@@ -41,10 +60,9 @@ function SignUpBasic() {
     setPassword(value);
   }
 
-  const handleContactdChange = (event) => {
+  const handleconfirmpassworddChange = (event) => {
     const value = event.target.value;
-    console.log(value)
-    setContact(value);
+    setconfirmpassword(value);
   }
 
 
@@ -54,7 +72,7 @@ function SignUpBasic() {
     setEmailError('');
     setPasswordError('');
     setFullNameError('');
-    setContactError('')
+    setconfirmpasswordError('')
 
     if (validation.isEmpty(fullname)) {
       setFullNameError("Please enter valid fullname.");
@@ -65,11 +83,25 @@ function SignUpBasic() {
       return false;
     }
     if (validation.isEmpty(password)) {
-      setPasswordError("Please enter your new password.");
+      setPasswordError("Please enter valid Password.");
       return false;
     }
-    if (validation.isEmpty(contact)) {
-      setContactError("Please enter phone number.");
+    if (validation.isEmpty(confirmpassword)) {
+      setconfirmpasswordError("Please enter valid confirmPassword.");
+      return false;
+    }
+    if (password !== confirmpassword) {
+      setError("New Password and Confirm Password must be same.");
+      return false;
+    }
+
+    if (confirmpassword.length < 8) {
+      setError("Password must be 8 characters long.");
+      return false;
+    }
+
+    if (!validation.isValidPassword(confirmpassword)) {
+      setError("Password must have at least one digit, one special chacter and one uppercase letter");
       return false;
     }
     setBtnDisabled(true);
@@ -77,7 +109,7 @@ function SignUpBasic() {
       fullname: fullname,
       email: email,
       password: password,
-      phone: contact
+      confirmpassword: confirmpassword
 
     };
     const result = await authServices.register(requestBody);
@@ -157,13 +189,14 @@ function SignUpBasic() {
                       maxLength={12} />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="text" label="conatct" fullWidth
-                      onChange={handleContactdChange}
-                      state={contactError !== "" ? "error" : ""}
-                      errorMessage={contactError !== "" ? contactError : ""}
+                    <MKInput type="password" label="Confirm password" fullWidth
+                      onChange={handleconfirmpassworddChange}
+                      state={confirmpasswordError !== "" ? "error" : ""}
+                      errorMessage={confirmpasswordError !== "" ? confirmpasswordError : ""}
+                      maxLength={12}
                     />
                   </MKBox>
-                  <MKTypography
+                  {/* <MKTypography
                     component={Link}
                     to="#"
                     variant="button"
@@ -171,8 +204,7 @@ function SignUpBasic() {
                     fontWeight="medium"
                     textGradient
                   >
-                    Forgot Password?
-                  </MKTypography>
+                  </MKTypography> */}
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       sign up
