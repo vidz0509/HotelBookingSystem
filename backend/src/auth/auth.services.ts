@@ -41,7 +41,7 @@ export class AuthServices {
     // }
     try {
       await this.usersCollection.createUser(createUserDto);
-      const newUser = await this.usersCollection.createUser(createUserDto);
+      const newUser = await this.usersCollection.getUserByEmail(createUserDto.email);
       const response = await this.helper.buildResponse(true, null, newUser);
       return response;
     } catch (error) {

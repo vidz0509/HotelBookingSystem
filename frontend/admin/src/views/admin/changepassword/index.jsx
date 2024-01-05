@@ -201,7 +201,7 @@ export default function ChangePassword() {
         </div>
         <div className="mt-4">
           {isSuccessfull !== '' && <>
-            <p className="mb-9 ml-1 text-base text-red-500">{isSuccessfull}</p>
+            <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
           </>}
         </div>
       </div>

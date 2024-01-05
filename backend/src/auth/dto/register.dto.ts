@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength, IsEmail } from "class-validator";
+import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength, IsEmail, IsOptional } from "class-validator";
 export class CreateUserDto {
     @IsString()
     // @MaxLength(30)
@@ -15,6 +15,7 @@ export class CreateUserDto {
     @MaxLength(12)
     readonly password: string;
 
+    @IsOptional()
     @IsString()
     readonly phone: string;
 }
