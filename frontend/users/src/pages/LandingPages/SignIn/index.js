@@ -118,7 +118,7 @@ function SignInBasic() {
                   </MKBox>
                   <MKTypography
                     component={Link}
-                    to="#"
+                    to="/forgetpassword"
                     variant="button"
                     color="info"
                     fontWeight="medium"
@@ -126,7 +126,7 @@ function SignInBasic() {
                   >
                     Forgot Password?
                   </MKTypography>
-                  <MKBox mt={4} mb={1}>
+                  <MKBox mt={2} mb={1}>
                     <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       sign in
                     </MKButton>
