@@ -81,14 +81,14 @@ function Information() {
             <Grid container spacing={3} sx={{ mt: { xs: 0, md: 6 } }}>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
-                  icon="price_change"
+                  icon="pool"
                   title="Swimming Pool"
                   description="It will have a natural uneven shape, and will often have features around it like rocks and waterfalls to compliment the naturalistic style."
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
-                  icon="devices"
+                  icon="local_bar"
                   title="Club"
                   description="The club is electric tonight, everyone feeding off of the smiles and fast dancing."
                 />
