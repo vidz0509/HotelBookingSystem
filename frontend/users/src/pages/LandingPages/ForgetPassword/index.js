@@ -17,7 +17,7 @@ function ForgetPasswordBasic() {
     const [emailError, setEmailError] = useState('');
     const [error, setError] = useState('');
     const [btnDisabled, setBtnDisabled] = useState(false);
-    const [screen, setScreen] = useState('resetPwd');
+    const [screen, setScreen] = useState('forgotPassword');
 
     // const [newpasswordType, setNewPasswordType] = useState("password");
     // const [confirmpasswordType, setConfirmPasswordType] = useState("password");
