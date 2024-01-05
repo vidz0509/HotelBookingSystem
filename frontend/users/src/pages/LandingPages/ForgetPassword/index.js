@@ -11,13 +11,14 @@ import { validation } from "services/validation";
 import { useState } from "react";
 import btnLoader from "assets/images/button-loader/btn-loader.gif";
 import bgImage from "assets/images/auth.jpg";
+import { Link } from "react-router-dom";
 
 function ForgetPasswordBasic() {
     const [email, setEmail] = useState('');
     const [emailError, setEmailError] = useState('');
     const [error, setError] = useState('');
     const [btnDisabled, setBtnDisabled] = useState(false);
-    const [screen, setScreen] = useState('forgotPassword');
+    const [screen, setScreen] = useState('resetPwd');
 
     // const [newpasswordType, setNewPasswordType] = useState("password");
     // const [confirmpasswordType, setConfirmPasswordType] = useState("password");
@@ -212,6 +213,16 @@ function ForgetPasswordBasic() {
                                                     state={emailError !== "" ? "error" : ""}
                                                     errorMessage={emailError !== "" ? emailError : ""} />
                                             </MKBox>
+                                            <MKTypography
+                                                component={Link}
+                                                to="/SignIn"
+                                                variant="button"
+                                                color="info"
+                                                fontWeight="medium"
+                                                textGradient
+                                            >
+                                                Back to Login
+                                            </MKTypography>
                                             <MKBox mt={4} mb={1}>
                                                 <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => sendVerificationCode(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                                                     {btnDisabled ?
@@ -286,6 +297,9 @@ function ForgetPasswordBasic() {
                                                     state={codeError !== "" ? "error" : ""}
                                                     errorMessage={codeError !== "" ? codeError : ""} />
                                             </MKBox>
+                                            <MKTypography component={Link} to="/SignIn" variant="button" color="info" fontWeight="medium" textGradient>
+                                                Back to login
+                                            </MKTypography>
                                             <MKBox mt={4} mb={1}>
                                                 <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${vbtnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => verifyCode(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                                                     {vbtnLoading ?
@@ -367,7 +381,10 @@ function ForgetPasswordBasic() {
                                                     state={confPasswordError !== "" ? "error" : ""}
                                                     errorMessage={confPasswordError !== "" ? confPasswordError : ""} />
                                             </MKBox>
-                                            <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/SignIn">Back to Login</a>
+                                            {/* <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/SignIn">Back to Login</a> */}
+                                            <MKTypography component={Link} to="/SignIn" variant="button" color="info" fontWeight="medium" textGradient>
+                                                Back to login
+                                            </MKTypography>
                                             <MKBox mt={4} mb={1}>
                                                 <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                                                     {btnDisabled ?
