@@ -182,132 +182,126 @@ export default function ForgotPassword() {
     <>
       {
         screen === "forgotPassword" &&
-        <form method="post" onSubmit={sendVerificationCode}>
-          <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-            {/* Sign in section */}
-            <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-              <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-                Forgot Your Password?
-              </h4>
-              <p className="mb-9 ml-1 text-base text-gray-600">
-                Don't Worry. Reset your password here!
-              </p>
-              <InputField
-                variant="auth"
-                extra="mb-3"
-                label="Email*"
-                placeholder="mail@simmmple.com"
-                id="email"
-                type="email"
-                onChange={handleEmailChange}
-                state={emailError !== "" ? "error" : ""}
-                errorMessage={emailError !== "" ? emailError : ""}
-              />
-              <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={sendVerificationCode} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                {btnDisabled ?
-                  <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-                  : <span>Send</span>}
-              </button>
-              <div className="mt-4">
-                {error !== '' && <>
-                  <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-                </>}
-              </div>
+        <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+          {/* Sign in section */}
+          <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+            <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
+              Forgot Your Password?
+            </h4>
+            <p className="mb-9 ml-1 text-base text-gray-600">
+              Don't Worry. Reset your password here!
+            </p>
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="Email*"
+              placeholder="mail@simmmple.com"
+              id="email"
+              type="email"
+              onChange={handleEmailChange}
+              state={emailError !== "" ? "error" : ""}
+              errorMessage={emailError !== "" ? emailError : ""}
+            />
+            <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={sendVerificationCode} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+              {btnDisabled ?
+                <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                : <span>Send</span>}
+            </button>
+            <div className="mt-4">
+              {error !== '' && <>
+                <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+              </>}
             </div>
           </div>
-        </form>
+        </div>
       }
       {
         screen === "verifyCode" &&
-        <form method="post" onSubmit={verifyCode}>
-          <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-            {/* Sign in section */}
-            <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-              <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-                Forgot Your Password?
-              </h4>
-              <p className="mb-9 ml-1 text-base text-gray-600">
-                Enter your verification code here!
-              </p>
-              <InputField
-                variant="auth"
-                extra="mb-3"
-                label="Verification Code*"
-                placeholder="****"
-                id="verificationCode"
-                type="text"
-                onChange={handleCodeChange}
-                state={codeError !== "" ? "error" : ""}
-                errorMessage={codeError !== "" ? codeError : ""}
-                maxLength={4}
-              />
-              <div className="mb-4 flex items-center justify-between px-2">
-                <div className="flex items-center">
-                </div>
-                <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="#" onClick={sendVerificationCode}>Didn't recieve code? Resend.</a>
-              </div>
-              <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${vbtnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={verifyCode} type="submit" disabled={vbtnDisabled ? 'disabled' : ''}>
-                {vbtnLoading ?
-                  <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-                  : <span>Verify</span>}
-              </button>
-            </div>
-          </div>
-        </form>
-      }
-      {
-        screen === "resetPwd" &&
-        <form method="post" onSubmit={resetPassword}>
+        <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+          {/* Sign in section */}
           <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
             <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
-              Reset Password
+              Forgot Your Password?
             </h4>
-            <p className="mb-9 ml-1 text-base text-gray-600">Enter your new password here!</p>
-            <div className="field">
-              <InputField
-                variant="auth"
-                extra="mb-3"
-                label="New Password*"
-                placeholder="********"
-                id="new_password"
-                type={newpasswordType}
-                onChange={handlePasswordChange}
-                state={passwordError !== "" ? "error" : ""}
-                errorMessage={passwordError !== "" ? passwordError : ""}
-                maxLength={12}
-              />
-              <button className="icon" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
-            </div>
-            <div className="field">
-              <InputField
-                variant="auth"
-                extra="mb-3"
-                label="Confirm Password*"
-                placeholder="********"
-                id="confirm_password"
-                type={confirmpasswordType}
-                onChange={handleConfPasswordChange}
-                state={confPasswordError !== "" ? "error" : ""}
-                errorMessage={confPasswordError !== "" ? confPasswordError : ""}
-                maxLength={12}
-              />
-              <button className="icon" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
-            </div>
-            {error !== '' && <>
-              <p className="mb-3 ml-1 text-red-500 text-sm">{error}</p>
-            </>}
+            <p className="mb-9 ml-1 text-base text-gray-600">
+              Enter your verification code here!
+            </p>
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="Verification Code*"
+              placeholder="****"
+              id="verificationCode"
+              type="text"
+              onChange={handleCodeChange}
+              state={codeError !== "" ? "error" : ""}
+              errorMessage={codeError !== "" ? codeError : ""}
+              maxLength={4}
+            />
             <div className="mb-4 flex items-center justify-between px-2">
               <div className="flex items-center">
               </div>
-              <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/auth/login">Back to Login</a>
+              <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="#" onClick={sendVerificationCode}>Didn't recieve code? Resend.</a>
             </div>
-            <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={resetPassword} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-              {btnDisabled ?
+            <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${vbtnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={verifyCode} type="submit" disabled={vbtnDisabled ? 'disabled' : ''}>
+              {vbtnLoading ?
                 <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-                : <span>Reset Password</span>}
+                : <span>Verify</span>}
             </button>
           </div>
-        </form>
+        </div>
+      }
+      {
+        screen === "resetPwd" &&
+        <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+          <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
+            Reset Password
+          </h4>
+          <p className="mb-9 ml-1 text-base text-gray-600">Enter your new password here!</p>
+          <div className="field">
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="New Password*"
+              placeholder="********"
+              id="new_password"
+              type={newpasswordType}
+              onChange={handlePasswordChange}
+              state={passwordError !== "" ? "error" : ""}
+              errorMessage={passwordError !== "" ? passwordError : ""}
+              maxLength={12}
+            />
+            <button className="icon" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          </div>
+          <div className="field">
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="Confirm Password*"
+              placeholder="********"
+              id="confirm_password"
+              type={confirmpasswordType}
+              onChange={handleConfPasswordChange}
+              state={confPasswordError !== "" ? "error" : ""}
+              errorMessage={confPasswordError !== "" ? confPasswordError : ""}
+              maxLength={12}
+            />
+            <button className="icon" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          </div>
+          {error !== '' && <>
+            <p className="mb-3 ml-1 text-red-500 text-sm">{error}</p>
+          </>}
+          <div className="mb-4 flex items-center justify-between px-2">
+            <div className="flex items-center">
+            </div>
+            <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/auth/login">Back to Login</a>
+          </div>
+          <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={resetPassword} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+            {btnDisabled ?
+              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+              : <span>Reset Password</span>}
+          </button>
+        </div>
       }
     </>
   );
