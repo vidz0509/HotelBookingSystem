@@ -39,4 +39,3 @@ export default [
     route: "author",
   },
 ];
-z

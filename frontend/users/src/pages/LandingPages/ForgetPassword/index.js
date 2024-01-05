@@ -1,4 +1,4 @@
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
@@ -381,11 +381,22 @@ function ForgetPasswordBasic() {
                                                     state={confPasswordError !== "" ? "error" : ""}
                                                     errorMessage={confPasswordError !== "" ? confPasswordError : ""} />
                                             </MKBox>
-                                            {/* <a className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white" href="/SignIn">Back to Login</a> */}
-                                            <MKTypography component={Link} to="/SignIn" variant="button" color="info" fontWeight="medium" textGradient>
-                                                Back to login
-                                            </MKTypography>
-                                            <MKBox mt={4} mb={1}>
+                                            <MKBox mb={1} textAlign="center">
+                                                <MKTypography variant="button" color="dark">
+                                                    Back to  {" "}
+                                                    <MKTypography
+                                                        component={Link}
+                                                        to="/sign-up"
+                                                        variant="button"
+                                                        color="info"
+                                                        fontWeight="medium"
+                                                        textGradient
+                                                    >
+                                                        Sign In
+                                                    </MKTypography>
+                                                </MKTypography>
+                                            </MKBox>
+                                            <MKBox mt={2} mb={1}>
                                                 <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                                                     {btnDisabled ?
                                                         <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px] btn-loader" alt="loader" /></span>
