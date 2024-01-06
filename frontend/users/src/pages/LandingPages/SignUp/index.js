@@ -11,6 +11,10 @@ import { authServices } from "services/auth";
 import { validation } from "services/validation";
 import { useState } from "react";
 import bgImage from "assets/images/auth.jpg";
+import {
+  MdRemoveRedEye,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
 
 function SignUpBasic() {
   const [fullname, setFullName] = useState('');
@@ -23,24 +27,24 @@ function SignUpBasic() {
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
-  // const [passwordType, setPasswordType] = useState("password");
-  // const [confirmpasswordType, setConfirmPasswordType] = useState("password");
-  
-  // const togglePassword = () => {
-  //   if (passwordType === "password") {
-  //     setPasswordType("text")
-  //     return;
-  //   }
-  //   setPasswordType("password")
-  // }
+  const [passwordType, setPasswordType] = useState("password");
+  const [confirmpasswordType, setConfirmPasswordType] = useState("password");
 
-  // const toggleConfirmPassword = () => {
-  //   if (confirmpasswordType === "password") {
-  //     setConfirmPasswordType("text")
-  //     return;
-  //   }
-  //   setConfirmPasswordType("password")
-  // }
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
+
+  const toggleConfirmPassword = () => {
+    if (confirmpasswordType === "password") {
+      setConfirmPasswordType("text")
+      return;
+    }
+    setConfirmPasswordType("password")
+  }
 
 
 
@@ -163,40 +167,44 @@ function SignUpBasic() {
                 </MKTypography>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
-                {/* <MKBox component="form" role="form"> */}
-                <form method="post" onSubmit={handlesubmit}>
-                  <MKBox mb={2}>
-                    <MKInput type="text" label="Full name" fullWidth
-                      onChange={handlefullNameChange}
-                      state={fullnameError !== "" ? "error" : ""}
-                      errorMessage={fullnameError !== "" ? fullnameError : ""}
-                      value={fullname}
-                      maxLength={30} />
+                <MKBox mb={2}>
+                  <MKInput type="text" label="Full name" fullWidth
+                    onChange={handlefullNameChange}
+                    state={fullnameError !== "" ? "error" : ""}
+                    errorMessage={fullnameError !== "" ? fullnameError : ""}
+                    value={fullname}
+                    maxLength={30} />
 
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth
-                      onChange={handleEmailChange}
-                      state={emailError !== "" ? "error" : ""}
-                      errorMessage={emailError !== "" ? emailError : ""} />
+                </MKBox>
+                <MKBox mb={2}>
+                  <MKInput type="email" label="Email" fullWidth
+                    onChange={handleEmailChange}
+                    state={emailError !== "" ? "error" : ""}
+                    errorMessage={emailError !== "" ? emailError : ""} />
 
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth
+                </MKBox>
+                <MKBox mb={2}>
+                  <div className="field">
+                    <MKInput type={passwordType} label="Password" fullWidth
                       onChange={handlePasswordChange}
                       state={passwordError !== "" ? "error" : ""}
                       errorMessage={passwordError !== "" ? passwordError : ""}
                       maxLength={12} />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput type="password" label="Confirm password" fullWidth
+                    <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                  </div>
+                </MKBox>
+                <MKBox mb={2}>
+                  <div className="field">
+                    <MKInput type={confirmpasswordType} label="Confirm password" fullWidth
                       onChange={handleconfirmpassworddChange}
                       state={confirmpasswordError !== "" ? "error" : ""}
                       errorMessage={confirmpasswordError !== "" ? confirmpasswordError : ""}
                       maxLength={12}
                     />
-                  </MKBox>
-                  {/* <MKTypography
+                    <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                  </div>
+                </MKBox>
+                {/* <MKTypography
                     component={Link}
                     to="#"
                     variant="button"
@@ -205,34 +213,33 @@ function SignUpBasic() {
                     textGradient
                   >
                   </MKTypography> */}
-                  <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                      sign up
-                    </MKButton>
-                    <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
-                    </MKButton>
-                    <MKBox className="mt-4">
-                      {error !== '' && <>
-                        <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-                      </>}
-                    </MKBox>
+                <MKBox mt={4} mb={1}>
+                  <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                    sign up
+                  </MKButton>
+                  <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                  </MKButton>
+                  <MKBox className="mt-4">
+                    {error !== '' && <>
+                      <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                    </>}
                   </MKBox>
-                  <MKBox mb={1} textAlign="center">
-                    <MKTypography variant="button" color="text">
-                      Don&apos;t have an account?{" "}
-                      <MKTypography
-                        component={Link}
-                        to="/sign-in"
-                        variant="button"
-                        color="info"
-                        fontWeight="medium"
-                        textGradient
-                      >
-                        Sign in
-                      </MKTypography>
+                </MKBox>
+                <MKBox mb={1} textAlign="center">
+                  <MKTypography variant="button" color="text">
+                    Don&apos;t have an account?{" "}
+                    <MKTypography
+                      component={Link}
+                      to="/sign-in"
+                      variant="button"
+                      color="info"
+                      fontWeight="medium"
+                      textGradient
+                    >
+                      Sign in
                     </MKTypography>
-                  </MKBox>
-                </form>
+                  </MKTypography>
+                </MKBox>
                 {/* </MKBox> */}
               </MKBox>
             </Card>

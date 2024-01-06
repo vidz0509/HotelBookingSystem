@@ -10,6 +10,10 @@ import { authServices } from "services/auth";
 import { validation } from "services/validation";
 import { useState } from "react";
 import bgImage from "assets/images/auth.jpg";
+import {
+  MdRemoveRedEye,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
 
 function SignInBasic() {
   const [email, setEmail] = useState('');
@@ -18,6 +22,8 @@ function SignInBasic() {
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
+
+  const [passwordType, setPasswordType] = useState("password");
 
 
   const handleEmailChange = (event) => {
@@ -33,6 +39,7 @@ function SignInBasic() {
 
   const handlesubmit = async (event) => {
     event.preventDefault();
+    // debugger;
     console.log(event)
     setEmailError('');
     setPasswordError('');
@@ -59,6 +66,17 @@ function SignInBasic() {
 
     }
   }
+
+  const togglePassword = (event) => {
+    event.preventDefault();
+    // debugger;
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
+
   return (
     <>
       <MKBox
@@ -109,12 +127,15 @@ function SignInBasic() {
                       errorMessage={emailError !== "" ? emailError : ""} />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Password" fullWidth
-                      onChange={handlePasswordChange}
-                      state={passwordError !== "" ? "error" : ""}
-                      error={passwordError && passwordError !== '' ? true : false}
-                      errorMessage={passwordError !== "" ? passwordError : ""}
-                      maxLength={12} />
+                    <div className="field">
+                      <MKInput type={passwordType} label="Password" fullWidth
+                        onChange={handlePasswordChange}
+                        state={passwordError !== "" ? "error" : ""}
+                        error={passwordError && passwordError !== '' ? true : false}
+                        errorMessage={passwordError !== "" ? passwordError : ""}
+                        maxLength={12} />
+                      <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                    </div>
                   </MKBox>
                   <MKTypography
                     component={Link}
