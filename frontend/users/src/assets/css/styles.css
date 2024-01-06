@@ -10,6 +10,20 @@
     max-width: 25%;
 }
 
+.field button.icon {
+    float: right;
+    bottom: 30px;
+    position: relative;
+    right: 15px;
+    background: transparent;
+    border: 0;
+    font-size: 22px;
+}
+
+.field button.icon svg{
+    fill: #81068f;
+}
+
 .footer-title p{
     font-size: 18px;
     color: #000;

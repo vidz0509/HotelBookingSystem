@@ -10,20 +10,14 @@ import { authServices } from "services/auth";
 import { validation } from "services/validation";
 import { useState } from "react";
 import bgImage from "assets/images/auth.jpg";
-import {
-  MdRemoveRedEye,
-  MdOutlineRemoveRedEye,
-} from "react-icons/md";
 
-function SignInBasic() {
+function ChnagePasswordBasic() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
-
-  const [passwordType, setPasswordType] = useState("password");
 
 
   const handleEmailChange = (event) => {
@@ -39,7 +33,6 @@ function SignInBasic() {
 
   const handlesubmit = async (event) => {
     event.preventDefault();
-    // debugger;
     console.log(event)
     setEmailError('');
     setPasswordError('');
@@ -66,17 +59,6 @@ function SignInBasic() {
 
     }
   }
-
-  const togglePassword = (event) => {
-    event.preventDefault();
-    // debugger;
-    if (passwordType === "password") {
-      setPasswordType("text")
-      return;
-    }
-    setPasswordType("password")
-  }
-
   return (
     <>
       <MKBox
@@ -113,43 +95,48 @@ function SignInBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  Sign in
+                  Change Password
                 </MKTypography>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 {/* <MKBox component="form" role="form"> */}
                 <form method="post" onSubmit={handlesubmit}>
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth
+                    <MKInput type="password" label="Current Password*" fullWidth
                       onChange={handleEmailChange}
                       error={emailError && emailError !== '' ? true : false}
                       state={emailError !== "" ? "error" : ""}
                       errorMessage={emailError !== "" ? emailError : ""} />
                   </MKBox>
                   <MKBox mb={2}>
-                    <div className="field">
-                      <MKInput type={passwordType} label="Password" fullWidth
-                        onChange={handlePasswordChange}
-                        state={passwordError !== "" ? "error" : ""}
-                        error={passwordError && passwordError !== '' ? true : false}
-                        errorMessage={passwordError !== "" ? passwordError : ""}
-                        maxLength={12} />
-                      <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
-                    </div>
+                    <MKInput type="password" label="New Password*" fullWidth
+                      onChange={handlePasswordChange}
+                      state={passwordError !== "" ? "error" : ""}
+                      error={passwordError && passwordError !== '' ? true : false}
+                      errorMessage={passwordError !== "" ? passwordError : ""}
+                      maxLength={12} />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="password" label="Re-enter Password*" fullWidth
+                      onChange={handlePasswordChange}
+                      state={passwordError !== "" ? "error" : ""}
+                      error={passwordError && passwordError !== '' ? true : false}
+                      errorMessage={passwordError !== "" ? passwordError : ""}
+                      maxLength={12} />
                   </MKBox>
                   <MKTypography
                     component={Link}
-                    to="/forgetpassword"
+                    to="/sign-in"
                     variant="button"
                     color="info"
                     fontWeight="medium"
                     textGradient
                   >
-                    Forgot Password?
+                    Back to login
                   </MKTypography>
-                  <MKBox mt={2} mb={1}>
+                  <MKBox mt={4}>
                     <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                      sign in
+                      Change Password
                     </MKButton>
                     <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
                     </MKButton>
@@ -158,21 +145,6 @@ function SignInBasic() {
                         <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
                       </>}
                     </MKBox>
-                  </MKBox>
-                  <MKBox mb={1} textAlign="center">
-                    <MKTypography variant="button" color="text">
-                      Don&apos;t have an account?{" "}
-                      <MKTypography
-                        component={Link}
-                        to="/sign-up"
-                        variant="button"
-                        color="info"
-                        fontWeight="medium"
-                        textGradient
-                      >
-                        Sign up
-                      </MKTypography>
-                    </MKTypography>
                   </MKBox>
                 </form>
                 {/* </MKBox> */}
@@ -188,4 +160,4 @@ function SignInBasic() {
   );
 }
 
-export default SignInBasic;
+export default ChnagePasswordBasic;
