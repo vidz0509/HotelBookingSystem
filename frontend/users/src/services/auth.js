@@ -18,7 +18,7 @@ function checkIfUserLoggedIn() {
 }
 
 async function login(requestBody) {
-    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    // const url = `http://localhost:5001/auth/login`;
     const url = `http://localhost:5001/auth/login`;
     console.log(requestBody)
     console.log(url)
@@ -31,7 +31,7 @@ async function login(requestBody) {
     });
 }
 async function register(requestBody) {
-    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    // const url = `http://localhost:5001/auth/login`;
     const url = `http://localhost:5001/auth/register`;
     console.log(requestBody)
     console.log(url)
@@ -46,7 +46,7 @@ async function register(requestBody) {
 
 
 async function updateProfile(userId, requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
+    const url = `http://localhost:5001/users/${userId}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -57,7 +57,7 @@ async function updateProfile(userId, requestBody) {
 }
 
 async function changepassword(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/changePassword`;
+    const url = `http://localhost:5001/auth/changePassword`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -68,7 +68,7 @@ async function changepassword(requestBody) {
 }
 
 async function forgotPassword(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/forgotPassword`;
+    const url = `http://localhost:5001/auth/forgotPassword`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -79,7 +79,7 @@ async function forgotPassword(requestBody) {
 }
 
 async function verifyResetPasswordCode(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/verifyResetPasswordCode`;
+    const url = `http://localhost:5001/auth/verifyResetPasswordCode`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -90,7 +90,7 @@ async function verifyResetPasswordCode(requestBody) {
 }
 
 async function resetPassword(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/resetPassword`;
+    const url = `http://localhost:5001/auth/resetPassword`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
