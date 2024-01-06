@@ -55,7 +55,7 @@ export default {
   },
 
   info: {
-    main: "#7E098A",
+    main: "#1A73E8",
     focus: "#1662C4",
   },
 
@@ -80,7 +80,7 @@ export default {
   },
 
   dark: {
-    main: "#7E098A",
+    main: "#344767",
     focus: "#2c3c58",
   },
 
@@ -108,8 +108,8 @@ export default {
     },
 
     info: {
-      main: "#7E098A",
-      state: "#7E098A",
+      main: "#81068f",
+      state: "#404034",
     },
 
     success: {
