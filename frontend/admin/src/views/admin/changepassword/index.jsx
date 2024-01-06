@@ -26,7 +26,8 @@ export default function ChangePassword() {
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
 
-  const togglePassword = () => {
+  const togglePassword = (e) => {
+    e.preventDefault();
     if (passwordType === "password") {
       setPasswordType("text")
       return;
@@ -34,7 +35,8 @@ export default function ChangePassword() {
     setPasswordType("password")
   }
 
-  const toggleNewPassword = () => {
+  const toggleNewPassword = (e) => {
+    e.preventDefault();
     if (newpasswordType === "password") {
       setNewPasswordType("text")
       return;
@@ -42,13 +44,15 @@ export default function ChangePassword() {
     setNewPasswordType("password")
   }
 
-  const toggleConfirmPassword = () => {
+  const toggleConfirmPassword = (e) => {
+    e.preventDefault();
     if (confirmpasswordType === "password") {
       setConfirmPasswordType("text")
       return;
     }
     setConfirmPasswordType("password")
   }
+
 
   const handlepasswordChange = (event) => {
     clearErrors();

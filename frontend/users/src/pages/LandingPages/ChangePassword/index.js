@@ -8,13 +8,21 @@ import MKButton from "components/MKButton";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 import { authServices } from "services/auth";
 import { validation } from "services/validation";
-import { useState , useEffect  } from "react";
+import { useState, useEffect } from "react";
 import bgImage from "assets/images/auth.jpg";
+import {
+  MdRemoveRedEye,
+  MdOutlineRemoveRedEye,
+} from "react-icons/md";
 
 function ChnagePasswordBasic() {
   const [password, setpassword] = useState('');
   const [newPassword, setnewPassword] = useState('');
   const [confirmPassword, setconfirmPassword] = useState('');
+
+  const [passwordType, setPasswordType] = useState("password");
+  const [newpasswordType, setNewPasswordType] = useState("password");
+  const [confirmpasswordType, setConfirmPasswordType] = useState("password");
 
   const [passwordError, setpasswordError] = useState('');
   const [newPasswordError, setnewPasswordError] = useState('');
@@ -23,6 +31,33 @@ function ChnagePasswordBasic() {
 
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
+
+  const togglePassword = (e) => {
+    e.preventDefault();
+    if (passwordType === "password") {
+      setPasswordType("text")
+      return;
+    }
+    setPasswordType("password")
+  }
+
+  const toggleNewPassword = (e) => {
+    e.preventDefault();
+    if (newpasswordType === "password") {
+      setNewPasswordType("text")
+      return;
+    }
+    setNewPasswordType("password")
+  }
+
+  const toggleConfirmPassword = (e) => {
+    e.preventDefault();
+    if (confirmpasswordType === "password") {
+      setConfirmPasswordType("text")
+      return;
+    }
+    setConfirmPasswordType("password")
+  }
 
   const handlepasswordChange = (event) => {
     clearErrors();
@@ -144,28 +179,37 @@ function ChnagePasswordBasic() {
                 {/* <MKBox component="form" role="form"> */}
                 <form method="post" onSubmit={handleSubmit}>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Current Password*" fullWidth
-                     onChange={handlepasswordChange}
-                     state={passwordError !== "" ? "error" : ""}
-                     errorMessage={passwordError !== "" ? passwordError : ""}
-                     maxLength={12}
-                   />
+                    <div className="field">
+                      <MKInput type={passwordType} label="Current Password*" fullWidth
+                        onChange={handlepasswordChange}
+                        state={passwordError !== "" ? "error" : ""}
+                        errorMessage={passwordError !== "" ? passwordError : ""}
+                        maxLength={12}
+                      />
+                      <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                    </div>
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="New Password*" fullWidth
-                     onChange={handlenewPasswordChange}
-                     state={newPasswordError !== "" ? "error" : ""}
-                     errorMessage={newPasswordError !== "" ? newPasswordError : ""}
-                     maxLength={12}
-                   />
+                    <div className="field">
+                      <MKInput type={newpasswordType} label="New Password*" fullWidth
+                        onChange={handlenewPasswordChange}
+                        state={newPasswordError !== "" ? "error" : ""}
+                        errorMessage={newPasswordError !== "" ? newPasswordError : ""}
+                        maxLength={12}
+                      />
+                      <button className="icon" onClick={(e) => toggleNewPassword(e)}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                    </div>
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Re-enter Password*" fullWidth
-                     onChange={handleconfirmPasswordChange}
-                     state={confirmPasswordError !== "" ? "error" : ""}
-                     errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
-                     maxLength={12}
-                   />
+                    <div className="field">
+                      <MKInput type={confirmpasswordType} label="Re-enter Password*" fullWidth
+                        onChange={handleconfirmPasswordChange}
+                        state={confirmPasswordError !== "" ? "error" : ""}
+                        errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
+                        maxLength={12}
+                      />
+                      <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                    </div>
                   </MKBox>
                   <MKTypography
                     component={Link}
@@ -184,15 +228,15 @@ function ChnagePasswordBasic() {
                     <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
                     </MKButton>
                     <MKBox className="mt-4">
-          {error !== '' && <>
-            <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-          </>}
-        </MKBox>
-        <MKBox className="mt-4">
-          {isSuccessfull !== '' && <>
-            <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
-          </>}
-        </MKBox>
+                      {error !== '' && <>
+                        <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                      </>}
+                    </MKBox>
+                    <MKBox className="mt-4">
+                      {isSuccessfull !== '' && <>
+                        <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
+                      </>}
+                    </MKBox>
                   </MKBox>
                 </form>
                 {/* </MKBox> */}
