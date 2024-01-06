@@ -108,7 +108,7 @@ export default {
     },
 
     info: {
-      main: "#49a3f1",
+      main: "#7E098A",
       state: "#7E098A",
     },
 
