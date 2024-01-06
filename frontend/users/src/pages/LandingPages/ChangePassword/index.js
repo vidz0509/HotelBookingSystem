@@ -8,57 +8,99 @@ import MKButton from "components/MKButton";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 import { authServices } from "services/auth";
 import { validation } from "services/validation";
-import { useState } from "react";
+import { useState , useEffect  } from "react";
 import bgImage from "assets/images/auth.jpg";
 
 function ChnagePasswordBasic() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [password, setpassword] = useState('');
+  const [newPassword, setnewPassword] = useState('');
+  const [confirmPassword, setconfirmPassword] = useState('');
+
+  const [passwordError, setpasswordError] = useState('');
+  const [newPasswordError, setnewPasswordError] = useState('');
+  const [confirmPasswordError, setconfirmPasswordError] = useState('');
+  const [isSuccessfull, setSuccessfull] = useState('');
+
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
 
-
-  const handleEmailChange = (event) => {
+  const handlepasswordChange = (event) => {
+    clearErrors();
     const value = event.target.value;
-    console.log(value)
-    setEmail(value);
+    setpassword(value);
   }
-
-  const handlePasswordChange = (event) => {
+  const handlenewPasswordChange = (event) => {
+    clearErrors();
     const value = event.target.value;
-    setPassword(value);
+    setnewPassword(value);
   }
-
-  const handlesubmit = async (event) => {
+  const handleconfirmPasswordChange = (event) => {
+    clearErrors();
+    const value = event.target.value;
+    setconfirmPassword(value);
+  }
+  useEffect(() => {
+  }, []);
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(event)
-    setEmailError('');
-    setPasswordError('');
-    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
-      setEmailError("Please enter valid email address.");
-      return false;
-    }
+    setpasswordError('');
+    setnewPasswordError('');
+    setconfirmPasswordError('');
     if (validation.isEmpty(password)) {
-      setPasswordError("Please enter valid Password.");
+      setpasswordError("Please enter valid password.");
       return false;
     }
+    if (validation.isEmpty(newPassword)) {
+      setnewPasswordError("Please enter valid new Password.");
+      return false;
+    }
+    if (validation.isEmpty(confirmPassword)) {
+      setconfirmPasswordError("Please enter valid confirmPassword.");
+      return false;
+    }
+    if (newPassword !== confirmPassword) {
+      setError("New Password and Confirm Password must be same.");
+      return false;
+    }
+
+    if (confirmPassword.length < 8) {
+      setError("Password must be 8 characters long.");
+      return false;
+    }
+
+    if (!validation.isValidPassword(confirmPassword)) {
+      setError("Password must have at least one digit, one special chacter and one uppercase letter");
+      return false;
+    }
+    clearErrors();
     setBtnDisabled(true);
+    const currentUser = authServices.getCurrentUser();
     const requestBody = {
-      email: email,
-      password: password
+      email: currentUser.email,
+      password: password,
+      newpassword: newPassword,
     };
-    const result = await authServices.login(requestBody);
-    if (result.isSuccessful) {
-      localStorage.setItem('currentUser', JSON.stringify(result.data));
-      window.location.replace('/');
+    setSuccessfull("Password change successfully");
+    const result = await authServices.changepassword(requestBody);
+    if (result.isSuccessfull) {
+      setSuccessfull(result.isSuccessfullMessage);
+      setBtnDisabled(false);
+      setTimeout(function () {
+        console.log("Password change successfully")
+        window.location.reload();
+      }, 1000);
     } else {
       setError(result.errorMessage);
       setBtnDisabled(false);
-
     }
   }
+  const clearErrors = () => {
+    setconfirmPasswordError('');
+    setnewPasswordError('');
+    setpasswordError('');
+  }
+
+
   return (
     <>
       <MKBox
@@ -100,29 +142,30 @@ function ChnagePasswordBasic() {
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
                 {/* <MKBox component="form" role="form"> */}
-                <form method="post" onSubmit={handlesubmit}>
+                <form method="post" onSubmit={handleSubmit}>
                   <MKBox mb={2}>
                     <MKInput type="password" label="Current Password*" fullWidth
-                      onChange={handleEmailChange}
-                      error={emailError && emailError !== '' ? true : false}
-                      state={emailError !== "" ? "error" : ""}
-                      errorMessage={emailError !== "" ? emailError : ""} />
+                     onChange={handlepasswordChange}
+                     state={passwordError !== "" ? "error" : ""}
+                     errorMessage={passwordError !== "" ? passwordError : ""}
+                     maxLength={12}
+                   />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="password" label="New Password*" fullWidth
-                      onChange={handlePasswordChange}
-                      state={passwordError !== "" ? "error" : ""}
-                      error={passwordError && passwordError !== '' ? true : false}
-                      errorMessage={passwordError !== "" ? passwordError : ""}
-                      maxLength={12} />
+                     onChange={handlenewPasswordChange}
+                     state={newPasswordError !== "" ? "error" : ""}
+                     errorMessage={newPasswordError !== "" ? newPasswordError : ""}
+                     maxLength={12}
+                   />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="password" label="Re-enter Password*" fullWidth
-                      onChange={handlePasswordChange}
-                      state={passwordError !== "" ? "error" : ""}
-                      error={passwordError && passwordError !== '' ? true : false}
-                      errorMessage={passwordError !== "" ? passwordError : ""}
-                      maxLength={12} />
+                     onChange={handleconfirmPasswordChange}
+                     state={confirmPasswordError !== "" ? "error" : ""}
+                     errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
+                     maxLength={12}
+                   />
                   </MKBox>
                   <MKTypography
                     component={Link}
@@ -135,16 +178,21 @@ function ChnagePasswordBasic() {
                     Back to login
                   </MKTypography>
                   <MKBox mt={4}>
-                    <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                    <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       Change Password
                     </MKButton>
                     <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
                     </MKButton>
                     <MKBox className="mt-4">
-                      {error !== '' && <>
-                        <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-                      </>}
-                    </MKBox>
+          {error !== '' && <>
+            <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+          </>}
+        </MKBox>
+        <MKBox className="mt-4">
+          {isSuccessfull !== '' && <>
+            <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
+          </>}
+        </MKBox>
                   </MKBox>
                 </form>
                 {/* </MKBox> */}
