@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .error-msg {
     font-size: 14px;
     color: #ac1111;
@@ -20,4 +22,16 @@
 
 .field button.icon svg{
     fill: #81068f;
+}
+
+.footer-title p{
+    font-size: 18px;
+    color: #000;
+}
+.footer-content p, .footer-content a{
+    color: #000;
+    font-size: 15px;
+}
+.footer-content a:hover{
+    color: #7E098A;
 }
