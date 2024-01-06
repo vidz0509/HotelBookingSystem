@@ -39,7 +39,8 @@ function ForgetPasswordBasic() {
     const [passwordType, setPasswordType] = useState("password");
     const [confirmpasswordType, setConfirmPasswordType] = useState("password");
 
-    const togglePassword = () => {
+    const togglePassword = (e) => {
+        e.preventDefault();
         if (passwordType === "password") {
             setPasswordType("text")
             return;
@@ -47,7 +48,8 @@ function ForgetPasswordBasic() {
         setPasswordType("password")
     }
 
-    const toggleConfirmPassword = () => {
+    const toggleConfirmPassword = (e) => {
+        e.preventDefault();
         if (confirmpasswordType === "password") {
             setConfirmPasswordType("text")
             return;
@@ -399,14 +401,14 @@ function ForgetPasswordBasic() {
                                                         onChange={handleConfPasswordChange}
                                                         state={confPasswordError !== "" ? "error" : ""}
                                                         errorMessage={confPasswordError !== "" ? confPasswordError : ""} />
-                                                    <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                                                    <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                                                 </div>
                                             </MKBox>
                                             <MKTypography component={Link} to="/SignIn" variant="button" color="info" fontWeight="medium" textGradient>
                                                 Back to SignIn
                                             </MKTypography>
                                             <MKBox mt={2} mb={1}>
-                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit"  disabled={btnDisabled ? 'disabled' : ''}>
                                                     {btnDisabled ?
                                                         <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px] btn-loader" alt="loader" /></span>
                                                         : <span>Reset Password</span>}
