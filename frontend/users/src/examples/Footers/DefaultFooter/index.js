@@ -28,81 +28,107 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 function DefaultFooter({ content }) {
-  const { brand, socials, menus, copyright } = content;
+  const { brand, aboutUs, quickLinks, contactUs, copyright } = content;
 
   return (
     <MKBox component="footer">
       <Container>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={3} sx={{ ml: "auto", mb: 3 }}>
+          <Grid item md={3} sx={{ ml: "auto", mb: 3 }}>
             <MKBox>
               <Link to={brand.route}>
-                <MKBox component="img" src={brand.image} alt={brand.name} maxWidth="2rem" mb={2} />
+                <MKBox component="img" src={brand.image} alt={brand.name} mb={2} sx={{ maxWidth: "180px" }} />
               </Link>
-              <MKTypography variant="h6">{brand.name}</MKTypography>
-            </MKBox>
-            <MKBox display="flex" alignItems="center" mt={3}>
-              {socials.map(({ icon, link }, key) => (
-                <MKTypography
-                  key={link}
-                  component="a"
-                  href={link}
-                  target="_blank"
-                  rel="noreferrer"
-                  variant="h5"
-                  color="dark"
-                  opacity={0.8}
-                  mr={key === socials.length - 1 ? 0 : 2.5}
-                >
-                  {icon}
-                </MKTypography>
-              ))}
             </MKBox>
           </Grid>
-          {menus.map(({ name: title, items }) => (
-            <Grid key={title} item xs={6} md={2} sx={{ mb: 3 }}>
-              <MKTypography
-                display="block"
-                variant="button"
-                fontWeight="bold"
-                textTransform="capitalize"
-                mb={1}
-              >
-                {title}
-              </MKTypography>
-              <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none" }}>
-                {items.map(({ name, route, href }) => (
+          {aboutUs.map(({ name: name, items }) => (
+            <Grid key={name} item md={3} sx={{ mb: 3 }}>
+              <div className="footer-title">
+                <MKTypography display="block" fontWeight="bold" textTransform="capitalize" mb={1}>
+                  {name}
+                </MKTypography>
+              </div>
+              <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none", }}>
+                {items.map(({ name }) => (
                   <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
-                    {href ? (
+                    <div className="footer-content">
                       <MKTypography
-                        component="a"
-                        href={href}
-                        target="_blank"
-                        rel="noreferrer"
-                        variant="button"
+                        component="p"
                         fontWeight="regular"
                         textTransform="capitalize"
                       >
                         {name}
                       </MKTypography>
-                    ) : (
-                      <MKTypography
-                        component={Link}
-                        to={route}
-                        variant="button"
-                        fontWeight="regular"
-                        textTransform="capitalize"
-                      >
-                        {name}
-                      </MKTypography>
-                    )}
+                    </div>
+                  </MKBox>
+                ))}
+              </MKBox>
+            </Grid>
+          ))}
+          <Grid key={name} item md={1} sx={{ mb: 3 }}>
+          </Grid>
+          {quickLinks.map(({ name: name, items }) => (
+            <Grid key={name} item md={2} sx={{ mb: 3 }}>
+              <div className="footer-title">
+                <MKTypography display="block" fontWeight="bold" textTransform="capitalize" mb={1}>
+                  {name}
+                </MKTypography>
+              </div>
+              <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none", }}>
+                {items.map(({ name, route }) => (
+                  <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
+                    <div className="footer-content">
+                      {route && (
+                        <MKTypography
+                          component={Link}
+                          to={route}
+                          variant="button"
+                          fontWeight="regular"
+                          textTransform="capitalize"
+                        >
+                          {name}
+                        </MKTypography>
+                      )}
+                    </div>
+                  </MKBox>
+                ))}
+              </MKBox>
+            </Grid>
+          ))}
+          {contactUs.map(({ name: name, items }) => (
+            <Grid key={name} item md={3} sx={{ mb: 3 }}>
+              <div className="footer-title">
+                <MKTypography display="block" fontWeight="bold" textTransform="capitalize" mb={1}>
+                  {name}
+                </MKTypography>
+              </div>
+              <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none", }}>
+                {items.map(({ name, href }) => (
+                  <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
+                    <div className="footer-content">
+                      {href && (
+                        <MKTypography
+                          component="a"
+                          href={href}
+                          target="_blank"
+                          rel="noreferrer"
+                          variant="button"
+                          fontWeight="regular"
+                          textTransform="capitalize"
+                        >
+                          {name}
+                        </MKTypography>
+                      )}
+                    </div>
                   </MKBox>
                 ))}
               </MKBox>
             </Grid>
           ))}
           <Grid item xs={12} sx={{ textAlign: "center", my: 3 }}>
-            {copyright}
+            <div className="footer-content">
+              {copyright}
+            </div>
           </Grid>
         </Grid>
       </Container>

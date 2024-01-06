@@ -1,8 +1,8 @@
 // @mui icons
-import FacebookIcon from "@mui/icons-material/Facebook";
-import TwitterIcon from "@mui/icons-material/Twitter";
-import GitHubIcon from "@mui/icons-material/GitHub";
-import YouTubeIcon from "@mui/icons-material/YouTube";
+// import FacebookIcon from "@mui/icons-material/Facebook";
+// import TwitterIcon from "@mui/icons-material/Twitter";
+// import GitHubIcon from "@mui/icons-material/GitHub";
+// import YouTubeIcon from "@mui/icons-material/YouTube";
 
 // Material Kit 2 React components
 import MKTypography from "components/MKTypography";
@@ -18,33 +18,17 @@ export default {
     image: logoCT,
     route: "/",
   },
-  socials: [
+  aboutUs: [
     {
-      icon: <FacebookIcon />,
-      link: "https://www.facebook.com/CreativeTim/",
-    },
-    {
-      icon: <TwitterIcon />,
-      link: "https://twitter.com/creativetim",
-    },
-    {
-      icon: <GitHubIcon />,
-      link: "https://github.com/creativetimofficial",
-    },
-    {
-      icon: <YouTubeIcon />,
-      link: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w",
-    },
-  ],
-  menus: [
-    {
-      name: "Description",
+      name: "About Us",
       items: [
         { name: "A hotel is a commercial establishment that provides lodging, meals, and other services to guests, travelers, and tourists." },
       ],
-    },
+    }
+  ],
+  quickLinks: [
     {
-      name: "Pages",
+      name: "Quick Links",
       items: [
         { name: "Home", route: "/pages/Home/index.js" },
         { name: "About Us", route: "/pages/landing-pages/about-us" },
@@ -52,26 +36,10 @@ export default {
         { name: "Account", route: "/pages/authentication/sign-in" },
       ],
     },
-    // {
-    //   name: "resources",
-    //   items: [
-    //     { name: "illustrations", href: "https://iradesign.io/" },
-    //     { name: "bits & snippets", href: "https://www.creative-tim.com/bits" },
-    //     { name: "affiliate program", href: "https://www.creative-tim.com/affiliates/new" },
-    //   ],
-    // },
+  ],
+  contactUs: [
     {
-      name: "help & support",
-      items: [
-        { name: "contact us", href: "https://www.creative-tim.com/contact-us" },
-        { name: "knowledge center", href: "https://www.creative-tim.com/knowledge-center" },
-        { name: "custom development", href: "https://services.creative-tim.com/" },
-        { name: "sponsorships", href: "https://www.creative-tim.com/sponsorships" },
-      ],
-    },
-
-    {
-      name: "legal",
+      name: "Contact Us",
       items: [
         { name: "terms & conditions", href: "https://www.creative-tim.com/terms" },
         { name: "privacy policy", href: "https://www.creative-tim.com/privacy" },
@@ -81,7 +49,7 @@ export default {
   ],
 
   copyright: (
-    <MKTypography variant="button" fontWeight="regular">
+    <MKTypography fontWeight="regular">
       All rights reserved. Copyright &copy; {date} Budget Suites{" "}
     </MKTypography>
   ),
