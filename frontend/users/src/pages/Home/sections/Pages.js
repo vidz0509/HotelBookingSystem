@@ -70,21 +70,10 @@ function Pages() {
       </Container>
       <Container sx={{ mt: { xs: 8, lg: 16 } }}>
         <Grid container spacing={3}>
-          <Grid item xs={12} lg={9} sx={{ mt: 3, px: { xs: 0, lg: 8 } }}>
+          <Grid item xs={12} lg={12} sx={{ mt: 3, px: { xs: 0, lg: 8 } }}>
             <Grid container spacing={3}>
               {renderData}
             </Grid>
-          </Grid>
-          <Grid item xs={12} lg={3}>
-            <MKBox position="sticky" top="100px" pb={{ xs: 2, lg: 6 }}>
-              <MKTypography variant="h3" fontWeight="bold" mb={1}>
-                Presentation Pages for Company, Landing Pages, Blogs and Support
-              </MKTypography>
-              <MKTypography variant="body2" fontWeight="regular" color="secondary" mb={1} pr={2}>
-                These is just a small selection of the multiple possibitilies you have. Focus on the
-                business, not on the design.
-              </MKTypography>
-            </MKBox>
           </Grid>
         </Grid>
       </Container>

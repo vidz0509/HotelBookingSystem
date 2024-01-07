@@ -110,13 +110,11 @@ export default function ChangePassword() {
       password: password,
       newpassword: newPassword,
     };
-    setSuccessfull("Password change successfully");
     const result = await authServices.changepassword(requestBody);
-    if (result.isSuccessfull) {
-      setSuccessfull(result.isSuccessfullMessage);
+    if (result.isSuccessful) {
+      setSuccessfull('Password changed successfully.');
       setBtnDisabled(false);
       setTimeout(function () {
-        console.log("Password change successfully")
         window.location.reload();
       }, 1000);
     } else {
@@ -199,12 +197,12 @@ export default function ChangePassword() {
             : <span>Update password</span>}
         </button>
         <div className="mt-4">
-          {error !== '' && <>
+          {error && error !== '' && <>
             <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
           </>}
         </div>
         <div className="mt-4">
-          {isSuccessfull !== '' && <>
+          {isSuccessfull && isSuccessfull !== '' && <>
             <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
           </>}
         </div>
