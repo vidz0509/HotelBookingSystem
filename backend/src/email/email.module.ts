@@ -16,7 +16,7 @@ import { join } from 'path';
                 },
             },
             defaults: {
-                from: '"NestJS" kavitabavadiya.sourcenet@gmail.com',
+                from: '"Budget Suites" kavitabavadiya.sourcenet@gmail.com',
             },
             template: {
                 dir: join(__dirname, 'templates'),

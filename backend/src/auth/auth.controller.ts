@@ -33,6 +33,11 @@ export class AuthController {
         return await this.authService.forgotPassword(requestData);
     }
 
+    @Post('/getInTouch')
+    async getInTouch(@Body() requestData: { fullname:string, email: string, message: string }) {        
+        return await this.authService.getInTouch(requestData);
+    }
+
     @Post('/verifyResetPasswordCode')
     async verifyResetPasswordCode(@Body() requestData: { email: string, code: string }) {        
         return await this.authService.verifyResetPasswordCode(requestData);

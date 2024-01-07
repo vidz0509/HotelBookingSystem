@@ -123,7 +123,7 @@ export class AuthServices {
     try {
       this.logger.debug(`Sending email to ${user.email}`);
       const verificationCode = await this.codeService.generateCode(user._id.toString());
-      await this.emailService.sendTestEmail(user.email, user.fullname, verificationCode);
+      await this.emailService.sendVerificationCode(user.email, user.fullname, verificationCode);
       return await this.helper.buildResponse(true);
     } catch (error) {
       if (error) {
@@ -175,6 +175,21 @@ export class AuthServices {
     } catch (error) {
       if (error) {
         // this.logger.error(`Failed to send email to : ${user.email}`);
+        this.logger.error(JSON.stringify(error, null, 2));
+        throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
+      }
+    }
+  }
+
+  async getInTouch(requestData: { fullname:string, email: string, message: string }) {
+
+    try {
+      this.logger.debug(`Sending email to ${requestData.email}`);
+      await this.emailService.sendEmailToAdmin(requestData.fullname, requestData.email, requestData.message);
+      await this.emailService.sendEmailToUser(requestData.fullname, requestData.email);
+      return await this.helper.buildResponse(true);
+    } catch (error) {
+      if (error) {
         this.logger.error(JSON.stringify(error, null, 2));
         throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
       }
