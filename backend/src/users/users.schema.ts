@@ -21,6 +21,9 @@ export class User {
   phone: string;
 
   @Prop()
+  type: number;
+
+  @Prop()
   createdAt: Date;
 
   @Prop()

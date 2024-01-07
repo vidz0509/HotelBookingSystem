@@ -41,6 +41,7 @@ export class UsersCollection {
             updatedAt: new Date(),
             isDeleted: false,
             isActive: true,
+            type: 2
         });
         return newUser.save();
     }
