@@ -1,19 +1,4 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
 
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// @mui material components
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
@@ -29,22 +14,87 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Routes
 import routes from "routes";
 import footerRoutes from "footer.routes";
+import { authServices } from "services/auth";
+import { validation } from "services/validation";
+import { useState } from "react";
+import bgImage from "assets/images/auth.jpg";
 
 // Image
-import bgImage from "assets/images/illustrations/illustration-reset.jpg";
+// import bgImage from "assets/images/illustrations/illustration-reset.jpg";
 
 function ContactUs() {
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [fullname, setFullName] = useState('');
+  const [fullnameError, setFullNameError] = useState('');
+  const [message, setMessage] = useState('');
+  const [messageError, setMessageError] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [error, setError] = useState('');
+
+  const handlefullNameChange = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    setFullName(value);
+  }
+
+  const handleEmailChange = (event) => {
+    const value = event.target.value;
+    setEmail(value);
+  }
+  const handlemessageChange = (event) => {
+    const value = event.target.value;
+    setMessage(value);
+  }
+  const handlesubmit = async (event) => {
+    event.preventDefault();
+    setEmailError('');
+    setMessageError('');
+    setFullNameError('');
+
+    if (validation.isEmpty(fullname)) {
+      setFullNameError("Please enter valid fullname.");
+      return false;
+    }
+    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
+      setEmailError("Please enter valid email address.");
+      return false;
+    }
+
+    if (validation.isEmpty(message)) {
+      setMessageError("Please enter valid message.");
+      return false;
+    }
+
+    setBtnDisabled(true);
+    const requestBody = {
+      fullname: fullname,
+      email: email,
+      message: message,
+    };
+    const result = await authServices.getintouch(requestBody);
+    if (result.isSuccessful) {
+      setFullName('');
+      setEmail('');
+      setMessage('');
+      setBtnDisabled(false);
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+    }
+  }
+
   return (
     <>
       <MKBox position="fixed" top="0.5rem" width="100%" >
         <DefaultNavbar
           routes={routes}
-          // action={{
-          //   type: "external",
-          //   route: "https://www.creative-tim.com/product/material-kit-react",
-          //   label: "free download",
-          //   color: "info",
-          // }}
+        // action={{
+        //   type: "external",
+        //   route: "https://www.creative-tim.com/product/material-kit-react",
+        //   label: "free download",
+        //   color: "info",
+        // }}
         />
       </MKBox>
       <Grid container spacing={3} alignItems="center">
@@ -106,7 +156,12 @@ function ContactUs() {
                       label="Full Name"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
-                    />
+                      onChange={handlefullNameChange}
+                      state={fullnameError !== "" ? "error" : ""}
+                      errorMessage={fullnameError !== "" ? fullnameError : ""}
+                      value={fullname}
+                      maxLength={30} />
+
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <MKInput
@@ -115,7 +170,9 @@ function ContactUs() {
                       label="Email"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
-                    />
+                      onChange={handleEmailChange}
+                      state={emailError !== "" ? "error" : ""}
+                      errorMessage={emailError !== "" ? emailError : ""} />
                   </Grid>
                   <Grid item xs={12}>
                     <MKInput
@@ -126,13 +183,22 @@ function ContactUs() {
                       multiline
                       fullWidth
                       rows={6}
-                    />
+                      onChange={handlemessageChange}
+                      state={messageError !== "" ? "error" : ""}
+                      errorMessage={messageError !== "" ? messageError : ""} />
                   </Grid>
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                  <MKButton type="submit" variant="gradient" color="info">
+                  <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                     Send Message
                   </MKButton>
+                  <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                  </MKButton>
+                  <MKBox className="mt-4">
+                    {error !== '' && <>
+                      <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                    </>}
+                  </MKBox>
                 </Grid>
               </MKBox>
             </MKBox>
