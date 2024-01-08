@@ -34,6 +34,7 @@ import DesignBlocks from "pages/Home/sections/DesignBlocks";
 import Pages from "pages/Home/sections/Pages";
 import Testimonials from "pages/Home/sections/Testimonials";
 import Download from "pages/Home/sections/Download";
+import SearchForm from "pages/Home/sections/SearchForm";
 
 // Presentation page components
 // import BuiltByDevelopers from "pages/Home/components/BuiltByDevelopers";
@@ -95,6 +96,9 @@ function Home() {
             >
               The Best Place In Town To Relax, To Enjoy Heaven
             </MKTypography>
+          </Grid>
+          <Grid container item xs={12} lg={10} justifyContent="center" mx="auto" className="form-wrap">
+            <SearchForm />
           </Grid>
         </Container>
       </MKBox>

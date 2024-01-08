@@ -20,18 +20,63 @@
     font-size: 22px;
 }
 
-.field button.icon svg{
+.field button.icon svg {
     fill: #81068f;
 }
 
-.footer-title p{
+.footer-title p {
     font-size: 18px;
     color: #000;
 }
-.footer-content p, .footer-content a{
+
+.footer-content p,
+.footer-content a {
     color: #000;
     font-size: 15px;
 }
-.footer-content a:hover{
+
+.footer-content a:hover {
     color: #7E098A;
+}
+
+.search-form{
+    margin-top:30px;
+}
+
+.form-wrap {
+    display: block !important;
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.form-wrap .row {
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    background-color: #FFFFFF9C;
+    padding: 40px 60px 20px 60px;
+    border-radius: 15px;
+}
+
+.col {
+    width: 22%;
+}
+
+.field-group label{
+    font-size: 14px;
+    color: #932595;
+    font-weight: 700;
+}
+
+.field-group input {
+    border: 0;
+    border-bottom: 2px solid #932595;
+    background-color: transparent;
+    width: 100%;
+    color: #932595;
+    font-family: "Poppins",sans-serif;
+}
+
+.field-group input:focus-visible{
+    outline: 0;
 }
