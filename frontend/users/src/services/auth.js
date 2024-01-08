@@ -10,7 +10,8 @@ export const authServices = {
     forgotPassword,
     verifyResetPasswordCode,
     resetPassword,
-    logout
+    logout,
+    getintouch
 };
 
 function checkIfUserLoggedIn() {
@@ -69,6 +70,16 @@ async function changepassword(requestBody) {
 
 async function forgotPassword(requestBody) {
     const url = `http://localhost:5001/auth/forgotPassword`;
+    return await axios.post(url, requestBody).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        // console.error(errorObj);
+        return errorObj;
+    });
+}
+async function getintouch(requestBody) {
+    const url = `http://localhost:5001/auth/getintouch`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
