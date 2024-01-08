@@ -1,3 +1,5 @@
+import btnIcon from "assets/images/submit-icon.png";
+
 export default SearchForm;
 function SearchForm() {
     return (
@@ -27,6 +29,11 @@ function SearchForm() {
                             <label>Room</label>
                             <input type="text" id="room" />
                         </div>
+                    </div>
+                    <div className="col btn-col">
+                        <button type="submit" name="search_hotel" id="search_hotel">
+                            <img decoding="async" loading="lazy" src={btnIcon} width="50" height="50" />
+                        </button>
                     </div>
                 </div>
             </div>

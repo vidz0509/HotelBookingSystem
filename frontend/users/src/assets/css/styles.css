@@ -39,8 +39,8 @@
     color: #7E098A;
 }
 
-.search-form{
-    margin-top:30px;
+.search-form {
+    margin-top: 30px;
 }
 
 .form-wrap {
@@ -59,10 +59,16 @@
 }
 
 .col {
-    width: 22%;
+    width: 18%;
 }
 
-.field-group label{
+.btn-col {
+    display: flex;
+    align-items: center;
+    width: 5%;
+}
+
+.field-group label {
     font-size: 14px;
     color: #932595;
     font-weight: 700;
@@ -74,9 +80,24 @@
     background-color: transparent;
     width: 100%;
     color: #932595;
-    font-family: "Poppins",sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
-.field-group input:focus-visible{
+.field-group input:focus-visible {
     outline: 0;
+}
+
+#search_hotel {
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    padding: 0;
+}
+
+#search_hotel img{
+    transition: ease-in-out 0.2s;
+}
+
+#search_hotel img:hover {
+    transform: rotate(360deg);
 }
