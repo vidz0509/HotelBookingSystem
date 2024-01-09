@@ -47,86 +47,30 @@ import Home from "pages/Home";
 import AboutUs from "pages/LandingPages/AboutUs";
 import ContactUs from "pages/LandingPages/ContactUs";
 import SignIn from "layouts/pages/authentication/sign-in";
-import SignUp from "layouts/pages/authentication/sign-up";
-import ForgetPassword from "pages/LandingPages/ForgetPassword";
-import ChnagePasswordBasic from "pages/LandingPages/ChangePassword";
-
-
-// Sections
-// import PageHeaders from "layouts/sections/page-sections/page-headers";
-// import Features from "layouts/sections/page-sections/featuers";
-// import Navbars from "layouts/sections/navigation/navbars";
-// import NavTabs from "layouts/sections/navigation/nav-tabs";
-// import Pagination from "layouts/sections/navigation/pagination";
-// import Inputs from "layouts/sections/input-areas/inputs";
-// import Forms from "layouts/sections/input-areas/forms";
-// import Alerts from "layouts/sections/attention-catchers/alerts";
-// import Modals from "layouts/sections/attention-catchers/modals";
-// import TooltipsPopovers from "layouts/sections/attention-catchers/tooltips-popovers";
-// import Avatars from "layouts/sections/elements/avatars";
-// import Badges from "layouts/sections/elements/badges";
-// import BreadcrumbsEl from "layouts/sections/elements/breadcrumbs";
-// import Buttons from "layouts/sections/elements/buttons";
-// import Dropdowns from "layouts/sections/elements/dropdowns";
-// import ProgressBars from "layouts/sections/elements/progress-bars";
-// import Toggles from "layouts/sections/elements/toggles";
-// import Typography from "layouts/sections/elements/typography";
+// import SignUp from "layouts/pages/authentication/sign-up";
+// import ForgetPassword from "pages/LandingPages/ForgetPassword";
+// import ChnagePasswordBasic from "pages/LandingPages/ChangePassword";
 
 const routes = [
   {
     name: "Home",
-    // icon: <Icon>home_app_logo</Icon>,
     route: "/",
     component: <Home />,
   },
   {
     name: "About Us",
-    // icon: <Icon>info</Icon>,
     route: "/about-us",
     component: <AboutUs />,
   },
   {
     name: "Contact Us",
-    // icon: <Icon>contact_support</Icon>,
     route: "/contact-us",
     component: <ContactUs />,
   },
-
   {
-    name: "Account",
-    // icon: <Icon>account_circle</Icon>,
-    collapse: [
-      {
-        name: "sign in",
-        // icon: <Icon>login</Icon>,
-        route: "/sign-in",
-        component: <SignIn />,
-      },
-      {
-        name: "sign up",
-        // icon: <Icon>login</Icon>,
-        route: "/sign-up",
-        component: <SignUp />,
-      },
-      {
-        name: "Forgot Password",
-        // icon: <Icon>login</Icon>,
-        route: "/forgetpassword",
-        component: <ForgetPassword />,
-      },
-      {
-        name: "Change Password",
-        // icon: <Icon>login</Icon>,
-        route: "/changepassword",
-        component: <ChnagePasswordBasic />,
-      },
-      {
-        name: "Sign Out",
-        // icon: <Icon>logout</Icon>,
-        // route: "/pages/authentication/sign-in",
-        // component: <SignIn />,
-      },
-    ],
+    name: "sign in",
+    route: "/sign-in",
+    component: <SignIn />,
   },
 ];
 

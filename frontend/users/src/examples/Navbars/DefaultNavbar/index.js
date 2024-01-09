@@ -462,7 +462,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             {/* <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
             </MKTypography> */}
           </MKBox>
-
           <MKBox
             color="inherit"
             display={{ xs: "none", lg: "flex" }}

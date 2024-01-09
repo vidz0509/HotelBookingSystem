@@ -52,12 +52,6 @@ function Home() {
       <MKBox position="fixed" top="0.5rem" width="100%">
         <DefaultNavbar
           routes={routes}
-          // action={{
-          //   type: "external",
-          //   route: "https://www.creative-tim.com/product/material-kit-react",
-          //   label: "free download",
-          //   color: "info",
-          // }}
           sticky
         />
       </MKBox>
@@ -113,102 +107,11 @@ function Home() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        {/* <form action="reservation.php" method="post">
-          <div>
-            <label>Your Name</label>
-            <input type="text" id="name" name="visitor_name" placeholder="John Doe" required />
-          </div>
-          <div>
-            <label>Your E-mail</label>
-            <input type="email" id="email" name="visitor_email" placeholder="john.doe@email.com" required />
-          </div>
-          <div>
-            <label>Your Phone</label>
-            <input type="tel" id="phone" name="visitor_phone" placeholder="498-348-3872" required />
-          </div>
-          <hr />
-          <div>
-            <label>Adults</label>
-            <input type="number" id="adult" name="total_adults" placeholder="2" min="1" required />
-          </div>
-          <div>
-            <label>Children</label>
-            <input type="number" id="child" name="total_children" placeholder="2" min="0" required />
-          </div>
-          <div>
-            <label>Check-in Date</label>
-            <input type="date" id="checkin-date" name="checkin" required />
-          </div>
-          <div>
-            <label>Check-out Date</label>
-            <input type="date" id="checkout-date" name="checkout" required />
-          </div>
-          <div>
-            <label >Select Room Preference</label>
-            <select id="room-selection" name="room_preference" required>
-              <option value="">Choose a Room from the List</option>
-              <option value="connecting">Connecting</option>
-              <option value="adjoining">Adjoining</option>
-              <option value="adjacent">Adjacent</option>
-            </select>
-          </div>
-          <hr />
-          <div>
-            <label>Anything Else?</label>
-            <textarea id="message" name="visitor_message" placeholder="Tell us anything else that might be important." required></textarea>
-          </div>
-          <button type="submit">Book The Rooms</button>
-        </form> */}
+        
         <Information />
         <DesignBlocks />
         <Pages />
-        {/* <Container sx={{ mt: 6 }}>
-          <BuiltByDevelopers />
-        </Container> */}
-        {/* <Container>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={4}>
-              <FilledInfoCard
-                variant="gradient"
-                color="info"
-                icon="flag"
-                title="Getting Started"
-                description="Check the possible ways of working with our product and the necessary files for building your own project."
-                action={{
-                  type: "external",
-                  route: "https://www.creative-tim.com/learning-lab/react/overview/material-kit/",
-                  label: "Let's start",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <FilledInfoCard
-                color="info"
-                icon="precision_manufacturing"
-                title="Plugins"
-                description="Get inspiration and have an overview about the plugins that we used to create the Material Kit."
-                action={{
-                  type: "external",
-                  route: "https://www.creative-tim.com/learning-lab/react/overview/datepicker/",
-                  label: "Read more",
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} lg={4}>
-              <FilledInfoCard
-                color="info"
-                icon="apps"
-                title="Components"
-                description="Material Kit is giving you a lot of pre-made components, that will help you to build UI's faster."
-                action={{
-                  type: "external",
-                  route: "https://www.creative-tim.com/learning-lab/react/alerts/material-kit/",
-                  label: "Read more",
-                }}
-              />
-            </Grid>
-          </Grid>
-        </Container> */}
+        
         <Testimonials />
         <Download />
         {/* <MKBox pt={18} pb={6}> */}

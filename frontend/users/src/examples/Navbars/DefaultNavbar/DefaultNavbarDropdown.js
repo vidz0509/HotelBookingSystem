@@ -26,6 +26,7 @@ import Icon from "@mui/material/Icon";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { authServices } from "services/auth";
 
 function DefaultNavbarDropdown({
   name,
@@ -47,7 +48,7 @@ function DefaultNavbarDropdown({
 
   const routeComponent = {
     component: Link,
-    to: route,
+    to: authServices.checkIfUserLoggedIn() ? '/account' : route,
   };
 
   return (
@@ -79,7 +80,7 @@ function DefaultNavbarDropdown({
           color={light ? "white" : "dark"}
           sx={{ fontWeight: "100%", ml: 1, mr: 0.25 }}
         >
-          {name}
+          {(authServices.checkIfUserLoggedIn() && name === 'sign in') ? 'Account' : name}
         </MKTypography>
         <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
           <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
