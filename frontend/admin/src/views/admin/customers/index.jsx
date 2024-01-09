@@ -1,26 +1,55 @@
-// import Banner from "./components/Banner";
-import tableDataComplex from "./variables/tableDataComplex.json";
+
+
 import ComplexTable from "../dashboard/components/ComplexTable";
-import { columnsDataComplex } from "../dashboard/variables/columnsData";
+import React, { useState, useEffect } from 'react';
+import { customerServices } from "services/customer";
 
-// import NFt2 from "assets/img/nfts/Nft2.png";
-// import NFt4 from "assets/img/nfts/Nft4.png";
-// import NFt3 from "assets/img/nfts/Nft3.png";
-// import NFt5 from "assets/img/nfts/Nft5.png";
-// import NFt6 from "assets/img/nfts/Nft6.png";
-// import avatar1 from "assets/img/avatars/avatar1.png";
-// import avatar2 from "assets/img/avatars/avatar2.png";
-// import avatar3 from "assets/img/avatars/avatar3.png";
-
-// import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTopCreators.json";
-// import { tableColumnsTopCreators } from "views/admin/marketplace/variables/tableColumnsTopCreators";
-// import HistoryCard from "./components/HistoryCard";
-// import TopCreatorTable from "./components/TableTopCreators";
-// import NftCard from "components/card/NftCard";
 
 const Customers = () => {
+  const [customersData, setCustomersData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const columnsDataComplex = [
+    {
+      Header: "Full Name",
+      accessor: "fullname",
+    },
+    {
+      Header: "Email",
+      accessor: "email",
+    },
+    {
+      Header: "Contact No.",
+      accessor: "phone",
+    },
+    {
+      Header: "Register On",
+      accessor: "createdAt",
+    },
+    {
+      Header: "Status",
+      accessor: "isActive",
+    },
+  ];
+
+
+  useEffect(() => {
+    getCustomers();
+  }, []);
+
+  const getCustomers = async () => {
+    let response = await customerServices.getAllCustomers();
+    setCustomersData(response.data);
+    setLoading(false);
+  }
   return (
-    <ComplexTable columnsData={columnsDataComplex} tableData={tableDataComplex} />
+    <>
+      {!loading &&
+        <ComplexTable
+          columnsData={columnsDataComplex}
+          tableData={customersData} />
+      }
+    </>
   );
 };
 

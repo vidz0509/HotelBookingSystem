@@ -6,14 +6,15 @@ import {
   useSortBy,
   useTable,
 } from "react-table";
-import { MdCheckCircle, MdCancel, MdOutlineError } from "react-icons/md";
-import { useMemo } from "react";
-import Progress from "components/progress";
+import { MdCheckCircle, MdCancel } from "react-icons/md";
+import { useMemo, useState } from "react";
+
 const ComplexTable = (props) => {
   const { columnsData, tableData } = props;
-
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
+
+  const [currentIndex, setCurentIndex] = useState(1);
 
   const tableInstance = useTable(
     {
@@ -24,6 +25,25 @@ const ComplexTable = (props) => {
     useSortBy,
     usePagination
   );
+
+  const formatDate = (date) => {
+    var formattedDate = new Date(date);
+    let day = formattedDate.getDate();
+    let month = (formattedDate.getMonth()) + 1;
+    let year = formattedDate.getFullYear();
+
+    if (day < 10) {
+      day = '0' + day;
+    }
+
+    if (month < 10) {
+      month = `0${month}`;
+    }
+
+    let timeString = `${day} - ${month} - ${year}`;
+
+    return timeString.toString();
+  }
 
   const {
     getTableProps,
@@ -37,13 +57,6 @@ const ComplexTable = (props) => {
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
-      <div class="relative flex items-center justify-between pt-4">
-        <div class="text-xl font-bold text-navy-700 dark:text-white">
-          Complex Table
-        </div>
-        {/* <CardMenu /> */}
-      </div>
-
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
@@ -70,37 +83,33 @@ const ComplexTable = (props) => {
                 <tr {...row.getRowProps()} key={index}>
                   {row.cells.map((cell, index) => {
                     let data = "";
-                    if (cell.column.Header === "NAME") {
-                      data = (
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
-                          {cell.value}
-                        </p>
-                      );
-                    } else if (cell.column.Header === "STATUS") {
+                    if (cell.column.Header === "Status") {
                       data = (
                         <div className="flex items-center gap-2">
                           <div className={`rounded-full text-xl`}>
-                            {cell.value === "Approved" ? (
+                            {cell.value ? (
                               <MdCheckCircle className="text-green-500" />
-                            ) : cell.value === "Disable" ? (
+                            ) : (
                               <MdCancel className="text-red-500" />
-                            ) : cell.value === "Error" ? (
-                              <MdOutlineError className="text-orange-500" />
-                            ) : null}
+                            )}
                           </div>
                           <p className="text-sm font-bold text-navy-700 dark:text-white">
                             {cell.value}
                           </p>
                         </div>
                       );
-                    } else if (cell.column.Header === "DATE") {
+                    } else if (cell.column.Header === "Register On") {
+                      data = (
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          {formatDate(cell.value)}
+                        </p>
+                      );
+                    } else {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}
                         </p>
                       );
-                    } else if (cell.column.Header === "PROGRESS") {
-                      data = <Progress width="w-[108px]" value={cell.value} />;
                     }
                     return (
                       <td
