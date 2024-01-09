@@ -150,7 +150,7 @@ function ContactUs() {
               </MKTypography>
               <MKBox width="100%" component="form" method="post" autoComplete="off">
                 <Grid container spacing={3}>
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={12}>
                     <MKInput
                       variant="standard"
                       label="Full Name"
@@ -163,7 +163,7 @@ function ContactUs() {
                       maxLength={30} />
 
                   </Grid>
-                  <Grid item xs={12} md={6}>
+                  <Grid item xs={12}>
                     <MKInput
                       type="email"
                       variant="standard"
@@ -172,6 +172,7 @@ function ContactUs() {
                       fullWidth
                       onChange={handleEmailChange}
                       state={emailError !== "" ? "error" : ""}
+                      value={email}
                       errorMessage={emailError !== "" ? emailError : ""} />
                   </Grid>
                   <Grid item xs={12}>
@@ -185,6 +186,7 @@ function ContactUs() {
                       rows={6}
                       onChange={handlemessageChange}
                       state={messageError !== "" ? "error" : ""}
+                      value={message}
                       errorMessage={messageError !== "" ? messageError : ""} />
                   </Grid>
                 </Grid>

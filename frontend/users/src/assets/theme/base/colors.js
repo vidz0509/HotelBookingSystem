@@ -25,8 +25,8 @@ export default {
   },
 
   text: {
-    main: "#7b809a",
-    focus: "#7b809a",
+    main: "#0c0909",
+    focus: "#0c0909",
   },
 
   transparent: {
@@ -50,7 +50,7 @@ export default {
   },
 
   secondary: {
-    main: "#7b809a",
+    main: "#0c0909",
     focus: "#8f93a9",
   },
 
