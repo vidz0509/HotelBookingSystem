@@ -10,6 +10,7 @@ import MKTypography from "components/MKTypography";
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
+import btnLoader from "../../../assets/images/button-loader/btn-loader.gif";
 
 // Routes
 import routes from "routes";
@@ -31,6 +32,7 @@ function ContactUs() {
   const [messageError, setMessageError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [error, setError] = useState('');
+  const [successful, setSuccessful] = useState('');
 
   const handlefullNameChange = (event) => {
     const value = event.target.value;
@@ -46,7 +48,7 @@ function ContactUs() {
     const value = event.target.value;
     setMessage(value);
   }
-  const handlesubmit = async (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     setEmailError('');
     setMessageError('');
@@ -78,8 +80,13 @@ function ContactUs() {
       setEmail('');
       setMessage('');
       setBtnDisabled(false);
+      localStorage.setItem('currentUser', JSON.stringify(result.data));
+      setTimeout(function () {
+        setSuccessful("your message  successfully send")
+      }, 1000);
     } else {
       setError(result.errorMessage);
+      setSuccessful(result.errorMessage);
       setBtnDisabled(false);
     }
   }
@@ -191,16 +198,24 @@ function ContactUs() {
                   </Grid>
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                  <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                  {/* <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                     Send Message
-                  </MKButton>
-                  <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
+                  </MKButton> */}
+                  <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+            {btnDisabled ?
+              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+              : <span>Send Message</span>}
                   </MKButton>
                   <MKBox className="mt-4">
                     {error !== '' && <>
                       <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
                     </>}
                   </MKBox>
+                  <MKBox className="mt-4">
+          {successful !== '' && <>
+            <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+          </>}
+        </MKBox>
                 </Grid>
               </MKBox>
             </MKBox>
