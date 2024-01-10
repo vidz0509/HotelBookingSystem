@@ -11,12 +11,12 @@ import { join } from 'path';
                 host: 'smtp.gmail.com',
                 secure: true,
                 auth: {
-                    user: 'bhimaniyash623@gmail.com',
-                    pass: 'Yash@623',
+                    user: 'vairagbavadiya5@gmail.com',
+                    pass: 'rlfaltxzssfptfyt',
                 },
             },
             defaults: {
-                from: '"Budget Suites" bhimaniyash623@gmail.com',
+                from: '"Budget Suites" mailto:vairagbavadiya5@gmail.com',
             },
             template: {
                 dir: join(__dirname, 'templates'),
