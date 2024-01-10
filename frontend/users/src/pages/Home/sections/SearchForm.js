@@ -1,4 +1,7 @@
 import btnIcon from "assets/images/submit-icon.png";
+import DatePicker from 'react-date-picker';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 export default SearchForm;
 function SearchForm() {
@@ -15,7 +18,8 @@ function SearchForm() {
                     <div className="col">
                         <div className="field-group">
                             <label>Check-in</label>
-                            <input type="text" id="checkIn" />
+                            {/* <input type="text" id="checkIn" /> */}
+                            <DatePicker/>
                         </div>
                     </div>
                     <div className="col">
