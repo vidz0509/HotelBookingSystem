@@ -27,3 +27,12 @@ input.defaultCheckbox::before {
 input:checked.defaultCheckbox::before { 
 	opacity: 1;
 }
+
+.h-7 , .h-6 {
+    color: #932595 !important;
+  }
+
+  .capitalize a{
+    color: #932595 !important;
+}
+
