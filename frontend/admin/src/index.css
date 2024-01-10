@@ -36,3 +36,10 @@ input:checked.defaultCheckbox::before {
     color: #932595 !important;
 }
 
+.duration-200 {
+	background-color: #932595 !important;
+}
+
+.field button.icon {
+color: #932595 !important;
+}
