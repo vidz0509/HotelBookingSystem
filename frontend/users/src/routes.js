@@ -50,6 +50,7 @@ import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
 import ForgetPassword from "pages/LandingPages/ForgetPassword";
 import ChnagePasswordBasic from "pages/LandingPages/ChangePassword";
+import { authServices } from './services/auth';
 
 const routes = [
   {
@@ -71,9 +72,9 @@ const routes = [
     addInMenu: true,
   },
   {
-    name: "sign in",
-    route: "/sign-in",
-    component: <SignIn />,
+    name: authServices.checkIfUserLoggedIn() ? "Account" : "sign in",
+    route: authServices.checkIfUserLoggedIn() ? "/account" : "/sign in",
+    component:  authServices.checkIfUserLoggedIn() ? <Home/> : <SignIn/>,
     addInMenu: true,
   },
   {
@@ -97,3 +98,5 @@ const routes = [
 ];
 
 export default routes;
+
+(authServices.checkIfUserLoggedIn() && name === 'sign in') ? 'Account' : name
