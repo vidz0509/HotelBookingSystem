@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength, IsEmail, IsOptional } from "class-validator";
-export class CreateUserDto {
+export class CreateCountryDto {
     // @IsString()
     // @IsNotEmpty()
     // readonly country_id: string;

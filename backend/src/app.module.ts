@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 import { UserModule } from './users/users.module';
 import { ProductModule } from './product/product.module';
 import { AuthModule } from './auth/auth.module';
+import { CountryModule } from './countries/country.module';
 
 import { ConfigModule } from '@nestjs/config';
 import { HelpersServices } from './services/helpers/helpers.services';
@@ -18,6 +19,7 @@ import { VerificationCodesModule } from './verification-codes/verificationCodes.
     }),
   MongooseModule.forRoot(process.env.MONGODB_URI + '/' + process.env.DATABASE_NAME),
   UserModule,
+  CountryModule,
   ProductModule,
   EmailModule,
   VerificationCodesModule,
