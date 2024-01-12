@@ -13,6 +13,7 @@ import ForgotPassword from "views/auth/ForgotPassword";
 
 // Icon Imports
 import Customers from "views/admin/customers";
+import Countries from "views/admin/countries";
 import Bookings from "views/admin/bookings/customers";
 import Paymentstatus from "views/admin/payment status/customers";
 import Reports from "views/admin/reports/customers";
@@ -20,10 +21,14 @@ import Reviews from "views/admin/reviews/customers";
 import Changepassword from"views/admin/changepassword";
 import {
   MdHome,
-  MdOutlineShoppingCart,
-  // MdBarChart,
+  MdSupervisedUserCircle,
   MdPerson,
+  MdMenuBook,
+  MdPayments,
   MdLock,
+  MdReport,
+  MdPublic,
+  MdRateReview,
 } from "react-icons/md";
 
 const routes = [
@@ -34,21 +39,6 @@ const routes = [
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
   },
-  // {
-  //   name: "NFT Marketplace",
-  //   layout: "/admin",
-  //   path: "nft-marketplace",
-  //   icon: <MdOutlineShoppingCart className="h-6 w-6" />,
-  //   component: <NFTMarketplace />,
-  //   secondary: true,
-  // },
-  // {
-  //   name: "Data Tables",
-  //   layout: "/admin",
-  //   icon: <MdBarChart className="h-6 w-6" />,
-  //   path: "data-tables",
-  //   component: <DataTables />,
-  // },
   {
     name: "Profile",
     layout: "/admin",
@@ -77,26 +67,27 @@ const routes = [
     icon: <MdLock className="h-6 w-6" />,
     component: <ForgotPassword />,
   },
-  // {
-  //   name: "RTL Admin",
-  //   layout: "/rtl",
-  //   path: "rtl",
-  //   icon: <MdHome className="h-6 w-6" />,
-  //   component: <RTLDefault />,
-  // },
   {
     name: "Customers",
     layout: "/admin",
     path: "customers",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdSupervisedUserCircle className="h-6 w-6" />,
     component: <Customers />,
+    secondary: true,
+  },
+  {
+    name: "Countries",
+    layout: "/admin",
+    path: "countries",
+    icon: <MdPublic className="h-6 w-6  " />,
+    component: <Countries />,
     secondary: true,
   },
   {
     name: "Bookings",
     layout: "/admin",
     path: "bookings",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdMenuBook className="h-6 w-6" />,
     component: <Bookings />,
     secondary: true,
   },
@@ -104,7 +95,7 @@ const routes = [
     name: "Payment status",
     layout: "/admin",
     path: "Paymentstatus",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdPayments className="h-6 w-6" />,
     component: <Paymentstatus />,
     secondary: true,
   },
@@ -112,7 +103,7 @@ const routes = [
     name: "Reports",
     layout: "/admin",
     path: "Reports",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdReport className="h-6 w-6" />,
     component: <Reports />,
     secondary: true,
   },
@@ -120,7 +111,7 @@ const routes = [
     name: "Reviews",
     layout: "/admin",
     path: "Reviews",
-    icon: <MdOutlineShoppingCart className="h-6 w-6" />,
+    icon: <MdRateReview className="h-6 w-6" />,
     component: <Reviews />,
     secondary: true,
   },
