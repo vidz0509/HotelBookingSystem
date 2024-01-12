@@ -11,12 +11,13 @@ export class LocationCollection {
 
     constructor(@InjectModel('Location') private LocationModel: Model<Location>) { }
 
-    // async getAllUsers(): Promise<Country[]> {
-    //     return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
+    async getAllLocations(): Promise<Location[]> {
+        return await this.LocationModel.find();
+    }
 
     async createLocation(createLocationDto: CreateLocationDto) {
         const newLocation = await new this.LocationModel({
+            country_id: createLocationDto.country_id,
             location_name: createLocationDto.location_name,
             location_image: createLocationDto.location_image,
             
@@ -48,12 +49,9 @@ export class LocationCollection {
         );
     }
 
-    // async deleteUser(userID: string) {
-    //     return this.userModel.deleteOne(
-    //         { _id: userID },
-    //         { $set: { updatedat: new Date(), isDeleted: true } },
-    //     );
-    // }
+    async deleteLocation(locationId: string) {
+        return this.LocationModel.deleteOne({ _id: locationId });
+      }
 
     // async sortedUsers(order: string): Promise<Country[]> {
     //     return await this.userModel.aggregate([

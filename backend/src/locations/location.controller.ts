@@ -8,6 +8,11 @@ export class LocationController {
 
     constructor(private readonly locationService: LocationService) { }
 
+    @Get()
+    async findAll() {
+        return this.locationService.getAllLocations();
+    }
+
     @Post()
     async createLocation(@Body() createLocationDto: CreateLocationDto) {
         console.log(createLocationDto);
@@ -18,5 +23,10 @@ export class LocationController {
     async updateLocation(@Param('id') id: string,
         @Body() updateLocationDto: UpdateLocationDto) {
         return this.locationService.updateLocation(id, updateLocationDto);
+    }
+
+    @Delete(':id')
+    async remove(@Param('id') id: string) {
+        return this.locationService.deleteLocation(id);
     }
 }

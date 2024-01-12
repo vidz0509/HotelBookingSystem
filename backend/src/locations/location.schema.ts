@@ -7,7 +7,10 @@ export type LocationsDocument = HydratedDocument<Location>;
 @Schema()
 export class Location {
 
-  _id: string;
+  location_id: string;
+
+  @Prop()
+  country_id: string;
 
   @Prop({ required: true })
   location_name: string;
