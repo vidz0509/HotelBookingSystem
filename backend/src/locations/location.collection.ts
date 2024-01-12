@@ -3,20 +3,20 @@ import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateLocationDto } from './dto/create.dto';
 // import { SignInUserDto } from '../auth/dto/login.dto';
-import { location } from './location.schema';
+import { Location } from './location.schema';
 import { UpdateLocationDto } from './dto/update.dto';
 
 @Injectable()
 export class LocationCollection {
 
-    constructor(@InjectModel('Country') private countryModel: Model<Location>) { }
+    constructor(@InjectModel('Location') private LocationModel: Model<Location>) { }
 
     // async getAllUsers(): Promise<Country[]> {
     //     return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     // }
 
     async createLocation(createLocationDto: CreateLocationDto) {
-        const newCountry = await new this.countryModel({
+        const newLocation = await new this.LocationModel({
             location_name: createLocationDto.location_name,
             location_image: createLocationDto.location_image,
             
@@ -25,7 +25,7 @@ export class LocationCollection {
             isDeleted: false,
             isActive: true,
         });
-        return newCountry.save();
+        return newLocation.save();
     }
 
     // async getUserByName(name: string): Promise<Country> {
@@ -37,13 +37,13 @@ export class LocationCollection {
     // }
 
     async getLocationByName(location_name: string): Promise<Location> {
-        return this.countryModel.findOne({ location_name: location_name });
+        return this.LocationModel.findOne({ location_name: location_name });
     }
 
     async updateLocation(LocationID: string, updateLocationDto: UpdateLocationDto) {
-        return await this.countryModel.findByIdAndUpdate(
+        return await this.LocationModel.findByIdAndUpdate(
             LocationID,
-            UpdateLocationDto,
+            updateLocationDto,
             { new: true },
         );
     }

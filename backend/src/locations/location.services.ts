@@ -23,8 +23,8 @@ export class LocationService {
     }
     try {
       await this.locationCollection.createLocation(createLocationDto);
-      const newCountry = await this.locationCollection.getLocationByName(createLocationDto.location_name);
-      const response = await this.helper.buildResponse(true, null, newCountry);
+      const newLocation = await this.locationCollection.getLocationByName(createLocationDto.location_name);
+      const response = await this.helper.buildResponse(true, null, newLocation);
       return response;
     } catch (error) {
       console.debug(`Failed to verify token: ${error}`);

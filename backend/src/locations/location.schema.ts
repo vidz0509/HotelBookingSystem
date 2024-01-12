@@ -5,7 +5,7 @@ import { HydratedDocument } from 'mongoose';
 export type LocationsDocument = HydratedDocument<Location>;
 
 @Schema()
-export class location {
+export class Location {
 
   _id: string;
 
@@ -29,4 +29,4 @@ export class location {
   isActive: boolean;
 }
 
-export const CountrySchema = SchemaFactory.createForClass(Location);
+export const LocationSchema = SchemaFactory.createForClass(Location);
