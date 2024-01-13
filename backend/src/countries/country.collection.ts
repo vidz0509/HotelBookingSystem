@@ -17,6 +17,7 @@ export class CountryCollection {
 
     async createCountry(createCountryDto: CreateCountryDto) {
         const newCountry = await new this.countryModel({
+            country_code: createCountryDto.country_code,
             country_name: createCountryDto.country_name,
             country_image: createCountryDto.country_image,
 

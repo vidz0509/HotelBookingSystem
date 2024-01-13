@@ -6,6 +6,10 @@ export class CreateCountryDto {
 
     @IsString()
     @IsNotEmpty()
+    readonly country_code: string;
+
+    @IsString()
+    @IsNotEmpty()
     readonly country_name: string;
   
     @IsString()

@@ -7,6 +7,10 @@ export class CreateLocationDto {
 
     @IsString()
     @IsNotEmpty()
+    readonly location_code: string;
+
+    @IsString()
+    @IsNotEmpty()
     readonly location_name: string;
   
     @IsString()

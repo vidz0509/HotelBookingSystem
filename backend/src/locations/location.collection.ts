@@ -18,6 +18,7 @@ export class LocationCollection {
     async createLocation(createLocationDto: CreateLocationDto) {
         const newLocation = await new this.LocationModel({
             country_id: createLocationDto.country_id,
+            location_code: createLocationDto.location_code,
             location_name: createLocationDto.location_name,
             location_image: createLocationDto.location_image,
 

@@ -9,6 +9,11 @@ export class Country {
 
   _id: string;
 
+  @IsNotEmpty()
+  @Prop({ required: true })
+  country_code: string;
+
+  @IsNotEmpty()
   @Prop({ required: true })
   country_name: string;
 

@@ -12,6 +12,11 @@ export class Location {
   @Prop()
   country_id: string;
 
+  @IsNotEmpty()
+  @Prop({ required: true })
+  location_code: string;
+
+  @IsNotEmpty()
   @Prop({ required: true })
   location_name: string;
 
