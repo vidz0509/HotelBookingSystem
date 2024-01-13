@@ -74,13 +74,19 @@
     font-weight: 700;
 }
 
-.field-group input {
+.field-group input,
+.react-date-picker__wrapper input {
     border: 0;
-    border-bottom: 2px solid #932595;
     background-color: transparent;
     width: 100%;
     color: #932595;
+    font-size: 14px;
     font-family: "Poppins", sans-serif;
+}
+
+.field-group input:not(.react-date-picker__wrapper input) {
+    border-bottom: 2px solid #932595;
+    height: 33px;
 }
 
 .field-group input:focus-visible {
@@ -94,7 +100,7 @@
     padding: 0;
 }
 
-#search_hotel img{
+#search_hotel img {
     transition: ease-in-out 0.2s;
 }
 
@@ -103,6 +109,72 @@
 }
 
 /* Datepicker CSS */
-.react-calendar__tile{
-    font-family: "Poppins",sans-serif;
+
+.react-date-picker{
+    cursor: pointer;
+}
+.react-calendar__tile,
+.react-calendar__navigation button {
+    font-family: "Poppins", sans-serif;
+}
+
+.react-calendar__month-view__days__day--weekend,
+.react-calendar__month-view__weekdays__weekday abbr,
+.react-date-picker__inputGroup__divider,
+.react-date-picker__inputGroup__leadingZero {
+    color: #932595;
+}
+
+.react-date-picker__inputGroup__leadingZero{
+    font-size: 14px;
+}
+
+button.react-calendar__navigation__arrow {
+    font-size: 24px;
+}
+
+.react-calendar__tile {
+    border-radius: 100%;
+    max-width: 40px;
+    height: 40px;
+    margin: 3px auto !important;
+}
+
+.react-date-picker__wrapper {
+    border: 0;
+}
+
+.react-date-picker__wrapper {
+    border-bottom: 2px solid #932595;
+}
+
+.react-calendar__navigation button:not(.react-calendar__navigation__label) {
+    border-radius: 100%;
+}
+
+.react-calendar {
+    padding: 15px;
+}
+
+.react-calendar__tile--active {
+    background-color: #932595;
+    color: #fff;
+}
+
+.react-calendar__tile--now {
+    background-color: #000;
+    color: #fff;
+}
+
+.react-calendar {
+    border-color: #f0f0f0;
+    border-radius: 10px;
+}
+
+.react-date-picker__calendar-button__icon{
+    stroke: #932595;
+}
+
+.react-date-picker__clear-button{
+    opacity: 0;
 }
