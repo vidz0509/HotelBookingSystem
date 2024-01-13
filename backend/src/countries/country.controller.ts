@@ -28,4 +28,9 @@ export class CountryController {
     async remove(@Param('id') id: string) {
         return this.countryService.deleteCountry(id);
     }
+
+    @Get('/sortcountries')
+    async sortedCountries(@Query('order') order: string) {
+      return await this.countryService.sortedCountries(order);
+    }
 }

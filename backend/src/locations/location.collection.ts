@@ -20,7 +20,7 @@ export class LocationCollection {
             country_id: createLocationDto.country_id,
             location_name: createLocationDto.location_name,
             location_image: createLocationDto.location_image,
-            
+
             createdAt: new Date(),
             updatedAt: new Date(),
             isDeleted: false,
@@ -51,11 +51,12 @@ export class LocationCollection {
 
     async deleteLocation(locationId: string) {
         return this.LocationModel.deleteOne({ _id: locationId });
-      }
+    }
 
-    // async sortedUsers(order: string): Promise<Country[]> {
-    //     return await this.userModel.aggregate([
-    //         { $sort: { name: order == 'desc' ? -1 : 1 } },
-    //     ]);
-    // }
+    async sortedLocations(order: string): Promise<Location[]> {
+        return await this.LocationModel.aggregate([
+            { $sort: { location_name: order == 'desc' ? -1 : 1 } },
+            // { $set: { createAt: new Date(), isDeleted: true } },
+        ]);
+    }
 }

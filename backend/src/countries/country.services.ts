@@ -2,6 +2,7 @@ import { Injectable, ConflictException, InternalServerErrorException, Unauthoriz
 import { HelpersServices } from '../services/helpers/helpers.services';
 
 import { CountryCollection } from './country.collection';
+import { Country } from './country.schema';
 
 import { CreateCountryDto } from './dto/create.dto';
 import { UpdateCountryDto } from './dto/update.dto';
@@ -53,5 +54,9 @@ export class CountryService {
     let data = await this.countryCollection.deleteCountry(countryId);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
+  }
+
+  async sortedCountries(order: string): Promise<Country[]> {
+    return await this.countryCollection.sortedCountries(order);
   }
 }

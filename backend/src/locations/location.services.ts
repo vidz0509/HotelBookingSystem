@@ -2,6 +2,7 @@ import { Injectable, ConflictException, InternalServerErrorException, Unauthoriz
 import { HelpersServices } from '../services/helpers/helpers.services';
 
 import { LocationCollection } from './location.collection';
+import { Location } from './location.schema';
 
 import { CreateLocationDto } from './dto/create.dto';
 import { UpdateLocationDto } from './dto/update.dto';
@@ -52,8 +53,12 @@ export class LocationService {
 
   async deleteLocation(countryId: string) {
     let data = await this.locationCollection.deleteLocation(countryId);
-    const response =await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, data);
     return response;
+  }
+
+  async sortedLocations(order: string): Promise<Location[]> {
+    return await this.locationCollection.sortedLocations(order);
   }
 }
 

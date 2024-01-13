@@ -52,9 +52,10 @@ export class CountryCollection {
         return this.countryModel.deleteOne({ _id: countryId });
     }
 
-    // async sortedUsers(order: string): Promise<Country[]> {
-    //     return await this.userModel.aggregate([
-    //         { $sort: { name: order == 'desc' ? -1 : 1 } },
-    //     ]);
-    // }
+    async sortedCountries(order: string): Promise<Country[]> {
+        return await this.countryModel.aggregate([
+          { $sort: { country_name: order == 'desc' ? -1 : 1 } },
+        //   { $set: { createAt: new Date(), isDeleted: true } },
+        ]);
+      }
 }

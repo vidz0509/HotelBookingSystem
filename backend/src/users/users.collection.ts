@@ -79,7 +79,8 @@ export class UsersCollection {
 
     async sortedUsers(order: string): Promise<User[]> {
         return await this.userModel.aggregate([
-            { $sort: { name: order == 'desc' ? -1 : 1 } },
+            { $sort: { fullname: order == 'desc' ? -1 : 1 } },
+        //   { $set: { createAt: new Date(), isDeleted: true } },
         ]);
     }
 

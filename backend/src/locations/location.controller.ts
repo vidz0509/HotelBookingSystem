@@ -29,4 +29,9 @@ export class LocationController {
     async remove(@Param('id') id: string) {
         return this.locationService.deleteLocation(id);
     }
+
+    @Get('/sortlocations')
+    async sortedLocations(@Query('order') order: string) {
+      return await this.locationService.sortedLocations(order);
+    }
 }
