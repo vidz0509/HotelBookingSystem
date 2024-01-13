@@ -1,25 +1,25 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateCountryDto } from './dto/create.dto'; 
+import { CreateCountryDto } from './dto/create.dto';
 // import { SignInUserDto } from '../auth/dto/login.dto';
-import { Country } from './country.schema'; 
-import { UpdateCountryDto } from './dto/update.dto'; 
+import { Country } from './country.schema';
+import { UpdateCountryDto } from './dto/update.dto';
 
 @Injectable()
 export class CountryCollection {
 
     constructor(@InjectModel('Country') private countryModel: Model<Country>) { }
 
-    // async getAllUsers(): Promise<Country[]> {
-    //     return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
+    async getAllCountry(): Promise<Country[]> {
+        return await this.countryModel.find();
+    }
 
     async createCountry(createCountryDto: CreateCountryDto) {
         const newCountry = await new this.countryModel({
             country_name: createCountryDto.country_name,
             country_image: createCountryDto.country_image,
-            
+
             createdAt: new Date(),
             updatedAt: new Date(),
             isDeleted: false,
@@ -48,12 +48,9 @@ export class CountryCollection {
         );
     }
 
-    // async deleteUser(userID: string) {
-    //     return this.userModel.deleteOne(
-    //         { _id: userID },
-    //         { $set: { updatedat: new Date(), isDeleted: true } },
-    //     );
-    // }
+    async deleteCountry(countryId: string) {
+        return this.countryModel.deleteOne({ _id: countryId });
+    }
 
     // async sortedUsers(order: string): Promise<Country[]> {
     //     return await this.userModel.aggregate([

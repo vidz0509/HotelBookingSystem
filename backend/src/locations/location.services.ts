@@ -1,7 +1,7 @@
 import { Injectable, ConflictException, InternalServerErrorException, UnauthorizedException, BadRequestException, Logger, ConsoleLogger } from '@nestjs/common';
 import { HelpersServices } from '../services/helpers/helpers.services';
 
-import { LocationCollection } from './location.collection'; 
+import { LocationCollection } from './location.collection';
 
 import { CreateLocationDto } from './dto/create.dto';
 import { UpdateLocationDto } from './dto/update.dto';
@@ -32,15 +32,28 @@ export class LocationService {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
     }
   }
- 
+
   async checkIfLocationExists(location_name: string) {
     const country = await this.locationCollection.getLocationByName(location_name);
     return country;
   }
 
   async updateLocation(userId: string, updateLocationDto: UpdateLocationDto) {
-    let data = await this.locationCollection.updateLocation(userId,updateLocationDto);
+    let data = await this.locationCollection.updateLocation(userId, updateLocationDto);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
+  }
+
+  async getAllLocations(): Promise<any> {
+    let data = await this.locationCollection.getAllLocations();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async deleteLocation(countryId: string) {
+    let data = await this.locationCollection.deleteLocation(countryId);
+    const response =await this.helper.buildResponse(true, null, data);
+    return response;
+  }
 }
-}
+

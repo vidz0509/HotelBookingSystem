@@ -1,10 +1,10 @@
 import { Injectable, ConflictException, InternalServerErrorException, UnauthorizedException, BadRequestException, Logger, ConsoleLogger } from '@nestjs/common';
 import { HelpersServices } from '../services/helpers/helpers.services';
 
-import { CountryCollection } from './country.collection'; 
+import { CountryCollection } from './country.collection';
 
-import { CreateCountryDto } from './dto/create.dto'; 
-import { UpdateCountryDto } from './dto/update.dto'; 
+import { CreateCountryDto } from './dto/create.dto';
+import { UpdateCountryDto } from './dto/update.dto';
 
 @Injectable()
 export class CountryService {
@@ -32,7 +32,7 @@ export class CountryService {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
     }
   }
- 
+
   async checkIfCountryExists(country_name: string) {
     const country = await this.countryCollection.getCountryByName(country_name);
     return country;
@@ -42,5 +42,16 @@ export class CountryService {
     let data = await this.countryCollection.updateCountry(userId, updateCountryDto);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
-}
+  }
+  async getAllCountry(): Promise<any> {
+    let data = await this.countryCollection.getAllCountry();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async deleteCountry(countryId: string) {
+    let data = await this.countryCollection.deleteCountry(countryId);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
 }
