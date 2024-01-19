@@ -1,6 +1,9 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from 'react';
-import { countriesServices } from "services/country"; 
+import { Routes, Route } from "react-router-dom";
+import { countriesServices } from "services/countries";
+import { Link } from "react-router-dom";
+import AddCountry from './add';
 
 const Countries = () => {
 
@@ -10,7 +13,7 @@ const Countries = () => {
   const columnsDataComplex = [
     {
       Header: "Country Code",
-      accessor: "",
+      accessor: "country_code",
     },
     {
       Header: "Country Name",
@@ -19,10 +22,6 @@ const Countries = () => {
     {
       Header: "Country Images",
       accessor: "country_image",
-    },
-    {
-      Header: "Action",
-      accessor: "",
     },
     // {
     //   Header: "Register On",
@@ -36,10 +35,14 @@ const Countries = () => {
       Header: "Status",
       accessor: "isActive",
     },
+    {
+      Header: "Action",
+      accessor: "_id",
+    },
   ];
 
-
   useEffect(() => {
+    debugger;
     getCountries();
   }, []);
 
@@ -52,10 +55,18 @@ const Countries = () => {
   return (
     <>
       {!loading &&
-        <ComplexTable
-          columnsData={columnsDataComplex}
-          tableData={countriesData}
-        />
+        <div className="list-table countries">
+          <div className="add-row px-6 mb-5 text-align-right">
+            <Link to="add" className="btn btn-primary">Add Country</Link>
+          </div>
+          <ComplexTable
+            columnsData={columnsDataComplex}
+            tableData={countriesData}
+          />
+          <Routes>
+            <Route path='/add' element={<AddCountry />} />
+          </Routes>
+        </div>
       }
     </>
   );

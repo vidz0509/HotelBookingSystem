@@ -20,6 +20,11 @@ export class CountryController {
         return this.countryService.updateCountry(id, updateCountryDto);
     }
 
+    @Get(':id')
+    async getById(@Param('id') id: string) {
+      return this.countryService.getCountryById(id);
+    }
+
     @Get()
     async findAll() {
         return await this.countryService.getAllCountry();

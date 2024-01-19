@@ -6,15 +6,15 @@ import {
   useSortBy,
   useTable,
 } from "react-table";
-import { MdCheckCircle, MdCancel } from "react-icons/md";
-import { useMemo, useState } from "react";
+import { Link } from "react-router-dom";
+import { MdCheckCircle, MdCancel, MdEditSquare, MdEdit, MdDelete } from "react-icons/md";
+import { useMemo } from "react";
 
 const ComplexTable = (props) => {
   const { columnsData, tableData } = props;
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
 
-  const [currentIndex, setCurentIndex] = useState(1);
 
   const tableInstance = useTable(
     {
@@ -53,7 +53,7 @@ const ComplexTable = (props) => {
     prepareRow,
     initialState,
   } = tableInstance;
-  initialState.pageSize = 5;
+  initialState.pageSize = 20;
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
@@ -68,7 +68,7 @@ const ComplexTable = (props) => {
                     key={index}
                     className="border-b border-gray-200 pr-28 pb-[10px] text-start dark:!border-navy-700"
                   >
-                    <p className="text-xs tracking-wide text-gray-600">
+                    <p className="text-md tracking-wide text-gray-600">
                       {column.render("Header")}
                     </p>
                   </th>
@@ -93,16 +93,25 @@ const ComplexTable = (props) => {
                               <MdCancel className="text-red-500" />
                             )}
                           </div>
-                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          <p className="text-xl font-bold text-navy-700 dark:text-white">
                             {cell.value}
                           </p>
                         </div>
                       );
                     } else if (cell.column.Header === "Register On") {
                       data = (
-                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                        <p className="text-md font-bold text-navy-700 dark:text-white">
                           {formatDate(cell.value)}
                         </p>
+                      );
+                    } else if (cell.column.Header === "Action") {
+                      data = (
+                        <div className="text-lg font-bold flex action-btn-wrap">
+                          <Link to={`edit/${cell.value}`} className="action-btn">
+                            <MdEditSquare className="text-navy-700" />
+                          </Link>
+                          <span className="action-btn"><MdDelete className="text-red-700" /></span>
+                        </div>
                       );
                     } else {
                       data = (

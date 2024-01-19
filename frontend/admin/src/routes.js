@@ -14,11 +14,14 @@ import ForgotPassword from "views/auth/ForgotPassword";
 // Icon Imports
 import Customers from "views/admin/customers";
 import Countries from "views/admin/countries";
+import AddCountry from "views/admin/countries/add";
+import EditCountry from "views/admin/countries/edit";
 import Bookings from "views/admin/bookings/customers";
 import Paymentstatus from "views/admin/payment status/customers";
 import Reports from "views/admin/reports/customers";
 import Reviews from "views/admin/reviews/customers";
-import Changepassword from"views/admin/changepassword";
+import Changepassword from "views/admin/changepassword";
+
 import {
   MdHome,
   MdSupervisedUserCircle,
@@ -38,6 +41,8 @@ const routes = [
     path: "dashboard",
     icon: <MdHome className="h-6 w-6" />,
     component: <MainDashboard />,
+    addInMenu: true,
+
   },
   {
     name: "Profile",
@@ -45,6 +50,7 @@ const routes = [
     path: "profile",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Profile />,
+    addInMenu: false,
   },
   {
     name: "Password",
@@ -52,6 +58,7 @@ const routes = [
     path: "change-password",
     icon: <MdPerson className="h-6 w-6" />,
     component: <Changepassword />,
+    addInMenu: false,
   },
   {
     name: "Log In",
@@ -59,6 +66,7 @@ const routes = [
     path: "login",
     icon: <MdLock className="h-6 w-6" />,
     component: <LogIn />,
+    addInMenu: false,
   },
   {
     name: "Forgot Password",
@@ -66,6 +74,7 @@ const routes = [
     path: "forgot-password",
     icon: <MdLock className="h-6 w-6" />,
     component: <ForgotPassword />,
+    addInMenu: false,
   },
   {
     name: "Customers",
@@ -74,6 +83,7 @@ const routes = [
     icon: <MdSupervisedUserCircle className="h-6 w-6" />,
     component: <Customers />,
     secondary: true,
+    addInMenu: true,
   },
   {
     name: "Countries",
@@ -82,6 +92,26 @@ const routes = [
     icon: <MdPublic className="h-6 w-6  " />,
     component: <Countries />,
     secondary: true,
+    addInMenu: true
+  },
+  {
+    name: "Countries",
+    layout: "/admin",
+    path: "countries/add",
+    icon: <MdPublic className="h-6 w-6" />,
+    component: <AddCountry />,
+    secondary: true,
+    addInMenu: false
+  },
+
+  {
+    name: "Countries",
+    layout: "/admin",
+    path: "countries/edit/:id",
+    icon: <MdPublic className="h-6 w-6" />,
+    component: <EditCountry />,
+    secondary: true,
+    addInMenu: false
   },
   {
     name: "Bookings",
@@ -90,6 +120,7 @@ const routes = [
     icon: <MdMenuBook className="h-6 w-6" />,
     component: <Bookings />,
     secondary: true,
+    addInMenu: true,
   },
   {
     name: "Payment status",
@@ -98,6 +129,7 @@ const routes = [
     icon: <MdPayments className="h-6 w-6" />,
     component: <Paymentstatus />,
     secondary: true,
+    addInMenu: true,
   },
   {
     name: "Reports",
@@ -106,6 +138,7 @@ const routes = [
     icon: <MdReport className="h-6 w-6" />,
     component: <Reports />,
     secondary: true,
+    addInMenu: true,
   },
   {
     name: "Reviews",
@@ -114,6 +147,7 @@ const routes = [
     icon: <MdRateReview className="h-6 w-6" />,
     component: <Reviews />,
     secondary: true,
+    addInMenu: true,
   },
 ];
 export default routes;

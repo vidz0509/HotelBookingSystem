@@ -44,6 +44,13 @@ export class CountryService {
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
+
+  async getCountryById(id: string) {
+    const country = await this.countryCollection.getCountryById(id);
+    const response = await this.helper.buildResponse(true, null, country);
+    return response;
+  }
+
   async getAllCountry(): Promise<any> {
     let data = await this.countryCollection.getAllCountry();
     const response = await this.helper.buildResponse(true, null, data);

@@ -15,6 +15,10 @@ export class CountryCollection {
         return await this.countryModel.find();
     }
 
+    async getCountryById(id: string): Promise<Country> {
+        return this.countryModel.findById(id);
+    }
+
     async createCountry(createCountryDto: CreateCountryDto) {
         const newCountry = await new this.countryModel({
             country_code: createCountryDto.country_code,
@@ -29,10 +33,9 @@ export class CountryCollection {
         return newCountry.save();
     }
 
-    // async getUserByName(name: string): Promise<Country> {
-    //     return await this.userModel.findOne({ name: name }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
-
+    async getCountryByCode(country_code: string): Promise<Country> {
+        return this.countryModel.findOne({ country_code: country_code });
+      }
     // async getUser(id: string) {
     //     return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     // }
@@ -55,8 +58,8 @@ export class CountryCollection {
 
     async sortedCountries(order: string): Promise<Country[]> {
         return await this.countryModel.aggregate([
-          { $sort: { country_name: order == 'desc' ? -1 : 1 } },
-        //   { $set: { createAt: new Date(), isDeleted: true } },
+            { $sort: { country_name: order == 'desc' ? -1 : 1 } },
+            //   { $set: { createAt: new Date(), isDeleted: true } },
         ]);
-      }
+    }
 }
