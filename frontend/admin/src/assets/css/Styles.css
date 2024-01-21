@@ -7,3 +7,27 @@
 .dark-border {
 	border-color: #979393;
 }
+
+.text-align-right {
+    text-align: right;
+}
+
+.btn {
+    border: 1px solid #932595 ;
+    padding: 10px 20px;
+    font-size: 14px;
+    background-color: #932595 ;
+    color: #fff;
+    border-radius: 10px;
+    transition: all ease-in 0.3s;
+}
+
+.btn:hover {
+    background-color: transparent;
+    color: #932595 ;
+}
+
+.action-btn {
+    font-size: 22px;
+    margin-right: 10px;
+}

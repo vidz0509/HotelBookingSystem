@@ -13,25 +13,36 @@ import ForgotPassword from "views/auth/ForgotPassword";
 
 // Icon Imports
 import Customers from "views/admin/customers";
+
 import Countries from "views/admin/countries";
 import AddCountry from "views/admin/countries/add";
 import EditCountry from "views/admin/countries/edit";
+
+import Locations from "views/admin/locations";
+import AddLocation from "views/admin/locations/add";
+import EditLocation from "views/admin/locations/edit"; 
+
 import Bookings from "views/admin/bookings/customers";
+
 import Paymentstatus from "views/admin/payment status/customers";
+
 import Reports from "views/admin/reports/customers";
+
 import Reviews from "views/admin/reviews/customers";
+
 import Changepassword from "views/admin/changepassword";
 
 import {
   MdHome,
   MdSupervisedUserCircle,
-  MdPerson,
   MdMenuBook,
-  MdPayments,
+  MdPerson,
   MdLock,
-  MdReport,
   MdPublic,
+  MdPayments,
+  MdReport,
   MdRateReview,
+  MdMyLocation,
 } from "react-icons/md";
 
 const routes = [
@@ -110,6 +121,34 @@ const routes = [
     path: "countries/edit/:id",
     icon: <MdPublic className="h-6 w-6" />,
     component: <EditCountry />,
+    secondary: true,
+    addInMenu: false
+  },
+  {
+    name: "Locations",
+    layout: "/admin",
+    path: "locations",
+    icon: <MdMyLocation className="h-6 w-6" />,
+    component: <Locations />,
+    secondary: true,
+    addInMenu: true,
+  },
+  {
+    name: "Locations",
+    layout: "/admin",
+    path: "locations/add",
+    icon: <MdPublic className="h-6 w-6" />,
+    component: <AddLocation />,
+    secondary: true,
+    addInMenu: false
+  },
+
+  {
+    name: "Locations",
+    layout: "/admin",
+    path: "locations/edit/:id",
+    icon: <MdPublic className="h-6 w-6" />,
+    component: <EditLocation />,
     secondary: true,
     addInMenu: false
   },
