@@ -10,14 +10,14 @@ const Countries = () => {
   const [countriesData, setCountriesData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const columnsDataComplex = [
+  const columnsDataComplex =  [
     {
       Header: "Country Code",
       accessor: "country_code",
     },
     {
       Header: "Country Name",
-      accessor: "country_name",
+      accessor: "country_names",
     },
     {
       Header: "Country Images",
