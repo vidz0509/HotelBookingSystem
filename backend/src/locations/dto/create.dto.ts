@@ -9,8 +9,8 @@ export class CreateLocationDto {
     @IsNotEmpty()
     readonly location_code: string;
 
-    @IsString()
-    @IsNotEmpty()
+    // @IsString()
+    // @IsNotEmpty()
     readonly location_name: string;
   
     @IsString()

@@ -17,8 +17,8 @@ export class Country {
   @Prop({ required: true })
   country_name: string;
 
-  @IsNotEmpty()
-  @Prop({ required: true })
+  // @IsNotEmpty()
+  // @Prop({ required: true })
   country_image: string[];
 
   @Prop()

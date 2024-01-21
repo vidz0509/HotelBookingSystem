@@ -12,7 +12,7 @@ export class CreateCountryDto {
     @IsNotEmpty()
     readonly country_name: string;
   
-    @IsString()
-    @IsNotEmpty()
+    // @IsString()
+    // @IsNotEmpty()
     readonly country_image: string[];
 }

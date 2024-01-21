@@ -20,8 +20,8 @@ export class Location {
   @Prop({ required: true })
   location_name: string;
 
-  @IsNotEmpty()
-  @Prop({ required: true })
+  // @IsNotEmpty()
+  // @Prop({ required: true })
   location_images: string[];
 
   @Prop()
