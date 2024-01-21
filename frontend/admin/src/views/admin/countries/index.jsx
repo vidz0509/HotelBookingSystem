@@ -17,7 +17,7 @@ const Countries = () => {
     },
     {
       Header: "Country Name",
-      accessor: "country_names",
+      accessor: "country_name",
     },
     {
       Header: "Country Images",
