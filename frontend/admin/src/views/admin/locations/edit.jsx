@@ -50,6 +50,7 @@ export default function EditLocation() {
     const result = await locationsServices.getLocationById(locationId);
     if (result.isSuccessful) {
       // setLocationData(result.data);
+      setCountryId(result.data?.country_id);
       setLocationCode(result.data?.location_code);
       setLocationName(result.data?.location_name);
     }
@@ -125,7 +126,7 @@ export default function EditLocation() {
           <option value="">-- Select Country --</option>
           {
             countriesData && countriesData.length > 0 && countriesData.map((item) =>
-              <option value={item._id}>
+              <option value={item._id} selected={item._id===countryId}>
                 {item.country_name}
               </option>
             )
