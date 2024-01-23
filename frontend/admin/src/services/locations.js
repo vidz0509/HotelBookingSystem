@@ -24,7 +24,7 @@ export const locationsServices = {
 
 
 async function getAllLocations() {
-    const url = `${process.env.REACT_APP_API_URL}/locations`;
+    const url = `${process.env.REACT_APP_API_URL}/location`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
@@ -34,7 +34,7 @@ async function getAllLocations() {
 }
 
 async function addLocation(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/locations`;
+    const url = `${process.env.REACT_APP_API_URL}/location`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -44,7 +44,7 @@ async function addLocation(requestBody) {
 }
 
 async function editLocation(id,requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/locations/${id}`;
+    const url = `${process.env.REACT_APP_API_URL}/location/${id}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {

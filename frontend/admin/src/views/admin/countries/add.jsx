@@ -30,6 +30,7 @@ export default function AddCountry() {
     event.preventDefault();
     setCountryNameError('');
     setCountryCodeError('');
+    setSuccessful('');
     if (validation.isEmpty(countryName)) {
       setCountryNameError("Please enter valid country name.");
       return false;
@@ -50,7 +51,7 @@ export default function AddCountry() {
       return <Navigate to="/admin/countries" replace />
     } else {
       setError(result.errorMessage);
-      setSuccessful(result.errorMessage);
+      // setSuccessful(result.errorMessage);
       setBtnDisabled(false);
     }
   }

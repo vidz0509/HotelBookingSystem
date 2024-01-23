@@ -3,14 +3,14 @@ import InputField from "components/fields/InputField";
 import { countriesServices } from "services/countries";  
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 export default function EditCountry() {
 
   const params = useParams();
   const countryId = params.id;
 
-  const [countryData, setCountryData] = useState(null);
+  // const [countryData, setCountryData] = useState(null);
 
   const [countryName, setCountryName] = useState('');
   const [countryCode, setCountryCode] = useState('');
@@ -27,10 +27,10 @@ export default function EditCountry() {
     // const result = await countriesServices.getCountryById(countryId);
   }, [countryId]);
 
-  const getCountryById = async () => {
+  const getCountryById = async (countryId) => {
     const result = await countriesServices.getCountryById(countryId);
     if (result.isSuccessful) {
-      setCountryData(result.data);
+      // setCountryData(result.data);
       setCountryCode(result.data?.country_code);
       setCountryName(result.data?.country_name);
     }

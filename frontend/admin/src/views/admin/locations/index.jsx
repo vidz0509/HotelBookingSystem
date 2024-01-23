@@ -42,7 +42,7 @@ const Countries = () => {
   ];
 
   useEffect(() => {
-    debugger;
+    // debugger;
     getLocations();
   }, []);
 

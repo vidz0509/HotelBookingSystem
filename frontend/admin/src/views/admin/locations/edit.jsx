@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import InputField from "components/fields/InputField";
-import { locationsServices } from "services/locations"; 
+import Dropdown from "components/dropdown";
+import { countriesServices } from "services/countries";
+import { locationsServices } from "../../../services/locations";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from 'react-router-dom';
@@ -9,8 +11,12 @@ export default function EditLocation() {
 
   const params = useParams();
   const locationId = params.id;
+  const [countriesData, setCountriesData] = useState('');
+  const [countryId, setCountryId] = useState('');
+  const [countryIdError, setCountryIdError] = useState('');
 
-  const [locationData, setLocationData] = useState(null);
+
+  // const [locationData, setLocationData] = useState(null);
 
   const [locationName, setLocationName] = useState('');
   const [locationCode, setLocationCode] = useState('');
@@ -23,14 +29,27 @@ export default function EditLocation() {
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
+    getCountries();
+  }, []);
+
+  const getCountries = async () => {
+    const result = await countriesServices.getAllCountries();
+    if (result.isSuccessful) {
+      setCountriesData(result.data);
+    }
+  }
+
+  useEffect(() => {
     getLocationById(locationId);
     // const result = await countriesServices.getLocationById(locationId);
   }, [locationId]);
 
-  const getLocationById = async () => {
+  
+
+  const getLocationById = async (locationId) => {
     const result = await locationsServices.getLocationById(locationId);
     if (result.isSuccessful) {
-      setLocationData(result.data);
+      // setLocationData(result.data);
       setLocationCode(result.data?.location_code);
       setLocationName(result.data?.location_name);
     }
@@ -41,6 +60,12 @@ export default function EditLocation() {
     setLocationName(value);
   }
 
+  const handleCountryIdChange = (event) => {
+    const value = event.target.value;
+    setCountryId(value);
+  }
+
+
   const handleLocationCodeChange = (event) => {
     const value = event.target.value;
     setLocationCode(value);
@@ -49,9 +74,14 @@ export default function EditLocation() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLocationNameError('');
+
     setLocationCodeError('');
     if (validation.isEmpty(locationName)) {
       setLocationNameError("Please enter valid location name.");
+      return false;
+    }
+    if (validation.isEmpty(countryId)) {
+      setCountryIdError("Please select valid country name.");
       return false;
     }
     if (validation.isEmpty(locationCode)) {
@@ -60,6 +90,7 @@ export default function EditLocation() {
     }
     setBtnDisabled(true);
     const requestBody = {
+      country_id: countryId,
       location_name: locationName,
       location_code: locationCode,
     };
@@ -76,7 +107,6 @@ export default function EditLocation() {
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
       <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
         <InputField
           variant="auth"
@@ -89,6 +119,29 @@ export default function EditLocation() {
           state={locationNameError !== "" ? "error" : ""}
           errorMessage={locationNameError !== "" ? locationNameError : ""}
           value={locationName}
+          maxLength={30}
+        />
+         <select id="countryId" name="countryId" onChange={handleCountryIdChange}>
+          <option value="">-- Select Country --</option>
+          {
+            countriesData && countriesData.length > 0 && countriesData.map((item) =>
+              <option value={item._id}>
+                {item.country_name}
+              </option>
+            )
+          }
+        </select>
+        <Dropdown
+          variant="auth"
+          extra="mb-3"
+          label="Country Id*"
+          placeholder="Country Id*"
+          id="countryId"
+          type="text"
+          onChange={handleCountryIdChange}
+          state={countryIdError !== "" ? "error" : ""}
+          errorMessage={countryIdError !== "" ? countryIdError : ""}
+          value={countryId}
           maxLength={30}
         />
         <InputField
@@ -104,7 +157,6 @@ export default function EditLocation() {
           value={locationCode}
           maxLength={5}
         />
-        {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
           </div>
