@@ -57,8 +57,8 @@ export class LocationService {
     return response;
   }
 
-  async deleteLocation(countryId: string) {
-    let data = await this.locationCollection.deleteLocation(countryId);
+  async deleteLocation(locationId: string) {
+    let data = await this.locationCollection.deleteLocation(locationId);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
