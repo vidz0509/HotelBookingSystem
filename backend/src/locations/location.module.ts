@@ -4,7 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Location, LocationSchema, LocationsDocument } from './location.schema'; 
 
 import { LocationCollection } from './location.collection';
-import { LocationController } from './location.controller';
+import { LocationsController } from './locations.controller';
 import { LocationService } from './location.services';
 
 import { HelpersServices } from '../services/helpers/helpers.services';
@@ -18,7 +18,7 @@ import { HelpersServices } from '../services/helpers/helpers.services';
             },
         ]),
     ],
-    controllers: [LocationController],
+    controllers: [LocationsController],
     providers: [LocationService, LocationCollection, HelpersServices],
 })
 

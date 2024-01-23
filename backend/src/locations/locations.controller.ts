@@ -3,8 +3,8 @@ import { CreateLocationDto } from './dto/create.dto';
 import { LocationService } from './location.services';
 import { UpdateLocationDto } from './dto/update.dto';
 
-@Controller('location')
-export class LocationController {
+@Controller('locations')
+export class LocationsController {
 
     constructor(private readonly locationService: LocationService) { }
 

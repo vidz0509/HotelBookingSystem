@@ -5,7 +5,7 @@ import { locationsServices } from "services/locations";
 import { Link } from "react-router-dom";
 import AddLocation from './add';
 
-const Countries = () => {
+const Locations = () => {
 
   const [locationsData, setLocationsData] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -72,4 +72,4 @@ const Countries = () => {
   );
 };
 
-export default Countries;
+export default Locations;
