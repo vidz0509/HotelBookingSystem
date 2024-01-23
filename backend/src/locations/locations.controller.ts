@@ -25,6 +25,11 @@ export class LocationsController {
         return this.locationService.updateLocation(id, updateLocationDto);
     }
 
+    @Get(':id')
+    async getById(@Param('id') id: string) {
+      return this.locationService.getLocationById(id);
+    }
+
     @Delete(':id')
     async remove(@Param('id') id: string) {
         return this.locationService.deleteLocation(id);

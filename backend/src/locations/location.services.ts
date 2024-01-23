@@ -45,6 +45,12 @@ export class LocationService {
     return response;
   }
 
+  async getLocationById(id: string) {
+    const location = await this.locationCollection.getLocationById(id);
+    const response = await this.helper.buildResponse(true, null, location);
+    return response;
+  }
+
   async getAllLocations(): Promise<any> {
     let data = await this.locationCollection.getAllLocations();
     const response = await this.helper.buildResponse(true, null, data);

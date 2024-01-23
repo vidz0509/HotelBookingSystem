@@ -15,6 +15,10 @@ export class LocationCollection {
         return await this.LocationModel.find();
     }
 
+    async getLocationById(id: string): Promise<Location> {
+        return this.LocationModel.findById(id);
+    }
+
     async createLocation(createLocationDto: CreateLocationDto) {
         const newLocation = await new this.LocationModel({
             country_id: createLocationDto.country_id,
