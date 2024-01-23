@@ -1,14 +1,16 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
-import { locationsServices } from "services/locations"; 
+import { locationsServices } from "services/locations";
 import { Link } from "react-router-dom";
 import AddLocation from './add';
+import Swal from 'sweetalert2';
 
 const Locations = () => {
 
   const [locationsData, setLocationsData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [locationId, setLocationId] = useState('');
 
   const columnsDataComplex = [
     {
@@ -52,6 +54,38 @@ const Locations = () => {
     setLoading(false);
   }
 
+  const deleteLocation = (locationId) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Delete Location",
+      text: "Are you sure you want to delete location?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(locationId);
+        locationsServices.deleteLocation(locationId).then((result) => {
+          if (result.isSuccessful) {
+            Swal.fire({
+              title: "Deleted",
+              text: "Location has been deleted successfully.",
+              icon: "success"
+            });
+            getLocations();
+          } else {
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong. Please try again.",
+              icon: "error"
+            });
+          }
+        }).catch((errMsg) => {
+          console.error(errMsg);
+        })
+      }
+    });
+  }
+
   return (
     <>
       {!loading &&
@@ -62,6 +96,9 @@ const Locations = () => {
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={locationsData}
+            element='locations'
+            deleteElement={deleteLocation}
+            setLocationId={setLocationId}
           />
           <Routes>
             <Route path='/add' element={<AddLocation />} />

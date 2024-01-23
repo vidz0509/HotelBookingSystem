@@ -53,9 +53,9 @@ async function editLocation(id,requestBody) {
     });
 }
 
-async function deleteLocation(id,requestBody) {
+async function deleteLocation(id) {
     const url = `${process.env.REACT_APP_API_URL}/locations/${id}`;
-    return await axios.delete(url, requestBody).then(response => {
+    return await axios.delete(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

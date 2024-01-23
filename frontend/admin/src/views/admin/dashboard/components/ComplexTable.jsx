@@ -15,7 +15,6 @@ const ComplexTable = (props) => {
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
 
-
   const tableInstance = useTable(
     {
       columns,
@@ -54,6 +53,10 @@ const ComplexTable = (props) => {
     initialState,
   } = tableInstance;
   initialState.pageSize = 20;
+
+  const deleteTableRow = (rowId) => {
+    props.deleteElement(rowId);
+  }
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
@@ -110,7 +113,7 @@ const ComplexTable = (props) => {
                           <Link to={`edit/${cell.value}`} className="action-btn">
                             <MdEditSquare className="text-navy-700" />
                           </Link>
-                          <span className="action-btn"><MdDelete className="text-red-700" /></span>
+                          <span className="action-btn" onClick={(e) => deleteTableRow(cell.value)}><MdDelete className="text-red-700" /></span>
                         </div>
                       );
                     } else {
