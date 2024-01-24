@@ -21,6 +21,9 @@ export class Hotels {
 
   @IsNotEmpty()
   @Prop({ required: true })
+
+  hotel_code: string;
+  
   hotel_address: string;
   
   average_rating: string;

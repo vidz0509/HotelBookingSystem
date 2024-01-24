@@ -22,6 +22,10 @@ import Locations from "views/admin/locations";
 import AddLocation from "views/admin/locations/add";
 import EditLocation from "views/admin/locations/edit"; 
 
+import Hotels from "views/admin/hotels";
+import AddHotel from "views/admin/hotels/add";
+import EditHotel from "views/admin/hotels/edit"; 
+
 import Bookings from "views/admin/bookings/customers";
 
 import Paymentstatus from "views/admin/payment status/customers";
@@ -40,6 +44,7 @@ import {
   MdLock,
   MdPublic,
   MdPayments,
+  MdHotel,
   MdReport,
   MdRateReview,
   MdMyLocation,
@@ -149,6 +154,35 @@ const routes = [
     path: "locations/edit/:id",
     icon: <MdPublic className="h-6 w-6" />,
     component: <EditLocation />,
+    secondary: true,
+    addInMenu: false
+  },
+  
+  {
+    name: "Hotels",
+    layout: "/admin",
+    path: "hotels",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <Hotels />,
+    secondary: true,
+    addInMenu: true,
+  },
+  {
+    name: "Hotels",
+    layout: "/admin",
+    path: "hotels/add",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <AddHotel />,
+    secondary: true,
+    addInMenu: false
+  },
+
+  {
+    name: "Hotels",
+    layout: "/admin",
+    path: "hotels/edit/:id",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <EditHotel />,
     secondary: true,
     addInMenu: false
   },

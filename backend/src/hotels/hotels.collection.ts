@@ -23,6 +23,7 @@ export class HotelsCollection {
             
             location_id:createHotelDto.location_id,
             country_id:createHotelDto.country_id,
+            hotel_code: createHotelDto.hotel_code,
             hotel_name: createHotelDto.hotel_name,
             hotel_address: createHotelDto.hotel_address,
             average_rating:createHotelDto.average_rating,
