@@ -4,11 +4,15 @@ import { Routes, Route } from "react-router-dom";
 import { countriesServices } from "services/countries";
 import { Link } from "react-router-dom";
 import AddCountry from './add';
+import Swal from "sweetalert2";
+
 
 const Countries = () => {
 
   const [countriesData, setCountriesData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [countryId,setCountryId] = useState('');
+
 
   const columnsDataComplex =  [
     {
@@ -51,7 +55,37 @@ const Countries = () => {
     setCountriesData(response.data);
     setLoading(false);
   }
-
+  const deleteCountry = (countryId) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Delete Country",
+      text: "Are you sure you want to delete country?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(countryId);
+        countriesServices.deleteCountry(countryId).then((result) => {
+          if (result.isSuccessful) {
+            Swal.fire({
+              title: "Deleted",
+              text: "Country has been deleted successfully.",
+              icon: "success"
+            });
+            getCountries();
+          } else {
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong. Please try again.",
+              icon: "error"
+            });
+          }
+        }).catch((errMsg) => {
+          console.error(errMsg);
+        })
+      }
+    });
+  }
   return (
     <>
       {!loading &&
@@ -62,6 +96,9 @@ const Countries = () => {
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={countriesData}
+            element='countries'
+            deleteElement={deleteCountry}
+            setCountryId={setCountryId}
           />
           <Routes>
             <Route path='/add' element={<AddCountry />} />

@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Model } from "mongoose";
+import { Model, model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateLocationDto } from './dto/create.dto';
 // import { SignInUserDto } from '../auth/dto/login.dto';

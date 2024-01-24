@@ -4,7 +4,8 @@ export const countriesServices = {
     getAllCountries,
     addCountry,
     editCountry,
-    getCountryById
+    getCountryById,
+    deleteCountry
 };
 
 async function getAllCountries() {
@@ -40,6 +41,15 @@ async function editCountry(id,requestBody) {
 async function getCountryById(id) {
     const url = `${process.env.REACT_APP_API_URL}/countries/${id}`;
     return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+async function deleteCountry(id) {
+    const url = `${process.env.REACT_APP_API_URL}/countries/${id}`;
+    return await axios.delete(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
