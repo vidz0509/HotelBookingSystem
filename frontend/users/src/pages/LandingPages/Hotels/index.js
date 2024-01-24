@@ -13,10 +13,11 @@ import Testimonials from "pages/Home/sections/Testimonials";
 import Download from "pages/Home/sections/Download";
 import SearchForm from "pages/Home/sections/SearchForm";
 import routes from "routes";
+
 import footerRoutes from "footer.routes";
 import bgImage from "assets/images/vestrahorn.webp";
 
-function Home() {
+function Hotels() {
   return (
     <>
       <MKBox position="fixed" top="0.5rem" width="100%">
@@ -92,4 +93,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default Hotels;

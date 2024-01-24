@@ -95,8 +95,12 @@ const routes = [
     component: <ChnagePasswordBasic />,
     addInMenu: false,
   },
+  {
+    name: "Hotel List",
+    route: "/hotels",
+    component: <ChnagePasswordBasic />,
+    addInMenu: false,
+  },
 ];
 
 export default routes;
-
-(authServices.checkIfUserLoggedIn() && name === 'sign in') ? 'Account' : name
