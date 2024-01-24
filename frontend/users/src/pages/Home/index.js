@@ -44,7 +44,7 @@ import routes from "routes";
 import footerRoutes from "footer.routes";
 
 // Images
-import bgImage from "assets/images/banner.jpg";
+import bgImage from "assets/images/vestrahorn.webp";
 
 function Home() {
   return (
@@ -61,7 +61,7 @@ function Home() {
         sx={{
           backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "top",
+          backgroundPosition: "center",
           display: "grid",
           placeItems: "center",
         }}
