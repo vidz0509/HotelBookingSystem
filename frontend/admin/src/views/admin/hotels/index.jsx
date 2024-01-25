@@ -6,13 +6,11 @@ import { Link } from "react-router-dom";
 import AddHotel from "./add";
 import Swal from "sweetalert2";
 
-
 const Hotels = () => {
 
   const [hotelsData, setHotelsData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [hotelId,setHotelId] = useState('');
-
 
   const columnsDataComplex =  [
     {
@@ -58,7 +56,7 @@ const Hotels = () => {
   ];
 
   useEffect(() => {
-    debugger;
+    // debugger;
     getHotels();
   }, []);
 

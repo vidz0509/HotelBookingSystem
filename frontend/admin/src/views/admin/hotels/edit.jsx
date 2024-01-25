@@ -6,7 +6,6 @@ import { locationsServices } from "services/locations";
 import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
 
@@ -144,7 +143,7 @@ export default function EditHotel() {
       location_id: locationId,
       hotel_name: hotelName,
       hotel_code: hotelCode,
-      hotel_address: hotelAddress
+      hotel_address: hotelAddress,
     };
     const result = await hotelsServices.editHotel(hotelId,requestBody);
     if (result.isSuccessful) {

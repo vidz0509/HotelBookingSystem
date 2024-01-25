@@ -36,7 +36,7 @@ export default function AddHotel() {
     getCountries();
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { 
     getLocations();
   }, []);
 
@@ -87,7 +87,7 @@ export default function AddHotel() {
     setHotelCodeError('');
     setHotelAddressError('');
     setSuccessful('');
-    
+
     if (validation.isEmpty(hotelName)) {
       setHotelNameError("Please enter valid hotel name.");
       return false;
@@ -119,13 +119,13 @@ export default function AddHotel() {
       location_id: locationId,
       hotel_name: hotelName,
       hotel_code: hotelCode,
-      hotel_address: hotelAddress
+      hotel_address: hotelAddress,
     };
     const result = await hotelsServices.addHotel(requestBody);
     if (result.isSuccessful) {
       setSuccessful("Hotel added successfully")
       setBtnDisabled(false);
-      return <Navigate to="/admin/countries" replace />
+      return <Navigate to="/admin/hotels" replace />
     } else {
       setError(result.errorMessage);
       // setSuccessful(result.errorMessage);
