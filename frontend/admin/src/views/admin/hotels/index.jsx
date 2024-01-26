@@ -17,20 +17,20 @@ const Hotels = () => {
       accessor: "hotel_image",
     },
     {
-      Header: "Country Code",
-      accessor: "country_code",
-    },
-    {
-      Header: "Location Code",
-      accessor: "location_code",
-    },
-    {
       Header: "Hotel Code",
       accessor: "hotel_code",
     },
     {
       Header: "Hotel Name",
       accessor: "hotel_name",
+    },
+    {
+      Header: "Country Code",
+      accessor: "country_code",
+    },
+    {
+      Header: "Location Code",
+      accessor: "location_code",
     },
     // {
     //   Header: "Hotel Address",
