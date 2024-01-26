@@ -11,7 +11,33 @@ export class HotelsCollection {
     constructor(@InjectModel('Hotels') private hotelModel: Model<Hotels>) { }
 
     async getAllHotel(): Promise<Hotels[]> {
-        return await this.hotelModel.find({ isDeleted: false, });
+        return await this.hotelModel.aggregate([
+            {
+                $match: {
+                    isDeleted: false
+                }
+            },
+            {
+                $lookup: {
+                    from: 'locations',
+                    let: { locationId: { $toObjectId: "$location_id" } }, // Convert location_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$locationId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                location_code: 1,
+                                location_name: 1
+                            }
+                        }
+                    ],
+                    as: 'location_details'
+                }
+            },
+        ]);
     }
 
     async getHotelById(id: string): Promise<Hotels> {
