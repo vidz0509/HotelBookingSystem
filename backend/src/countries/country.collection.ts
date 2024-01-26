@@ -12,7 +12,7 @@ export class CountryCollection {
     constructor(@InjectModel('Country') private countryModel: Model<Country>) { }
 
     async getAllCountry(): Promise<Country[]> {
-        return await this.countryModel.find();
+        return await this.countryModel.find({ isDeleted: false, });
     }
 
     async getCountryById(id: string): Promise<Country> {
@@ -35,7 +35,7 @@ export class CountryCollection {
 
     async getCountryByCode(country_code: string): Promise<Country> {
         return this.countryModel.findOne({ country_code: country_code });
-      }
+    }
     // async getUser(id: string) {
     //     return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     // }
@@ -53,7 +53,7 @@ export class CountryCollection {
     }
 
     async deleteCountry(countryId: string) {
-        return this.countryModel.deleteOne({ _id: countryId });
+        return this.countryModel.deleteOne({ _id: countryId, isDeleted: true });
     }
 
     async sortedCountries(order: string): Promise<Country[]> {

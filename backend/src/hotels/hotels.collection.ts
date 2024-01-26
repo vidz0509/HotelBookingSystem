@@ -1,7 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
-import { CreateHotelDto } from './dto/create.dto'; 
+import { CreateHotelDto } from './dto/create.dto';
 import { Hotels } from './hotels.schema';
 import { UpdateHotelDto } from './dto/update.dto';
 
@@ -11,7 +11,7 @@ export class HotelsCollection {
     constructor(@InjectModel('Hotels') private hotelModel: Model<Hotels>) { }
 
     async getAllHotel(): Promise<Hotels[]> {
-        return await this.hotelModel.find();
+        return await this.hotelModel.find({ isDeleted: false, });
     }
 
     async getHotelById(id: string): Promise<Hotels> {
@@ -20,13 +20,13 @@ export class HotelsCollection {
 
     async createHotel(createHotelDto: CreateHotelDto) {
         const newHotel = await new this.hotelModel({
-            
-            location_id:createHotelDto.location_id,
-            country_id:createHotelDto.country_id,
+
+            location_id: createHotelDto.location_id,
+            country_id: createHotelDto.country_id,
             hotel_code: createHotelDto.hotel_code,
             hotel_name: createHotelDto.hotel_name,
             hotel_address: createHotelDto.hotel_address,
-            average_rating:createHotelDto.average_rating,
+            average_rating: createHotelDto.average_rating,
             hotel_image: createHotelDto.hotel_image,
 
             createdAt: new Date(),
@@ -50,7 +50,7 @@ export class HotelsCollection {
     }
 
     async deleteHotel(HotelId: string) {
-        return this.hotelModel.deleteOne({ _id: HotelId });
+        return this.hotelModel.deleteOne({ _id: HotelId, isDeleted: true });
     }
 
     async sortedHotels(order: string): Promise<Hotels[]> {
