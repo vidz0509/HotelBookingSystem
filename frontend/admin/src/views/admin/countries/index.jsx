@@ -43,11 +43,18 @@ const Countries = () => {
     },
   ];
 
+  const initialState = {
+    pageSize: 10,
+    pageIndex: 0
+  };
+  
+    
   useEffect(() => {
     debugger;
     getCountries();
   }, []);
 
+  
   const getCountries = async () => {
     let response = await countriesServices.getAllCountries();
     setCountriesData(response.data);
@@ -105,5 +112,10 @@ const Countries = () => {
     </>
   );
 };
+
+render() {
+  return <>{this.renderTable()}</>;
+}
+}
 
 export default Countries;

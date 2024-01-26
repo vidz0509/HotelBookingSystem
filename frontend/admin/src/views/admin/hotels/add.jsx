@@ -148,7 +148,7 @@ export default function AddHotel() {
           state={hotelNameError !== "" ? "error" : ""}
           errorMessage={hotelNameError !== "" ? hotelNameError : ""}
           value={hotelName}
-          maxLength={30}
+          maxLength={100}
         />
         <select id="countryId" name="countryId" onChange={handleCountryIdChange}>
           <option value="">-- Select Country --</option>
