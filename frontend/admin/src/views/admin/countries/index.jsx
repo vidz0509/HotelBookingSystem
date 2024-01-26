@@ -42,11 +42,6 @@ const Countries = () => {
       accessor: "_id",
     },
   ];
-
-  const initialState = {
-    pageSize: 10,
-    pageIndex: 0
-  };
   
     
   useEffect(() => {
@@ -112,10 +107,5 @@ const Countries = () => {
     </>
   );
 };
-
-render() {
-  return <>{this.renderTable()}</>;
-}
-}
 
 export default Countries;
