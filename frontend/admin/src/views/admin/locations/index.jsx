@@ -10,7 +10,6 @@ const Locations = () => {
 
   const [locationsData, setLocationsData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [locationId, setLocationId] = useState('');
 
   const columnsDataComplex = [
     {
@@ -98,7 +97,6 @@ const Locations = () => {
             tableData={locationsData}
             element='locations'
             deleteElement={deleteLocation}
-            setLocationId={setLocationId}
           />
           <Routes>
             <Route path='/add' element={<AddLocation />} />

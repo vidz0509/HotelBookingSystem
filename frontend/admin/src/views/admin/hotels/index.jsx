@@ -10,7 +10,6 @@ const Hotels = () => {
 
   const [hotelsData, setHotelsData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [hotelId,setHotelId] = useState('');
 
   const columnsDataComplex =  [
     {
@@ -56,7 +55,6 @@ const Hotels = () => {
   ];
 
   useEffect(() => {
-    // debugger;
     getHotels();
   }, []);
 
@@ -108,7 +106,6 @@ const Hotels = () => {
             tableData={hotelsData}
             element='hotels'
             deleteElement={deleteHotel}
-            setHotelId={setHotelId}
           />
           <Routes>
             <Route path='/add' element={<AddHotel />} />

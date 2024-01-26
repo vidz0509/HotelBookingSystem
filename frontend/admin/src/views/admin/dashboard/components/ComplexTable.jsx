@@ -7,7 +7,7 @@ import {
   useTable,
 } from "react-table";
 import { Link } from "react-router-dom";
-import { MdCheckCircle, MdCancel, MdEditSquare, MdEdit, MdDelete } from "react-icons/md";
+import { MdCheckCircle, MdCancel, MdEditSquare, MdDelete } from "react-icons/md";
 import { useMemo } from "react";
 
 const ComplexTable = (props) => {

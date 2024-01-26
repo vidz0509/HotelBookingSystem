@@ -11,8 +11,6 @@ const Countries = () => {
 
   const [countriesData, setCountriesData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [countryId,setCountryId] = useState('');
-
 
   const columnsDataComplex =  [
     {
@@ -98,7 +96,6 @@ const Countries = () => {
             tableData={countriesData}
             element='countries'
             deleteElement={deleteCountry}
-            setCountryId={setCountryId}
           />
           <Routes>
             <Route path='/add' element={<AddCountry />} />
