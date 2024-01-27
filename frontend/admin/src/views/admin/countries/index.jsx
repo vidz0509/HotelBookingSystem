@@ -14,15 +14,15 @@ const Countries = () => {
 
   const columnsDataComplex =  [
     {
-      Header: "Country Images",
+      Header: " Images",
       accessor: "country_image",
     },
     {
-      Header: "Country Code",
+      Header: " Code",
       accessor: "country_code",
     },
     {
-      Header: "Country Name",
+      Header: " Name",
       accessor: "country_name",
     },
     // {

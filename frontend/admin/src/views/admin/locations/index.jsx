@@ -18,15 +18,15 @@ const Locations = () => {
 
   const columnsDataComplex = [
     {
-      Header: "Location Images",
+      Header: " Images",
       accessor: "location_image",
     },
     {
-      Header: "Location Code",
+      Header: " Code",
       accessor: "location_code",
     },
     {
-      Header: "Location Name",
+      Header: " Name",
       accessor: "location_name",
     },
     {

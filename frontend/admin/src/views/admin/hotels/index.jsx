@@ -13,15 +13,15 @@ const Hotels = () => {
 
   const columnsDataComplex =  [
     {
-      Header: "Hotel Image",
+      Header: " Image",
       accessor: "hotel_image",
     },
     {
-      Header: "Hotel Code",
+      Header: " Code",
       accessor: "hotel_code",
     },
     {
-      Header: "Hotel Name",
+      Header: " Name",
       accessor: "hotel_name",
     },
     {
