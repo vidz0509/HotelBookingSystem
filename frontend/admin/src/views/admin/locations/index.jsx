@@ -29,6 +29,10 @@ const Locations = () => {
       Header: "Location Name",
       accessor: "location_name",
     },
+    {
+      Header: "Country Code",
+      accessor: "country_code",
+    },
     // {
     //   Header: "Register On",
     //   accessor: "createdAt",

@@ -101,7 +101,7 @@ export default function AddLocation() {
     if (result.isSuccessful) {
       setSuccessful("Location added successfully")
       setBtnDisabled(false);
-      return <Navigate to="/admin/locations" replace />
+      return <Navigate to="/admin/locations/" replace />
     } else {
       setError(result.errorMessage);
       setSuccessful(result.successfulMessage);
@@ -125,8 +125,10 @@ export default function AddLocation() {
           value={locationName}
           maxLength={30}
         />
-        <select id="countryId" name="countryId" onChange={handleCountryIdChange}>
-          <option value="">-- Select Country --</option>
+        
+        <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Country Name*</label>
+        <select id="countryId" name="countryId" class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white" onChange={handleCountryIdChange}>
+          <option value="" >-- Select Country --</option>
           {
             countriesData && countriesData.length > 0 && countriesData.map((item) =>
               <option value={item._id}>
@@ -135,6 +137,7 @@ export default function AddLocation() {
             )
           }
         </select>
+
         <Dropdown
           variant="auth"
           extra="mb-3"
