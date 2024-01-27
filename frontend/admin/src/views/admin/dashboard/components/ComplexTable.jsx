@@ -1,4 +1,5 @@
 // import CardMenu from "components/card/CardMenu";
+import React from "react";
 import Card from "components/card";
 import {
   useGlobalFilter,
@@ -14,16 +15,42 @@ const ComplexTable = (props) => {
   const { columnsData, tableData } = props;
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
+  const initialState = React.useMemo(() => props.initialState);
 
   const tableInstance = useTable(
     {
       columns,
       data,
+      initialState
     },
     useGlobalFilter,
     useSortBy,
     usePagination
   );
+
+  // const{
+  //   getTableProps,
+  //   getTableBodyProps,
+  //   headerGroups,
+  //   prepareRow,
+  //   page,
+  //   canPreviousPage,
+  //   canNextPage,
+  //   pageOptions,
+  //   pageCount,
+  //   gotoPage,
+  //   nextPage,
+  //   previousPage,
+  //   setPageSize,
+  //   state: { pageIndex, pageSize }
+  // } = useTable(
+  //   {
+  //     columns,
+  //     data,
+  //     initialState
+  //   },
+  //   usePagination
+  // );
 
   const formatDate = (date) => {
     var formattedDate = new Date(date);
@@ -48,11 +75,19 @@ const ComplexTable = (props) => {
     getTableProps,
     getTableBodyProps,
     headerGroups,
-    page,
     prepareRow,
-    initialState,
+    page,
+    canPreviousPage,
+    canNextPage,
+    pageOptions,
+    pageCount,
+    gotoPage,
+    nextPage,
+    previousPage,
+    setPageSize,
+    state: { pageIndex, pageSize }
   } = tableInstance;
-  initialState.pageSize = 20;
+  // initialState.pageSize = 20;
 
   const deleteTableRow = (rowId) => {
     props.deleteElement(rowId);
@@ -138,6 +173,40 @@ const ComplexTable = (props) => {
             })}
           </tbody>
         </table>
+        <div className="border-t pagination py-[14px] border-gray-200">
+          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="btn">
+            {"<<"}
+          </button>{" "}
+          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="btn">
+            {"<"}
+          </button>{" "}
+          <span className="page-str px-2">
+            Page{" "}
+            <strong>
+              {pageIndex + 1} of {pageOptions.length}
+            </strong>{" "}
+          </span>
+          <button onClick={() => nextPage()} disabled={!canNextPage} className="btn">
+            {">"}
+          </button>{" "}
+          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className="btn">
+            {">>"}
+          </button>{" "}
+
+          <select
+            value={pageSize}
+            onChange={(e) => {
+              setPageSize(Number(e.target.value));
+            }}
+            className="border border-gray-700 px-[10px] py-[4px] per-page"
+          >
+            {[10, 20, 30, 40, 50].map((pageSize) => (
+              <option key={pageSize} value={pageSize}>
+                Show {pageSize}
+              </option>
+            ))}
+          </select>
+        </div>
       </div>
     </Card>
   );
