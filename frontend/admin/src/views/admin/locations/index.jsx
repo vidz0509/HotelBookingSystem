@@ -46,7 +46,7 @@ const Locations = () => {
       accessor: "isActive",
     },
     {
-      Header: "Action",
+      Header: "Actions",
       accessor: "_id",
     },
   ];

@@ -49,7 +49,7 @@ const Hotels = () => {
       accessor: "isActive",
     },
     {
-      Header: "Action",
+      Header: "Actions",
       accessor: "_id",
     },
   ];
