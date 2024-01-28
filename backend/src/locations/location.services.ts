@@ -63,6 +63,7 @@ export class LocationService {
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
+  
   async hardDeleteLocation(locationId: string) {
     let data = await this.locationCollection.hardDeleteLocation(locationId);
     const response = await this.helper.buildResponse(true, null, data);

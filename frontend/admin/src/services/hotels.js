@@ -5,7 +5,7 @@ export const hotelsServices = {
     addHotel,
     editHotel,
     getHotelById,
-    deleteHotel
+    softDeleteHotel
 };
 
 async function getAllHotel() {
@@ -48,9 +48,10 @@ async function getHotelById(id) {
         return errorObj;
     });
 }
-async function deleteHotel(id) {
-    const url = `${process.env.REACT_APP_API_URL}/hotels/${id}`;
-    return await axios.delete(url).then(response => {
+
+async function softDeleteHotel(id) {
+    const url = `${process.env.REACT_APP_API_URL}/hotels/softDelete/${id}`;
+    return await axios.put(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

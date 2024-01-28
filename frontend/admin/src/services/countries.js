@@ -47,6 +47,7 @@ async function softDeleteCountry(id) {
         return errorObj;
     });
 }
+
 async function getCountryById(id) {
     const url = `${process.env.REACT_APP_API_URL}/countries/${id}`;
     return await axios.get(url).then(response => {
@@ -56,4 +57,3 @@ async function getCountryById(id) {
         return errorObj;
     });
 }
-
