@@ -222,10 +222,12 @@ export default function AddHotel() {
           value={hotelCode}
           maxLength={5}
         />
-        <InputField
+        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+          Hotel Address*
+        </label>
+        <textarea rows="4" cols="50" class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
           variant="auth"
           extra="mb-3"
-          label="Hotel Address*"
           placeholder="Hotel Address"
           id="hotelAddress"
           type="text"
@@ -233,7 +235,6 @@ export default function AddHotel() {
           state={hotelAddressError !== "" ? "error" : ""}
           errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
           value={hotelAddress}
-          maxLength={60}
         />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">

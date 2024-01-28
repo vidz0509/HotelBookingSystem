@@ -129,7 +129,8 @@ const ComplexTable = (props) => {
                               <MdCheckCircle className="text-green-500" />
                             ) : (
                               <MdCancel className="text-red-500" />
-                            )}
+                            )}   
+                        
                           </div>
                           <p className="text-xl font-bold text-navy-700 dark:text-white">
                             {cell.value}
@@ -142,13 +143,17 @@ const ComplexTable = (props) => {
                           {formatDate(cell.value)}
                         </p>
                       );
-                    } else if (cell.column.Header === "Action") {
+                    } else if (cell.column.Header === "Actions") {
                       data = (
                         <div className="text-lg font-bold flex action-btn-wrap">
                           <Link to={`edit/${cell.value}`} className="action-btn">
                             <MdEditSquare className="text-navy-700" />
                           </Link>
                           <span className="action-btn" onClick={(e) => deleteTableRow(cell.value)}><MdDelete className="text-red-700" /></span>
+                          <label class="switch">
+                            <input type="checkbox"></input>
+                             <span class="slider round"></span>
+                            </label>
                         </div>
                       );
                     } else {

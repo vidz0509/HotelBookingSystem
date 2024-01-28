@@ -1,41 +1,38 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from "react-router-dom";
-import { hotelsServices } from "services/hotels";
+import { locationsServices } from "services/locations";
 import { Link } from "react-router-dom";
-import AddHotel from "./add";
-import Swal from "sweetalert2";
+import AddLocation from './add';
+import Swal from 'sweetalert2';
 
-const Hotels = () => {
+const Locations = () => {
 
-  const [hotelsData, setHotelsData] = useState(null);
+  const [locationsData, setLocationsData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const columnsDataComplex =  [
+  const initialState = {
+    pageSize: 20,
+    pageIndex: 0
+  };
+
+  const columnsDataComplex = [
     {
-      Header: " Image",
-      accessor: "hotel_image",
+      Header: " Images",
+      accessor: "location_image",
     },
     {
       Header: " Code",
-      accessor: "hotel_code",
+      accessor: "location_code",
     },
     {
       Header: " Name",
-      accessor: "hotel_name",
+      accessor: "location_name",
     },
     {
       Header: "Country Code",
       accessor: "country_code",
     },
-    {
-      Header: "Location Code",
-      accessor: "location_code",
-    },
-    // {
-    //   Header: "Hotel Address",
-    //   accessor: "hotel_address",
-    // },
     // {
     //   Header: "Register On",
     //   accessor: "createdAt",
@@ -49,39 +46,40 @@ const Hotels = () => {
       accessor: "isActive",
     },
     {
-      Header: "Actions",
+      Header: "Action",
       accessor: "_id",
     },
   ];
 
   useEffect(() => {
-    getHotels();
+    // debugger;
+    getLocations();
   }, []);
 
-  const getHotels = async () => {
-    let response = await hotelsServices.getAllHotel();
-    setHotelsData(response.data);
+  const getLocations = async () => {
+    let response = await locationsServices.getAllLocations();
+    setLocationsData(response.data);
     setLoading(false);
   }
 
-  const softDeleteHotel = (hotelId) => {
+  const deleteLocation = (locationId) => {
     Swal.fire({
       icon: "warning",
-      title: "Delete Hotel",
-      text: "Are you sure you want to delete hotel?",
+      title: "Delete Location",
+      text: "Are you sure you want to delete location?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
     }).then((result) => {
       if (result.isConfirmed) {
-        console.log(hotelId);
-        hotelsServices.softDeleteHotel(hotelId).then((result) => {
+        console.log(locationId);
+        locationsServices.deleteLocation(locationId).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
               title: "Deleted",
-              text: "Hotel has been deleted successfully.",
+              text: "Location has been deleted successfully.",
               icon: "success"
             });
-            getHotels();
+            getLocations();
           } else {
             Swal.fire({
               title: "Error!",
@@ -95,21 +93,23 @@ const Hotels = () => {
       }
     });
   }
+
   return (
     <>
       {!loading &&
         <div className="list-table countries">
           <div className="add-row px-6 mb-5 text-align-right">
-            <Link to="add" className="btn btn-primary">Add Hotel</Link>
+            <Link to="add" className="btn btn-primary">Add Location</Link>
           </div>
           <ComplexTable
             columnsData={columnsDataComplex}
-            tableData={hotelsData}
-            element='hotels'
-            deleteElement={softDeleteHotel}
+            tableData={locationsData}
+            element='locations'
+            deleteElement={deleteLocation}
+            initialState={initialState}
           />
           <Routes>
-            <Route path='/add' element={<AddHotel />} />
+            <Route path='/add' element={<AddLocation />} />
           </Routes>
         </div>
       }
@@ -117,4 +117,4 @@ const Hotels = () => {
   );
 };
 
-export default Hotels;
+export default Locations;
