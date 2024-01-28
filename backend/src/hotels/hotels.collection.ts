@@ -17,6 +17,7 @@ export class HotelsCollection {
                     isDeleted: false
                 }
             },
+            { $sort: { createdAt : -1 } },
             {
                 $lookup: {
                     from: 'locations',
