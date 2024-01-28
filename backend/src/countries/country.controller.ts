@@ -29,9 +29,15 @@ export class CountryController {
     async findAll() {
         return await this.countryService.getAllCountry();
     }
+
+    @Put('/softdelete/:id')
+    async softDelete(@Param('id') id: string) {
+        return this.countryService.softDeleteCountry(id);
+    }
+
     @Delete(':id')
-    async remove(@Param('id') id: string) {
-        return this.countryService.deleteCountry(id);
+    async hardDelete(@Param('id') id: string) {
+        return this.countryService.hardDeleteCountry(id);
     }
 
     @Get('/sortcountries')

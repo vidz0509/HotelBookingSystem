@@ -27,16 +27,21 @@ export class LocationsController {
 
     @Get(':id')
     async getById(@Param('id') id: string) {
-      return this.locationService.getLocationById(id);
+        return this.locationService.getLocationById(id);
     }
 
+    @Put('/softdelete/:id')
+    async softDelete(@Param('id') id: string) {
+        return this.locationService.softDeleteLocation(id);
+    }
+    
     @Delete(':id')
-    async remove(@Param('id') id: string) {
-        return this.locationService.deleteLocation(id);
+    async hardDelete(@Param('id') id: string) {
+        return this.locationService.hardDeleteLocation(id);
     }
 
     @Get('/sortlocations')
     async sortedLocations(@Query('order') order: string) {
-      return await this.locationService.sortedLocations(order);
+        return await this.locationService.sortedLocations(order);
     }
 }
