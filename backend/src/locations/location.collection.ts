@@ -12,7 +12,12 @@ export class LocationCollection {
     constructor(@InjectModel('Location') private LocationModel: Model<Location>) { }
 
     async getAllLocations(): Promise<Location[]> {
-        return await this.LocationModel.find({ isDeleted: false, });
+        return await this.LocationModel.find({
+            isDeleted: false,
+        })
+            .sort({
+                createdAt: -1
+            });
     }
 
     async getLocationById(id: string): Promise<Location> {
@@ -54,8 +59,16 @@ export class LocationCollection {
         );
     }
 
-    async deleteLocation(locationId: string) {
-        return this.LocationModel.deleteOne({ _id: locationId, isDeleted: true });
+    async softDeleteLocation(locationId: string) {
+        return this.LocationModel.findByIdAndUpdate(
+            locationId,
+            {
+                isDeleted: true,
+            },
+        );
+    }
+    async hardDeleteLocation(locationId: string) {
+        return this.LocationModel.deleteOne({ _id: locationId });
     }
 
     async sortedLocations(order: string): Promise<Location[]> {

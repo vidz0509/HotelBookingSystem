@@ -12,7 +12,12 @@ export class CountryCollection {
     constructor(@InjectModel('Country') private countryModel: Model<Country>) { }
 
     async getAllCountry(): Promise<Country[]> {
-        return await this.countryModel.find({ isDeleted: false, });
+        return await this.countryModel.find({
+            isDeleted: false,
+        })
+            .sort({
+                createdAt: -1
+            });
     }
 
     async getCountryById(id: string): Promise<Country> {
@@ -52,9 +57,19 @@ export class CountryCollection {
         );
     }
 
-    async deleteCountry(countryId: string) {
-        return this.countryModel.deleteOne({ _id: countryId, isDeleted: true });
+    async softDeleteCountry(countryId: string) {
+        return this.countryModel.findByIdAndUpdate(
+            countryId,
+            {
+                isDeleted: true,
+            },
+        );
     }
+
+    async hardDeleteCountry(countryId: string) {
+        return this.countryModel.deleteOne({ _id: countryId });
+    }
+
 
     async sortedCountries(order: string): Promise<Country[]> {
         return await this.countryModel.aggregate([

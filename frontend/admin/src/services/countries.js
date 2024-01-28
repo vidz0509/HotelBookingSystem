@@ -5,7 +5,7 @@ export const countriesServices = {
     addCountry,
     editCountry,
     getCountryById,
-    deleteCountry
+    softDeleteCountry
 };
 
 async function getAllCountries() {
@@ -28,7 +28,7 @@ async function addCountry(requestBody) {
     });
 }
 
-async function editCountry(id,requestBody) {
+async function editCountry(id, requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/countries/${id}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
@@ -38,6 +38,15 @@ async function editCountry(id,requestBody) {
     });
 }
 
+async function softDeleteCountry(id) {
+    const url = `${process.env.REACT_APP_API_URL}/countries/softDelete/${id}`;
+    return await axios.put(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
 async function getCountryById(id) {
     const url = `${process.env.REACT_APP_API_URL}/countries/${id}`;
     return await axios.get(url).then(response => {
@@ -47,12 +56,4 @@ async function getCountryById(id) {
         return errorObj;
     });
 }
-async function deleteCountry(id) {
-    const url = `${process.env.REACT_APP_API_URL}/countries/${id}`;
-    return await axios.delete(url).then(response => {
-        return response.data;
-    }).catch(error => {
-        let errorObj = error.response.data;
-        return errorObj;
-    });
-}
+
