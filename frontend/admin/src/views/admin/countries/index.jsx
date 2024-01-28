@@ -55,7 +55,7 @@ const Countries = () => {
     setCountriesData(response.data);
     setLoading(false);
   }
-  const deleteCountry = (countryId) => {
+  const softDeleteCountry = (countryId) => {
     Swal.fire({
       icon: "warning",
       title: "Delete Country",
@@ -65,7 +65,7 @@ const Countries = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(countryId);
-        countriesServices.deleteCountry(countryId).then((result) => {
+        countriesServices.softDeleteCountry(countryId).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
               title: "Deleted",
@@ -97,7 +97,7 @@ const Countries = () => {
             columnsData={columnsDataComplex}
             tableData={countriesData}
             element='countries'
-            deleteElement={deleteCountry}
+            deleteElement={softDeleteCountry}
           />
           <Routes>
             <Route path='/add' element={<AddCountry />} />

@@ -17,7 +17,7 @@ export const locationsServices = {
     getAllLocations,
     addLocation,
     editLocation,
-    deleteLocation,
+    softDeleteLocation,
     getLocationById
 };
 
@@ -43,7 +43,7 @@ async function addLocation(requestBody) {
     });
 }
 
-async function editLocation(id,requestBody) {
+async function editLocation(id, requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/locations/${id}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
@@ -53,9 +53,9 @@ async function editLocation(id,requestBody) {
     });
 }
 
-async function deleteLocation(id) {
-    const url = `${process.env.REACT_APP_API_URL}/locations/${id}`;
-    return await axios.delete(url).then(response => {
+async function softDeleteLocation(id) {
+    const url = `${process.env.REACT_APP_API_URL}/locations/softDelete/${id}`;
+    return await axios.put(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
