@@ -62,7 +62,7 @@ const Locations = () => {
     setLoading(false);
   }
 
-  const deleteLocation = (locationId) => {
+  const softDeleteLocation = (locationId) => {
     Swal.fire({
       icon: "warning",
       title: "Delete Location",
@@ -72,7 +72,7 @@ const Locations = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(locationId);
-        locationsServices.deleteLocation(locationId).then((result) => {
+        locationsServices.softDeleteLocation(locationId).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
               title: "Deleted",
@@ -105,7 +105,7 @@ const Locations = () => {
             columnsData={columnsDataComplex}
             tableData={locationsData}
             element='locations'
-            deleteElement={deleteLocation}
+            deleteElement={softDeleteLocation}
             initialState={initialState}
           />
           <Routes>
