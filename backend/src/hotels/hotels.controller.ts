@@ -29,9 +29,19 @@ export class HotelsController {
     async findAll() {
         return await this.hotelService.getAllHotel();
     }
+    // @Delete(':id')
+    // async remove(@Param('id') id: string) {
+    //     return this.hotelService.deleteHotel(id);
+    // }
+
+    @Put('/softdelete/:id')
+    async softDelete(@Param('id') id: string) {
+        return this.hotelService.softDeleteHotel(id);
+    }
+    
     @Delete(':id')
-    async remove(@Param('id') id: string) {
-        return this.hotelService.deleteHotel(id);
+    async hardDelete(@Param('id') id: string) {
+        return this.hotelService.hardDeleteHotel(id);
     }
 
     @Get('/sorthotels')

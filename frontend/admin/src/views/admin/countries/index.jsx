@@ -55,6 +55,7 @@ const Countries = () => {
     setCountriesData(response.data);
     setLoading(false);
   }
+  
   const softDeleteCountry = (countryId) => {
     Swal.fire({
       icon: "warning",

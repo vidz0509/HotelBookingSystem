@@ -19,6 +19,11 @@ export class HotelsCollection {
             },
             { $sort: { createdAt : -1 } },
             {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
                 $lookup: {
                     from: 'locations',
                     let: { locationId: { $toObjectId: "$location_id" } }, // Convert location_id string to ObjectId
@@ -76,8 +81,17 @@ export class HotelsCollection {
         );
     }
 
-    async deleteHotel(HotelId: string) {
-        return this.hotelModel.deleteOne({ _id: HotelId, isDeleted: true });
+    async softDeleteHotel(hotelId: string) {
+        return this.hotelModel.findByIdAndUpdate(
+            hotelId,
+            {
+                isDeleted: true,
+            },
+        );
+    }
+
+    async hardDeleteHotel(hotelId: string) {
+        return this.hotelModel.deleteOne({ _id: hotelId });
     }
 
     async sortedHotels(order: string): Promise<Hotels[]> {

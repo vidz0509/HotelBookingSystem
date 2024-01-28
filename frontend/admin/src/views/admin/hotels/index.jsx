@@ -63,7 +63,8 @@ const Hotels = () => {
     setHotelsData(response.data);
     setLoading(false);
   }
-  const deleteHotel = (hotelId) => {
+
+  const softDeleteHotel = (hotelId) => {
     Swal.fire({
       icon: "warning",
       title: "Delete Hotel",
@@ -73,7 +74,7 @@ const Hotels = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(hotelId);
-        hotelsServices.deleteHotel(hotelId).then((result) => {
+        hotelsServices.softDeleteHotel(hotelId).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
               title: "Deleted",
@@ -105,7 +106,7 @@ const Hotels = () => {
             columnsData={columnsDataComplex}
             tableData={hotelsData}
             element='hotels'
-            deleteElement={deleteHotel}
+            deleteElement={softDeleteHotel}
           />
           <Routes>
             <Route path='/add' element={<AddHotel />} />

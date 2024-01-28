@@ -67,6 +67,7 @@ export class LocationCollection {
             },
         );
     }
+    
     async hardDeleteLocation(locationId: string) {
         return this.LocationModel.deleteOne({ _id: locationId });
     }
