@@ -9,6 +9,7 @@ import { AuthModule } from './auth/auth.module';
 import { CountryModule } from './countries/country.module';
 import { LocationModule } from './locations/location.module';
 import { HotelModule } from './hotels/hotels.module';
+import { RoomTypeModule } from './roomTypes/roomtype.module';
 
 import { ConfigModule } from '@nestjs/config';
 import { HelpersServices } from './services/helpers/helpers.services';
@@ -24,6 +25,7 @@ import { VerificationCodesModule } from './verification-codes/verificationCodes.
   CountryModule,
   LocationModule,
   HotelModule,
+  RoomTypeModule,
   ProductModule,
   EmailModule,
   VerificationCodesModule,
