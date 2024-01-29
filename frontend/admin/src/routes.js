@@ -22,9 +22,9 @@ import Locations from "views/admin/locations";
 import AddLocation from "views/admin/locations/add";
 import EditLocation from "views/admin/locations/edit"; 
 
-import RoomType from "views/admin/hotels";
-import AddRoomType from "views/admin/hotels/add";
-import EditRoomType from "views/admin/hotels/edit"; 
+import RoomType from "views/admin/roomtype";
+import AddRoomType from "views/admin/roomtype/add";
+import EditRoomType from "views/admin/roomtype/edit"; 
 
 import Hotels from "views/admin/hotels";
 import AddHotel from "views/admin/hotels/add";
@@ -169,7 +169,7 @@ const routes = [
   {
     name: "RoomType",
     layout: "/admin",
-    path: "RoomType",
+    path: "roomtype",
     icon: <MdHotel className="h-6 w-6" />,
     component: <RoomType />,
     secondary: true,
@@ -178,7 +178,7 @@ const routes = [
   {
     name: "RoomType",
     layout: "/admin",
-    path: "RoomType/add",
+    path: "roomtype/add",
     icon: <MdHotel className="h-6 w-6" />,
     component: <AddRoomType />,
     secondary: true,
@@ -188,7 +188,7 @@ const routes = [
   {
     name: "RoomType",
     layout: "/admin",
-    path: "RoomType/edit/:id",
+    path: "roomtype/edit/:id",
     icon: <MdHotel className="h-6 w-6" />,
     component: <EditRoomType />,
     secondary: true,
