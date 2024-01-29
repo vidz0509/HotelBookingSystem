@@ -3,7 +3,7 @@ import { CreateRoomTypeDto } from './dto/create.dto';
 import { RoomTypeService } from './roomtype.services';
 import { UpdateRoomTypeDto } from './dto/update.dto';
 
-@Controller('room_types')
+@Controller('roomtypes')
 export class RoomTypesController {
 
     constructor(private readonly roomtypeService: RoomTypeService) { }

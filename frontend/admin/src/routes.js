@@ -22,10 +22,6 @@ import Locations from "views/admin/locations";
 import AddLocation from "views/admin/locations/add";
 import EditLocation from "views/admin/locations/edit"; 
 
-import RoomType from "views/admin/roomtype";
-import AddRoomType from "views/admin/roomtype/add";
-import EditRoomType from "views/admin/roomtype/edit"; 
-
 import Hotels from "views/admin/hotels";
 import AddHotel from "views/admin/hotels/add";
 import EditHotel from "views/admin/hotels/edit"; 
@@ -33,6 +29,10 @@ import EditHotel from "views/admin/hotels/edit";
 import Amenities from "views/admin/amenities";
 import AddAmenities from "views/admin/amenities/add";
 import EditAmenities from "views/admin/amenities/edit"; 
+
+import RoomType from "views/admin/roomtype";
+import AddRoomType from "views/admin/roomtype/add";
+import EditRoomType from "views/admin/roomtype/edit"; 
 
 import Bookings from "views/admin/bookings/customers";
 
@@ -169,7 +169,7 @@ const routes = [
   {
     name: "RoomType",
     layout: "/admin",
-    path: "roomtype",
+    path: "roomtypes",
     icon: <MdHotel className="h-6 w-6" />,
     component: <RoomType />,
     secondary: true,
@@ -178,7 +178,7 @@ const routes = [
   {
     name: "RoomType",
     layout: "/admin",
-    path: "roomtype/add",
+    path: "roomtypes/add",
     icon: <MdHotel className="h-6 w-6" />,
     component: <AddRoomType />,
     secondary: true,
@@ -188,7 +188,7 @@ const routes = [
   {
     name: "RoomType",
     layout: "/admin",
-    path: "roomtype/edit/:id",
+    path: "roomtypes/edit/:id",
     icon: <MdHotel className="h-6 w-6" />,
     component: <EditRoomType />,
     secondary: true,

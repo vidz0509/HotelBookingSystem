@@ -9,7 +9,7 @@ export const roomtypeServices = {
 };
 
 async function getAllRoomType() {
-    const url = `${process.env.REACT_APP_API_URL}/roomtype`;
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
@@ -19,7 +19,7 @@ async function getAllRoomType() {
 }
 
 async function addRoomType(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/roomtype`;
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes`;
     debugger;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
@@ -30,7 +30,7 @@ async function addRoomType(requestBody) {
 }
 
 async function editRoomType(id,requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/roomtype/${id}`;
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes/${id}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -40,7 +40,7 @@ async function editRoomType(id,requestBody) {
 }
 
 async function getRoomTypeById(id) {
-    const url = `${process.env.REACT_APP_API_URL}/roomtype/${id}`;
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes/${id}`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
@@ -50,7 +50,7 @@ async function getRoomTypeById(id) {
 }
 
 async function softDeleteRoomType(id) {
-    const url = `${process.env.REACT_APP_API_URL}/roomtype/softDelete/${id}`;
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes/softDelete/${id}`;
     return await axios.put(url).then(response => {
         return response.data;
     }).catch(error => {
