@@ -6,46 +6,45 @@ import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from 'react-router-dom';
 
 
-export default function Editamenities() {
+export default function EditAmenities() {
 
   const params = useParams();
   const amenitiesId = params.id;
 
   // const [amenitiesData, setamenitiesData] = useState(null);
 
-  const [amenitiesName, setamenitiesName] = useState('');
+  const [amenitiesName, setAmenitiesName] = useState('');
 
-
-  const [amenitiesNameError, setamenitiesNameError] = useState('');
+  const [amenitiesNameError, setAmenitiesNameError] = useState('');
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
-    getamenitiesById(amenitiesId);
+    getAmenitiesById(amenitiesId);
     // const result = await amenitiesServices.getamenitiesById(amenitiesId);
   }, [amenitiesId]);
 
-  const getamenitiesById = async (amenitiesId) => {
-    const result = await amenitiesServices.getamenitiesById(amenitiesId);
+  const getAmenitiesById = async (amenitiesId) => {
+    const result = await amenitiesServices.getAmenitiesById(amenitiesId);
     if (result.isSuccessful) {
       // setamenitiesData(result.data);
-      setamenitiesName(result.data?.amenities_name);
+      setAmenitiesName(result.data?.amenities_name);
     }
   }
 
-  const handleamenitiesNameChange = (event) => {
+  const handleAmenitiesNameChange = (event) => {
     const value = event.target.value;
-    setamenitiesName(value);
+    setAmenitiesName(value);
   }
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setamenitiesNameError('');
+    setAmenitiesNameError('');
     setSuccessful('');
 
     if (validation.isEmpty(amenitiesName)) {
-      setamenitiesNameError("Please enter valid amenities name.");
+      setAmenitiesNameError("Please enter valid amenities name.");
       return false;
     }
 
@@ -53,7 +52,7 @@ export default function Editamenities() {
     const requestBody = {
       amenities_name: amenitiesName,
     };
-    const result = await amenitiesServices.editamenities(amenitiesId,requestBody);
+    const result = await amenitiesServices.editAmenities(amenitiesId,requestBody);
     if (result.isSuccessful) {
       setSuccessful("amenities updated successfully")
       setBtnDisabled(false);
@@ -71,18 +70,17 @@ export default function Editamenities() {
         <InputField
           variant="auth"
           extra="mb-3"
-          label="amenities Name*"
+          label="Amenities Name*"
           placeholder="amenities Name*"
           id="amenitiesName"
           type="text"
-          onChange={handleamenitiesNameChange}
+          onChange={handleAmenitiesNameChange}
           state={amenitiesNameError !== "" ? "error" : ""}
           errorMessage={amenitiesNameError !== "" ? amenitiesNameError : ""}
           value={amenitiesName}
           maxLength={70}
         />
 
-      
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
