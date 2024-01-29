@@ -22,6 +22,10 @@ import Locations from "views/admin/locations";
 import AddLocation from "views/admin/locations/add";
 import EditLocation from "views/admin/locations/edit"; 
 
+import RoomType from "views/admin/hotels";
+import AddRoomType from "views/admin/hotels/add";
+import EditRoomType from "views/admin/hotels/edit"; 
+
 import Hotels from "views/admin/hotels";
 import AddHotel from "views/admin/hotels/add";
 import EditHotel from "views/admin/hotels/edit"; 
@@ -163,6 +167,35 @@ const routes = [
   },
   
   {
+    name: "RoomType",
+    layout: "/admin",
+    path: "RoomType",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <RoomType />,
+    secondary: true,
+    addInMenu: true,
+  },
+  {
+    name: "RoomType",
+    layout: "/admin",
+    path: "RoomType/add",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <AddRoomType />,
+    secondary: true,
+    addInMenu: false
+  },
+
+  {
+    name: "RoomType",
+    layout: "/admin",
+    path: "RoomType/edit/:id",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <EditRoomType />,
+    secondary: true,
+    addInMenu: false
+  },
+  
+  {
     name: "Hotels",
     layout: "/admin",
     path: "hotels",
@@ -190,6 +223,7 @@ const routes = [
     secondary: true,
     addInMenu: false
   },
+  
   {
     name: "Amenities",
     layout: "/admin",
