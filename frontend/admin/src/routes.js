@@ -26,6 +26,10 @@ import Hotels from "views/admin/hotels";
 import AddHotel from "views/admin/hotels/add";
 import EditHotel from "views/admin/hotels/edit"; 
 
+import Amenities from "views/admin/amenities";
+import AddAmenities from "views/admin/amenities/add";
+import EditAmenities from "views/admin/amenities/edit"; 
+
 import Bookings from "views/admin/bookings/customers";
 
 import Paymentstatus from "views/admin/payment status/customers";
@@ -183,6 +187,34 @@ const routes = [
     path: "hotels/edit/:id",
     icon: <MdHotel className="h-6 w-6" />,
     component: <EditHotel />,
+    secondary: true,
+    addInMenu: false
+  },
+  {
+    name: "Amenities",
+    layout: "/admin",
+    path: "amenities",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <Amenities />,
+    secondary: true,
+    addInMenu: true,
+  },
+  {
+    name: "Amenities",
+    layout: "/admin",
+    path: "amenities/add",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <AddAmenities />,
+    secondary: true,
+    addInMenu: false
+  },
+
+  {
+    name: "Amenities",
+    layout: "/admin",
+    path: "amenities/edit/:id",
+    icon: <MdHotel className="h-6 w-6" />,
+    component: <EditAmenities />,
     secondary: true,
     addInMenu: false
   },
