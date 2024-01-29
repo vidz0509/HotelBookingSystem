@@ -25,6 +25,11 @@ export class LocationsController {
         return this.locationService.updateLocation(id, updateLocationDto);
     }
 
+    @Get('/sortlocations')
+    async sortedLocations(@Query('order') order: string) {
+        return await this.locationService.sortedLocations(order);
+    }
+
     @Get(':id')
     async getById(@Param('id') id: string) {
         return this.locationService.getLocationById(id);
@@ -34,14 +39,9 @@ export class LocationsController {
     async softDelete(@Param('id') id: string) {
         return this.locationService.softDeleteLocation(id);
     }
-    
+
     @Delete(':id')
     async hardDelete(@Param('id') id: string) {
         return this.locationService.hardDeleteLocation(id);
-    }
-
-    @Get('/sortlocations')
-    async sortedLocations(@Query('order') order: string) {
-        return await this.locationService.sortedLocations(order);
     }
 }

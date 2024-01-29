@@ -45,6 +45,10 @@ export class LocationService {
     return response;
   }
 
+  async sortedLocations(order: string): Promise<Location[]> {
+    return await this.locationCollection.sortedLocations(order);
+  }
+
   async getLocationById(id: string) {
     const location = await this.locationCollection.getLocationById(id);
     const response = await this.helper.buildResponse(true, null, location);
@@ -63,15 +67,11 @@ export class LocationService {
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
-  
+
   async hardDeleteLocation(locationId: string) {
     let data = await this.locationCollection.hardDeleteLocation(locationId);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
-  }
-
-  async sortedLocations(order: string): Promise<Location[]> {
-    return await this.locationCollection.sortedLocations(order);
   }
 }
 

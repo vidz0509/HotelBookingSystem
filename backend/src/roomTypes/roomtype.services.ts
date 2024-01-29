@@ -45,6 +45,10 @@ export class RoomTypeService {
     return response;
   }
 
+  async sortedRoomTypes(order: string): Promise<RoomType[]> {
+    return await this.roomtypeCollection.sortedRoomTypes(order);
+  }
+
   async getRoomTypeById(id: string) {
     const roomtype = await this.roomtypeCollection.getRoomTypeById(id);
     const response = await this.helper.buildResponse(true, null, roomtype);
@@ -67,10 +71,6 @@ export class RoomTypeService {
     let data = await this.roomtypeCollection.hardDeleteRoomType(roomtypeId);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
-  }
-
-  async sortedRoomTypes(order: string): Promise<RoomType[]> {
-    return await this.roomtypeCollection.sortedRoomTypes(order);
   }
 }
 

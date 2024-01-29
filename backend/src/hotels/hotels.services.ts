@@ -45,6 +45,10 @@ export class HotelsService {
     return response;
   }
 
+  async sortedHotels(order: string): Promise<Hotels[]> {
+    return await this.hotelCollection.sortedHotels(order);
+  }
+
   async getHotelById(id: string) {
     const hotel = await this.hotelCollection.getHotelById(id);
     const response = await this.helper.buildResponse(true, null, hotel);
@@ -68,9 +72,5 @@ export class HotelsService {
     let data = await this.hotelCollection.hardDeleteHotel(hotelId);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
-  }
-
-  async sortedHotels(order: string): Promise<Hotels[]> {
-    return await this.hotelCollection.sortedHotels(order);
   }
 }

@@ -20,9 +20,14 @@ export class HotelsController {
         return this.hotelService.updateHotel(id, updateHotelDto);
     }
 
+    @Get('/sorthotels')
+    async sortedHotels(@Query('order') order: string) {
+        return await this.hotelService.sortedHotels(order);
+    }
+
     @Get(':id')
     async getById(@Param('id') id: string) {
-      return this.hotelService.getHotelById(id);
+        return this.hotelService.getHotelById(id);
     }
 
     @Get()
@@ -38,14 +43,9 @@ export class HotelsController {
     async softDelete(@Param('id') id: string) {
         return this.hotelService.softDeleteHotel(id);
     }
-    
+
     @Delete(':id')
     async hardDelete(@Param('id') id: string) {
         return this.hotelService.hardDeleteHotel(id);
-    }
-
-    @Get('/sorthotels')
-    async sortedHotels(@Query('order') order: string) {
-      return await this.hotelService.sortedHotels(order);
     }
 }

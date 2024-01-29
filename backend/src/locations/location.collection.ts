@@ -20,6 +20,13 @@ export class LocationCollection {
             });
     }
 
+    async sortedLocations(order: string): Promise<Location[]> {
+        return await this.LocationModel.aggregate([
+            { $sort: { location_name: order == 'desc' ? -1 : 1 } },
+            // { $set: { createAt: new Date(), isDeleted: true } },
+        ]);
+    }
+
     async getLocationById(id: string): Promise<Location> {
         return this.LocationModel.findById(id);
     }
@@ -67,15 +74,8 @@ export class LocationCollection {
             },
         );
     }
-    
+
     async hardDeleteLocation(locationId: string) {
         return this.LocationModel.deleteOne({ _id: locationId });
-    }
-
-    async sortedLocations(order: string): Promise<Location[]> {
-        return await this.LocationModel.aggregate([
-            { $sort: { location_name: order == 'desc' ? -1 : 1 } },
-            // { $set: { createAt: new Date(), isDeleted: true } },
-        ]);
     }
 }

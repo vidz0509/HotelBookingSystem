@@ -20,6 +20,13 @@ export class RoomTypeCollection {
             });
     }
 
+    async sortedRoomTypes(order: string): Promise<RoomType[]> {
+        return await this.RoomTypeModel.aggregate([
+            { $sort: { roomtype_name: order == 'desc' ? -1 : 1 } },
+            // { $set: { createAt: new Date(), isDeleted: true } },
+        ]);
+    }
+
     async getRoomTypeById(id: string): Promise<RoomType> {
         return this.RoomTypeModel.findById(id);
     }
@@ -35,14 +42,6 @@ export class RoomTypeCollection {
         });
         return newRoomType.save();
     }
-
-    // async getUserByName(name: string): Promise<Country> {
-    //     return await this.userModel.findOne({ name: name }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
-
-    // async getUser(id: string) {
-    //     return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
 
     async getRoomTypeByName(roomtype_name: string): Promise<RoomType> {
         return this.RoomTypeModel.findOne({ roomtype_name: roomtype_name });
@@ -66,12 +65,5 @@ export class RoomTypeCollection {
     }
     async hardDeleteRoomType(roomtypeId: string) {
         return this.RoomTypeModel.deleteOne({ _id: roomtypeId });
-    }
-
-    async sortedRoomTypes(order: string): Promise<RoomType[]> {
-        return await this.RoomTypeModel.aggregate([
-            { $sort: { roomtype_name: order == 'desc' ? -1 : 1 } },
-            // { $set: { createAt: new Date(), isDeleted: true } },
-        ]);
     }
 }

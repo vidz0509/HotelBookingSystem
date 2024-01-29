@@ -17,7 +17,7 @@ export class HotelsCollection {
                     isDeleted: false
                 }
             },
-            { $sort: { createdAt : -1 } },
+            { $sort: { createdAt: -1 } },
             {
                 $sort: {
                     createdAt: -1
@@ -43,6 +43,13 @@ export class HotelsCollection {
                     as: 'location_details'
                 }
             },
+        ]);
+    }
+
+    async sortedHotels(order: string): Promise<Hotels[]> {
+        return await this.hotelModel.aggregate([
+            { $sort: { hotel_name: order == 'desc' ? -1 : 1 } },
+            //   { $set: { createAt: new Date(), isDeleted: true } },
         ]);
     }
 
@@ -94,10 +101,4 @@ export class HotelsCollection {
         return this.hotelModel.deleteOne({ _id: hotelId });
     }
 
-    async sortedHotels(order: string): Promise<Hotels[]> {
-        return await this.hotelModel.aggregate([
-            { $sort: { hotel_name: order == 'desc' ? -1 : 1 } },
-            //   { $set: { createAt: new Date(), isDeleted: true } },
-        ]);
-    }
 }

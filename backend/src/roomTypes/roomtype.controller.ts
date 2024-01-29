@@ -25,6 +25,11 @@ export class RoomTypesController {
         return this.roomtypeService.updateRoomType(id, updateRoomTypeDto);
     }
 
+    @Get('/sortroomtypes')
+    async sortedRoomTypes(@Query('order') order: string) {
+        return await this.roomtypeService.sortedRoomTypes(order);
+    }
+
     @Get(':id')
     async getById(@Param('id') id: string) {
         return this.roomtypeService.getRoomTypeById(id);
@@ -34,14 +39,9 @@ export class RoomTypesController {
     async softDelete(@Param('id') id: string) {
         return this.roomtypeService.softDeleteRoomType(id);
     }
-    
+
     @Delete(':id')
     async hardDelete(@Param('id') id: string) {
         return this.roomtypeService.hardDeleteRoomType(id);
-    }
-
-    @Get('/sortroomtypes')
-    async sortedRoomTypes(@Query('order') order: string) {
-        return await this.roomtypeService.sortedRoomTypes(order);
     }
 }
