@@ -20,6 +20,13 @@ export class CountryCollection {
             });
     }
 
+    async sortedCountries(order: string): Promise<Country[]> {
+        return await this.countryModel.aggregate([
+            { $sort: { country_name: order == 'desc' ? -1 : 1 } },
+            //   { $set: { createAt: new Date(), isDeleted: true } },
+        ]);
+    }
+
     async getCountryById(id: string): Promise<Country> {
         return this.countryModel.findById(id);
     }
@@ -57,6 +64,15 @@ export class CountryCollection {
         );
     }
 
+    async updateStatus(countryId: string, status: number) {
+        return this.countryModel.findByIdAndUpdate(
+            countryId,
+            {
+                isActive: status === 1 ? true : false,
+            },
+        );
+    }
+
     async softDeleteCountry(countryId: string) {
         return this.countryModel.findByIdAndUpdate(
             countryId,
@@ -71,10 +87,4 @@ export class CountryCollection {
     }
 
 
-    async sortedCountries(order: string): Promise<Country[]> {
-        return await this.countryModel.aggregate([
-            { $sort: { country_name: order == 'desc' ? -1 : 1 } },
-            //   { $set: { createAt: new Date(), isDeleted: true } },
-        ]);
-    }
 }

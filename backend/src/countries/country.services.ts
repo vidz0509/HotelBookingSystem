@@ -45,6 +45,17 @@ export class CountryService {
     return response;
   }
 
+  async updateStatus(countryId: string, status: number) {
+    console.log(countryId)
+    let data = await this.countryCollection.updateStatus(countryId, status);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async sortedCountries(order: string): Promise<Country[]> {
+    return await this.countryCollection.sortedCountries(order);
+  }
+
   async getCountryById(id: string) {
     const country = await this.countryCollection.getCountryById(id);
     const response = await this.helper.buildResponse(true, null, country);
@@ -70,7 +81,4 @@ export class CountryService {
     return response;
   }
 
-  async sortedCountries(order: string): Promise<Country[]> {
-    return await this.countryCollection.sortedCountries(order);
-  }
 }

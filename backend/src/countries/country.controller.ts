@@ -6,42 +6,47 @@ import { UpdateCountryDto } from './dto/update.dto';
 @Controller('countries')
 export class CountryController {
 
-    constructor(private readonly countryService: CountryService) { }
+  constructor(private readonly countryService: CountryService) { }
 
-    @Post()
-    async createCountry(@Body() createCountryDto: CreateCountryDto) {
-        console.log(createCountryDto);
-        return await this.countryService.createCountry(createCountryDto);
-    }
+  @Post()
+  async createCountry(@Body() createCountryDto: CreateCountryDto) {
+    console.log(createCountryDto);
+    return await this.countryService.createCountry(createCountryDto);
+  }
 
-    @Put(':id')
-    async updateCountry(@Param('id') id: string,
-        @Body() updateCountryDto: UpdateCountryDto) {
-        return this.countryService.updateCountry(id, updateCountryDto);
-    }
+  @Put(':id')
+  async updateCountry(@Param('id') id: string,
+    @Body() updateCountryDto: UpdateCountryDto) {
+    return this.countryService.updateCountry(id, updateCountryDto);
+  }
 
-    @Get(':id')
-    async getById(@Param('id') id: string) {
-      return this.countryService.getCountryById(id);
-    }
+  @Put('/updatestatus/:id/:status')
+  async updateStatus(@Param('id') id: string, @Param('status') status: number) {
+    return this.countryService.updateStatus(id, status);
+  }
 
-    @Get()
-    async findAll() {
-        return await this.countryService.getAllCountry();
-    }
+  @Get('/sortcountries')
+  async sortedCountries(@Query('order') order: string) {
+    return await this.countryService.sortedCountries(order);
+  }
 
-    @Put('/softdelete/:id')
-    async softDelete(@Param('id') id: string) {
-        return this.countryService.softDeleteCountry(id);
-    }
+  @Get(':id')
+  async getById(@Param('id') id: string) {
+    return this.countryService.getCountryById(id);
+  }
 
-    @Delete(':id')
-    async hardDelete(@Param('id') id: string) {
-        return this.countryService.hardDeleteCountry(id);
-    }
+  @Get()
+  async findAll() {
+    return await this.countryService.getAllCountry();
+  }
 
-    @Get('/sortcountries')
-    async sortedCountries(@Query('order') order: string) {
-      return await this.countryService.sortedCountries(order);
-    }
+  @Put('/softdelete/:id')
+  async softDelete(@Param('id') id: string) {
+    return this.countryService.softDeleteCountry(id);
+  }
+
+  @Delete(':id')
+  async hardDelete(@Param('id') id: string) {
+    return this.countryService.hardDeleteCountry(id);
+  }
 }
