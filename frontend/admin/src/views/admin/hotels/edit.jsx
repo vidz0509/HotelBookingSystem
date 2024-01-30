@@ -70,7 +70,6 @@ export default function EditHotel() {
   const getHotelById = async (hotelId) => {
     const result = await hotelsServices.getHotelById(hotelId);
     if (result.isSuccessful) {
-      // setHotelData(result.data);
       setCountryId(result.data?.country_id);
       setLocationId(result.data?.location_id);
       setHotelName(result.data?.hotel_name);
@@ -150,8 +149,8 @@ export default function EditHotel() {
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
       Swal.fire({
-        title: "Added",
-        text: "Country has been Added successfully.",
+        title: "Edited",
+        text: "Hotel has been Edited successfully.",
         icon: "success"
       }).then((result) => {
         if (result.isConfirmed) {
@@ -260,9 +259,9 @@ export default function EditHotel() {
           type="text"
           onChange={handleHotelAddressChange}
           state={hotelAddressError !== "" ? "error" : ""}
-          errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
-          value={hotelAddress}
-        />
+          errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}     
+          value={hotelAddress}     
+        >{hotelAddress}</textarea>
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">

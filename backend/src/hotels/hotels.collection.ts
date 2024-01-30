@@ -81,6 +81,7 @@ export class HotelsCollection {
     }
 
     async updateHotel(HotelID: string, updateHotelDto: UpdateHotelDto) {
+        console.log(updateHotelDto)
         return await this.hotelModel.findByIdAndUpdate(
             HotelID,
             updateHotelDto,

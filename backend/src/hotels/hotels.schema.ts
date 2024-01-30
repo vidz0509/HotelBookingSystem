@@ -24,10 +24,13 @@ export class Hotels {
 
   hotel_code: string;
   
+  @Prop()
   hotel_address: string;
   
+  @Prop()
   average_rating: string;
 
+  @Prop()
   hotel_image: string[];
 
   @Prop()

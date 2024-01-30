@@ -103,8 +103,8 @@ export default function AddLocation() {
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
       Swal.fire({
-        title: "Added",
-        text: "Country has been Added successfully.",
+        title: "Edited",
+        text: "Location has been Edited successfully.",
         icon: "success"
       }).then((result) => {
         if (result.isConfirmed) {

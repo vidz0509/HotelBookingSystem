@@ -69,8 +69,8 @@ export default function EditCountry() {
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
       Swal.fire({
-        title: "Added",
-        text: "Country has been Added successfully.",
+        title: "Edited",
+        text: "Country has been Edited successfully.",
         icon: "success"
       }).then((result) => {
         if (result.isConfirmed) {
