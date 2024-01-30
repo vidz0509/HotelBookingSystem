@@ -7,6 +7,8 @@ import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
+
 
 export default function AddHotel() {
   const [countriesData, setCountriesData] = useState("");
@@ -121,13 +123,24 @@ export default function AddHotel() {
     };
     const result = await hotelsServices.addHotel(requestBody);
     if (result.isSuccessful) {
-      setSuccessful("Hotel added successfully");
-      setBtnDisabled(false);
-      return <Navigate to="/admin/hotels" replace />;
+      // setSuccessful("Country added successfully")
+      Swal.fire({
+        title: "Added",
+        text: "Country has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/hotels';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      // setSuccessful(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   };
 

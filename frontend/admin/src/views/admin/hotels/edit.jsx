@@ -7,6 +7,7 @@ import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 
 export default function EditHotel() {
@@ -147,12 +148,24 @@ export default function EditHotel() {
     };
     const result = await hotelsServices.editHotel(hotelId,requestBody);
     if (result.isSuccessful) {
-      setSuccessful("Hotel updated successfully")
-      setBtnDisabled(false);
+      // setSuccessful("Country added successfully")
+      Swal.fire({
+        title: "Added",
+        text: "Country has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/hotels';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setSuccessful(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   }
 
@@ -236,10 +249,12 @@ export default function EditHotel() {
           value={hotelCode}
           maxLength={5}
         />
-        <InputField
+       <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+          Hotel Address*
+        </label>
+        <textarea rows="4" cols="50" class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
           variant="auth"
           extra="mb-3"
-          label="Hotel Address*"
           placeholder="Hotel Address"
           id="hotelAddress"
           type="text"
@@ -247,7 +262,6 @@ export default function EditHotel() {
           state={hotelAddressError !== "" ? "error" : ""}
           errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
           value={hotelAddress}
-          maxLength={60}
         />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">

@@ -7,6 +7,8 @@ import { locationsServices } from "services/locations";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { Navigate } from 'react-router-dom';
+import Swal from "sweetalert2";
+
 
 // export  function AllCountry() {
 //   const [countryName, setCountryName] =useState('');
@@ -99,13 +101,24 @@ export default function AddLocation() {
     };
     const result = await locationsServices.addLocation(requestBody);
     if (result.isSuccessful) {
-      setSuccessful("Location added successfully")
-      setBtnDisabled(false);
-      return <Navigate to="/admin/locations/" replace />
+      // setSuccessful("Country added successfully")
+      Swal.fire({
+        title: "Added",
+        text: "Country has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/locations';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setSuccessful(result.successfulMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   }
 

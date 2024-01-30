@@ -4,6 +4,8 @@ import { countriesServices } from "services/countries";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from 'react-router-dom';
+import Swal from "sweetalert2";
+
 
 export default function EditCountry() {
 
@@ -65,12 +67,24 @@ export default function EditCountry() {
     };
     const result = await countriesServices.editCountry(countryId,requestBody);
     if (result.isSuccessful) {
-      setSuccessful("Country updated successfully")
-      setBtnDisabled(false);
+      // setSuccessful("Country added successfully")
+      Swal.fire({
+        title: "Added",
+        text: "Country has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/countries';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setSuccessful(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   }
 
