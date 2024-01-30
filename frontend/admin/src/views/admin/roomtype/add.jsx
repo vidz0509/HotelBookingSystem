@@ -4,6 +4,7 @@ import { roomtypeServices } from "services/roomtype";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 export default function AddRoomType() {
   const [roomtypeName, setRoomTypeName] = useState("");
@@ -36,13 +37,24 @@ export default function AddRoomType() {
 
     const result = await roomtypeServices.addRoomType(requestBody);
     if (result.isSuccessful) {
-      setSuccessful("RoomType added successfully");
-      setBtnDisabled(false);
-      return <Navigate to="/admin/roomtype" replace />;
+      // setSuccessful("Country added successfully")
+      Swal.fire({
+        title: "Added",
+        text: "Country has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/roomtype';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      // setSuccessful(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   };
 
