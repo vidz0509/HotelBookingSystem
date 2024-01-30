@@ -20,6 +20,11 @@ export class HotelsController {
         return this.hotelService.updateHotel(id, updateHotelDto);
     }
 
+    @Put('/updatestatus/:id/:status')
+    async updateStatus(@Param('id') id: string, @Param('status') status: number) {
+        return this.hotelService.updateStatus(id, status);
+    }
+
     @Get('/sorthotels')
     async sortedHotels(@Query('order') order: string) {
         return await this.hotelService.sortedHotels(order);

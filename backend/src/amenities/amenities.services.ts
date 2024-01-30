@@ -57,6 +57,13 @@ export class AmenitiesService {
     return response;
   }
 
+  async updateStatus(AmenitiesID: string, status: number) {
+    console.log(AmenitiesID)
+    let data = await this.amenitiesCollection.updateStatus(AmenitiesID, status);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
   async softDeleteAmenities(amenitiesId: string) {
     console.log(amenitiesId)
     let data = await this.amenitiesCollection.softDeleteAmenities(amenitiesId);

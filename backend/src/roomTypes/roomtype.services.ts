@@ -61,6 +61,13 @@ export class RoomTypeService {
     return response;
   }
 
+  async updateStatus(RoomTypeID: string, status: number) {
+    console.log(RoomTypeID)
+    let data = await this.roomtypeCollection.updateStatus(RoomTypeID, status);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
   async softDeleteRoomType(roomtypeId: string) {
     console.log(roomtypeId)
     let data = await this.roomtypeCollection.softDeleteRoomType(roomtypeId);

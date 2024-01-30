@@ -56,6 +56,15 @@ export class AmenitiesCollection {
         );
     }
 
+    async updateStatus(AmenitiesID: string, status: number) {
+        return this.AmenitiesModel.findByIdAndUpdate(
+            AmenitiesID,
+            {
+                isActive: status === 1 ? true : false,
+            },
+        );
+    }
+
     async softDeleteAmenities(amenitiesId: string) {
         return this.AmenitiesModel.findByIdAndUpdate(
             amenitiesId,

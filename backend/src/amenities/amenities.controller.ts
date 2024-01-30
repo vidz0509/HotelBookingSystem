@@ -25,6 +25,11 @@ export class AmenitiessController {
         return this.amenitiesService.updateAmenities(id, updateAmenitiesDto);
     }
 
+    @Put('/updatestatus/:id/:status')
+    async updateStatus(@Param('id') id: string, @Param('status') status: number) {
+        return this.amenitiesService.updateStatus(id, status);
+    }
+
     @Get(':id')
     async getById(@Param('id') id: string) {
         return this.amenitiesService.getAmenitiesById(id);
@@ -34,7 +39,7 @@ export class AmenitiessController {
     async softDelete(@Param('id') id: string) {
         return this.amenitiesService.softDeleteAmenities(id);
     }
-    
+
     @Delete(':id')
     async hardDelete(@Param('id') id: string) {
         return this.amenitiesService.hardDeleteAmenities(id);

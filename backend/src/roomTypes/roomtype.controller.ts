@@ -25,6 +25,11 @@ export class RoomTypesController {
         return this.roomtypeService.updateRoomType(id, updateRoomTypeDto);
     }
 
+    @Put('/updatestatus/:id/:status')
+    async updateStatus(@Param('id') id: string, @Param('status') status: number) {
+        return this.roomtypeService.updateStatus(id, status);
+    }
+
     @Get('/sortroomtypes')
     async sortedRoomTypes(@Query('order') order: string) {
         return await this.roomtypeService.sortedRoomTypes(order);
