@@ -40,7 +40,7 @@ export default function AddAmenities() {
       // setSuccessful("Country added successfully")
       Swal.fire({
         title: "Added",
-        text: "Country has been Added successfully.",
+        text: "Aminities has been Added successfully.",
         icon: "success"
       }).then((result) => {
         if (result.isConfirmed) {
