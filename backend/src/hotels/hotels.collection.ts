@@ -89,6 +89,15 @@ export class HotelsCollection {
         );
     }
 
+    async updateStatus(HotelID: string, status: number) {
+        return this.hotelModel.findByIdAndUpdate(
+            HotelID,
+            {
+                isActive: status === 1 ? true : false,
+            },
+        );
+    }
+
     async softDeleteHotel(hotelId: string) {
         return this.hotelModel.findByIdAndUpdate(
             hotelId,

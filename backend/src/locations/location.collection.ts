@@ -66,6 +66,15 @@ export class LocationCollection {
         );
     }
 
+    async updateStatus(LocationID: string, status: number) {
+        return this.LocationModel.findByIdAndUpdate(
+            LocationID,
+            {
+                isActive: status === 1 ? true : false,
+            },
+        );
+    }
+
     async softDeleteLocation(locationId: string) {
         return this.LocationModel.findByIdAndUpdate(
             locationId,

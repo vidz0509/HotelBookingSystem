@@ -55,6 +55,15 @@ export class RoomTypeCollection {
         );
     }
 
+    async updateStatus(RoomTypeID: string, status: number) {
+        return this.RoomTypeModel.findByIdAndUpdate(
+            RoomTypeID,
+            {
+                isActive: status === 1 ? true : false,
+            },
+        );
+    }
+
     async softDeleteRoomType(roomtypeId: string) {
         return this.RoomTypeModel.findByIdAndUpdate(
             roomtypeId,

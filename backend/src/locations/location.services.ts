@@ -45,6 +45,13 @@ export class LocationService {
     return response;
   }
 
+  async updateStatus(LocationID: string, status: number) {
+    console.log(LocationID)
+    let data = await this.locationCollection.updateStatus(LocationID, status);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
   async sortedLocations(order: string): Promise<Location[]> {
     return await this.locationCollection.sortedLocations(order);
   }

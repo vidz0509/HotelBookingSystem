@@ -45,6 +45,13 @@ export class HotelsService {
     return response;
   }
 
+  async updateStatus(HotelID: string, status: number) {
+    console.log(HotelID)
+    let data = await this.hotelCollection.updateStatus(HotelID, status);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
   async sortedHotels(order: string): Promise<Hotels[]> {
     return await this.hotelCollection.sortedHotels(order);
   }
