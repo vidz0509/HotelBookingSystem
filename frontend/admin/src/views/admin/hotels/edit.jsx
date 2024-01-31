@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import InputField from "components/fields/InputField";
-import Dropdown from "components/dropdown";
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { hotelsServices } from "services/hotels";
@@ -110,6 +109,7 @@ export default function EditHotel() {
     setLocationIdError('');
     setHotelCodeError('');
     setHotelAddressError('');
+    setError('');
     setSuccessful('');
 
     if (validation.isEmpty(countryId)) {
@@ -145,7 +145,7 @@ export default function EditHotel() {
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
     };
-    const result = await hotelsServices.editHotel(hotelId,requestBody);
+    const result = await hotelsServices.editHotel(hotelId, requestBody);
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
       Swal.fire({
@@ -187,8 +187,8 @@ export default function EditHotel() {
           maxLength={70}
         />
 
-      <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Country Name*</label>
-        <select id="countryId" name="countryId" onChange={handleCountryIdChange}  class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white">
+        <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Country Name*</label>
+        <select id="countryId" name="countryId" onChange={handleCountryIdChange} class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white">
           <option value="">-- Select Country --</option>
           {
             countriesData && countriesData.length > 0 && countriesData.map((item) =>
@@ -198,8 +198,9 @@ export default function EditHotel() {
             )
           }
         </select>
+        {countryIdError && <span className="text-error">{countryIdError}</span>}
 
-      <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Location Name*</label>
+        <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Location Name*</label>
         <select id="locationId" name="locationId" onChange={handleLocationIdChange} class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white">
           <option value="">-- Select Location --</option>
           {
@@ -210,6 +211,8 @@ export default function EditHotel() {
             )
           }
         </select>
+        {locationIdError && <span className="text-error">{locationIdError}</span>}
+
         {/* <Dropdown
           variant="auth"
           extra="mb-3"
@@ -236,7 +239,7 @@ export default function EditHotel() {
           value={hotelCode}
           maxLength={5}
         />
-       <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
           Hotel Address*
         </label>
         <textarea rows="4" cols="50" class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
@@ -247,8 +250,8 @@ export default function EditHotel() {
           type="text"
           onChange={handleHotelAddressChange}
           state={hotelAddressError !== "" ? "error" : ""}
-          errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}     
-          value={hotelAddress}     
+          errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
+          value={hotelAddress}
         >{hotelAddress}</textarea>
 
         {/* Checkbox */}

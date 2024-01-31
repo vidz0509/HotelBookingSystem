@@ -6,7 +6,7 @@ import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 
@@ -81,6 +81,8 @@ export default function AddLocation() {
     setLocationNameError('');
     setCountryIdError('');
     setLocationCodeError('');
+    setError('');
+    setSuccessful('');
     if (validation.isEmpty(locationName)) {
       setLocationNameError("Please enter valid location name.");
       return false;

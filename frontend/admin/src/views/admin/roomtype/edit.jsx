@@ -42,6 +42,7 @@ export default function EditRoomType() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setRoomTypeNameError('');
+    setError('');
     setSuccessful('');
 
     if (validation.isEmpty(roomtypeName)) {

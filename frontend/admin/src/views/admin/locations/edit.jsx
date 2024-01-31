@@ -77,8 +77,10 @@ export default function EditLocation() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLocationNameError('');
-
     setLocationCodeError('');
+    setError('');
+    setSuccessful('');
+
     if (validation.isEmpty(locationName)) {
       setLocationNameError("Please enter valid location name.");
       return false;

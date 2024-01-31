@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputField from "components/fields/InputField";
 import { amenitiesServices } from "services/amenities";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function AddAmenities() {
@@ -23,6 +23,7 @@ export default function AddAmenities() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setAmenitiesNameError("");
+    setError("");
     setSuccessful("");
 
     if (validation.isEmpty(amenitiesName)) {

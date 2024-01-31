@@ -42,6 +42,7 @@ export default function EditAmenities() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setAmenitiesNameError('');
+    setError('');
     setSuccessful('');
 
     if (validation.isEmpty(amenitiesName)) {

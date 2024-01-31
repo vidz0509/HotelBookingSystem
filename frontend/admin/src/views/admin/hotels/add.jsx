@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import InputField from "components/fields/InputField";
-import Dropdown from "components/dropdown";
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 
@@ -86,6 +85,7 @@ export default function AddHotel() {
     setLocationIdError("");
     setHotelCodeError("");
     setHotelAddressError("");
+    setError("");
     setSuccessful("");
 
     if (validation.isEmpty(hotelName)) {
@@ -178,20 +178,8 @@ export default function AddHotel() {
               <option value={item._id}>{item.country_name}</option>
             ))}
         </select>
+        {countryIdError && <span className="text-error">{countryIdError}</span>}
 
-        <Dropdown
-          variant="auth"
-          extra="mb-3"
-          label="Country Name*"
-          placeholder="Country Name*"
-          id="countryName"
-          type="text"
-          onChange={handleCountryIdChange}
-          state={countryIdError !== "" ? "error" : ""}
-          errorMessage={countryIdError !== "" ? countryIdError : ""}
-          value={countryId}
-          maxLength={30}
-        />
 
         <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
           Location Name*
@@ -209,19 +197,8 @@ export default function AddHotel() {
               <option value={item._id}>{item.location_name}</option>
             ))}
         </select>
-        <Dropdown
-          variant="auth"
-          extra="mb-3"
-          label="Location Name*"
-          placeholder="Location Name*"
-          id="locationName"
-          type="text"
-          onChange={handleLocationIdChange}
-          state={locationIdError !== "" ? "error" : ""}
-          errorMessage={locationIdError !== "" ? locationIdError : ""}
-          value={locationId}
-          maxLength={30}
-        />
+        {locationIdError && <span className="text-error">{locationIdError}</span>}
+
         <InputField
           variant="auth"
           extra="mb-3"
@@ -253,9 +230,8 @@ export default function AddHotel() {
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>
           <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
-              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-            }`}
+            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
             onClick={(e) => handleSubmit(e)}
             type="submit"
             disabled={btnDisabled ? "disabled" : ""}

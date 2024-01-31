@@ -3,7 +3,7 @@ import InputField from "components/fields/InputField";
 import { countriesServices } from "services/countries";  
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate } from 'react-router-dom';
+// import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 export default function AddCountry() {
@@ -31,7 +31,9 @@ export default function AddCountry() {
     event.preventDefault();
     setCountryNameError('');
     setCountryCodeError('');
+    setError('');
     setSuccessful('');
+
     if (validation.isEmpty(countryName)) {
       setCountryNameError("Please enter valid country name.");
       return false;

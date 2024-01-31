@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InputField from "components/fields/InputField";
 import { roomtypeServices } from "services/roomtype";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { Navigate } from "react-router-dom";
+// import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function AddRoomType() {
@@ -23,6 +23,7 @@ export default function AddRoomType() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setRoomTypeNameError("");
+    setError("");
     setSuccessful("");
 
     if (validation.isEmpty(roomtypeName)) {
