@@ -57,10 +57,13 @@ export class CountryCollection {
     }
 
     async updateCountry(CountryID: string, updateCountryDto: UpdateCountryDto) {
+        updateCountryDto['updatedAt'] = new Date();
         return await this.countryModel.findByIdAndUpdate(
             CountryID,
             updateCountryDto,
-            { new: true },
+            {
+            new: true,
+            },
         );
     }
 

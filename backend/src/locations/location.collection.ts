@@ -59,10 +59,13 @@ export class LocationCollection {
     }
 
     async updateLocation(LocationID: string, updateLocationDto: UpdateLocationDto) {
+        updateLocationDto['updatedAt'] = new Date();
         return await this.LocationModel.findByIdAndUpdate(
             LocationID,
             updateLocationDto,
-            { new: true },
+            { 
+                new: true 
+            },
         );
     }
 

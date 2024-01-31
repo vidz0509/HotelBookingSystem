@@ -48,10 +48,13 @@ export class RoomTypeCollection {
     }
 
     async updateRoomType(RoomTypeID: string, updateRoomTypeDto: UpdateRoomTypeDto) {
+        updateRoomTypeDto['updatedAt'] = new Date();
         return await this.RoomTypeModel.findByIdAndUpdate(
             RoomTypeID,
             updateRoomTypeDto,
-            { new: true },
+            { 
+                new: true 
+            },
         );
     }
 

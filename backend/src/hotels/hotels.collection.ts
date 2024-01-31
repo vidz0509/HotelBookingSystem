@@ -81,11 +81,13 @@ export class HotelsCollection {
     }
 
     async updateHotel(HotelID: string, updateHotelDto: UpdateHotelDto) {
-        console.log(updateHotelDto)
+        updateHotelDto['updatedAt'] = new Date();
         return await this.hotelModel.findByIdAndUpdate(
             HotelID,
             updateHotelDto,
-            { new: true },
+            { 
+                new: true 
+            },
         );
     }
 

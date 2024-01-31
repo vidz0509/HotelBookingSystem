@@ -49,10 +49,13 @@ export class AmenitiesCollection {
     }
 
     async updateAmenities(AmenitiesID: string, updateAmenitiesDto: UpdateAmenitiesDto) {
+        updateAmenitiesDto['updatedAt'] = new Date();
         return await this.AmenitiesModel.findByIdAndUpdate(
             AmenitiesID,
             updateAmenitiesDto,
-            { new: true },
+            { 
+                new: true 
+            },
         );
     }
 
