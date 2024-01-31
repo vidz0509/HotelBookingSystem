@@ -155,7 +155,8 @@ export default function EditHotel() {
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/hotels';
+          window.location.reload();
+          // window.location.href = '/admin/hotels';
           // return <Navigate to="/admin/countries" />
         }
       });
