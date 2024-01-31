@@ -187,42 +187,29 @@ export default function EditHotel() {
         />
 
       <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Country Name*</label>
-        <select id="countryId" name="countryId" class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white" onChange={handleCountryIdChange}>
+        <select id="countryId" name="countryId" onChange={handleCountryIdChange}  class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white">
           <option value="">-- Select Country --</option>
           {
             countriesData && countriesData.length > 0 && countriesData.map((item) =>
-              <option value={item._id}>
+              <option value={item._id} selected={item._id === countryId}>
                 {item.country_name}
               </option>
             )
           }
         </select>
-        <Dropdown
-          variant="auth"
-          extra="mb-3"
-          label="Country Name*"
-          placeholder="Country Name*"
-          id="countryName"
-          type="text"
-          onChange={handleCountryIdChange}
-          state={countryIdError !== "" ? "error" : ""}
-          errorMessage={countryIdError !== "" ? countryIdError : ""}
-          value={countryId}
-          maxLength={30}
-        />
 
       <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Location Name*</label>
-        <select id="locationId" name="locationId" class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white" onChange={handleLocationIdChange}>
+        <select id="locationId" name="locationId" onChange={handleLocationIdChange} class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white">
           <option value="">-- Select Location --</option>
           {
             locationsData && locationsData.length > 0 && locationsData.map((item) =>
-              <option value={item._id}>
+              <option value={item._id} selected={item._id === locationId}>
                 {item.location_name}
               </option>
             )
           }
         </select>
-        <Dropdown
+        {/* <Dropdown
           variant="auth"
           extra="mb-3"
           label="Location Name*"
@@ -234,7 +221,7 @@ export default function EditHotel() {
           errorMessage={locationIdError !== "" ? locationIdError : ""}
           value={locationId}
           maxLength={30}
-        />
+        /> */}
         <InputField
           variant="auth"
           extra="mb-3"
@@ -262,6 +249,7 @@ export default function EditHotel() {
           errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}     
           value={hotelAddress}     
         >{hotelAddress}</textarea>
+
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
