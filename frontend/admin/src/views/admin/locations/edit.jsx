@@ -109,7 +109,7 @@ export default function EditLocation() {
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/locations';
+          window.location.href = '/admin/locations/edit/'(locationId);
           // return <Navigate to="/admin/countries" />
         }
       });

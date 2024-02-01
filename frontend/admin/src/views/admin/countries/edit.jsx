@@ -75,7 +75,7 @@ export default function EditCountry() {
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/countries';
+          window.location.href = '/admin/countries/'(countryId);
           // return <Navigate to="/admin/countries" />
         }
       });

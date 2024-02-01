@@ -32,18 +32,6 @@ const Hotels = () => {
       Header: "Location Code",
       accessor: "location_code",
     },
-    // {
-    //   Header: "Hotel Address",
-    //   accessor: "hotel_address",
-    // },
-    // {
-    //   Header: "Register On",
-    //   accessor: "createdAt",
-    // },
-    // {
-    //   Header: "Modify On",
-    //   accessor: "updatedAt",
-    // },
     {
       Header: "Status",
       accessor: "isActive",

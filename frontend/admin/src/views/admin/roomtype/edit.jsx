@@ -64,7 +64,7 @@ export default function EditRoomType() {
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/roomtype';
+          window.location.href = '/admin/roomtype/edit/'(roomtypeId);
           // return <Navigate to="/admin/countries" />
         }
       });

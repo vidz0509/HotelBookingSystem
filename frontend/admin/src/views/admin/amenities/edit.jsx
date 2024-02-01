@@ -64,7 +64,7 @@ export default function EditAmenities() {
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/amenities';
+          window.location.href = '/admin/amenities/edit'(amenitiesId);
           // return <Navigate to="/admin/countries" />
         }
       });
