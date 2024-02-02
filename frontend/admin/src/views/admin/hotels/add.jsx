@@ -178,26 +178,28 @@ export default function AddHotel() {
               <option value={item._id}>{item.country_name}</option>
             ))}
         </select>
-        {countryIdError && <span className="text-error">{countryIdError}</span>}
+        {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
 
 
-        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-          Location Name*
-        </label>
-        <select
-          id="locationId"
-          name="locationId"
-          class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-          onChange={handleLocationIdChange}
-        >
-          <option value="">-- Select Location --</option>
-          {locationsData &&
-            locationsData.length > 0 &&
-            locationsData.map((item) => (
-              <option value={item._id}>{item.location_name}</option>
-            ))}
-        </select>
-        {locationIdError && <span className="text-error">{locationIdError}</span>}
+        <div className="mb-3">
+          <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+            Location Name*
+          </label>
+          <select
+            id="locationId"
+            name="locationId"
+            class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+            onChange={handleLocationIdChange}
+          >
+            <option value="">-- Select Location --</option>
+            {locationsData &&
+              locationsData.length > 0 &&
+              locationsData.map((item) => (
+                <option value={item._id}>{item.location_name}</option>
+              ))}
+          </select>
+          {locationIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{locationIdError}</span>}
+        </div>
 
         <InputField
           variant="auth"

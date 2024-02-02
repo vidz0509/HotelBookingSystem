@@ -43,3 +43,7 @@ input:checked.defaultCheckbox::before {
 .field button.icon {
 color: #932595 !important;
 }
+
+.mb-3 {
+margin-top: 10px;
+}
