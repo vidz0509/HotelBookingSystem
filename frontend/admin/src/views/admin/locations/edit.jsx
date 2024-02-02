@@ -76,6 +76,7 @@ export default function EditLocation() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setCountryIdError('');
     setLocationNameError('');
     setLocationCodeError('');
     setError('');
@@ -159,11 +160,11 @@ export default function EditLocation() {
           id="countryId"
           type="text"
           onChange={handleCountryIdChange}
-          state={countryIdError !== "" ? "error" : ""}
-          errorMessage={countryIdError !== "" ? countryIdError : ""}
           value={countryId}
           maxLength={30}
         />
+        {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
+
         <InputField
           variant="auth"
           extra="mb-3"
