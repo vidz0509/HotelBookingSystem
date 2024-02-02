@@ -1,6 +1,6 @@
 // import MiniCalendar from "components/calendar/MiniCalendar";
-import WeeklyRevenue from "views/admin/dashboard/components/WeeklyRevenue";
-import TotalSpent from "views/admin/dashboard/components/TotalSpent";
+// import WeeklyRevenue from "views/admin/dashboard/components/WeeklyRevenue";
+// import TotalSpent from "views/admin/dashboard/components/TotalSpent";
 // import PieChartCard from "views/admin/dashboard/components/PieChartCard";
 // import { IoMdHome } from "react-icons/io";
 // import { IoDocuments } from "react-icons/io5";
@@ -14,7 +14,7 @@ import ComplexTable from "views/admin/dashboard/components/ComplexTable";
 // import DailyTraffic from "views/admin/dashboard/components/DailyTraffic";
 // import TaskCard from "views/admin/dashboard/components/TaskCard";
 // import tableDataCheck from "./variables/tableDataCheck.json";
-import tableDataComplex from "./variables/tableDataComplex.json";
+// import tableDataComplex from "./variables/tableDataComplex.json";
 
 import {
   MdSupervisedUserCircle,
@@ -67,8 +67,8 @@ const Dashboard = () => {
       {/* Charts */}
 
       <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-2">
-        <TotalSpent />
-        <WeeklyRevenue />
+        {/* <TotalSpent /> */}
+        {/* <WeeklyRevenue /> */}
       </div>
 
       {/* Tables & Charts */}
@@ -90,11 +90,11 @@ const Dashboard = () => {
         </div> */}
 
         {/* Complex Table , Task & Calendar */}
-
+        {/* 
         <ComplexTable
           columnsData={columnsDataComplex}
           tableData={tableDataComplex}
-        />
+        /> */}
 
         {/* Task chart & Calendar */}
 
