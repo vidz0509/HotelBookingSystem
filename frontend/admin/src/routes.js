@@ -52,6 +52,7 @@ import {
   MdLock,
   MdPublic,
   MdPayments,
+  MdWifi,
   MdHotel,
   MdReport,
   MdRateReview,
@@ -150,7 +151,7 @@ const routes = [
     name: "Locations",
     layout: "/admin",
     path: "locations/add",
-    icon: <MdPublic className="h-6 w-6" />,
+    icon: <MdMyLocation className="h-6 w-6" />,
     component: <AddLocation />,
     secondary: true,
     addInMenu: false
@@ -160,7 +161,7 @@ const routes = [
     name: "Locations",
     layout: "/admin",
     path: "locations/edit/:id",
-    icon: <MdPublic className="h-6 w-6" />,
+    icon: <MdMyLocation className="h-6 w-6" />,
     component: <EditLocation />,
     secondary: true,
     addInMenu: false
@@ -228,7 +229,7 @@ const routes = [
     name: "Amenities",
     layout: "/admin",
     path: "amenities",
-    icon: <MdHotel className="h-6 w-6" />,
+    icon: <MdWifi className="h-6 w-6" />,
     component: <Amenities />,
     secondary: true,
     addInMenu: true,
@@ -237,7 +238,7 @@ const routes = [
     name: "Amenities",
     layout: "/admin",
     path: "amenities/add",
-    icon: <MdHotel className="h-6 w-6" />,
+    icon: <MdWifi className="h-6 w-6" />,
     component: <AddAmenities />,
     secondary: true,
     addInMenu: false
@@ -247,7 +248,7 @@ const routes = [
     name: "Amenities",
     layout: "/admin",
     path: "amenities/edit/:id",
-    icon: <MdHotel className="h-6 w-6" />,
+    icon: <MdWifi className="h-6 w-6" />,
     component: <EditAmenities />,
     secondary: true,
     addInMenu: false
