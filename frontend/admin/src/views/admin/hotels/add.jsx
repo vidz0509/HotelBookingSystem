@@ -224,10 +224,9 @@ export default function AddHotel() {
           id="hotelAddress"
           type="text"
           onChange={handleHotelAddressChange}
-          state={hotelAddressError !== "" ? "error" : ""}
-          errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
           value={hotelAddress}
         />
+          {hotelAddressError && <span className="mb-3 ml-1 text-red-500 text-sm">{hotelAddressError}</span>}
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>

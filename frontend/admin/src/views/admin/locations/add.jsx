@@ -140,7 +140,7 @@ export default function AddLocation() {
           value={locationName}
           maxLength={30}
         />
-        
+
         <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Country Name*</label>
         <select id="countryId" name="countryId" class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white" onChange={handleCountryIdChange}>
           <option value="" >-- Select Country --</option>
@@ -152,6 +152,7 @@ export default function AddLocation() {
             )
           }
         </select>
+        {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
 
         <Dropdown
           variant="auth"
