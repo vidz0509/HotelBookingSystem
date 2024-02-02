@@ -45,7 +45,6 @@ const Countries = () => {
   
     
   useEffect(() => {
-    debugger;
     getCountries();
   }, []);
 
