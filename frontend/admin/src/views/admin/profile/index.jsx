@@ -3,6 +3,7 @@ import InputField from "components/fields/InputField";
 import { authServices } from "../../../services/auth";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
+import Swal from "sweetalert2";
 
 export default function ProfileOverview() {
   const userData = authServices.getCurrentUser();
@@ -59,15 +60,23 @@ export default function ProfileOverview() {
     const currentUser = authServices.getCurrentUser();
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
-      setBtnDisabled(false);
-      localStorage.setItem('currentUser', JSON.stringify(result.data));
-      setTimeout(function () {
-        setSuccessful("Profile change successfully")
-      }, 1000);
+      Swal.fire({
+        title: "Added",
+        text: "profile has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/profile';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setSuccessful(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   }
 

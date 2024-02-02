@@ -3,6 +3,7 @@ import InputField from "components/fields/InputField";
 import { authServices } from "../../../services/auth";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
+import Swal from "sweetalert2";
 
 import {
   MdRemoveRedEye,
@@ -112,14 +113,23 @@ export default function ChangePassword() {
     };
     const result = await authServices.changepassword(requestBody);
     if (result.isSuccessful) {
-      setSuccessfull('Password changed successfully.');
-      setBtnDisabled(false);
-      setTimeout(function () {
-        window.location.reload();
-      }, 1000);
+      Swal.fire({
+        title: "Added",
+        text: "ChangePassword has been Added successfully.",
+        icon: "success"
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/admin/change-password';
+          // return <Navigate to="/admin/countries" />
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error"
+      });
     }
   }
   const clearErrors = () => {
