@@ -72,7 +72,7 @@ const RoomType = () => {
       {!loading &&
         <div className="list-table countries">
           <div className="add-row px-6 mb-5 text-align-right">
-            <Link to="add" className="btn btn-primary">Add RoomType</Link>
+            <Link to="add" className="btn btn-primary">Add Room Type</Link>
           </div>
           <ComplexTable
             columnsData={columnsDataComplex}

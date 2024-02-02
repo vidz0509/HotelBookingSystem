@@ -167,7 +167,7 @@ const routes = [
   },
   
   {
-    name: "RoomType",
+    name: "Room Type",
     layout: "/admin",
     path: "roomtypes",
     icon: <MdHotel className="h-6 w-6" />,
