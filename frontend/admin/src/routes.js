@@ -58,7 +58,6 @@ import {
   MdHotel,
   MdReport,
   MdRateReview,
-  MdMyLocation,
 } from "react-icons/md";
 
 const routes = [
