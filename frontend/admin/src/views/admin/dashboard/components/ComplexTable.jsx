@@ -8,7 +8,7 @@ import {
   useTable,
 } from "react-table";
 import { Link } from "react-router-dom";
-import { MdCheckCircle, MdCancel, MdEditSquare, MdDelete } from "react-icons/md";
+import { MdCheckCircle, MdCancel, MdEditSquare, MdDelete,MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { useMemo } from "react";
 
 const ComplexTable = (props) => {
@@ -104,11 +104,22 @@ const ComplexTable = (props) => {
                   <th
                     {...column.getHeaderProps(column.getSortByToggleProps())}
                     key={index}
-                    className="border-b border-gray-200 pr-28 pb-[10px] text-start dark:!border-navy-700"
+                    className="border-b border-gray-200 pr-5 pb-[10px] text-start dark:!border-navy-700"
                   >
-                    <p className="text-md tracking-wide text-gray-600">
-                      {column.render("Header")}
-                    </p>
+                    <span className="flex">
+                      <span className="text-md tracking-wide text-gray-600">
+                        {column.render("Header")}
+                      </span>
+                      {column.isSorted ? (
+                        column.isSortedDesc ? (
+                          <span><MdKeyboardArrowDown className="h-6 w-6" /></span>
+                        ) : (
+                          <span><MdKeyboardArrowUp className="h-6 w-6" /></span>
+                        )
+                      ) : (
+                        <span><MdKeyboardArrowDown className="h-6 w-6" /></span>
+                      )}
+                    </span>
                   </th>
                 ))}
               </tr>

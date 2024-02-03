@@ -104,7 +104,7 @@ export default function ChangePassword() {
       return false;
     }
     clearErrors();
-    setBtnDisabled(true);
+    setBtnDisabled(false);
     const currentUser = authServices.getCurrentUser();
     const requestBody = {
       email: currentUser.email,
