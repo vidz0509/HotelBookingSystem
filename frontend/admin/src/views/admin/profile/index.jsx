@@ -62,7 +62,7 @@ export default function ProfileOverview() {
     if (result.isSuccessful) {
       Swal.fire({
         title: "Added",
-        text: "profile has been Added successfully.",
+        text: "Profile has been added successfully.",
         icon: "success"
       }).then((result) => {
         if (result.isConfirmed) {

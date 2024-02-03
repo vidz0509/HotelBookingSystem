@@ -90,13 +90,13 @@ const Navbar = (props) => {
 
               <div className="flex flex-col p-4">
                 <a
-                  href="./profile"
+                  href="/admin/profile"
                   className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
                   My Profile
                 </a>
                 <a
-                  href="./change-password"
+                  href="/admin/change-password"
                   className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
                 >
                   Change Password
