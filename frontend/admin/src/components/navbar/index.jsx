@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 //   IoMdNotificationsOutline,
 //   IoMdInformationCircleOutline,
 // } from "react-icons/io";
-import avatar from "assets/img/avatars/avatar4.png";
+import avatar from "assets/img/avatars/th.jpeg";
 import { authServices } from "../../services/auth";
 // import Dashboard from "views/admin/dashboard";
 // import ProfileOverview from "./views/admin/profile";
