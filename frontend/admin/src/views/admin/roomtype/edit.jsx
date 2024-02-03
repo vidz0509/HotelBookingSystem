@@ -85,7 +85,7 @@ export default function EditRoomType() {
           variant="auth"
           extra="mb-3"
           label="Room Type Name*"
-          placeholder="roomtype Name*"
+          placeholder="Roomtype Name*"
           id="roomtypeName"
           type="text"
           onChange={handleRoomTypeNameChange}
@@ -102,7 +102,7 @@ export default function EditRoomType() {
           <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
             {btnDisabled ?
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-              : <span>Edit roomtype</span>}
+              : <span>Edit Room Type</span>}
           </button>
         </div>
         <div className="mt-4">

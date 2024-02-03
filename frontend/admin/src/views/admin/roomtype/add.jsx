@@ -87,13 +87,9 @@ export default function AddRoomType() {
             type="submit"
             disabled={btnDisabled ? "disabled" : ""}
           >
-            {btnDisabled ? (
-              <span className="flex items-center justify-center">
-                <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
-              </span>
-            ) : (
-              <span>Add RoomType</span>
-            )}
+            {btnDisabled ?
+              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+              : <span>Add Room Type</span>}
           </button>
         </div>
         <div className="mt-4">

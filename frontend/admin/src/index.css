@@ -14,26 +14,27 @@
 }
 
 input.defaultCheckbox::before {
-	content: url(../src/assets/svg/checked.svg); 
+	content: url(../src/assets/svg/checked.svg);
 	color: white;
-	opacity: 0; 
-	height: 16px; 
+	opacity: 0;
+	height: 16px;
 	width: 16px;
-	position: absolute; 
+	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0px);
-} 
+}
 
-input:checked.defaultCheckbox::before { 
+input:checked.defaultCheckbox::before {
 	opacity: 1;
 }
 
-.h-7 , .h-6 {
-    color: #932595 !important;
-  }
+.h-7,
+.h-6 {
+	color: #932595 !important;
+}
 
-  .capitalize a{
-    color: #932595 !important;
+.capitalize a {
+	color: #932595 !important;
 }
 
 .duration-200 {
@@ -41,14 +42,22 @@ input:checked.defaultCheckbox::before {
 }
 
 .field button.icon {
-color: #932595 !important;
+	color: #932595 !important;
 }
+
 .mb-3 {
-margin-top: 10px;
+	margin-top: 10px;
 }
+
 .bg-brand-500 {
 	background-color: #932595 !important;
 }
 
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+background-color: #932595 !important;
+}
 
-
+div:where(.swal2-icon).swal2-warning {
+border-color: #932595 !important;
+color: #932595 !important;
+}
