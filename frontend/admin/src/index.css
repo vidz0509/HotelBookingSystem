@@ -61,3 +61,13 @@ div:where(.swal2-icon).swal2-warning {
 border-color: #932595 !important;
 color: #932595 !important;
 }
+
+.text-gray-600 {
+    --tw-text-opacity: 1 !important;
+    color: rgb(163 0 208 / var(--tw-text-opacity)) !important;
+}
+
+.text-sm {
+    font-size: medium !important;
+    line-height: 1.25rem !important;
+}
