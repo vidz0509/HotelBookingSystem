@@ -33,6 +33,18 @@ export class AmenitiesService {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
     }
   }
+  
+  async getAllAmenities(): Promise<any> {
+    let data = await this.amenitiesCollection.getAllAmenities();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+  
+  async getAmenitiesCount(): Promise<any> {
+    let count = await this.amenitiesCollection.getAmenitiesCount();
+    const response = await this.helper.countResponse(true, null, count);
+    return response;
+  }
 
   async checkIfAmenitiesExists(amenities_name: string) {
     const country = await this.amenitiesCollection.getAmenitiesByName(amenities_name);
@@ -48,12 +60,6 @@ export class AmenitiesService {
   async getAmenitiesById(id: string) {
     const amenities = await this.amenitiesCollection.getAmenitiesById(id);
     const response = await this.helper.buildResponse(true, null, amenities);
-    return response;
-  }
-
-  async getAllAmenitiess(): Promise<any> {
-    let data = await this.amenitiesCollection.getAllAmenitiess();
-    const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
 

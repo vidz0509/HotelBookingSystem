@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { customerServices } from "services/customer";
 import { countriesServices } from "services/countries"
 import { locationsServices } from "services/locations"
+import { roomtypeServices } from "services/roomtype";
 import { hotelsServices } from "services/hotels";
+import { amenitiesServices } from "services/amenities";
 
 // import { columnsDataComplex } from "./variables/columnsData";
 // columnsDataCheck,
@@ -33,7 +35,9 @@ const Dashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalCountries, setTotalCountries] = useState(0);
   const [totalLocations, setTotalLocations] = useState(0);
-  const [totalHotelsTypes, setTotalHotelsTypes] = useState(0);
+  const [totalRoomType, setTotalRoomType] = useState(0);
+  const [totalHotels, setTotalHotels] = useState(0);
+  const [totalAmenities, setTotalAmenities] = useState(0);
 
   useEffect(() => {
     userCount();
@@ -69,13 +73,35 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
-    HotelsTypeCount();
+    RoomTypeCount();
   }, []);
 
-  const HotelsTypeCount = async () => {
-    const result = await hotelsServices.HotelsTypeCount();
+  const RoomTypeCount = async () => {
+    const result = await roomtypeServices.RoomTypeCount();
     if (result.isSuccessful) {
-      setTotalHotelsTypes(result.count);
+      setTotalRoomType(result.count);
+    }
+  }
+
+  useEffect(() => {
+    HotelsCount();
+  }, []);
+
+  const HotelsCount = async () => {
+    const result = await hotelsServices.HotelsCount();
+    if (result.isSuccessful) {
+      setTotalHotels(result.count);
+    }
+  }
+
+  useEffect(() => {
+    AmenitiesCount();
+  }, []);
+
+  const AmenitiesCount = async () => {
+    const result = await amenitiesServices.AmenitiesCount();
+    if (result.isSuccessful) {
+      setTotalAmenities(result.count);
     }
   }
 
@@ -103,17 +129,17 @@ const Dashboard = () => {
         <Widget
           icon={<MdHotel className="h-6 w-6" />}
           title={"Room Types"}
-          subtitle={""}
+          subtitle={totalRoomType}
         />
         <Widget
           icon={<MdHotelClass className="h-7 w-7" />}
           title={"Hotels"}
-          subtitle={totalHotelsTypes}
+          subtitle={totalHotels}
         />
         <Widget
           icon={<MdWifi className="h-6 w-6" />}
           title={"Amenities"}
-          subtitle={""}
+          subtitle={totalAmenities}
         />
         <Widget
           icon={<MdMenuBook className="h-7 w-7" />}

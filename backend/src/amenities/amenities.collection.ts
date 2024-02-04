@@ -11,13 +11,19 @@ export class AmenitiesCollection {
 
     constructor(@InjectModel('Amenities') private AmenitiesModel: Model<Amenities>) { }
 
-    async getAllAmenitiess(): Promise<Amenities[]> {
+    async getAllAmenities(): Promise<Amenities[]> {
         return await this.AmenitiesModel.find({
             isDeleted: false,
         })
             .sort({
                 createdAt: -1
             });
+    }
+    
+    async getAmenitiesCount(): Promise<number> {
+        return await this.AmenitiesModel.countDocuments({
+            isDeleted: false,
+        });
     }
 
     async getAmenitiesById(id: string): Promise<Amenities> {

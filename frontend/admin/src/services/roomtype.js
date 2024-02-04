@@ -5,7 +5,8 @@ export const roomtypeServices = {
     addRoomType,
     editRoomType,
     getRoomTypeById,
-    softDeleteRoomType
+    softDeleteRoomType,
+    RoomTypeCount,
 };
 
 async function getAllRoomType() {
@@ -52,6 +53,16 @@ async function getRoomTypeById(id) {
 async function softDeleteRoomType(id) {
     const url = `${process.env.REACT_APP_API_URL}/roomtypes/softDelete/${id}`;
     return await axios.put(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
+async function RoomTypeCount() {
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes/count`;
+    return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

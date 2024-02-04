@@ -10,7 +10,12 @@ export class AmenitiessController {
 
     @Get()
     async findAll() {
-        return this.amenitiesService.getAllAmenitiess();
+        return this.amenitiesService.getAllAmenities();
+    }
+    
+    @Get('/count')
+    async getAmenitiesCount(): Promise<number> {
+        return this.amenitiesService.getAmenitiesCount();
     }
 
     @Post()

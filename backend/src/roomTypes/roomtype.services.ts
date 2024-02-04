@@ -15,6 +15,19 @@ export class RoomTypeService {
     private readonly helper: HelpersServices,
   ) { }
 
+
+  async getAllRoomTypes(): Promise<any> {
+    let data = await this.roomtypeCollection.getAllRoomTypes();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async getRoomTypesCount(): Promise<any> {
+    let count = await this.roomtypeCollection.getRoomTypesCount();
+    const response = await this.helper.countResponse(true, null, count);
+    return response;
+  }
+
   async createRoomType(createRoomTypeDto: CreateRoomTypeDto) {
     const isRoomTypeExists = await this.checkIfRoomTypeExists(createRoomTypeDto.roomtype_name);
     if (isRoomTypeExists) {
@@ -52,12 +65,6 @@ export class RoomTypeService {
   async getRoomTypeById(id: string) {
     const roomtype = await this.roomtypeCollection.getRoomTypeById(id);
     const response = await this.helper.buildResponse(true, null, roomtype);
-    return response;
-  }
-
-  async getAllRoomTypes(): Promise<any> {
-    let data = await this.roomtypeCollection.getAllRoomTypes();
-    const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
 

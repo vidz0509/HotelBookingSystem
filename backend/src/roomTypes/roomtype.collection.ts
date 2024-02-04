@@ -20,6 +20,12 @@ export class RoomTypeCollection {
             });
     }
 
+    async getRoomTypesCount(): Promise<number> {
+        return await this.RoomTypeModel.countDocuments({
+            isDeleted: false,
+        });
+    }
+
     async sortedRoomTypes(order: string): Promise<RoomType[]> {
         return await this.RoomTypeModel.aggregate([
             { $sort: { roomtype_name: order == 'desc' ? -1 : 1 } },
@@ -52,8 +58,8 @@ export class RoomTypeCollection {
         return await this.RoomTypeModel.findByIdAndUpdate(
             RoomTypeID,
             updateRoomTypeDto,
-            { 
-                new: true 
+            {
+                new: true
             },
         );
     }

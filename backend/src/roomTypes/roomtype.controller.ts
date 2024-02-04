@@ -12,6 +12,11 @@ export class RoomTypesController {
     async findAll() {
         return this.roomtypeService.getAllRoomTypes();
     }
+    
+    @Get('/count')
+    async getRoomTypesCount(): Promise<number> {
+        return this.roomtypeService.getRoomTypesCount();
+    }
 
     @Post()
     async createRoomType(@Body() createRoomTypeDto: CreateRoomTypeDto) {
