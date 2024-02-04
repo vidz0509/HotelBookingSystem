@@ -43,6 +43,26 @@ export class HotelsCollection {
                     as: 'location_details'
                 }
             },
+            {
+                $lookup: {
+                    from: 'countries',
+                    let: { countryId: { $toObjectId: "$country_id" } }, // Convert country_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$countryId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                country_code: 1,
+                                country_name: 1
+                            }
+                        }
+                    ],
+                    as: 'country_details'
+                }
+            },
         ]);
     }
 

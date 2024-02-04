@@ -26,7 +26,7 @@ const Hotels = () => {
     },
     {
       Header: "Country Code",
-      accessor: "country_code",
+      accessor: "country_details[0].country_code",
     },
     {
       Header: "Location Code",
