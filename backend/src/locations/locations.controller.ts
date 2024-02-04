@@ -13,6 +13,11 @@ export class LocationsController {
         return this.locationService.getAllLocations();
     }
 
+    @Get('/count')
+    async getLocationsCount(): Promise<number> {
+        return this.locationService.getLocationsCount();
+    }
+
     @Post()
     async createLocation(@Body() createLocationDto: CreateLocationDto) {
         console.log(createLocationDto);

@@ -15,6 +15,12 @@ export class UsersCollection {
         return await this.userModel.find().select('_id fullname email phone createdAt updatedAt isDeleted isActive');
     }
 
+    async getUsersCount(): Promise<number> {
+        return await this.userModel.countDocuments({
+            isDeleted: false,
+        });
+    }
+
     async getUserWithPassword(email: string) {
         return await this.userModel.findOne({ email: email });
     }
@@ -80,7 +86,7 @@ export class UsersCollection {
     async sortedUsers(order: string): Promise<User[]> {
         return await this.userModel.aggregate([
             { $sort: { fullname: order == 'desc' ? -1 : 1 } },
-        //   { $set: { createAt: new Date(), isDeleted: true } },
+            //   { $set: { createAt: new Date(), isDeleted: true } },
         ]);
     }
 

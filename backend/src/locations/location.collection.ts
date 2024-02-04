@@ -20,6 +20,12 @@ export class LocationCollection {
             });
     }
 
+    async getLocationsCount(): Promise<number> {
+        return await this.LocationModel.countDocuments({
+            isDeleted: false,
+        });
+    }
+
     async sortedLocations(order: string): Promise<Location[]> {
         return await this.LocationModel.aggregate([
             { $sort: { location_name: order == 'desc' ? -1 : 1 } },

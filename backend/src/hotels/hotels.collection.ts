@@ -46,6 +46,12 @@ export class HotelsCollection {
         ]);
     }
 
+    async getHotelCount(): Promise<number> {
+        return await this.hotelModel.countDocuments({
+            isDeleted: false,
+        });
+    }
+
     async sortedHotels(order: string): Promise<Hotels[]> {
         return await this.hotelModel.aggregate([
             { $sort: { hotel_name: order == 'desc' ? -1 : 1 } },

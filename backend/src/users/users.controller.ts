@@ -23,6 +23,11 @@ export class UsersController {
         return this.userService.getAllUsers();
     }
 
+    @Get('/count')
+    async getUsersCount(): Promise<number> {
+        return this.userService.getUsersCount();
+    }
+
     @Get('/sortusers')
     async sortedUsers(@Query('order') order: string) {
         return await this.userService.sortedUsers(order);
@@ -54,16 +59,16 @@ export class UsersController {
     }
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File){
-      console.log(file);
-      const frontendUrl = `http://localhost:5001/users/image/${file.filename}`;
-      return { message: 'File uploaed successfully',url: frontendUrl };
+    uploadFile(@UploadedFile() file: Express.Multer.File) {
+        console.log(file);
+        const frontendUrl = `http://localhost:5001/users/image/${file.filename}`;
+        return { message: 'File uploaed successfully', url: frontendUrl };
     }
-  
+
     @Get('image/:filename')
-    async serveFile(@Param('filename') filname: string, @Res() res: Response){
-      return res.sendFile(filname, { root: 'hotelbooking/image'});
+    async serveFile(@Param('filename') filname: string, @Res() res: Response) {
+        return res.sendFile(filname, { root: 'hotelbooking/image' });
     }
-  
+
 }
 

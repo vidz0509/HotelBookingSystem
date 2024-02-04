@@ -15,6 +15,18 @@ export class LocationService {
     private readonly helper: HelpersServices,
   ) { }
 
+  async getAllLocations(): Promise<any> {
+    let data = await this.locationCollection.getAllLocations();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async getLocationsCount(): Promise<any> {
+    let count = await this.locationCollection.getLocationsCount();
+    const response = await this.helper.countResponse(true, null, count);
+    return response;
+  }
+
   async createLocation(createLocationDto: CreateLocationDto) {
     const isLocationExists = await this.checkIfLocationExists(createLocationDto.location_name);
     if (isLocationExists) {
@@ -59,12 +71,6 @@ export class LocationService {
   async getLocationById(id: string) {
     const location = await this.locationCollection.getLocationById(id);
     const response = await this.helper.buildResponse(true, null, location);
-    return response;
-  }
-
-  async getAllLocations(): Promise<any> {
-    let data = await this.locationCollection.getAllLocations();
-    const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
 

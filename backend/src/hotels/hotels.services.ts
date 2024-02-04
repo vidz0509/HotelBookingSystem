@@ -34,6 +34,18 @@ export class HotelsService {
     }
   }
 
+  async getAllHotel(): Promise<any> {
+    let data = await this.hotelCollection.getAllHotel();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async getHotelCount(): Promise<any> {
+    let count = await this.hotelCollection.getHotelCount();
+    const response = await this.helper.countResponse(true, null, count);
+    return response;
+  }
+
   async checkIfHotelExists(hotel_name: string) {
     const hotel = await this.hotelCollection.getHotelByName(hotel_name);
     return hotel;
@@ -59,12 +71,6 @@ export class HotelsService {
   async getHotelById(id: string) {
     const hotel = await this.hotelCollection.getHotelById(id);
     const response = await this.helper.buildResponse(true, null, hotel);
-    return response;
-  }
-
-  async getAllHotel(): Promise<any> {
-    let data = await this.hotelCollection.getAllHotel();
-    const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
 

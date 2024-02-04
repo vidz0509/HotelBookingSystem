@@ -24,13 +24,15 @@ export class UsersService {
         return response;
     }
 
+    async getUsersCount(): Promise<any> {
+        let count = await this.collection.getUsersCount();
+        const response = await this.helper.countResponse(true, null, count);
+        return response;
+    }
+
     async register(createUserDto) {
         return await this.collection.createUser(createUserDto);
     }
-
-    // async getUserByName(name: string): Promise<User> {
-    //     return await this.collection.getUserByName(name);
-    // }
 
     async getUser(Id: string) {
         let data = await this.collection.getUser(Id);

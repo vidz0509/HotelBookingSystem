@@ -14,6 +14,16 @@ export class HotelsController {
         return await this.hotelService.createHotel(createHotelDto);
     }
 
+    @Get()
+    async findAll() {
+        return await this.hotelService.getAllHotel();
+    }
+
+    @Get('/count')
+    async getHotelCount(): Promise<number> {
+        return this.hotelService.getHotelCount();
+    }
+
     @Put(':id')
     async updateHotel(@Param('id') id: string,
         @Body() updateHotelDto: UpdateHotelDto) {
@@ -34,15 +44,6 @@ export class HotelsController {
     async getById(@Param('id') id: string) {
         return this.hotelService.getHotelById(id);
     }
-
-    @Get()
-    async findAll() {
-        return await this.hotelService.getAllHotel();
-    }
-    // @Delete(':id')
-    // async remove(@Param('id') id: string) {
-    //     return this.hotelService.deleteHotel(id);
-    // }
 
     @Put('/softdelete/:id')
     async softDelete(@Param('id') id: string) {
