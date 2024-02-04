@@ -77,6 +77,7 @@ export default function ChangePassword() {
     setpasswordError('');
     setnewPasswordError('');
     setconfirmPasswordError('');
+    setSuccessfull('');
     if (validation.isEmpty(password)) {
       setpasswordError("Please enter valid password.");
       return false;

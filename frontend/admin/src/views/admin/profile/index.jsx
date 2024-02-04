@@ -39,6 +39,8 @@ export default function ProfileOverview() {
     setEmailError('');
     setFullNameError('');
     setContactError('');
+    setError('');
+    setSuccessful('');
     if (validation.isEmpty(fullname)) {
       setFullNameError("Please enter valid fullname.");
       return false;
