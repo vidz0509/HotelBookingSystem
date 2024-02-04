@@ -13,12 +13,38 @@ export class LocationCollection {
     constructor(@InjectModel('Location') private LocationModel: Model<Location>) { }
 
     async getAllLocations(): Promise<Location[]> {
-        return await this.LocationModel.find({
-            isDeleted: false,
-        })
-            .sort({
-                createdAt: -1
-            });
+        return await this.LocationModel.aggregate([
+            {
+                $match: {
+                    isDeleted: false
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'countries',
+                    let: { countryId: { $toObjectId: "$country_id" } }, // Convert country_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$countryId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                country_code: 1,
+                                country_name: 1
+                            }
+                        }
+                    ],
+                    as: 'country_details'
+                }
+            },
+        ]);
     }
 
     async getLocationsCount(): Promise<number> {
