@@ -15,6 +15,18 @@ export class CountryService {
     private readonly helper: HelpersServices,
   ) { }
 
+  async getAllCountry(): Promise<any> {
+    let data = await this.countryCollection.getAllCountry();
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+  }
+
+  async getCountryCount(): Promise<any> {
+    let count = await this.countryCollection.getCountryCount();
+    const response = await this.helper.countResponse(true, null, count);
+    return response;
+  }
+
   async createCountry(createCountryDto: CreateCountryDto) {
     const isCountryExists = await this.checkIfCountryExists(createCountryDto.country_name);
     if (isCountryExists) {
@@ -62,11 +74,6 @@ export class CountryService {
     return response;
   }
 
-  async getAllCountry(): Promise<any> {
-    let data = await this.countryCollection.getAllCountry();
-    const response = await this.helper.buildResponse(true, null, data);
-    return response;
-  }
 
   async softDeleteCountry(countryId: string) {
     console.log(countryId)

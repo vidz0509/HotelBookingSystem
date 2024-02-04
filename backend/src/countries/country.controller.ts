@@ -14,6 +14,16 @@ export class CountryController {
     return await this.countryService.createCountry(createCountryDto);
   }
 
+  @Get()
+  async findAll() {
+    return await this.countryService.getAllCountry();
+  }
+
+  @Get('/count')
+  async getCountryCount(): Promise<number> {
+    return this.countryService.getCountryCount();
+  }
+
   @Put(':id')
   async updateCountry(@Param('id') id: string,
     @Body() updateCountryDto: UpdateCountryDto) {
@@ -33,11 +43,6 @@ export class CountryController {
   @Get(':id')
   async getById(@Param('id') id: string) {
     return this.countryService.getCountryById(id);
-  }
-
-  @Get()
-  async findAll() {
-    return await this.countryService.getAllCountry();
   }
 
   @Put('/softdelete/:id')

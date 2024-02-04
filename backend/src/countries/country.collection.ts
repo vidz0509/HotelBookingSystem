@@ -20,6 +20,12 @@ export class CountryCollection {
             });
     }
 
+    async getCountryCount(): Promise<number> {
+        return await this.countryModel.countDocuments({
+            isDeleted: false,
+        });
+    }
+
     async sortedCountries(order: string): Promise<Country[]> {
         return await this.countryModel.aggregate([
             { $sort: { country_name: order == 'desc' ? -1 : 1 } },
@@ -62,7 +68,7 @@ export class CountryCollection {
             CountryID,
             updateCountryDto,
             {
-            new: true,
+                new: true,
             },
         );
     }

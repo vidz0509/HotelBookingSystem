@@ -20,6 +20,19 @@ export class HelpersServices {
     return response;
   }
 
+  async countResponse(
+    successStatus: boolean,
+    errorMessage?: string,
+    count?: any,
+  ) {
+    const response = {
+      isSuccessful: successStatus,
+      errorMessage: errorMessage,
+      count: count,
+    };
+    return response;
+  }
+
   async isValidPassword(password) {
     const regex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{8,15}$/; / Min 8 chars Max 12 chars: 1 digit 1 Uppercase and 1 special char /
     return regex.test(password);
