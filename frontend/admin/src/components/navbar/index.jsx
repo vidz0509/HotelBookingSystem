@@ -57,6 +57,8 @@ const Navbar = (props) => {
             <p className="text-sm font-normal capitalize text-navy-700 dark:text-white dark:hover:text-white"
 >              {brandText}
 </p>
+
+
            
           </div>
         }
