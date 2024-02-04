@@ -35,9 +35,9 @@ export default function AddHotel() {
     getCountries();
   }, []);
 
-  useEffect(() => {
-    getLocations();
-  }, []);
+  // useEffect(() => {
+  //   getLocations();
+  // }, []);
 
   const getCountries = async () => {
     const result = await countriesServices.getAllCountries();
@@ -46,8 +46,8 @@ export default function AddHotel() {
     }
   };
 
-  const getLocations = async () => {
-    const result = await locationsServices.getAllLocations();
+  const getLocations = async (country_id) => {
+    const result = await locationsServices.getLocationByCountry(country_id);
     if (result.isSuccessful) {
       setLocationsData(result.data);
     }
@@ -61,6 +61,7 @@ export default function AddHotel() {
   const handleCountryIdChange = (event) => {
     const value = event.target.value;
     setCountryId(value);
+    getLocations(value);
   };
 
   const handleLocationIdChange = (event) => {
@@ -226,7 +227,7 @@ export default function AddHotel() {
           onChange={handleHotelAddressChange}
           value={hotelAddress}
         />
-          {hotelAddressError && <span className="mb-3 ml-1 text-red-500 text-sm">{hotelAddressError}</span>}
+        {hotelAddressError && <span className="mb-3 ml-1 text-red-500 text-sm">{hotelAddressError}</span>}
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>

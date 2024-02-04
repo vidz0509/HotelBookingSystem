@@ -20,6 +20,7 @@ export const locationsServices = {
     softDeleteLocation,
     getLocationById,
     locationCount,
+    getLocationByCountry,
 };
 
 
@@ -66,6 +67,16 @@ async function softDeleteLocation(id) {
 
 async function getLocationById(id) {
     const url = `${process.env.REACT_APP_API_URL}/locations/${id}`;
+    return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
+async function getLocationByCountry(id) {
+    const url = `${process.env.REACT_APP_API_URL}/locations/getlocationbycountry/${id}`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {

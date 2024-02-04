@@ -10,6 +10,9 @@ export default function Admin(props) {
   const { ...rest } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
+  const [isInnerPage, setIsInnerPage] = React.useState(false);
+  const [innerPageText, setInnerPageText] = React.useState('');
+  const [parentPageUrl, setParentPageUrl] = React.useState('');
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
   React.useEffect(() => {
@@ -19,6 +22,7 @@ export default function Admin(props) {
   }, []);
   React.useEffect(() => {
     getActiveRoute(routes);
+    checkIsInnerPage();
   }, [location.pathname]);
 
   const getActiveRoute = (routes) => {
@@ -57,6 +61,26 @@ export default function Admin(props) {
     });
   };
 
+  const checkIsInnerPage = () => {
+    if ((window.location.pathname).includes('add')) {
+      setIsInnerPage(true);
+      setInnerPageText('Add');
+      setParentPageUrl(getParentPageUrl);
+    } else if ((window.location.pathname).includes('edit')) {
+      setIsInnerPage(true);
+      setInnerPageText('Edit');
+      setParentPageUrl(getParentPageUrl);
+    }
+  }
+  function getParentPageUrl() {
+    var stringVariable = window.location.href;
+    if ((window.location.pathname).includes('edit')) {
+      return stringVariable.substring(0, stringVariable.lastIndexOf('/edit'));
+    } else {
+      return stringVariable.substring(0, stringVariable.lastIndexOf('/'));
+    }
+  }
+
   document.documentElement.dir = "ltr";
   if (!authServices.checkIfUserLoggedIn()) {
     return <Navigate to="/auth/login" replace />;
@@ -77,6 +101,9 @@ export default function Admin(props) {
               logoText={"Horizon UI Tailwind React"}
               brandText={currentRoute}
               secondary={getActiveNavbar(routes)}
+              isInnerPage={isInnerPage}
+              innerPageText={innerPageText}
+              parentPageUrl={parentPageUrl}
               {...rest}
             />
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2 mt-5">

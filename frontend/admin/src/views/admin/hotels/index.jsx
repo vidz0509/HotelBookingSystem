@@ -30,7 +30,7 @@ const Hotels = () => {
     },
     {
       Header: "Location Code",
-      accessor: "location_code",
+      accessor: "location_details[0].location_code",
     },
     {
       Header: "Status",

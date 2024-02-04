@@ -54,12 +54,18 @@ const Navbar = (props) => {
                 /{" "}
               </span>
             </a>
-            <p className="text-sm font-normal capitalize text-navy-700 dark:text-white dark:hover:text-white"
->              {brandText}
-</p>
-
-
-           
+            {props.isInnerPage && props.innerPageText !== '' ?
+              <>
+                <a
+                  className="text-sm font-normal text-navy-700 dark:text-white dark:hover:text-white"
+                  href={props.parentPageUrl}
+                >{brandText}</a>
+                <p className="mx-1 text-sm text-navy-700 hover:text-navy-700 dark:text-white">
+                  {" "}
+                  /{" "}{props.innerPageText}
+                </p>
+              </>
+              : <p className="text-sm font-normal capitalize text-navy-700 dark:text-white dark:hover:text-white">{brandText}</p>}
           </div>
         }
         <p className="shrink text-[33px] capitalize text-navy-700 dark:text-white">
@@ -71,49 +77,49 @@ const Navbar = (props) => {
           </Link>
         </p>
       </div>
-        <Dropdown
-          button={
-            <img
-              className="h-10 w-10 rounded-full"
-              src={avatar}
-              alt="Elon Musk"
-            />
-          }
-          children={
-            <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
-              <div className="p-4">
-                <div className="flex items-center gap-2">
-                  <p className="text-sm font-bold text-navy-700 dark:text-white">
-                  👋{fullname}  
-                  </p>{" "}
-                </div>
-              </div>
-              <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
-
-              <div className="flex flex-col p-4">
-                <a
-                  href="/admin/profile"
-                  className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  My Profile
-                </a>
-                <a
-                  href="/admin/change-password"
-                  className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
-                >
-                  Change Password
-                </a>
-                <a
-                  href=" "
-                  className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
-                >
-                </a>
-                <a href="./login" onClick={handleLogout} className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"> Log Out </a>
+      <Dropdown
+        button={
+          <img
+            className="h-10 w-10 rounded-full"
+            src={avatar}
+            alt="Elon Musk"
+          />
+        }
+        children={
+          <div className="flex w-56 flex-col justify-start rounded-[20px] bg-white bg-cover bg-no-repeat shadow-xl shadow-shadow-500 dark:!bg-navy-700 dark:text-white dark:shadow-none">
+            <div className="p-4">
+              <div className="flex items-center gap-2">
+                <p className="text-sm font-bold text-navy-700 dark:text-white">
+                  👋{fullname}
+                </p>{" "}
               </div>
             </div>
-          }
-          classNames={"py-2 top-8 -left-[180px] w-max"}
-        />
+            <div className="h-px w-full bg-gray-200 dark:bg-white/20 " />
+
+            <div className="flex flex-col p-4">
+              <a
+                href="/admin/profile"
+                className="text-sm text-gray-800 dark:text-white hover:dark:text-white"
+              >
+                My Profile
+              </a>
+              <a
+                href="/admin/change-password"
+                className="mt-3 text-sm text-gray-800 dark:text-white hover:dark:text-white"
+              >
+                Change Password
+              </a>
+              <a
+                href=" "
+                className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"
+              >
+              </a>
+              <a href="./login" onClick={handleLogout} className="mt-3 text-sm font-medium text-red-500 hover:text-red-500"> Log Out </a>
+            </div>
+          </div>
+        }
+        classNames={"py-2 top-8 -left-[180px] w-max"}
+      />
       {/* // </div> */}
     </nav>
   );
