@@ -3,6 +3,7 @@ import { Model, model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateLocationDto } from './dto/create.dto';
 // import { SignInUserDto } from '../auth/dto/login.dto';
+import { Country } from 'src/countries/country.schema';
 import { Location } from './location.schema';
 import { UpdateLocationDto } from './dto/update.dto';
 
@@ -37,6 +38,12 @@ export class LocationCollection {
         return this.LocationModel.findById(id);
     }
 
+    async getLocationByCountry(countryId: string): Promise<Country[]> {
+        return this.LocationModel.find({
+            country_id: countryId
+        });
+    }
+
     async createLocation(createLocationDto: CreateLocationDto) {
         const newLocation = await new this.LocationModel({
             country_id: createLocationDto.country_id,
@@ -69,8 +76,8 @@ export class LocationCollection {
         return await this.LocationModel.findByIdAndUpdate(
             LocationID,
             updateLocationDto,
-            { 
-                new: true 
+            {
+                new: true
             },
         );
     }

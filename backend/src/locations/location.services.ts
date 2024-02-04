@@ -27,6 +27,22 @@ export class LocationService {
     return response;
   }
 
+  async sortedLocations(order: string): Promise<Location[]> {
+    return await this.locationCollection.sortedLocations(order);
+  }
+
+  async getLocationById(id: string) {
+    const location = await this.locationCollection.getLocationById(id);
+    const response = await this.helper.buildResponse(true, null, location);
+    return response;
+
+  }
+  async getLocationByCountry(countryId: string): Promise<any> {
+    const country = await this.locationCollection.getLocationByCountry(countryId);
+    const response = await this.helper.buildResponse(true, null, country);
+    return response;
+  }
+
   async createLocation(createLocationDto: CreateLocationDto) {
     const isLocationExists = await this.checkIfLocationExists(createLocationDto.location_name);
     if (isLocationExists) {
@@ -61,16 +77,6 @@ export class LocationService {
     console.log(LocationID)
     let data = await this.locationCollection.updateStatus(LocationID, status);
     const response = await this.helper.buildResponse(true, null, data);
-    return response;
-  }
-
-  async sortedLocations(order: string): Promise<Location[]> {
-    return await this.locationCollection.sortedLocations(order);
-  }
-
-  async getLocationById(id: string) {
-    const location = await this.locationCollection.getLocationById(id);
-    const response = await this.helper.buildResponse(true, null, location);
     return response;
   }
 
