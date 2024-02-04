@@ -10,10 +10,13 @@ export default function ProfileOverview() {
   const [email, setEmail] = useState(userData.email ? userData.email : '');
   const [fullname, setFullname] = useState(userData.fullname ? userData.fullname : '');
   const [contact, setContact] = useState(userData.phone ? userData.phone : '');
+  const [image, setimage] = useState('');
 
   const [emailError, setEmailError] = useState('');
   const [fullnameError, setFullNameError] = useState('');
   const [contactError, setContactError] = useState('');
+  const [imageError, setimageError] = useState('');
+  
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -34,11 +37,16 @@ export default function ProfileOverview() {
     setContact(value);
   }
 
+  const handleimageChange = (event) => {
+    const value = event.target.value;
+    setimage(value);
+  }
   const handleSubmit = async (event) => {
     event.preventDefault();
     setEmailError('');
     setFullNameError('');
     setContactError('');
+    setimageError('');
     setError('');
     setSuccessful('');
     if (validation.isEmpty(fullname)) {
@@ -53,11 +61,16 @@ export default function ProfileOverview() {
       setContactError("Please enter valid phone no.");
       return false;
     }
+    // if (validation.isEmpty(image)) {
+    //   setimageError("Please enter valid image.");
+    //   return false;
+    // }
     setBtnDisabled(true);
     const requestBody = {
       fullname: fullname,
       email: email,
-      phone: contact
+      phone: contact,
+      image: image
     };
     const currentUser = authServices.getCurrentUser();
     const result = await authServices.updateProfile(currentUser._id, requestBody);
@@ -123,6 +136,17 @@ export default function ProfileOverview() {
           errorMessage={contactError !== "" ? contactError : ""}
           value={contact}
           maxLength={10}
+        />
+          <input type="file"
+          variant="auth"
+          extra="mb-3"
+          label="Profile img"
+          placeholder="Profile img"
+          id="image"
+          onChange={handleimageChange}
+          state={imageError !== "" ? "error" : ""}
+          errorMessage={imageError !== "" ? imageError : ""}
+          value={image}
         />
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
