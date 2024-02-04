@@ -110,9 +110,9 @@ const Dashboard = () => {
       {/* Card widget */}
 
 
-      <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4">
+      <div className="mt-4 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ">
         <Widget
-          icon={<MdSupervisedUserCircle className="h-7 w-7" />}
+          icon={<MdSupervisedUserCircle className="h-7 w-7 " />}
           title={"Customers"}
           subtitle={totalUsers}
         />

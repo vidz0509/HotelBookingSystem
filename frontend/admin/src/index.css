@@ -62,12 +62,30 @@ border-color: #932595 !important;
 color: #932595 !important;
 }
 
-.text-gray-600 {
+/* .text-gray-600 {
     --tw-text-opacity: 1 !important;
     color: rgb(163 0 208 / var(--tw-text-opacity)) !important;
-}
+} */
 
 .text-sm {
     font-size: medium !important;
     line-height: 1.25rem !important;
+}
+
+.rounded-\[20px\] {
+    border-radius: 10PX;
+}
+
+.text-gray-600 {
+    --tw-text-opacity: 1 !important;
+    color: black !important;
+}
+
+.font-medium {
+    font-weight: 1 !important;
+}
+
+.text-navy-700 {
+    --tw-text-opacity: 1 !important;
+    color: rgba(0, 0, 0, 0.848) !important;
 }
