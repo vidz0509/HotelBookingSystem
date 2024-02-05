@@ -57,7 +57,7 @@ export class UsersController {
     async remove(@Param('id') id: string) {
         return this.userService.deleteUser(id);
     }
-    @Post('upload')
+    @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file: Express.Multer.File) {
         console.log(file);
@@ -69,6 +69,5 @@ export class UsersController {
     async serveFile(@Param('filename') filname: string, @Res() res: Response) {
         return res.sendFile(filname, { root: 'hotelbooking/image' });
     }
-
 }
 

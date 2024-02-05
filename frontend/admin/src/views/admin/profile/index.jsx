@@ -41,6 +41,7 @@ export default function ProfileOverview() {
     const value = event.target.value;
     setimage(value);
   }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setEmailError('');
@@ -148,6 +149,7 @@ export default function ProfileOverview() {
           errorMessage={imageError !== "" ? imageError : ""}
           value={image}
         />
+        
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
           </div>

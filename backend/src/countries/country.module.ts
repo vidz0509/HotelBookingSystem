@@ -8,6 +8,9 @@ import { CountryController } from './country.controller';
 import { CountryService } from './country.services'; 
 
 import { HelpersServices } from '../services/helpers/helpers.services';
+import { MulterModule } from '@nestjs/platform-express';
+import { diskStorage } from 'multer';
+import path from 'path';
 
 @Module({
     imports: [
@@ -17,6 +20,16 @@ import { HelpersServices } from '../services/helpers/helpers.services';
                 schema: CountrySchema
             },
         ]),
+        MulterModule.register({
+            dest: './countries/image',
+            storage: diskStorage({
+              destination: './countries/image',
+              filename: (req, file, callback) => {
+                const originalname = file.originalname.replace(path?.extname(file.originalname), '');
+                callback(null, `${originalname}`);
+              },
+            }),
+          })
     ],
     controllers: [CountryController],
     providers: [CountryService, CountryCollection, HelpersServices],

@@ -28,7 +28,6 @@ import path,{ join} from 'path';
               },
             }),
           })
-      
     ],
  
     controllers: [UsersController],
