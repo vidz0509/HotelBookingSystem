@@ -67,18 +67,14 @@ export default function ProfileOverview() {
       setContactError("Please enter valid phone no.");
       return false;
     }
-    // if (validation.isEmpty(image)) {
-    //   setimageError("Please enter valid image.");
-    //   return false;
-    // }
-    setBtnDisabled(true);
+    setBtnDisabled(false);
+    const currentUser = authServices.getCurrentUser();
     const requestBody = {
       fullname: fullname,
       email: email,
       phone: contact,
       image: image
     };
-    const currentUser = authServices.getCurrentUser();
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
       Swal.fire({

@@ -122,7 +122,6 @@ export default function ChangePassword() {
         if (result.isConfirmed) {
           setBtnDisabled(false);
           window.location.href = '/admin/change-password';
-          // return <Navigate to="/admin/countries" />
         }
       });
     } else {
