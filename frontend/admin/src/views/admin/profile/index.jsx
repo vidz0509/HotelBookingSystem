@@ -82,14 +82,13 @@ export default function ProfileOverview() {
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
       Swal.fire({
-        title: "Added",
-        text: "Profile has been added successfully.",
+        title: "Updated",
+        text: "Profile has been updated successfully.",
         icon: "success"
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
           window.location.href = '/admin/profile';
-          // return <Navigate to="/admin/countries" />
         }
       });
     } else {
