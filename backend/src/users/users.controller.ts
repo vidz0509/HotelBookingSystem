@@ -60,14 +60,13 @@ export class UsersController {
     @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file: Express.Multer.File) {
-        console.log(file);
-        const frontendUrl = `http://localhost:5001/users/image/${file.filename}`;
+        const frontendUrl = `${process.env.APP_URL}/users/uploads/userProfiles/${file.filename}`;
         return { message: 'File uploaed successfully', url: frontendUrl };
     }
 
     @Get('image/:filename')
     async serveFile(@Param('filename') filname: string, @Res() res: Response) {
-        return res.sendFile(filname, { root: 'hotelbooking/image' });
+        return res.sendFile(filname, { root: 'uploads/userProfiles' });
     }
 }
 

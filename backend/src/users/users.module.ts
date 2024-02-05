@@ -19,9 +19,9 @@ import path,{ join} from 'path';
             },
         ]),
         MulterModule.register({
-            dest: './hotelbooking/image',
+            dest: './uploads/userProfiles',
             storage: diskStorage({
-              destination: './hotelbooking/image',
+              destination: './uploads/userProfiles',
               filename: (req, file, callback) => {
                 const originalname = file.originalname.replace(path?.extname(file.originalname), '');
                 callback(null, `${originalname}`);
