@@ -77,6 +77,7 @@ export default function ProfileOverview() {
     };
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
+      localStorage.setItem('currentUser', JSON.stringify(result.data));
       Swal.fire({
         title: "Updated",
         text: "Profile has been updated successfully.",
