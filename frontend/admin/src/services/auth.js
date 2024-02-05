@@ -9,7 +9,8 @@ export const authServices = {
     forgotPassword,
     verifyResetPasswordCode,
     resetPassword,
-    logout
+    logout,
+    uploadProfile
 };
 
 function checkIfUserLoggedIn() {
@@ -94,4 +95,20 @@ function getCurrentUser() {
 async function logout() {
     localStorage.removeItem('currentUser');
     window.location.reload();
+}
+
+async function uploadProfile(formData) {
+    axios
+        .post(`${process.env.REACT_APP_API_URL}/users/upload/123`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        .then((response) => {
+            console.log(response);
+        })
+        .catch((error) => {
+            // handle errors
+            console.log(error);
+        });
 }

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const customerServices = {
     getAllCustomers,
-    userCount,
+    userCount
 };
 
 

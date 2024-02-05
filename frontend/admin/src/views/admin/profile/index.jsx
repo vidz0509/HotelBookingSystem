@@ -16,7 +16,7 @@ export default function ProfileOverview() {
   const [fullnameError, setFullNameError] = useState('');
   const [contactError, setContactError] = useState('');
   const [imageError, setimageError] = useState('');
-  
+
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -37,9 +37,14 @@ export default function ProfileOverview() {
     setContact(value);
   }
 
-  const handleimageChange = (event) => {
+  const handleimageChange = async(event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
     const value = event.target.value;
     setimage(value);
+    const test = await authServices.uploadProfile(formData);
+    console.log(test);
   }
 
   const handleSubmit = async (event) => {
@@ -138,7 +143,7 @@ export default function ProfileOverview() {
           value={contact}
           maxLength={10}
         />
-          <input type="file"
+        <input type="file"
           variant="auth"
           extra="mb-3"
           label="Profile img"
@@ -149,7 +154,7 @@ export default function ProfileOverview() {
           errorMessage={imageError !== "" ? imageError : ""}
           value={image}
         />
-        
+
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
           </div>
