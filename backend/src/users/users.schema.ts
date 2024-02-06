@@ -21,7 +21,7 @@ export class User {
   phone: string;
 
   @Prop()
-  type: number;
+  userType: number;
 
   @Prop()
   profileImg: string;

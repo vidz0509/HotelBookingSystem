@@ -8,7 +8,7 @@ import {
   useTable,
 } from "react-table";
 import { Link } from "react-router-dom";
-import { MdCheckCircle, MdCancel, MdEditSquare, MdDelete,MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import { MdCheckCircle, MdCancel, MdEditSquare, MdDelete, MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
 import { useMemo } from "react";
 
 const ComplexTable = (props) => {
@@ -93,6 +93,15 @@ const ComplexTable = (props) => {
     props.deleteElement(rowId);
   }
 
+  const updateTableRow = (event,rowId) => {
+    props.updateElement(rowId,event.target.checked);
+  }
+
+  function getStatus(str) {
+    let status = str.split('_');
+    return status;
+  }
+
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
@@ -140,8 +149,8 @@ const ComplexTable = (props) => {
                               <MdCheckCircle className="text-green-500" />
                             ) : (
                               <MdCancel className="text-red-500" />
-                            )}   
-                        
+                            )}
+
                           </div>
                           <p className="text-xl font-bold text-navy-700 dark:text-white">
                             {cell.value}
@@ -157,14 +166,18 @@ const ComplexTable = (props) => {
                     } else if (cell.column.Header === "Actions") {
                       data = (
                         <div className="text-lg font-bold flex action-btn-wrap">
-                          <Link to={`edit/${cell.value}`} className="action-btn">
-                            <MdEditSquare className="text-navy-700" />
-                          </Link>
-                          <span className="action-btn" onClick={(e) => deleteTableRow(cell.value)}><MdDelete className="text-red-700" /></span>
+                          {!props.isCustomerTable &&
+                            <>
+                              <Link to={`edit/${cell.value}`} className="action-btn">
+                                <MdEditSquare className="text-navy-700" />
+                              </Link>
+                              <span className="action-btn" onClick={(e) => deleteTableRow(cell.value)}><MdDelete className="text-red-700" /></span>
+                            </>
+                          }
                           <label class="switch">
-                            <input type="checkbox"></input>
-                             <span class="slider round"></span>
-                            </label>
+                            <input type="checkbox" onClick={(e) =>updateTableRow(e,getStatus(cell.value)[0])} defaultChecked={getStatus(cell.value)[1] === 'true'} />
+                            <span class="slider round"></span>
+                          </label>
                         </div>
                       );
                     } else {

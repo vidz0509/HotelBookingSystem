@@ -155,7 +155,7 @@ export default function ProfileOverview() {
           value={contact}
           maxLength={10}
         />
-        {userData.profileImg && userData.profileImg != '' &&
+        {userData.profileImg && userData.profileImg !== '' &&
           <div className="mb-3">
             <img src={userData.profileImg} alt={userData.fullname} />
           </div>
