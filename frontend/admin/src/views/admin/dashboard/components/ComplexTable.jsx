@@ -165,7 +165,7 @@ const ComplexTable = (props) => {
                       );
                     } else if (cell.column.Header === "Actions") {
                       data = (
-                        <div className="text-lg font-bold flex action-btn-wrap">
+                        <div className="text-lg font-bold flex action-btn-wrap items-center">
                           {!props.isCustomerTable &&
                             <>
                               <Link to={`edit/${cell.value}`} className="action-btn">
