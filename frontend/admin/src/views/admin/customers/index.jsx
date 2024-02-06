@@ -3,6 +3,7 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from 'react';
 import { customerServices } from "services/customer";
+import Swal from "sweetalert2";
 
 
 const Customers = () => {
@@ -32,7 +33,8 @@ const Customers = () => {
     },
     {
       Header: "Actions",
-      accessor: "_id",
+      // accessor: "_id",
+      accessor: d => `${d._id}_${d.isActive}`
     },
   ];
 
@@ -46,12 +48,47 @@ const Customers = () => {
     setCustomersData(response.data);
     setLoading(false);
   }
+
+  const updateStatus = (userId,status) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Update Status ",
+      text: "Are you sure you want to update status?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        customerServices.updateStatus(userId,status).then((result) => {
+          if (result.isSuccessful) {
+            Swal.fire({
+              title: "Updated",
+              text: "Update Status successfully.",
+              icon: "success"
+            });
+            getCustomers();
+          } else {
+            Swal.fire({
+              title: "Error!",
+              text: "Something went wrong. Please try again.",
+              icon: "error"
+            });
+          }
+        }).catch((errMsg) => {
+          console.error(errMsg);
+        })
+      }
+    });
+  }
+
   return (
     <>
       {!loading &&
         <ComplexTable
           columnsData={columnsDataComplex}
-          tableData={customersData} />
+          tableData={customersData}
+          isCustomerTable={true}
+          updateElement={updateStatus}
+        />
       }
     </>
   );

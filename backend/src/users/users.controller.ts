@@ -53,15 +53,20 @@ export class UsersController {
         return this.userService.updateUser(id, updateUserDto);
     }
 
+    @Put('/updatestatus/:id/:status')
+    async updateStatus(@Param('id') id: string, @Param('status') status: number) {
+        return this.userService.updateStatus(id, status);
+    }
+
     @Delete(':id')
     async remove(@Param('id') id: string) {
         return this.userService.deleteUser(id);
     }
-    
+
     @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') userId: string) {
-        return this.userService.uploadProfile(userId,file);
+        return this.userService.uploadProfile(userId, file);
     }
 
     @Get('uploads/userProfiles/:filename')

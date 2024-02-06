@@ -68,6 +68,12 @@ export class UsersService {
         return await this.collection.sortedUsers(order);
     }
 
+    async updateStatus(userId: string, status: number) {
+        let data = await this.collection.updateStatus(userId, status);
+        const response = await this.helper.buildResponse(true, null, data);
+        return response;
+      }
+
     async uploadProfile(id: string,file: Express.Multer.File) {
         const profileImage = `${process.env.APP_URL}/users/uploads/userProfiles/${file.filename}`;
         let data = await this.collection.uploadProfile(id,profileImage);
