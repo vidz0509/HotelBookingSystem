@@ -70,7 +70,9 @@ export class UsersService {
 
     async uploadProfile(id: string,file: Express.Multer.File) {
         const profileImage = `${process.env.APP_URL}/users/uploads/userProfiles/${file.filename}`;
-        return await this.collection.uploadProfile(id,profileImage);
+        let data = await this.collection.uploadProfile(id,profileImage);
+        const response = await this.helper.buildResponse(true, null, data);
+        return response;
         // return { message: 'File uploaed successfully', url: frontendUrl };
     }
 

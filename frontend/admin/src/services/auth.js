@@ -99,14 +99,14 @@ async function logout() {
 
 async function uploadProfile(formData) {
   const userData = authServices.getCurrentUser();
-    axios
-        .post(`${process.env.REACT_APP_API_URL}/users/upload/${userData._id}`, formData, {
+    return await axios.post(`${process.env.REACT_APP_API_URL}/users/upload/${userData._id}`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
             },
         })
         .then((response) => {
-            console.log(response);
+            console.log(response.data);
+            return response.data;
         })
         .catch((error) => {
             // handle errors

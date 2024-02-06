@@ -10,7 +10,7 @@ export default function ProfileOverview() {
   const [email, setEmail] = useState(userData.email ? userData.email : '');
   const [fullname, setFullname] = useState(userData.fullname ? userData.fullname : '');
   const [contact, setContact] = useState(userData.phone ? userData.phone : '');
-  const [image, setimage] = useState('');
+  const [profileImage, setProfileImage] = useState('');
 
   const [emailError, setEmailError] = useState('');
   const [fullnameError, setFullNameError] = useState('');
@@ -37,17 +37,13 @@ export default function ProfileOverview() {
     setContact(value);
   }
 
-  const handleimageChange = async(event) => {
+  const handleimageChange = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    const value = event.target.value;
-    setimage(value);
-    const test = await authServices.uploadProfile(formData);
-    console.log(test);
+    setProfileImage(file);
   }
 
   const handleSubmit = async (event) => {
+    let isValid = false;
     event.preventDefault();
     setEmailError('');
     setFullNameError('');
@@ -73,21 +69,41 @@ export default function ProfileOverview() {
       fullname: fullname,
       email: email,
       phone: contact,
-      image: image
     };
     const result = await authServices.updateProfile(currentUser._id, requestBody);
     if (result.isSuccessful) {
-      localStorage.setItem('currentUser', JSON.stringify(result.data));
-      Swal.fire({
-        title: "Updated",
-        text: "Profile has been updated successfully.",
-        icon: "success"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setBtnDisabled(false);
-          window.location.href = '/admin/profile';
+      if (profileImage !== '' && profileImage != null) {
+        const formData = new FormData();
+        formData.append("file", profileImage);
+        const imageResponse = await authServices.uploadProfile(formData);
+        if (imageResponse.isSuccessful) {
+          localStorage.setItem('currentUser', JSON.stringify(imageResponse.data));
+          isValid = true;
+        } else {
+          isValid = false;
         }
-      });
+      } else {
+        isValid = true;
+        localStorage.setItem('currentUser', JSON.stringify(result.data));
+      }
+      if (isValid) {
+        Swal.fire({
+          title: "Updated",
+          text: "Profile has been updated successfully.",
+          icon: "success"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.href = '/admin/profile';
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: 'Something went wrong.',
+          icon: "error"
+        });
+      }
     } else {
       Swal.fire({
         title: "Error!",
@@ -139,6 +155,11 @@ export default function ProfileOverview() {
           value={contact}
           maxLength={10}
         />
+        {userData.profileImg && userData.profileImg != '' &&
+          <div className="mb-3">
+            <img src={userData.profileImg} alt={userData.fullname} />
+          </div>
+        }
         <input type="file"
           variant="auth"
           extra="mb-3"
@@ -148,7 +169,6 @@ export default function ProfileOverview() {
           onChange={handleimageChange}
           state={imageError !== "" ? "error" : ""}
           errorMessage={imageError !== "" ? imageError : ""}
-          value={image}
         />
 
         <div className="mb-4 flex items-center justify-between px-2">

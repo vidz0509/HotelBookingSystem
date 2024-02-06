@@ -57,11 +57,11 @@ export class UsersController {
     async remove(@Param('id') id: string) {
         return this.userService.deleteUser(id);
     }
+    
     @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File) {
-        const frontendUrl = `${process.env.APP_URL}/users/uploads/userProfiles/${file.filename}`;
-        return { message: 'File uploaed successfully', url: frontendUrl };
+    uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') userId: string) {
+        return this.userService.uploadProfile(userId,file);
     }
 
     @Get('uploads/userProfiles/:filename')
