@@ -60,14 +60,13 @@ export class CountryController {
   @Post('upload/:id')
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File) {
-    console.log(file);
-    const frontendUrl = `http://localhost:5001/uploads/countries/${file.filename}`;
+    const frontendUrl = `${process.env.APP_URL}/countries/uploads/countriesImg/${file.filename}`;
     return { message: 'File uploaed successfully', url: frontendUrl };
   }
 
-  @Get('image/:filename')
+  @Get('uploads/countriesImg/:filename')
   async serveFile(@Param('filename') filname: string, @Res() res: Response) {
-    return res.sendFile(filname, { root: 'uploads/countries' });
+    return res.sendFile(filname, { root: 'uploads/countriesImg' });
   }
 
 }

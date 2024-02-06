@@ -1,7 +1,9 @@
-import { Controller, Get, Post, Body, Param, Delete, Put, Query, Req, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, Body, HttpStatus, Param, Delete, Put, Query, UseInterceptors, UploadedFile, } from '@nestjs/common';
+import { Response } from 'express';
 import { CreateHotelDto } from './dto/create.dto';
 import { HotelsService } from './hotels.services';
 import { UpdateHotelDto } from './dto/update.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('hotels')
 export class HotelsController {
@@ -53,5 +55,18 @@ export class HotelsController {
     @Delete(':id')
     async hardDelete(@Param('id') id: string) {
         return this.hotelService.hardDeleteHotel(id);
+    }
+
+    @Post('upload/:id')
+    @UseInterceptors(FileInterceptor('file'))
+    uploadFile(@UploadedFile() file: Express.Multer.File) {
+        console.log(file);
+        const frontendUrl = `${process.env.APP_URL}/hotels/uploads/hotelsImg/${file.filename}`;
+        return { message: 'File uploaed successfully', url: frontendUrl };
+    }
+
+    @Get('uploads/hotelsImg/:filename')
+    async serveFile(@Param('filename') filname: string, @Res() res: Response) {
+        return res.sendFile(filname, { root: 'uploads/hotelsImg' });
     }
 }

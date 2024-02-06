@@ -21,9 +21,9 @@ import path from 'path';
             },
         ]),
         MulterModule.register({
-            dest: './countries/image',
+            dest: './uploads/countriesImg',
             storage: diskStorage({
-              destination: './countries/image',
+              destination: './uploads/countriesImg',
               filename: (req, file, callback) => {
                 const originalname = file.originalname.replace(path?.extname(file.originalname), '');
                 callback(null, `${originalname}`);

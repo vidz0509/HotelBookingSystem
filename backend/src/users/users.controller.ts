@@ -64,7 +64,7 @@ export class UsersController {
         return { message: 'File uploaed successfully', url: frontendUrl };
     }
 
-    @Get('image/:filename')
+    @Get('uploads/userProfiles/:filename')
     async serveFile(@Param('filename') filname: string, @Res() res: Response) {
         return res.sendFile(filname, { root: 'uploads/userProfiles' });
     }
