@@ -129,4 +129,16 @@ export class LocationCollection {
     async hardDeleteLocation(locationId: string) {
         return this.LocationModel.deleteOne({ _id: locationId });
     }
+
+    async uploadLocationsImg(locationID: string, locationsImage: string) {
+        return await this.LocationModel.findByIdAndUpdate(
+            locationID,
+            {
+                locationsImg: locationsImage,
+            },
+            {
+                new: true
+            }
+        );
+    }
 }

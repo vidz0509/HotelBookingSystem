@@ -64,10 +64,8 @@ export class LocationsController {
 
     @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File) {
-        console.log(file);
-        const frontendUrl = `${process.env.APP_URL}/locations/uploads/locationsImg/${file.filename}`;
-        return { message: 'File uploaed successfully', url: frontendUrl };
+    uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') locationID: string) {
+        return this.locationService.uploadLocationsImg(locationID,file);
     }
 
     @Get('uploads/locationsImg/:filename')

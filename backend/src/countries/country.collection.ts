@@ -95,5 +95,16 @@ export class CountryCollection {
         return this.countryModel.deleteOne({ _id: countryId });
     }
 
+    async uploadCountriesImg(countryId: string, countriesImage: string) {
+        return await this.countryModel.findByIdAndUpdate(
+            countryId,
+            {
+                countriesImg: countriesImage,
+            },
+            {
+                new: true
+            }
+        );
+    }
 
 }

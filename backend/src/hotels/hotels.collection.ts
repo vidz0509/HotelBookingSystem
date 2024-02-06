@@ -138,4 +138,16 @@ export class HotelsCollection {
         return this.hotelModel.deleteOne({ _id: hotelId });
     }
 
+    async uploadHotelsImg(hotelId: string, hotelImage: string) {
+        return await this.hotelModel.findByIdAndUpdate(
+            hotelId,
+            {
+                hotelImg: hotelImage,
+            },
+            {
+                new: true
+            }
+        );
+    }
+
 }

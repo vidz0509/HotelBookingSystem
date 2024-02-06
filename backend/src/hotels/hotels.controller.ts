@@ -59,10 +59,8 @@ export class HotelsController {
 
     @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File) {
-        console.log(file);
-        const frontendUrl = `${process.env.APP_URL}/hotels/uploads/hotelsImg/${file.filename}`;
-        return { message: 'File uploaed successfully', url: frontendUrl };
+    uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') hotelId: string) {
+        return this.hotelService.uploadHotelsImg(hotelId,file);
     }
 
     @Get('uploads/hotelsImg/:filename')

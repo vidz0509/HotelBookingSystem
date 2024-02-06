@@ -12,9 +12,11 @@ import { HelpersServices } from '../services/helpers/helpers.services';
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import path from 'path';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
     imports: [
+        ConfigModule,
         MongooseModule.forFeature([
             {
                 name: Hotels.name,

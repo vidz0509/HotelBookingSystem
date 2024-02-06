@@ -86,4 +86,12 @@ export class HotelsService {
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
+  
+  async uploadHotelsImg(hotelId: string,file: Express.Multer.File) {
+      const hotelImage = `${process.env.APP_URL}/hotels/uploads/hotelsImg/${file.filename}`;
+      let data = await this.hotelCollection.uploadHotelsImg(hotelId,hotelImage);
+      const response = await this.helper.buildResponse(true, null, data);
+      return response;
+      // return { message: 'File uploaed successfully', url: frontendUrl };
+  }
 }

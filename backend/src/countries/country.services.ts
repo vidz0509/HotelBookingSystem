@@ -51,8 +51,8 @@ export class CountryService {
     return country;
   }
 
-  async updateCountry(userId: string, updateCountryDto: UpdateCountryDto) {
-    let data = await this.countryCollection.updateCountry(userId, updateCountryDto);
+  async updateCountry(countryId: string, updateCountryDto: UpdateCountryDto) {
+    let data = await this.countryCollection.updateCountry(countryId, updateCountryDto);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
@@ -86,6 +86,14 @@ export class CountryService {
     let data = await this.countryCollection.hardDeleteCountry(countryId);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
+  }
+
+  async uploadCountriesImg(countryId: string, file: Express.Multer.File) {
+    const countriesImage = `${process.env.APP_URL}/countries/uploads/countriesImg/${file.filename}`;
+    let data = await this.countryCollection.uploadCountriesImg(countryId, countriesImage);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+    // return { message: 'File uploaed successfully', url: frontendUrl };
   }
 
 }

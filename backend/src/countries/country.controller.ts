@@ -59,9 +59,8 @@ export class CountryController {
 
   @Post('upload/:id')
   @UseInterceptors(FileInterceptor('file'))
-  uploadFile(@UploadedFile() file: Express.Multer.File) {
-    const frontendUrl = `${process.env.APP_URL}/countries/uploads/countriesImg/${file.filename}`;
-    return { message: 'File uploaed successfully', url: frontendUrl };
+  uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') countryId: string) {
+    return this.countryService.uploadCountriesImg(countryId, file);
   }
 
   @Get('uploads/countriesImg/:filename')
