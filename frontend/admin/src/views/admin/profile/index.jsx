@@ -15,7 +15,6 @@ export default function ProfileOverview() {
   const [emailError, setEmailError] = useState('');
   const [fullnameError, setFullNameError] = useState('');
   const [contactError, setContactError] = useState('');
-  const [imageError, setimageError] = useState('');
 
 
   const [error, setError] = useState('');
@@ -48,7 +47,6 @@ export default function ProfileOverview() {
     setEmailError('');
     setFullNameError('');
     setContactError('');
-    setimageError('');
     setError('');
     setSuccessful('');
     if (validation.isEmpty(fullname)) {
@@ -167,8 +165,6 @@ export default function ProfileOverview() {
           placeholder="Profile img"
           id="image"
           onChange={handleimageChange}
-          state={imageError !== "" ? "error" : ""}
-          errorMessage={imageError !== "" ? imageError : ""}
         />
 
         <div className="mb-4 flex items-center justify-between px-2">

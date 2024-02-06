@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import InputField from "components/fields/InputField";
 
-import { countriesServices } from "services/countries";  
+import { countriesServices } from "services/countries";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 // import { Navigate } from 'react-router-dom';
@@ -15,8 +15,7 @@ export default function AddCountry() {
 
   const [countryNameError, setCountryNameError] = useState('');
   const [countryCodeError, setCountryCodeError] = useState('');
-  const [imageError, setimageError] = useState('');
-  
+
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -31,24 +30,19 @@ export default function AddCountry() {
     const value = event.target.value;
     setCountryCode(value);
   }
- 
-  const handleimageChange = async(event) => {
+
+  const handleimageChange = async (event) => {
     const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("file", file);
-    const value = event.target.value;
-    setimage(value);
-    const test = await countriesServices.uploadcountriesimg(formData);
-    console.log(test);
+    setimage(file);
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let isValid = false;
     setCountryNameError('');
     setCountryCodeError('');
     setError('');
     setSuccessful('');
-    setimageError('');
 
     if (validation.isEmpty(countryName)) {
       setCountryNameError("Please enter valid country name.");
@@ -62,23 +56,44 @@ export default function AddCountry() {
     const requestBody = {
       country_name: countryName,
       country_code: countryCode,
-      image: image
     };
     const result = await countriesServices.addCountry(requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
-      Swal.fire({
-        title: "Added",
-        text: "Country has been Added successfully.",
-        icon: "success"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setBtnDisabled(false);
-          window.location.href = '/admin/countries';
-          // return <Navigate to="/admin/countries" />
+      console.log(result.data._id);
+      /* Upload image */
+      if (image !== '' && image != null) {
+        const formData = new FormData();
+        formData.append("file", image);
+        const imageResponse = await countriesServices.uploadImage(formData, result.data._id);
+        if (imageResponse.isSuccessful) {
+          isValid = true;
+        } else {
+          isValid = false;
         }
-      });
+      } else {
+        isValid = true;
+      }
+      if (isValid) {
+        Swal.fire({
+          title: "Added",
+          text: "Country has been added successfully.",
+          icon: "success"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.href = '/admin/countries';
+          }
+        });
+      } else {
+        setBtnDisabled(false);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong",
+          icon: "error"
+        });
+      }
     } else {
+      setBtnDisabled(false);
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
@@ -117,17 +132,17 @@ export default function AddCountry() {
           value={countryCode}
           maxLength={5}
         />
-         <input type="file"
-          variant="auth"
-          extra="mb-3"
-          label="Countries img"
-          placeholder="Countries img"
-          id="image"
-          onChange={handleimageChange}
-          state={imageError !== "" ? "error" : ""}
-          errorMessage={imageError !== "" ? imageError : ""}
-          value={image}
-        />
+        <div className="mb-3">
+          <label for="image" class="text-sm text-navy-700 dark:text-white font-medium">Country Image</label>
+          <input type="file"
+            variant="auth"
+            extra="mt-3"
+            label="Country image"
+            placeholder="Country image"
+            id="image"
+            onChange={handleimageChange}
+          />
+        </div>
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">

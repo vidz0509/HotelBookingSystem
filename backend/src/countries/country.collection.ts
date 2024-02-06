@@ -99,7 +99,7 @@ export class CountryCollection {
         return await this.countryModel.findByIdAndUpdate(
             countryId,
             {
-                countriesImg: countriesImage,
+                country_image: countriesImage,
             },
             {
                 new: true

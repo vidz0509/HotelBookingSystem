@@ -18,8 +18,8 @@ export class Country {
   country_name: string;
 
   // @IsNotEmpty()
-  // @Prop({ required: true })
-  country_image: string[];
+  @Prop()
+  country_image: string;
 
   @Prop()
   createdAt: Date;

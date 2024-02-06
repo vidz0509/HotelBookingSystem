@@ -93,8 +93,8 @@ const ComplexTable = (props) => {
     props.deleteElement(rowId);
   }
 
-  const updateTableRow = (event,rowId) => {
-    props.updateElement(rowId,event.target.checked);
+  const updateTableRow = (event, rowId) => {
+    props.updateElement(rowId, event.target.checked);
   }
 
   function getStatus(str) {
@@ -175,12 +175,17 @@ const ComplexTable = (props) => {
                             </>
                           }
                           <label class="switch">
-                            <input type="checkbox" onClick={(e) =>updateTableRow(e,getStatus(cell.value)[0])} defaultChecked={getStatus(cell.value)[1] === 'true'} />
+                            <input type="checkbox" onClick={(e) => updateTableRow(e, getStatus(cell.value)[0])} defaultChecked={getStatus(cell.value)[1] === 'true'} />
                             <span class="slider round"></span>
                           </label>
                         </div>
                       );
-                    } else {
+                    } else if (cell.column.Header === 'Image') {
+                      data = (
+                        <img src={cell.value} className="w-[80px] py-1 px-1" />
+                      )
+                    }
+                    else {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}

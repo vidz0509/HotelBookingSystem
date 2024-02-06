@@ -88,12 +88,11 @@ export class CountryService {
     return response;
   }
 
-  async uploadCountriesImg(countryId: string, file: Express.Multer.File) {
+  async uploadImage(countryId: string, file: Express.Multer.File) {
     const countriesImage = `${process.env.APP_URL}/countries/uploads/countriesImg/${file.filename}`;
     let data = await this.countryCollection.uploadCountriesImg(countryId, countriesImage);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
-    // return { message: 'File uploaed successfully', url: frontendUrl };
   }
 
 }

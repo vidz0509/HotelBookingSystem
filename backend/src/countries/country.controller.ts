@@ -60,7 +60,7 @@ export class CountryController {
   @Post('upload/:id')
   @UseInterceptors(FileInterceptor('file'))
   uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') countryId: string) {
-    return this.countryService.uploadCountriesImg(countryId, file);
+    return this.countryService.uploadImage(countryId, file);
   }
 
   @Get('uploads/countriesImg/:filename')
