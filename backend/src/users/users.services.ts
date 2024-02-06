@@ -68,4 +68,10 @@ export class UsersService {
         return await this.collection.sortedUsers(order);
     }
 
+    async uploadProfile(id: string,file: Express.Multer.File) {
+        const profileImage = `${process.env.APP_URL}/users/uploads/userProfiles/${file.filename}`;
+        return await this.collection.uploadProfile(id,profileImage);
+        // return { message: 'File uploaed successfully', url: frontendUrl };
+    }
+
 }

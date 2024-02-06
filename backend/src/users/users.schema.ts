@@ -24,6 +24,9 @@ export class User {
   type: number;
 
   @Prop()
+  profileImg: string;
+
+  @Prop()
   createdAt: Date;
 
   @Prop()

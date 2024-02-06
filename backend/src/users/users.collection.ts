@@ -101,4 +101,17 @@ export class UsersCollection {
             }
         );
     }
+
+    async uploadProfile(userId: string, profileImage: string) {
+        return await this.userModel.findByIdAndUpdate(
+            userId,
+            {
+                profileImg: profileImage,
+            },
+            {
+                new: true
+            }
+        );
+    }
+    
 }
