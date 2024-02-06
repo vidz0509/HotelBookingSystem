@@ -43,7 +43,7 @@ const Navbar = (props) => {
         {
           brandText !== "Dashboard" &&
 
-          <div className="h-6 w-[224px] pt-1 flex">
+          <div className="h-6 w-[300px] pt-1 flex">
             <a
               className="text-sm font-normal text-navy-700 dark:text-white dark:hover:text-white"
               href="/admin/dashboard "
