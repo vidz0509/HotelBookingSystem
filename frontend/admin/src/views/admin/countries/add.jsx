@@ -1,17 +1,22 @@
 import React, { useState } from "react";
 import InputField from "components/fields/InputField";
+
 import { countriesServices } from "services/countries";  
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 // import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 
+
 export default function AddCountry() {
   const [countryName, setCountryName] = useState('');
   const [countryCode, setCountryCode] = useState('');
+  const [image, setimage] = useState('');
 
   const [countryNameError, setCountryNameError] = useState('');
   const [countryCodeError, setCountryCodeError] = useState('');
+  const [imageError, setimageError] = useState('');
+  
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -26,6 +31,16 @@ export default function AddCountry() {
     const value = event.target.value;
     setCountryCode(value);
   }
+ 
+  const handleimageChange = async(event) => {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", file);
+    const value = event.target.value;
+    setimage(value);
+    const test = await countriesServices.uploadcountriesimg(formData);
+    console.log(test);
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -33,6 +48,7 @@ export default function AddCountry() {
     setCountryCodeError('');
     setError('');
     setSuccessful('');
+    setimageError('');
 
     if (validation.isEmpty(countryName)) {
       setCountryNameError("Please enter valid country name.");
@@ -46,6 +62,7 @@ export default function AddCountry() {
     const requestBody = {
       country_name: countryName,
       country_code: countryCode,
+      image: image
     };
     const result = await countriesServices.addCountry(requestBody);
     if (result.isSuccessful) {
@@ -99,6 +116,17 @@ export default function AddCountry() {
           errorMessage={countryCodeError !== "" ? countryCodeError : ""}
           value={countryCode}
           maxLength={5}
+        />
+         <input type="file"
+          variant="auth"
+          extra="mb-3"
+          label="Countries img"
+          placeholder="Countries img"
+          id="image"
+          onChange={handleimageChange}
+          state={imageError !== "" ? "error" : ""}
+          errorMessage={imageError !== "" ? imageError : ""}
+          value={image}
         />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">

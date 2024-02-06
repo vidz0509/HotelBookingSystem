@@ -7,6 +7,7 @@ export const countriesServices = {
     getCountryById,
     softDeleteCountry,
     countryCount,
+    uploadcountriesimg
 };
 
 async function getAllCountries() {
@@ -68,3 +69,19 @@ async function countryCount() {
         return errorObj;
     });
 }
+async function uploadcountriesimg(formData) {
+    const userData = countriesServices.getCurrentUser();
+      axios
+          .post(`${process.env.REACT_APP_API_URL}/users/upload/${userData._id}`, formData, {
+              headers: {
+                  "Content-Type": "multipart/form-data",
+              },
+          })
+          .then((response) => {
+              console.log(response);
+          })
+          .catch((error) => {
+              // handle errors
+              console.log(error);
+          });
+  }
