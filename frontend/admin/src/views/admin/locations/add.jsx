@@ -35,7 +35,7 @@ export default function AddLocation() {
   const [countriesData, setCountriesData] = useState('');
   const [locationName, setLocationName] = useState('');
   const [countryId, setCountryId] = useState('');
-
+  const [image, setimage] = useState('');
 
   const [locationCode, setLocationCode] = useState('');
 
@@ -76,8 +76,14 @@ export default function AddLocation() {
     setLocationCode(value);
   }
 
+  const handleimageChange = async (event) => {
+    const file = event.target.files[0];
+    setimage(file);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let isValid = false;
     setLocationNameError('');
     setCountryIdError('');
     setLocationCodeError('');
@@ -103,26 +109,48 @@ export default function AddLocation() {
     };
     const result = await locationsServices.addLocation(requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
-      Swal.fire({
-        title: "Added",
-        text: "Location has been Added successfully.",
-        icon: "success"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setBtnDisabled(false);
-          window.location.href = '/admin/locations';
-          // return <Navigate to="/admin/countries" />
+        console.log(result.data._id);
+        /* Upload image */
+        if (image !== '' && image != null) {
+          const formData = new FormData();
+          formData.append("file", image);
+          const imageResponse = await locationsServices.uploadImage(formData, result.data._id);
+          if (imageResponse.isSuccessful) {
+            isValid = true;
+          } else {
+            isValid = false;
+          }
+        } else {
+          isValid = true;
         }
-      });
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: result.errorMessage,
-        icon: "error"
-      });
+        if (isValid) {
+          Swal.fire({
+            title: "Added",
+            text: "Location has been added successfully.",
+            icon: "success"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              setBtnDisabled(false);
+              window.location.href = '/admin/locations';
+            }
+          });
+        } else {
+          setBtnDisabled(false);
+          Swal.fire({
+            title: "Error!",
+            text: "Something went wrong",
+            icon: "error"
+          });
+        }
+      } else {
+        setBtnDisabled(false);
+        Swal.fire({
+          title: "Error!",
+          text: result.errorMessage,
+          icon: "error"
+        });
+      }
     }
-  }
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
@@ -167,6 +195,7 @@ export default function AddLocation() {
           value={countryId}
           maxLength={30}
         />
+
         <InputField
           variant="auth"
           extra="mb-3"
@@ -180,6 +209,19 @@ export default function AddLocation() {
           value={locationCode}
           maxLength={5}
         />
+
+        <div className="mb-3">
+          <label for="image" class="text-sm text-navy-700 dark:text-white font-medium">Location Image</label>
+          <input type="file"
+            variant="auth"
+            extra="mt-3"
+            label="Location image"
+            placeholder="Location image"
+            id="image"
+            onChange={handleimageChange}
+          />
+        </div>
+
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">
           </div>

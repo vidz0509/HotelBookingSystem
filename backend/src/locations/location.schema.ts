@@ -22,7 +22,8 @@ export class Location {
 
   // @IsNotEmpty()
   // @Prop({ required: true })
-  location_images: string[];
+  @Prop()
+  location_image: string;
 
   @Prop()
   createdAt: Date;

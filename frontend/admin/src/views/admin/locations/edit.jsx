@@ -5,29 +5,29 @@ import { countriesServices } from "services/countries";
 import { locationsServices } from "../../../services/locations";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 export default function EditLocation() {
-
   const params = useParams();
   const locationId = params.id;
-  const [countriesData, setCountriesData] = useState('');
-  const [countryId, setCountryId] = useState('');
-  const [countryIdError, setCountryIdError] = useState('');
-
+  const [countriesData, setCountriesData] = useState("");
+  const [countryId, setCountryId] = useState("");
+  const [countryIdError, setCountryIdError] = useState("");
 
   // const [locationData, setLocationData] = useState(null);
 
-  const [locationName, setLocationName] = useState('');
-  const [locationCode, setLocationCode] = useState('');
+  const [locationData, setLocationData] = useState(null);
+  const [locationName, setLocationName] = useState("");
+  const [locationCode, setLocationCode] = useState("");
+  const [locationImage, setLocationImage] = useState('');
 
-  const [locationNameError, setLocationNameError] = useState('');
-  const [locationCodeError, setLocationCodeError] = useState('');
 
-  const [error, setError] = useState('');
-  const [successful, setSuccessful] = useState('');
+  const [locationNameError, setLocationNameError] = useState("");
+  const [locationCodeError, setLocationCodeError] = useState("");
+
+  const [error, setError] = useState("");
+  const [successful, setSuccessful] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
@@ -39,48 +39,51 @@ export default function EditLocation() {
     if (result.isSuccessful) {
       setCountriesData(result.data);
     }
-  }
+  };
 
   useEffect(() => {
     getLocationById(locationId);
     // const result = await countriesServices.getLocationById(locationId);
   }, [locationId]);
 
-  
-
   const getLocationById = async (locationId) => {
     const result = await locationsServices.getLocationById(locationId);
     if (result.isSuccessful) {
-      // setLocationData(result.data);
-      setCountryId(result.data?.country_id);
+      setLocationData(result.data);
       setLocationCode(result.data?.location_code);
+      setCountryId(result.data?.country_id);
       setLocationName(result.data?.location_name);
     }
-  }
+  };
 
   const handleLocationNameChange = (event) => {
     const value = event.target.value;
     setLocationName(value);
-  }
+  };
 
   const handleCountryIdChange = (event) => {
     const value = event.target.value;
     setCountryId(value);
-  }
-
+  };
 
   const handleLocationCodeChange = (event) => {
     const value = event.target.value;
     setLocationCode(value);
+  };
+
+  const handleimageChange = async (event) => {
+    const file = event.target.files[0];
+    setLocationImage(file);
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setCountryIdError('');
-    setLocationNameError('');
-    setLocationCodeError('');
-    setError('');
-    setSuccessful('');
+    let isValid = false;
+    setCountryIdError("");
+    setLocationNameError("");
+    setLocationCodeError("");
+    setError("");
+    setSuccessful("");
 
     if (validation.isEmpty(locationName)) {
       setLocationNameError("Please enter valid location name.");
@@ -100,28 +103,53 @@ export default function EditLocation() {
       location_name: locationName,
       location_code: locationCode,
     };
-    const result = await locationsServices.editLocation(locationId,requestBody);
+    const result = await locationsServices.editLocation(
+      locationId,
+      requestBody
+    );
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
-      Swal.fire({
-        title: "Edited",
-        text: "Location has been Edited successfully.",
-        icon: "success"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setBtnDisabled(false);
-          window.location.href = '/admin/locations/edit/'(locationId);
-          // return <Navigate to="/admin/countries" />
+      if (locationImage !== "" && locationImage != null) {
+        const formData = new FormData();
+        formData.append("file", locationImage);
+        const imageResponse = await locationsServices.uploadImage(
+          formData,
+          result.data._id
+        );
+        if (imageResponse.isSuccessful) {
+          isValid = true;
+        } else {
+          isValid = false;
         }
-      });
+      } else {
+        isValid = true;
+      }
+      if (isValid) {
+        Swal.fire({
+          title: "Edited",
+          text: "Location has been Edited successfully.",
+          icon: "success",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong.",
+          icon: "error",
+        });
+      }
     } else {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
       });
     }
-  }
+  };
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
@@ -140,30 +168,30 @@ export default function EditLocation() {
           maxLength={30}
         />
 
-        <label class="text-sm text-navy-700 dark:text-white ml-1.5 font-medium">Country Name*</label>
-         <select id="countryId" name="countryId" class="mt-2 flex h-12 w-full items-center justify-center rounded-xl border bg-white/0 p-3 text-sm outline-none border-gray-200 dark-border dark:!border-white/10 dark:text-white" onChange={handleCountryIdChange}>
+        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+          Country Name*
+        </label>
+
+        <select
+          id="countryId"
+          name="countryId"
+          class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+          onChange={handleCountryIdChange}
+        >
           <option value="">-- Select Country --</option>
-          {
-            countriesData && countriesData.length > 0 && countriesData.map((item) =>
-              <option value={item._id} selected={item._id===countryId}>
+          {countriesData &&
+            countriesData.length > 0 &&
+            countriesData.map((item) => (
+              <option value={item._id} selected={item._id === countryId}>
                 {item.country_name}
               </option>
-            )
-          }
+            ))}
         </select>
-        
-        <Dropdown
-          variant="auth"
-          extra="mb-3"
-          label="Country Id*"
-          placeholder="Country Id*"
-          id="countryId"
-          type="text"
-          onChange={handleCountryIdChange}
-          value={countryId}
-          maxLength={30}
-        />
-        {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
+        {countryIdError && (
+          <span className="mb-3 ml-1 text-sm text-red-500">
+            {countryIdError}
+          </span>
+        )}
 
         <InputField
           variant="auth"
@@ -178,25 +206,64 @@ export default function EditLocation() {
           value={locationCode}
           maxLength={5}
         />
+
+        <div className="mb-3">
+          <label
+            for="image"
+            class="mb-2 text-sm font-medium text-navy-700 dark:text-white"
+          >
+            Location Image
+          </label>
+          {locationData?.location_image &&
+            locationData?.location_image !== "" && (
+              <div className="mb-3">
+                <img src={locationData?.location_image} alt={locationName} />
+              </div>
+            )}
+          <input
+            type="file"
+            variant="auth"
+            extra="mt-3"
+            label="Location Image"
+            placeholder="Location Image"
+            id="image"
+            onChange={handleimageChange}
+          />
+        </div>
+
         <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center">
-          </div>
-          <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-            {btnDisabled ?
-              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-              : <span>Edit Location</span>}
+          <div className="flex items-center"></div>
+          <button
+            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+            }`}
+            onClick={(e) => handleSubmit(e)}
+            type="submit"
+            disabled={btnDisabled ? "disabled" : ""}
+          >
+            {btnDisabled ? (
+              <span className="flex items-center justify-center">
+                <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+              </span>
+            ) : (
+              <span>Edit Location</span>
+            )}
           </button>
         </div>
         <div className="mt-4">
-          {error !== '' && <>
-            <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-          </>}
+          {error !== "" && (
+            <>
+              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+            </>
+          )}
         </div>
 
         <div className="mt-4">
-          {successful !== '' && <>
-            <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
-          </>}
+          {successful !== "" && (
+            <>
+              <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+            </>
+          )}
         </div>
       </div>
     </div>

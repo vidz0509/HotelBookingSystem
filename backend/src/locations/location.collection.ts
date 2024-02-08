@@ -134,7 +134,7 @@ export class LocationCollection {
         return await this.LocationModel.findByIdAndUpdate(
             locationID,
             {
-                locationsImg: locationsImage,
+                location_image: locationsImage,
             },
             {
                 new: true

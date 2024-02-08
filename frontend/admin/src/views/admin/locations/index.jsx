@@ -18,7 +18,7 @@ const Locations = () => {
 
   const columnsDataComplex = [
     {
-      Header: " Images",
+      Header: "Image",
       accessor: "location_image",
     },
     {

@@ -93,7 +93,7 @@ export class LocationService {
     return response;
   }
 
-  async uploadLocationsImg(locationId: string, file: Express.Multer.File) {
+  async uploadImg(locationId: string, file: Express.Multer.File) {
     const locationsImage = `${process.env.APP_URL}/locations/uploads/locationsImg/${file.filename}`;
     let data = await this.locationCollection.uploadLocationsImg(locationId, locationsImage);
     const response = await this.helper.buildResponse(true, null, data);

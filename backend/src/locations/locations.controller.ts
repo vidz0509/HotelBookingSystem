@@ -65,7 +65,7 @@ export class LocationsController {
     @Post('upload/:id')
     @UseInterceptors(FileInterceptor('file'))
     uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') locationID: string) {
-        return this.locationService.uploadLocationsImg(locationID,file);
+        return this.locationService.uploadImg(locationID,file);
     }
 
     @Get('uploads/locationsImg/:filename')

@@ -21,6 +21,7 @@ export const locationsServices = {
     getLocationById,
     locationCount,
     getLocationByCountry,
+    uploadImage
 };
 
 
@@ -94,3 +95,18 @@ async function locationCount() {
         return errorObj;
     });
 }
+
+    async function uploadImage(formData, locationId) {
+        return await axios.post(`${process.env.REACT_APP_API_URL}/locations/upload/${locationId}`, formData, {
+                headers: {
+                    "Content-Type": "multipart/form-data",
+                },
+            })
+            .then((response) => {
+                return response.data
+            })
+            .catch((error) => {
+                // handle errors
+                console.log(error);
+            });
+        }
