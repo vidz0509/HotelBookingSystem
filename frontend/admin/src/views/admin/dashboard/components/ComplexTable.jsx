@@ -182,7 +182,7 @@ const ComplexTable = (props) => {
                       );
                     } else if (cell.column.Header === 'Image') {
                       data = (
-                        <img src={cell.value} className="w-[80px] py-1 px-1" />
+                        <img src={cell.value} className="w-[80px] py-1 px-1 h-[80px] table-img" />
                       )
                     }
                     else {
@@ -194,7 +194,7 @@ const ComplexTable = (props) => {
                     }
                     return (
                       <td
-                        className="pt-[14px] pb-[18px] sm:text-[14px]"
+                        className="pt-[14px] pb-[18px] sm:text-[14px] "
                         {...cell.getCellProps()}
                         key={index}
                       >
