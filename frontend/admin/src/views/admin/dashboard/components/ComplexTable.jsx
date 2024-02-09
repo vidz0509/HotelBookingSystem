@@ -28,30 +28,6 @@ const ComplexTable = (props) => {
     usePagination
   );
 
-  // const{
-  //   getTableProps,
-  //   getTableBodyProps,
-  //   headerGroups,
-  //   prepareRow,
-  //   page,
-  //   canPreviousPage,
-  //   canNextPage,
-  //   pageOptions,
-  //   pageCount,
-  //   gotoPage,
-  //   nextPage,
-  //   previousPage,
-  //   setPageSize,
-  //   state: { pageIndex, pageSize }
-  // } = useTable(
-  //   {
-  //     columns,
-  //     data,
-  //     initialState
-  //   },
-  //   usePagination
-  // );
-
   const formatDate = (date) => {
     var formattedDate = new Date(date);
     let day = formattedDate.getDate();
@@ -104,6 +80,29 @@ const ComplexTable = (props) => {
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
+       <form className="mt-5 p-2">
+        <button
+          type="submit"
+          className="w-1/4  bg-blue-700 p-2 text-center  outline-none ms-2 float-end"
+          style={{
+            border: "1px solid #932595",
+            width: "10%",
+            color: "white",
+            backgroundColor: "#932595",
+            borderRadius: "10px",
+            border: "none",
+          }}
+        >
+          Search
+        </button>
+        <input
+          type="search"
+          name="text"
+          placeholder="search..."
+          className=" bg-white p-2 outline-none float-end"
+          style={{ border: "1px solid black", width: "20%", borderRadius: "10px", }}
+        />
+      </form>
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
         <table {...getTableProps()} className="w-full">
           <thead>
