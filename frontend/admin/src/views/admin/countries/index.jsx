@@ -81,6 +81,8 @@ const Countries = () => {
           .catch((errMsg) => {
             console.error(errMsg);
           });
+      }else{
+        window.location.reload();
       }
     });
   };
