@@ -83,13 +83,13 @@ export class LocationService {
   async softDeleteLocation(locationId: string) {
     console.log(locationId)
     let data = await this.locationCollection.softDeleteLocation(locationId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 
   async hardDeleteLocation(locationId: string) {
     let data = await this.locationCollection.hardDeleteLocation(locationId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 

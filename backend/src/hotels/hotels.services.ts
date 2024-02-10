@@ -77,21 +77,27 @@ export class HotelsService {
   async softDeleteHotel(hotelId: string) {
     console.log(hotelId)
     let data = await this.hotelCollection.softDeleteHotel(hotelId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 
   async hardDeleteHotel(hotelId: string) {
     let data = await this.hotelCollection.hardDeleteHotel(hotelId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
-  
-  async uploadHotelsImg(hotelId: string,file: Express.Multer.File) {
-      const hotelImage = `${process.env.APP_URL}/hotels/uploads/hotelsImg/${file.filename}`;
-      let data = await this.hotelCollection.uploadHotelsImg(hotelId,hotelImage);
-      const response = await this.helper.buildResponse(true, null, data);
-      return response;
-      // return { message: 'File uploaed successfully', url: frontendUrl };
+
+  async uploadHotelsImg(hotelId: string, files: Array<Express.Multer.File>) {
+    let imageArray = [];
+    files.forEach((ele) => {
+      if (ele.filename) {
+        imageArray.push(`${process.env.APP_URL}/hotels/uploads/hotelsImg/${ele.filename}`);
+      }
+    })
+    // const hotelImage = `${process.env.APP_URL}/hotels/uploads/hotelsImg/${file.filename}`;
+    let data = await this.hotelCollection.uploadHotelsImg(hotelId, imageArray);
+    const response = await this.helper.buildResponse(true, null, data);
+    return response;
+    // return { message: 'File uploaed successfully', url: frontendUrl };
   }
 }

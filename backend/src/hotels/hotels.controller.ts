@@ -1,9 +1,9 @@
-import { Controller, Get, Post, Req, Res, Body, HttpStatus, Param, Delete, Put, Query, UseInterceptors, UploadedFile, } from '@nestjs/common';
+import { Controller, Get, Post, Req, Res, Body, HttpStatus, Param, Delete, Put, Query, UseInterceptors, UploadedFile, UploadedFiles, } from '@nestjs/common';
 import { Response } from 'express';
 import { CreateHotelDto } from './dto/create.dto';
 import { HotelsService } from './hotels.services';
 import { UpdateHotelDto } from './dto/update.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('hotels')
 export class HotelsController {
@@ -58,9 +58,9 @@ export class HotelsController {
     }
 
     @Post('upload/:id')
-    @UseInterceptors(FileInterceptor('file'))
-    uploadFile(@UploadedFile() file: Express.Multer.File, @Param('id') hotelId: string) {
-        return this.hotelService.uploadHotelsImg(hotelId,file);
+    @UseInterceptors(AnyFilesInterceptor())
+    uploadFile(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') hotelId: string) {
+        return this.hotelService.uploadHotelsImg(hotelId, files);
     }
 
     @Get('uploads/hotelsImg/:filename')

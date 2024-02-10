@@ -78,12 +78,12 @@ export class RoomTypeService {
   async softDeleteRoomType(roomtypeId: string) {
     console.log(roomtypeId)
     let data = await this.roomtypeCollection.softDeleteRoomType(roomtypeId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
   async hardDeleteRoomType(roomtypeId: string) {
     let data = await this.roomtypeCollection.hardDeleteRoomType(roomtypeId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 }

@@ -78,13 +78,13 @@ export class CountryService {
   async softDeleteCountry(countryId: string) {
     console.log(countryId)
     let data = await this.countryCollection.softDeleteCountry(countryId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 
   async hardDeleteCountry(countryId: string) {
     let data = await this.countryCollection.hardDeleteCountry(countryId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 

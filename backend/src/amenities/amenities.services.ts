@@ -73,12 +73,12 @@ export class AmenitiesService {
   async softDeleteAmenities(amenitiesId: string) {
     console.log(amenitiesId)
     let data = await this.amenitiesCollection.softDeleteAmenities(amenitiesId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
   async hardDeleteAmenities(amenitiesId: string) {
     let data = await this.amenitiesCollection.hardDeleteAmenities(amenitiesId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 
