@@ -77,13 +77,13 @@ export class HotelsService {
   async softDeleteHotel(hotelId: string) {
     console.log(hotelId)
     let data = await this.hotelCollection.softDeleteHotel(hotelId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 
   async hardDeleteHotel(hotelId: string) {
     let data = await this.hotelCollection.hardDeleteHotel(hotelId);
-    const response = await this.helper.buildResponse(true, null, data);
+    const response = await this.helper.buildResponse(true, null, null);
     return response;
   }
 
