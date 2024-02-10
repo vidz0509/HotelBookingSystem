@@ -67,5 +67,4 @@ export class CountryController {
   async serveFile(@Param('filename') filname: string, @Res() res: Response) {
     return res.sendFile(filname, { root: 'uploads/countriesImg' });
   }
-
 }

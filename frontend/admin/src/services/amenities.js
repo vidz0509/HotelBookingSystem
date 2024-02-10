@@ -7,6 +7,7 @@ export const amenitiesServices = {
     getAmenitiesById,
     softDeleteAmenities,
     AmenitiesCount,
+    updateStatus
 };
 
 async function getAllAmenities() {
@@ -63,6 +64,18 @@ async function softDeleteAmenities(id) {
 async function AmenitiesCount() {
     const url = `${process.env.REACT_APP_API_URL}/amenities/count`;
     return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
+async function updateStatus(amenitiesId, status) {
+    let amenitiesStatus = status ? 1 : 0;
+    const url = `${process.env.REACT_APP_API_URL}/amenities/updatestatus/${amenitiesId}/${amenitiesStatus}`;
+    debugger;
+    return await axios.put(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

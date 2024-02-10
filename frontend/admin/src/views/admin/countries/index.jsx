@@ -1,18 +1,16 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { countriesServices } from "services/countries";
 import { Link } from "react-router-dom";
-import AddCountry from './add';
+import AddCountry from "./add";
 import Swal from "sweetalert2";
 
-
 const Countries = () => {
-
   const [countriesData, setCountriesData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const columnsDataComplex =  [
+  const columnsDataComplex = [
     {
       Header: "Image",
       accessor: "country_image",
@@ -39,22 +37,54 @@ const Countries = () => {
     },
     {
       Header: "Actions",
-      accessor: "_id",
+      accessor: d => `${d._id}_${d.isActive}`,
     },
   ];
-  
-    
+
   useEffect(() => {
     getCountries();
   }, []);
 
-  
   const getCountries = async () => {
     let response = await countriesServices.getAllCountries();
     setCountriesData(response.data);
     setLoading(false);
-  }
-  
+  };
+
+  const updateStatus = (countryId, status) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Update Status ",
+      text: "Are you sure you want to update status?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        countriesServices
+          .updateStatus(countryId, status)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Updated",
+                text: "Update Status successfully.",
+                icon: "success",
+              });
+              getCountries();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
+      }
+    });
+  };
+
   const softDeleteCountry = (countryId) => {
     Swal.fire({
       icon: "warning",
@@ -65,45 +95,51 @@ const Countries = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(countryId);
-        countriesServices.softDeleteCountry(countryId).then((result) => {
-          if (result.isSuccessful) {
-            Swal.fire({
-              title: "Deleted",
-              text: "Country has been deleted successfully.",
-              icon: "success"
-            });
-            getCountries();
-          } else {
-            Swal.fire({
-              title: "Error!",
-              text: "Something went wrong. Please try again.",
-              icon: "error"
-            });
-          }
-        }).catch((errMsg) => {
-          console.error(errMsg);
-        })
+        countriesServices
+          .softDeleteCountry(countryId)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Deleted",
+                text: "Country has been deleted successfully.",
+                icon: "success",
+              });
+              getCountries();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
       }
     });
-  }
+  };
   return (
     <>
-      {!loading &&
+      {!loading && (
         <div className="list-table countries">
-          <div className="add-row px-6 mb-5 text-align-right">
-            <Link to="add" className="btn btn-primary">Add Country</Link>
+          <div className="add-row text-align-right mb-5 px-6">
+            <Link to="add" className="btn btn-primary">
+              Add Country
+            </Link>
           </div>
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={countriesData}
-            element='countries'
+            element="countries"
             deleteElement={softDeleteCountry}
+            updateElement={updateStatus}
           />
           <Routes>
-            <Route path='/add' element={<AddCountry />} />
+            <Route path="/add" element={<AddCountry />} />
           </Routes>
         </div>
-      }
+      )}
     </>
   );
 };

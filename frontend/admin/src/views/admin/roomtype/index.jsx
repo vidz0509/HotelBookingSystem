@@ -1,5 +1,5 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { roomtypeServices } from "services/roomtype";
 import { Link } from "react-router-dom";
@@ -7,11 +7,10 @@ import AddRoomType from "./add";
 import Swal from "sweetalert2";
 
 const RoomType = () => {
-
   const [roomtypeData, setRoomTypeData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const columnsDataComplex =  [
+  const columnsDataComplex = [
     {
       Header: " Name",
       accessor: "roomtype_name",
@@ -22,7 +21,7 @@ const RoomType = () => {
     },
     {
       Header: "Actions",
-      accessor: "_id",
+      accessor: d => `${d._id}_${d.isActive}`,
     },
   ];
 
@@ -34,7 +33,7 @@ const RoomType = () => {
     let response = await roomtypeServices.getAllRoomType();
     setRoomTypeData(response.data);
     setLoading(false);
-  }
+  };
 
   const softDeleteRoomType = (roomtypeId) => {
     Swal.fire({
@@ -46,11 +45,45 @@ const RoomType = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(roomtypeId);
-        roomtypeServices.softDeleteRoomType(roomtypeId).then((result) => {
+        roomtypeServices
+          .softDeleteRoomType(roomtypeId)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Deleted",
+                text: "RoomType has been deleted successfully.",
+                icon: "success",
+              });
+              getRoomType();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
+      }
+    });
+  };
+
+  const updateStatus = (roomtypeId,status) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Update Status ",
+      text: "Are you sure you want to update status?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        roomtypeServices.updateStatus(roomtypeId,status).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
-              title: "Deleted",
-              text: "RoomType has been deleted successfully.",
+              title: "Updated",
+              text: "Update Status successfully.",
               icon: "success"
             });
             getRoomType();
@@ -67,24 +100,28 @@ const RoomType = () => {
       }
     });
   }
+
   return (
     <>
-      {!loading &&
+      {!loading && (
         <div className="list-table countries">
-          <div className="add-row px-6 mb-5 text-align-right">
-            <Link to="add" className="btn btn-primary">Add Room Type</Link>
+          <div className="add-row text-align-right mb-5 px-6">
+            <Link to="add" className="btn btn-primary">
+              Add Room Type
+            </Link>
           </div>
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={roomtypeData}
-            element='roomtype'
+            element="roomtype"
             deleteElement={softDeleteRoomType}
+            updateElement={updateStatus}
           />
           <Routes>
-            <Route path='/add' element={<AddRoomType />} />
+            <Route path="/add" element={<AddRoomType />} />
           </Routes>
         </div>
-      }
+      )}
     </>
   );
 };

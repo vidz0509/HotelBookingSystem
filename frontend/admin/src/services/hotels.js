@@ -7,6 +7,7 @@ export const hotelsServices = {
     getHotelById,
     softDeleteHotel,
     HotelsCount,
+    updateStatus
 };
 
 async function getAllHotel() {
@@ -63,6 +64,18 @@ async function softDeleteHotel(id) {
 async function HotelsCount() {
     const url = `${process.env.REACT_APP_API_URL}/hotels/count`;
     return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
+async function updateStatus(hotelId, status) {
+    let hotelStatus = status ? 1 : 0;
+    const url = `${process.env.REACT_APP_API_URL}/hotels/updatestatus/${hotelId}/${hotelStatus}`;
+    debugger;
+    return await axios.put(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

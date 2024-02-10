@@ -1,5 +1,5 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { hotelsServices } from "services/hotels";
 import { Link } from "react-router-dom";
@@ -7,11 +7,10 @@ import AddHotel from "./add";
 import Swal from "sweetalert2";
 
 const Hotels = () => {
-
   const [hotelsData, setHotelsData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const columnsDataComplex =  [
+  const columnsDataComplex = [
     {
       Header: " Image",
       accessor: "hotel_image",
@@ -38,7 +37,7 @@ const Hotels = () => {
     },
     {
       Header: "Actions",
-      accessor: "_id",
+      accessor: d => `${d._id}_${d.isActive}`,
     },
   ];
 
@@ -50,7 +49,41 @@ const Hotels = () => {
     let response = await hotelsServices.getAllHotel();
     setHotelsData(response.data);
     setLoading(false);
-  }
+  };
+
+  const updateStatus = (hotelId, status) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Update Status ",
+      text: "Are you sure you want to update status?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        hotelsServices
+          .updateStatus(hotelId, status)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Updated",
+                text: "Update Status successfully.",
+                icon: "success",
+              });
+              getHotels();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
+      }
+    });
+  };
 
   const softDeleteHotel = (hotelId) => {
     Swal.fire({
@@ -62,45 +95,51 @@ const Hotels = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(hotelId);
-        hotelsServices.softDeleteHotel(hotelId).then((result) => {
-          if (result.isSuccessful) {
-            Swal.fire({
-              title: "Deleted",
-              text: "Hotel has been deleted successfully.",
-              icon: "success"
-            });
-            getHotels();
-          } else {
-            Swal.fire({
-              title: "Error!",
-              text: "Something went wrong. Please try again.",
-              icon: "error"
-            });
-          }
-        }).catch((errMsg) => {
-          console.error(errMsg);
-        })
+        hotelsServices
+          .softDeleteHotel(hotelId)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Deleted",
+                text: "Hotel has been deleted successfully.",
+                icon: "success",
+              });
+              getHotels();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
       }
     });
-  }
+  };
   return (
     <>
-      {!loading &&
+      {!loading && (
         <div className="list-table countries">
-          <div className="add-row px-6 mb-5 text-align-right">
-            <Link to="add" className="btn btn-primary">Add Hotel</Link>
+          <div className="add-row text-align-right mb-5 px-6">
+            <Link to="add" className="btn btn-primary">
+              Add Hotel
+            </Link>
           </div>
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={hotelsData}
-            element='hotels'
+            element="hotels"
             deleteElement={softDeleteHotel}
+            updateElement={updateStatus}
           />
           <Routes>
-            <Route path='/add' element={<AddHotel />} />
+            <Route path="/add" element={<AddHotel />} />
           </Routes>
         </div>
-      }
+      )}
     </>
   );
 };

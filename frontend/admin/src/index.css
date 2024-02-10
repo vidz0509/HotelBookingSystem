@@ -89,3 +89,8 @@ color: #932595 !important;
     --tw-text-opacity: 1 !important;
     color: rgba(0, 0, 0, 0.848) !important;
 }
+
+input[type="search"].search::-webkit-search-cancel-button {
+	filter:saturate(0.5);
+  }
+

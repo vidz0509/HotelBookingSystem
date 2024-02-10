@@ -21,7 +21,8 @@ export const locationsServices = {
     getLocationById,
     locationCount,
     getLocationByCountry,
-    uploadImage
+    uploadImage,
+    updateStatus
 };
 
 
@@ -108,5 +109,17 @@ async function locationCount() {
             .catch((error) => {
                 // handle errors
                 console.log(error);
+            });
+        }
+
+        async function updateStatus(LocationId, status) {
+            let locationStatus = status ? 1 : 0;
+            const url = `${process.env.REACT_APP_API_URL}/locations/updatestatus/${LocationId}/${locationStatus}`;
+            debugger;
+            return await axios.put(url).then(response => {
+                return response.data;
+            }).catch(error => {
+                let errorObj = error.response.data;
+                return errorObj;
             });
         }

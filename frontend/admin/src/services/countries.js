@@ -7,7 +7,8 @@ export const countriesServices = {
     getCountryById,
     softDeleteCountry,
     countryCount,
-    uploadImage
+    uploadImage,
+    updateStatus
 };
 
 async function getAllCountries() {
@@ -83,4 +84,17 @@ async function uploadImage(formData, countryId) {
             // handle errors
             console.log(error);
         });
+}
+
+
+async function updateStatus(countryId, status) {
+    let countryStatus = status ? 1 : 0;
+    const url = `${process.env.REACT_APP_API_URL}/countries/updatestatus/${countryId}/${countryStatus}`;
+    debugger;
+    return await axios.put(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
 }

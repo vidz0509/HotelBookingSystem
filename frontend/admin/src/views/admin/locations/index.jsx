@@ -1,19 +1,18 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { locationsServices } from "services/locations";
 import { Link } from "react-router-dom";
-import AddLocation from './add';
-import Swal from 'sweetalert2';
+import AddLocation from "./add";
+import Swal from "sweetalert2";
 
 const Locations = () => {
-
   const [locationsData, setLocationsData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const initialState = {
     pageSize: 20,
-    pageIndex: 0
+    pageIndex: 0,
   };
 
   const columnsDataComplex = [
@@ -47,7 +46,7 @@ const Locations = () => {
     },
     {
       Header: "Actions",
-      accessor: "_id",
+      accessor: d => `${d._id}_${d.isActive}`,
     },
   ];
 
@@ -60,7 +59,41 @@ const Locations = () => {
     let response = await locationsServices.getAllLocations();
     setLocationsData(response.data);
     setLoading(false);
-  }
+  };
+
+  const updateStatus = (locaionId, status) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Update Status ",
+      text: "Are you sure you want to update status?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        locationsServices
+          .updateStatus(locaionId, status)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Updated",
+                text: "Update Status successfully.",
+                icon: "success",
+              });
+              getLocations();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
+      }
+    });
+  };
 
   const softDeleteLocation = (locationId) => {
     Swal.fire({
@@ -72,47 +105,53 @@ const Locations = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(locationId);
-        locationsServices.softDeleteLocation(locationId).then((result) => {
-          if (result.isSuccessful) {
-            Swal.fire({
-              title: "Deleted",
-              text: "Location has been deleted successfully.",
-              icon: "success"
-            });
-            getLocations();
-          } else {
-            Swal.fire({
-              title: "Error!",
-              text: "Something went wrong. Please try again.",
-              icon: "error"
-            });
-          }
-        }).catch((errMsg) => {
-          console.error(errMsg);
-        })
+        locationsServices
+          .softDeleteLocation(locationId)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Deleted",
+                text: "Location has been deleted successfully.",
+                icon: "success",
+              });
+              getLocations();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
       }
     });
-  }
+  };
 
   return (
     <>
-      {!loading &&
+      {!loading && (
         <div className="list-table countries">
-          <div className="add-row px-6 mb-5 text-align-right">
-            <Link to="add" className="btn btn-primary">Add Location</Link>
+          <div className="add-row text-align-right mb-5 px-6">
+            <Link to="add" className="btn btn-primary">
+              Add Location
+            </Link>
           </div>
           <ComplexTable
             columnsData={columnsDataComplex}
             tableData={locationsData}
-            element='locations'
+            element="locations"
             deleteElement={softDeleteLocation}
             initialState={initialState}
+            updateElement={updateStatus}
           />
           <Routes>
-            <Route path='/add' element={<AddLocation />} />
+            <Route path="/add" element={<AddLocation />} />
           </Routes>
         </div>
-      }
+      )}
     </>
   );
 };

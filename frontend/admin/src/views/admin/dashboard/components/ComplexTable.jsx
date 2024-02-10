@@ -98,8 +98,8 @@ const ComplexTable = (props) => {
         <input
           type="search"
           name="text"
-          placeholder="search..."
-          className=" bg-white p-2 outline-none float-end"
+          placeholder="Search..."
+          className=" bg-white p-2 outline-none float-end search"
           style={{ border: "1px solid black", width: "20%", borderRadius: "10px", }}
         />
       </form>
@@ -167,7 +167,7 @@ const ComplexTable = (props) => {
                         <div className="text-lg font-bold flex action-btn-wrap items-center">
                           {!props.isCustomerTable &&
                             <>
-                              <Link to={`edit/${cell.value}`} className="action-btn">
+                              <Link to={`edit/${getStatus(cell.value)[0]}`} className="action-btn">
                                 <MdEditSquare className="text-navy-700" />
                               </Link>
                               <span className="action-btn" onClick={(e) => deleteTableRow(cell.value)}><MdDelete className="text-red-700" /></span>

@@ -7,6 +7,7 @@ export const roomtypeServices = {
     getRoomTypeById,
     softDeleteRoomType,
     RoomTypeCount,
+    updateStatus
 };
 
 async function getAllRoomType() {
@@ -63,6 +64,18 @@ async function softDeleteRoomType(id) {
 async function RoomTypeCount() {
     const url = `${process.env.REACT_APP_API_URL}/roomtypes/count`;
     return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
+async function updateStatus(roomtypeId, status) {
+    let roomtypeStatus = status ? 1 : 0;
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes/updatestatus/${roomtypeId}/${roomtypeStatus}`;
+    debugger;
+    return await axios.put(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
