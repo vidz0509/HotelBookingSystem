@@ -54,6 +54,7 @@ import {
   MdHotelClass,
   MdRoom,
   MdPayments,
+  MdBedroomParent,
   MdWifi,
   MdHotel,
   MdReport,
@@ -253,6 +254,15 @@ const routes = [
     component: <EditAmenities />,
     secondary: true,
     addInMenu: false
+  },
+  {
+    name: "Rooms",
+    layout: "/admin",
+    path: "rooms",
+    icon: <MdBedroomParent className="h-6 w-6" />,
+    component: <Bookings />,
+    secondary: true,
+    addInMenu: true,
   },
   {
     name: "Bookings",
