@@ -138,11 +138,11 @@ export class HotelsCollection {
         return this.hotelModel.deleteOne({ _id: hotelId });
     }
 
-    async uploadHotelsImg(hotelId: string, hotelImage: string) {
+    async uploadHotelsImg(hotelId: string, imageArray: string[]) {
         return await this.hotelModel.findByIdAndUpdate(
             hotelId,
             {
-                hotelImg: hotelImage,
+                hotel_image: imageArray,
             },
             {
                 new: true
