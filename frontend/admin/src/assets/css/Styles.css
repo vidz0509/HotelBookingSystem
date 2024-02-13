@@ -5,6 +5,10 @@
   right: 15px;
 }
 
+.hotelImg {
+  max-width: 250px;
+}
+
 .dark-border {
   border-color: #979393;
 }

@@ -67,7 +67,7 @@ export default function EditHotel() {
   const getHotelById = async (hotelId) => {
     const result = await hotelsServices.getHotelById(hotelId);
     if (result.isSuccessful) {
-      setHotelData(result.data)
+      setHotelData(result.data);
       setCountryId(result.data?.country_id);
       setLocationId(result.data?.location_id);
       setHotelName(result.data?.hotel_name);
@@ -272,6 +272,7 @@ export default function EditHotel() {
           value={locationId}
           maxLength={30}
         /> */}
+
         <InputField
           variant="auth"
           extra="mb-3"
@@ -314,9 +315,17 @@ export default function EditHotel() {
           >
             Hotel Image
           </label>
-          {hotelData?.hotel_image && hotelData?.hotel_image !== "" && (
-            <div className="mb-3">
-              <img src={hotelData?.hotel_image} alt={hotelName} />
+          {hotelData?.hotel_image && (
+            <div className="flex mb-3">
+              {Array.isArray(hotelData?.hotel_image) ? (
+                hotelData?.hotel_image.map((img, index) => (
+                  <img src={img} alt={hotelName} key={`img_${index}`} className="mx-2 hotelImg my-2" />
+                ))
+              ) : (
+                <>
+                  <img src={hotelData?.hotel_image} alt={hotelName} />
+                </>
+              )}
             </div>
           )}
           <input
