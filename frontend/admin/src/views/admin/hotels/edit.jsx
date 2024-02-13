@@ -27,9 +27,11 @@ export default function EditHotel() {
   const [countryIdError, setCountryIdError] = useState("");
   const [locationIdError, setLocationIdError] = useState("");
 
+  const [hotelData, setHotelData] = useState(null);
   const [hotelNameError, setHotelNameError] = useState("");
   const [hotelCodeError, setHotelCodeError] = useState("");
   const [hotelAddressError, setHotelAddressError] = useState("");
+  const [hotelimage, setHotelImage] = useState("");
 
   const [error, setError] = useState("");
   const [successful, setSuccessful] = useState("");
@@ -65,6 +67,7 @@ export default function EditHotel() {
   const getHotelById = async (hotelId) => {
     const result = await hotelsServices.getHotelById(hotelId);
     if (result.isSuccessful) {
+      setHotelData(result.data)
       setCountryId(result.data?.country_id);
       setLocationId(result.data?.location_id);
       setHotelName(result.data?.hotel_name);
@@ -98,8 +101,14 @@ export default function EditHotel() {
     setHotelAddress(value);
   };
 
+  const handleimageChange = async (event) => {
+    const file = event.target.files[0];
+    setHotelImage(file);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let isValid = false;
     setHotelNameError("");
     setCountryIdError("");
     setLocationIdError("");
@@ -141,27 +150,44 @@ export default function EditHotel() {
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
     };
+
     const result = await hotelsServices.editHotel(hotelId, requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
-      Swal.fire({
-        title: "Edited",
-        text: "Hotel has been Edited successfully.",
-        icon: "success",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setBtnDisabled(false);
-          window.location.reload();
-          window.location.href = "/admin/hotels/edit/"(locationId);
-          // return <Navigate to="/admin/countries" />
+      if (hotelimage !== "" && hotelimage != null) {
+        const formData = new FormData();
+        formData.append("file", hotelimage);
+        const imageResponse = await hotelsServices.uploadImage(
+          formData,
+          result.data._id
+        );
+        if (imageResponse.isSuccessful) {
+          isValid = true;
+        } else {
+          isValid = false;
         }
-      });
-    } else {
-      Swal.fire({
-        title: "Error!",
-        text: result.errorMessage,
-        icon: "error",
-      });
+      } else {
+        isValid = true;
+      }
+      if (isValid) {
+        Swal.fire({
+          title: "Edited",
+          text: "Hotel has been Edited successfully.",
+          icon: "success",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+            // window.location.href = "/admin/hotels/edit/"(locationId);
+            // return <Navigate to="/admin/countries" />
+          }
+        });
+      } else {
+        Swal.fire({
+          title: "Error!",
+          text: result.errorMessage,
+          icon: "error",
+        });
+      }
     }
   };
 
@@ -201,7 +227,11 @@ export default function EditHotel() {
               </option>
             ))}
         </select>
-        {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
+        {countryIdError && (
+          <span className="mb-3 ml-1 text-sm text-red-500">
+            {countryIdError}
+          </span>
+        )}
 
         <div className="mb-3">
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
@@ -222,7 +252,11 @@ export default function EditHotel() {
                 </option>
               ))}
           </select>
-          {locationIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{locationIdError}</span>}
+          {locationIdError && (
+            <span className="mb-3 ml-1 text-sm text-red-500">
+              {locationIdError}
+            </span>
+          )}
         </div>
 
         {/* <Dropdown
@@ -268,14 +302,41 @@ export default function EditHotel() {
           errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
           value={hotelAddress}
         />
-        {hotelAddressError && <span className="mb-3 ml-1 text-red-500 text-sm">{hotelAddressError}</span>}
+        {hotelAddressError && (
+          <span className="mb-3 ml-1 text-sm text-red-500">
+            {hotelAddressError}
+          </span>
+        )}
+        <div className="mb-3">
+          <label
+            for="image"
+            class="mb-2 text-sm font-medium text-navy-700 dark:text-white"
+          >
+            Hotel Image
+          </label>
+          {hotelData?.hotel_image && hotelData?.hotel_image !== "" && (
+            <div className="mb-3">
+              <img src={hotelData?.hotel_image} alt={hotelName} />
+            </div>
+          )}
+          <input
+            type="file"
+            variant="auth"
+            extra="mt-3"
+            label="Hotel Image"
+            placeholder="Hotel Image"
+            id="image"
+            onChange={handleimageChange}
+          />
+        </div>
 
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>
           <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-              }`}
+            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+            }`}
             onClick={(e) => handleSubmit(e)}
             type="submit"
             disabled={btnDisabled ? "disabled" : ""}

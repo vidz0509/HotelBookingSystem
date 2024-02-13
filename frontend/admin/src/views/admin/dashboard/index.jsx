@@ -114,53 +114,45 @@ const Dashboard = () => {
         <Widget
           icon={<MdSupervisedUserCircle className="h-7 w-7 " />}
           title={"Customers"}
+          link={"/admin/customers"}
           subtitle={totalUsers}
         />
         <Widget
           icon={<MdPublic className="h-6 w-6" />}
           title={"Countries"}
+          link={"/admin/countries"}
           subtitle={totalCountries}
         />
         <Widget
           icon={<MdRoom className="h-7 w-7" />}
           title={"Locations"}
+          link={"/admin/locations"}
           subtitle={totalLocations}
         />
         <Widget
           icon={<MdHotel className="h-6 w-6" />}
           title={"Room Types"}
+          link={"/admin/roomtypes"}
           subtitle={totalRoomType}
         />
         <Widget
           icon={<MdHotelClass className="h-7 w-7" />}
           title={"Hotels"}
+          link={"/admin/hotels"}
           subtitle={totalHotels}
         />
         <Widget
           icon={<MdWifi className="h-6 w-6" />}
           title={"Amenities"}
+          link={"/admin/amenities"}
           subtitle={totalAmenities}
         />
         <Widget
           icon={<MdMenuBook className="h-7 w-7" />}
           title={"Bookings"}
+          link={"/admin/bookings"}
           subtitle={""}
         />
-        {/* <Widget
-          icon={<MdPayments className="h-6 w-6" />}
-          title={"Payment Status"}
-          subtitle={""}
-        />
-        <Widget
-          icon={<MdReport className="h-7 w-7" />}
-          title={"Reports"}
-          subtitle={""}
-        />
-        <Widget
-          icon={<MdRateReview className="h-6 w-6" />}
-          title={"Reviews"}
-          subtitle={""}
-        /> */}
       </div>
     </div>
   );

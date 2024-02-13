@@ -8,7 +8,14 @@ import {
   useTable,
 } from "react-table";
 import { Link } from "react-router-dom";
-import { MdCheckCircle, MdCancel, MdEditSquare, MdDelete, MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import {
+  MdCheckCircle,
+  MdCancel,
+  MdEditSquare,
+  MdDelete,
+  MdKeyboardArrowUp,
+  MdKeyboardArrowDown,
+} from "react-icons/md";
 import { useMemo } from "react";
 
 const ComplexTable = (props) => {
@@ -21,7 +28,7 @@ const ComplexTable = (props) => {
     {
       columns,
       data,
-      initialState
+      initialState,
     },
     useGlobalFilter,
     useSortBy,
@@ -31,11 +38,11 @@ const ComplexTable = (props) => {
   const formatDate = (date) => {
     var formattedDate = new Date(date);
     let day = formattedDate.getDate();
-    let month = (formattedDate.getMonth()) + 1;
+    let month = formattedDate.getMonth() + 1;
     let year = formattedDate.getFullYear();
 
     if (day < 10) {
-      day = '0' + day;
+      day = "0" + day;
     }
 
     if (month < 10) {
@@ -45,7 +52,7 @@ const ComplexTable = (props) => {
     let timeString = `${day} - ${month} - ${year}`;
 
     return timeString.toString();
-  }
+  };
 
   const {
     getTableProps,
@@ -61,26 +68,26 @@ const ComplexTable = (props) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize }
+    state: { pageIndex, pageSize },
   } = tableInstance;
   // initialState.pageSize = 20;
 
   const deleteTableRow = (rowId) => {
     props.deleteElement(rowId);
-  }
+  };
 
   const updateTableRow = (event, rowId) => {
     props.updateElement(rowId, event.target.checked);
-  }
+  };
 
   function getStatus(str) {
-    let status = str.split('_');
+    let status = str.split("_");
     return status;
   }
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
-       <form className="mt-5 p-2">
+      <form className="mt-5 p-2">
         <button
           type="submit"
           className="w-1/4  bg-blue-700 p-2 text-center  outline-none ms-2 float-end"
@@ -99,8 +106,12 @@ const ComplexTable = (props) => {
           type="search"
           name="text"
           placeholder="Search..."
-          className=" bg-white p-2 outline-none float-end search"
-          style={{ border: "1px solid black", width: "20%", borderRadius: "10px", }}
+          className=" search bg-white p-2 outline-none float-end"
+          style={{
+            border: "1px solid black",
+            width: "20%",
+            borderRadius: "10px",
+          }}
         />
       </form>
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
@@ -120,12 +131,18 @@ const ComplexTable = (props) => {
                       </span>
                       {column.isSorted ? (
                         column.isSortedDesc ? (
-                          <span><MdKeyboardArrowDown className="h-6 w-6" /></span>
+                          <span>
+                            <MdKeyboardArrowDown className="h-6 w-6" />
+                          </span>
                         ) : (
-                          <span><MdKeyboardArrowUp className="h-6 w-6" /></span>
+                          <span>
+                            <MdKeyboardArrowUp className="h-6 w-6" />
+                          </span>
                         )
                       ) : (
-                        <span><MdKeyboardArrowDown className="h-6 w-6" /></span>
+                        <span>
+                          <MdKeyboardArrowDown className="h-6 w-6" />
+                        </span>
                       )}
                     </span>
                   </th>
@@ -149,7 +166,6 @@ const ComplexTable = (props) => {
                             ) : (
                               <MdCancel className="text-red-500" />
                             )}
-
                           </div>
                           <p className="text-xl font-bold text-navy-700 dark:text-white">
                             {cell.value}
@@ -164,27 +180,62 @@ const ComplexTable = (props) => {
                       );
                     } else if (cell.column.Header === "Actions") {
                       data = (
-                        <div className="text-lg font-bold flex action-btn-wrap items-center">
-                          {!props.isCustomerTable &&
+                        <div className="action-btn-wrap flex items-center text-lg font-bold">
+                          {!props.isCustomerTable && (
                             <>
-                              <Link to={`edit/${getStatus(cell.value)[0]}`} className="action-btn">
+                              <Link
+                                to={`edit/${getStatus(cell.value)[0]}`}
+                                className="action-btn"
+                              >
                                 <MdEditSquare className="text-navy-700" />
                               </Link>
-                              <span className="action-btn" onClick={(e) => deleteTableRow(cell.value)}><MdDelete className="text-red-700" /></span>
+                              <span
+                                className="action-btn"
+                                onClick={(e) => deleteTableRow(cell.value)}
+                              >
+                                <MdDelete className="text-red-700" />
+                              </span>
                             </>
-                          }
+                          )}
                           <label class="switch">
-                            <input type="checkbox" onClick={(e) => updateTableRow(e, getStatus(cell.value)[0])} defaultChecked={getStatus(cell.value)[1] === 'true'} />
+                            <input
+                              type="checkbox"
+                              onClick={(e) =>
+                                updateTableRow(e, getStatus(cell.value)[0])
+                              }
+                              defaultChecked={
+                                getStatus(cell.value)[1] === "true"
+                              }
+                            />
                             <span class="slider round"></span>
                           </label>
                         </div>
                       );
-                    } else if (cell.column.Header === 'Image') {
-                      data = (
-                        <img src={cell.value} className="w-[80px] py-1 px-1 h-[80px] table-img" />
-                      )
-                    }
-                    else {
+                    } else if (cell.column.Header === "Image") {
+                      cell.value ? (
+                        <>
+                          {Array.isArray(cell.value)
+                            ? (data = (
+                                <img
+                                  src={cell.value[0]}
+                                  className="table-img h-[80px] w-[80px] py-1 px-1"
+                                />
+                              ))
+                            : (data = (
+                                <img
+                                  src={cell.value}
+                                  className="table-img h-[80px] w-[80px] py-1 px-1"
+                                />
+                              ))}
+                        </>
+                      ) : (
+                        (data = (
+                          <p className="text-sm font-bold text-navy-700 dark:text-white">
+                            -
+                          </p>
+                        ))
+                      );
+                    } else {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}
@@ -206,11 +257,19 @@ const ComplexTable = (props) => {
             })}
           </tbody>
         </table>
-        <div className="border-t pagination py-[14px] border-gray-200">
-          <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="btn">
+        <div className="pagination border-t border-gray-200 py-[14px]">
+          <button
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+            className="btn"
+          >
             {"<<"}
           </button>{" "}
-          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="btn">
+          <button
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+            className="btn"
+          >
             {"<"}
           </button>{" "}
           <span className="page-str px-2">
@@ -219,19 +278,26 @@ const ComplexTable = (props) => {
               {pageIndex + 1} of {pageOptions.length}
             </strong>{" "}
           </span>
-          <button onClick={() => nextPage()} disabled={!canNextPage} className="btn">
+          <button
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+            className="btn"
+          >
             {">"}
           </button>{" "}
-          <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className="btn">
+          <button
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+            className="btn"
+          >
             {">>"}
           </button>{" "}
-
           <select
             value={pageSize}
             onChange={(e) => {
               setPageSize(Number(e.target.value));
             }}
-            className="border border-gray-700 px-[10px] py-[4px] per-page"
+            className="per-page border border-gray-700 px-[10px] py-[4px]"
           >
             {[10, 20, 30, 40, 50].map((pageSize) => (
               <option key={pageSize} value={pageSize}>
