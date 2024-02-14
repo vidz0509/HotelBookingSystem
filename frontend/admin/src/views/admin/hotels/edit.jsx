@@ -156,8 +156,13 @@ export default function EditHotel() {
     if (result.isSuccessful) {
       if (hotelimage !== "" && hotelimage != null) {
         const formData = new FormData();
-        for (let file of hotelimage) {
-          formData.append('files', file);
+        // for (let file of hotelimage) {
+        //   formData.append('files', file);
+        // }
+        for (let i = 0; i < hotelimage.length; i++) {
+          const file = hotelimage[i];
+          // Append file with a new name
+          formData.append(`files[${i}]`, file, `${result.data._id}_.${file.name}`);
         }
         const imageResponse = await hotelsServices.uploadImage(
           formData,

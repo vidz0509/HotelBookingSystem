@@ -60,7 +60,7 @@ export class HotelsController {
     @Post('upload/:id')
     @UseInterceptors(AnyFilesInterceptor())
     uploadFile(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') hotelId: string) {
-        console.log(files);
+        console.log(files)
         return this.hotelService.uploadHotelsImg(hotelId, files);
     }
 
