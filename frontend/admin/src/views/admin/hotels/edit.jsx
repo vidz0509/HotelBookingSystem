@@ -114,6 +114,7 @@ export default function EditHotel() {
     setLocationIdError("");
     setHotelCodeError("");
     setHotelAddressError("");
+    setHotelImage("");
     setError("");
     setSuccessful("");
 
@@ -177,8 +178,6 @@ export default function EditHotel() {
           if (result.isConfirmed) {
             setBtnDisabled(false);
             window.location.reload();
-            // window.location.href = "/admin/hotels/edit/"(locationId);
-            // return <Navigate to="/admin/countries" />
           }
         });
       } else {
@@ -259,20 +258,6 @@ export default function EditHotel() {
           )}
         </div>
 
-        {/* <Dropdown
-          variant="auth"
-          extra="mb-3"
-          label="Location Name*"
-          placeholder="Location Name*"
-          id="locationName"
-          type="text"
-          onChange={handleLocationIdChange}
-          state={locationIdError !== "" ? "error" : ""}
-          errorMessage={locationIdError !== "" ? locationIdError : ""}
-          value={locationId}
-          maxLength={30}
-        /> */}
-
         <InputField
           variant="auth"
           extra="mb-3"
@@ -286,6 +271,7 @@ export default function EditHotel() {
           value={hotelCode}
           maxLength={5}
         />
+
         <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
           Hotel Address*
         </label>
@@ -308,6 +294,7 @@ export default function EditHotel() {
             {hotelAddressError}
           </span>
         )}
+
         <div className="mb-3">
           <label
             for="image"
@@ -329,7 +316,7 @@ export default function EditHotel() {
             </div>
           )}
           <input
-            type="file"
+            type="file" multiple
             variant="auth"
             extra="mt-3"
             label="Hotel Image"

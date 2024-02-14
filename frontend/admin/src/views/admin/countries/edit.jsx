@@ -149,7 +149,7 @@ export default function EditCountry() {
               <img src={countryData?.country_image} alt={countryName} />
             </div>
           }
-          <input type="file"
+          <input type="file" 
             variant="auth"
             extra="mt-3"
             label="Country Image"

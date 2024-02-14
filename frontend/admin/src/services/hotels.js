@@ -7,6 +7,7 @@ export const hotelsServices = {
     getHotelById,
     softDeleteHotel,
     HotelsCount,
+    uploadImage,
     updateStatus
 };
 
@@ -69,6 +70,21 @@ async function HotelsCount() {
         let errorObj = error.response.data;
         return errorObj;
     });
+}
+
+async function uploadImage(formData, hotelId) {
+    return await axios.post(`${process.env.REACT_APP_API_URL}/hotels/upload/${hotelId}`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+        .then((response) => {
+            return response.data
+        })
+        .catch((error) => {
+            // handle errors
+            console.log(error);
+        });
 }
 
 async function updateStatus(hotelId, status) {
