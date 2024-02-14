@@ -123,3 +123,4 @@ input:checked+.slider:before {
 .table-img {
   object-fit: cover;
 }
+.hotel-imgs{ flex-wrap: wrap; width: 100%; }

@@ -102,8 +102,8 @@ export default function EditHotel() {
   };
 
   const handleimageChange = async (event) => {
-    const file = event.target.files[0];
-    setHotelImage(file);
+    const files = event.target.files;
+    setHotelImage(files);
   };
 
   const handleSubmit = async (event) => {
@@ -156,7 +156,9 @@ export default function EditHotel() {
     if (result.isSuccessful) {
       if (hotelimage !== "" && hotelimage != null) {
         const formData = new FormData();
-        formData.append("file", hotelimage);
+        for (let file of hotelimage) {
+          formData.append('files', file);
+        }
         const imageResponse = await hotelsServices.uploadImage(
           formData,
           result.data._id
@@ -193,108 +195,109 @@ export default function EditHotel() {
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
-      <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Hotel Name*"
-          placeholder="Hotel Name*"
-          id="hotelName"
-          type="text"
-          onChange={handleHotelNameChange}
-          state={hotelNameError !== "" ? "error" : ""}
-          errorMessage={hotelNameError !== "" ? hotelNameError : ""}
-          value={hotelName}
-          maxLength={70}
-        />
+      <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0">
+        <div className="hotel-data-fields xl:max-w-[420px]">
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Hotel Name*"
+            placeholder="Hotel Name*"
+            id="hotelName"
+            type="text"
+            onChange={handleHotelNameChange}
+            state={hotelNameError !== "" ? "error" : ""}
+            errorMessage={hotelNameError !== "" ? hotelNameError : ""}
+            value={hotelName}
+            maxLength={70}
+          />
 
-        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-          Country Name*
-        </label>
-        <select
-          id="countryId"
-          name="countryId"
-          onChange={handleCountryIdChange}
-          class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-        >
-          <option value="">-- Select Country --</option>
-          {countriesData &&
-            countriesData.length > 0 &&
-            countriesData.map((item) => (
-              <option value={item._id} selected={item._id === countryId}>
-                {item.country_name}
-              </option>
-            ))}
-        </select>
-        {countryIdError && (
-          <span className="mb-3 ml-1 text-sm text-red-500">
-            {countryIdError}
-          </span>
-        )}
-
-        <div className="mb-3">
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-            Location Name*
+            Country Name*
           </label>
           <select
-            id="locationId"
-            name="locationId"
-            onChange={handleLocationIdChange}
+            id="countryId"
+            name="countryId"
+            onChange={handleCountryIdChange}
             class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
           >
-            <option value="">-- Select Location --</option>
-            {locationsData &&
-              locationsData.length > 0 &&
-              locationsData.map((item) => (
-                <option value={item._id} selected={item._id === locationId}>
-                  {item.location_name}
+            <option value="">-- Select Country --</option>
+            {countriesData &&
+              countriesData.length > 0 &&
+              countriesData.map((item) => (
+                <option value={item._id} selected={item._id === countryId}>
+                  {item.country_name}
                 </option>
               ))}
           </select>
-          {locationIdError && (
+          {countryIdError && (
             <span className="mb-3 ml-1 text-sm text-red-500">
-              {locationIdError}
+              {countryIdError}
+            </span>
+          )}
+
+          <div className="mb-3">
+            <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+              Location Name*
+            </label>
+            <select
+              id="locationId"
+              name="locationId"
+              onChange={handleLocationIdChange}
+              class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+            >
+              <option value="">-- Select Location --</option>
+              {locationsData &&
+                locationsData.length > 0 &&
+                locationsData.map((item) => (
+                  <option value={item._id} selected={item._id === locationId}>
+                    {item.location_name}
+                  </option>
+                ))}
+            </select>
+            {locationIdError && (
+              <span className="mb-3 ml-1 text-sm text-red-500">
+                {locationIdError}
+              </span>
+            )}
+          </div>
+
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Hotel Code*"
+            placeholder="Hotel Code"
+            id="hotelCode"
+            type="text"
+            onChange={handleHotelCodeChange}
+            state={hotelCodeError !== "" ? "error" : ""}
+            errorMessage={hotelCodeError !== "" ? hotelCodeError : ""}
+            value={hotelCode}
+            maxLength={5}
+          />
+
+          <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+            Hotel Address*
+          </label>
+          <textarea
+            rows="4"
+            cols="50"
+            class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+            variant="auth"
+            extra="mb-3"
+            placeholder="Hotel Address"
+            id="hotelAddress"
+            type="text"
+            onChange={handleHotelAddressChange}
+            state={hotelAddressError !== "" ? "error" : ""}
+            errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
+            value={hotelAddress}
+          />
+          {hotelAddressError && (
+            <span className="mb-3 ml-1 text-sm text-red-500">
+              {hotelAddressError}
             </span>
           )}
         </div>
-
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Hotel Code*"
-          placeholder="Hotel Code"
-          id="hotelCode"
-          type="text"
-          onChange={handleHotelCodeChange}
-          state={hotelCodeError !== "" ? "error" : ""}
-          errorMessage={hotelCodeError !== "" ? hotelCodeError : ""}
-          value={hotelCode}
-          maxLength={5}
-        />
-
-        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-          Hotel Address*
-        </label>
-        <textarea
-          rows="4"
-          cols="50"
-          class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-          variant="auth"
-          extra="mb-3"
-          placeholder="Hotel Address"
-          id="hotelAddress"
-          type="text"
-          onChange={handleHotelAddressChange}
-          state={hotelAddressError !== "" ? "error" : ""}
-          errorMessage={hotelAddressError !== "" ? hotelAddressError : ""}
-          value={hotelAddress}
-        />
-        {hotelAddressError && (
-          <span className="mb-3 ml-1 text-sm text-red-500">
-            {hotelAddressError}
-          </span>
-        )}
-
         <div className="mb-3">
           <label
             for="image"
@@ -303,7 +306,7 @@ export default function EditHotel() {
             Hotel Image
           </label>
           {hotelData?.hotel_image && (
-            <div className="flex mb-3">
+            <div className="flex mb-3 hotel-imgs">
               {Array.isArray(hotelData?.hotel_image) ? (
                 hotelData?.hotel_image.map((img, index) => (
                   <img src={img} alt={hotelName} key={`img_${index}`} className="mx-2 hotelImg my-2" />
@@ -326,40 +329,40 @@ export default function EditHotel() {
           />
         </div>
 
-        {/* Checkbox */}
-        <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center"></div>
-          <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
-              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-            }`}
-            onClick={(e) => handleSubmit(e)}
-            type="submit"
-            disabled={btnDisabled ? "disabled" : ""}
-          >
-            {btnDisabled ? (
-              <span className="flex items-center justify-center">
-                <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
-              </span>
-            ) : (
-              <span>Edit Hotel</span>
+        <div className="hotel-data-fields xl:max-w-[420px]">
+          <div className="mb-4 flex items-center justify-between px-2">
+            <div className="flex items-center"></div>
+            <button
+              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+                }`}
+              onClick={(e) => handleSubmit(e)}
+              type="submit"
+              disabled={btnDisabled ? "disabled" : ""}
+            >
+              {btnDisabled ? (
+                <span className="flex items-center justify-center">
+                  <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+                </span>
+              ) : (
+                <span>Edit Hotel</span>
+              )}
+            </button>
+          </div>
+          <div className="mt-4">
+            {error !== "" && (
+              <>
+                <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+              </>
             )}
-          </button>
-        </div>
-        <div className="mt-4">
-          {error !== "" && (
-            <>
-              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-            </>
-          )}
-        </div>
+          </div>
 
-        <div className="mt-4">
-          {successful !== "" && (
-            <>
-              <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
-            </>
-          )}
+          <div className="mt-4">
+            {successful !== "" && (
+              <>
+                <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
