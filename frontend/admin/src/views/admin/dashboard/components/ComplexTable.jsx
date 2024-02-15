@@ -87,20 +87,12 @@ const ComplexTable = (props) => {
 
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
-<<<<<<< Updated upstream
-      <form className="mt-5 p-2">
-=======
        <form className="mt-5 p-2">
->>>>>>> Stashed changes
         <button
           type="submit"
           className="w-1/4  bg-blue-700 p-2 text-center  outline-none ms-2 float-end"
           style={{
-<<<<<<< Updated upstream
-            border: "1px solid #932595",
-=======
             border: "1px solid #0077DE",
->>>>>>> Stashed changes
             width: "10%",
             color: "white",
             backgroundColor: "#932595",
@@ -113,19 +105,9 @@ const ComplexTable = (props) => {
         <input
           type="search"
           name="text"
-<<<<<<< Updated upstream
-          placeholder="Search..."
-          className=" search bg-white p-2 outline-none float-end"
-          style={{
-            border: "1px solid black",
-            width: "20%",
-            borderRadius: "10px",
-          }}
-=======
           placeholder="search users..."
           className=" bg-white p-2 outline-none float-end"
           style={{ border: "1px solid black", width: "20%", borderRadius: "10px", }}
->>>>>>> Stashed changes
         />
       </form>
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
