@@ -4,8 +4,9 @@ import Card from "components/card";
 import {
   useGlobalFilter,
   usePagination,
-  useSortBy,
   useTable,
+  useFilters,
+  useSortBy,
 } from "react-table";
 import { Link } from "react-router-dom";
 import {
@@ -30,9 +31,10 @@ const ComplexTable = (props) => {
       data,
       initialState,
     },
+    useFilters,
     useGlobalFilter,
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   const formatDate = (date) => {
@@ -68,7 +70,8 @@ const ComplexTable = (props) => {
     nextPage,
     previousPage,
     setPageSize,
-    state: { pageIndex, pageSize },
+    setGlobalFilter,
+    state: { pageIndex, pageSize, globalFilter },
   } = tableInstance;
   // initialState.pageSize = 20;
 
@@ -85,29 +88,22 @@ const ComplexTable = (props) => {
     return status;
   }
 
+  const handleSearchChange = (e) => {
+    const value = e.target.value || undefined;
+    setGlobalFilter(value); // Set the global filter value
+  };
+
   return (
     <Card extra={"w-full h-full px-6 pb-6 sm:overflow-x-auto"}>
-       <form className="mt-5 p-2">
-        <button
-          type="submit"
-          className="w-1/4  bg-blue-700 p-2 text-center  outline-none ms-2 float-end"
-          style={{
-            border: "1px solid #0077DE",
-            width: "10%",
-            color: "white",
-            backgroundColor: "#932595",
-            borderRadius: "10px",
-            border: "none",
-          }}
-        >
-          Search
-        </button>
+      <form className="mt-5 p-2">
         <input
           type="search"
           name="text"
           placeholder="search users..."
           className=" bg-white p-2 outline-none float-end"
           style={{ border: "1px solid black", width: "20%", borderRadius: "10px", }}
+          value={globalFilter || ''}
+          onChange={handleSearchChange}
         />
       </form>
       <div class="mt-8 overflow-x-scroll xl:overflow-hidden">
@@ -212,17 +208,17 @@ const ComplexTable = (props) => {
                         <>
                           {Array.isArray(cell.value)
                             ? (data = (
-                                <img
-                                  src={cell.value[0]}
-                                  className="table-img h-[80px] w-[80px] py-1 px-1"
-                                />
-                              ))
+                              <img
+                                src={cell.value[0]}
+                                className="table-img h-[80px] w-[80px] py-1 px-1"
+                              />
+                            ))
                             : (data = (
-                                <img
-                                  src={cell.value}
-                                  className="table-img h-[80px] w-[80px] py-1 px-1"
-                                />
-                              ))}
+                              <img
+                                src={cell.value}
+                                className="table-img h-[80px] w-[80px] py-1 px-1"
+                              />
+                            ))}
                         </>
                       ) : (
                         (data = (
