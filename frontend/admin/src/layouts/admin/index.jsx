@@ -70,6 +70,11 @@ export default function Admin(props) {
       setIsInnerPage(true);
       setInnerPageText('Edit');
       setParentPageUrl(getParentPageUrl);
+    }else{
+      setIsInnerPage(false);
+      setInnerPageText('');
+      setParentPageUrl('');
+
     }
   }
   function getParentPageUrl() {
