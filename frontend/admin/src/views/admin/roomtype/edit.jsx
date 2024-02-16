@@ -85,7 +85,7 @@ export default function EditRoomType() {
           variant="auth"
           extra="mb-3"
           label="Room Type Name*"
-          placeholder="Roomtype Name*"
+          placeholder="Room type Name*"
           id="roomtypeName"
           type="text"
           onChange={handleRoomTypeNameChange}
