@@ -146,7 +146,7 @@ export default function ProfileOverview() {
           label="Phone no"
           placeholder="Phone no"
           id="contact"
-          type="text"
+          type="number"
           onChange={handleContactChange}
           state={contactError !== "" ? "error" : ""}
           errorMessage={contactError !== "" ? contactError : ""}

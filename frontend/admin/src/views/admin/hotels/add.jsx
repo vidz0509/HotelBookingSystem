@@ -13,6 +13,7 @@ export default function AddHotel() {
   const [countriesData, setCountriesData] = useState("");
   const [hotelName, setHotelName] = useState("");
   const [countryId, setCountryId] = useState("");
+  const [image, setimage] = useState('');
 
   const [locationsData, setLocationsData] = useState("");
   const [locationId, setLocationId] = useState("");
@@ -73,6 +74,10 @@ export default function AddHotel() {
     const value = event.target.value;
     setHotelCode(value);
   };
+  const handleimageChange = async (event) => {
+    const file = event.target.files[0];
+    setimage(file);
+  }
 
   const handleHotelAddressChange = (event) => {
     const value = event.target.value;
@@ -81,6 +86,7 @@ export default function AddHotel() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    let isValid = false;
     setHotelNameError("");
     setCountryIdError("");
     setLocationIdError("");
@@ -124,26 +130,48 @@ export default function AddHotel() {
     };
     const result = await hotelsServices.addHotel(requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
-      Swal.fire({
-        title: "Added",
-        text: "Hotel has been Added successfully.",
-        icon: "success"
-      }).then((result) => {
-        if (result.isConfirmed) {
-          setBtnDisabled(false);
-          window.location.href = '/admin/hotels';
-          // return <Navigate to="/admin/countries" />
+      console.log(result.data._id);
+      /* Upload image */
+      if (image !== '' && image != null) {
+        const formData = new FormData();
+        formData.append("file", image);
+        const imageResponse = await countriesServices.uploadImage(formData, result.data._id);
+        if (imageResponse.isSuccessful) {
+          isValid = true;
+        } else {
+          isValid = false;
         }
-      });
+      } else {
+        isValid = true;
+      }
+      if (isValid) {
+        Swal.fire({
+          title: "Added",
+          text: "hotels has been added successfully.",
+          icon: "success"
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.href = '/admin/hotels';
+          }
+        });
+      } else {
+        setBtnDisabled(false);
+        Swal.fire({
+          title: "Error!",
+          text: "Something went wrong",
+          icon: "error"
+        });
+      }
     } else {
+      setBtnDisabled(false);
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
         icon: "error"
       });
     }
-  };
+  }
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
@@ -215,6 +243,17 @@ export default function AddHotel() {
           value={hotelCode}
           maxLength={5}
         />
+           <div className="mb-3">
+          <label for="image" class="text-sm text-navy-700 dark:text-white font-medium">Country Image</label>
+          <input type="file"
+            variant="auth"
+            extra="mt-3"
+            label="Country image"
+            placeholder="Country image"
+            id="image"
+            onChange={handleimageChange}
+          />
+        </div>
         <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
           Hotel Address*
         </label>
@@ -227,6 +266,7 @@ export default function AddHotel() {
           onChange={handleHotelAddressChange}
           value={hotelAddress}
         />
+        
         {hotelAddressError && <span className="mb-3 ml-1 text-red-500 text-sm">{hotelAddressError}</span>}
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
