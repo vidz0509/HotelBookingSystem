@@ -13,7 +13,6 @@ export default function AddHotel() {
   const [countriesData, setCountriesData] = useState("");
   const [hotelName, setHotelName] = useState("");
   const [countryId, setCountryId] = useState("");
-  const [image, setimage] = useState('');
 
   const [locationsData, setLocationsData] = useState("");
   const [locationId, setLocationId] = useState("");
@@ -26,6 +25,7 @@ export default function AddHotel() {
 
   const [hotelNameError, setHotelNameError] = useState("");
   const [hotelCodeError, setHotelCodeError] = useState("");
+  const [hotelimage, setHotelImage] = useState("");
   const [hotelAddressError, setHotelAddressError] = useState("");
 
   const [error, setError] = useState("");
@@ -74,10 +74,11 @@ export default function AddHotel() {
     const value = event.target.value;
     setHotelCode(value);
   };
+
   const handleimageChange = async (event) => {
-    const file = event.target.files[0];
-    setimage(file);
-  }
+    const files = event.target.files;
+    setHotelImage(files);
+  };
 
   const handleHotelAddressChange = (event) => {
     const value = event.target.value;
@@ -91,6 +92,7 @@ export default function AddHotel() {
     setCountryIdError("");
     setLocationIdError("");
     setHotelCodeError("");
+    setHotelImage("");
     setHotelAddressError("");
     setError("");
     setSuccessful("");
@@ -132,10 +134,20 @@ export default function AddHotel() {
     if (result.isSuccessful) {
       console.log(result.data._id);
       /* Upload image */
-      if (image !== '' && image != null) {
+      if (hotelimage !== "" && hotelimage != null) {
         const formData = new FormData();
-        formData.append("file", image);
-        const imageResponse = await countriesServices.uploadImage(formData, result.data._id);
+        // for (let file of hotelimage) {
+        //   formData.append('files', file);
+        // }
+        for (let i = 0; i < hotelimage.length; i++) {
+          const file = hotelimage[i];
+          // Append file with a new name
+          formData.append(`files[${i}]`, file, `${result.data._id}_.${file.name}`);
+        }
+        const imageResponse = await hotelsServices.uploadImage(
+          formData,
+          result.data._id
+        );
         if (imageResponse.isSuccessful) {
           isValid = true;
         } else {
@@ -243,17 +255,19 @@ export default function AddHotel() {
           value={hotelCode}
           maxLength={5}
         />
+
            <div className="mb-3">
-          <label for="image" class="text-sm text-navy-700 dark:text-white font-medium">Country Image</label>
-          <input type="file"
+          <label for="image" class="text-sm text-navy-700 dark:text-white font-medium">Hotel Image</label>
+          <input type="file" multiple
             variant="auth"
             extra="mt-3"
-            label="Country image"
-            placeholder="Country image"
+            label="Hotel image"
+            placeholder="Hotel image"
             id="image"
             onChange={handleimageChange}
           />
         </div>
+
         <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
           Hotel Address*
         </label>

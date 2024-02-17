@@ -30,6 +30,10 @@ import Amenities from "views/admin/amenities";
 import AddAmenities from "views/admin/amenities/add";
 import EditAmenities from "views/admin/amenities/edit"; 
 
+import Rooms from "views/admin/rooms";
+import AddRoom from "views/admin/rooms/add";
+import EditRoom from "views/admin/rooms/edit";
+
 import RoomType from "views/admin/roomtype";
 import AddRoomType from "views/admin/roomtype/add";
 import EditRoomType from "views/admin/roomtype/edit"; 
@@ -170,6 +174,34 @@ const routes = [
   },
   
   {
+    name: "Rooms",
+    layout: "/admin",
+    path: "rooms",
+    icon: <MdBedroomParent className="h-6 w-6" />,
+    component: <Rooms />,
+    secondary: true,
+    addInMenu: true,
+  },
+  {
+    name: "Rooms",
+    layout: "/admin",
+    path: "rooms/add",
+    icon: <MdBedroomParent className="h-6 w-6" />,
+    component: <AddRoom/>,
+    secondary: true,
+    addInMenu: false
+  },
+
+  {
+    name: "Rooms",
+    layout: "/admin",
+    path: "rooms/edit/:id",
+    icon: <MdBedroomParent className="h-6 w-6" />,
+    component: <EditRoom/>,
+    secondary: true,
+    addInMenu: false
+  },
+  {
     name: "Room Types",
     layout: "/admin",
     path: "roomtypes",
@@ -254,15 +286,6 @@ const routes = [
     component: <EditAmenities />,
     secondary: true,
     addInMenu: false
-  },
-  {
-    name: "Rooms",
-    layout: "/admin",
-    path: "rooms",
-    icon: <MdBedroomParent className="h-6 w-6" />,
-    component: <Bookings />,
-    secondary: true,
-    addInMenu: true,
   },
   {
     name: "Bookings",

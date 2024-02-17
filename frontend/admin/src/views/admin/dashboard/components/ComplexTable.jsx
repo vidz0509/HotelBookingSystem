@@ -183,7 +183,7 @@ const ComplexTable = (props) => {
                               </Link>
                               <span
                                 className="action-btn"
-                                onClick={(e) => deleteTableRow(cell.value)}
+                                onClick={(e) => deleteTableRow(getStatus(cell.value)[0])}
                               >
                                 <MdDelete className="text-red-700" />
                               </span>
