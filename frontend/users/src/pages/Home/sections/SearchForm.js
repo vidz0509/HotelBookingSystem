@@ -14,10 +14,24 @@ function SearchForm() {
         <>
             <div className="search-form" id="search-form">
                 <div className="row">
-                    <div className="col">
+                    <div className="col half-col">
                         <div className="field-group">
-                            <label>Travelling to</label>
-                            <input type="text" id="location" />
+                            <label htmlFor='country'>Select Country</label>
+                            <select id='country'>
+                                <option value="Test">Test</option>
+                                <option value="Test">Test</option>
+                                <option value="Test">Test</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div className="col half-col">
+                        <div className="field-group">
+                            <label htmlFor='location'>Select Location</label>
+                            <select id='location'>
+                                <option value="Test">Test</option>
+                                <option value="Test">Test</option>
+                                <option value="Test">Test</option>
+                            </select>
                         </div>
                     </div>
                     <div className="col">
@@ -30,29 +44,55 @@ function SearchForm() {
                         <div className="field-group">
                             <label>Check-out</label>
                             <DatePicker onChange={CheckOutOnChange} value={CheckOut} format="dd-MM-yyyy" minDate={CheckIn} />
-
                         </div>
                     </div>
                     <div className="col">
                         <div className="field-group">
                             <label>Room</label>
-                            <input type="text" id="room" />
+                            <input type="text" id="room" readOnly />
 
-                            <div className="dropdown" style={{ backgroundColor: 'white', marginTop: '20px', padding: '10px', paddingTop: '20px', paddingBottom: '20px', borderRadius: '10px' }}>
+                            <div className="dropdown room-input">
 
-                                <div className="dropdown-content" style={{ display: 'flex' }}>
-                                    <p>Room :</p> <button style={{ width: '16%', height: '30px', marginLeft: '30px' }}>-</button> <span style={{ marginLeft: '10px' }}>0</span> <button style={{ marginLeft: '10px', width: '16%', height: '30px' }}>+</button>
+                                <div className='room-list'>
+                                    <div className="dropdown-content">
+                                        <div className='room-title'>
+                                            <p>Room 1</p>
+                                        </div>
+                                        <div className='room-row'>
+                                            <div className='popup-row'>
+                                                <div className='popup-col'>
+                                                    <div className='inner-title'>
+                                                        <p>Adults</p>
+                                                    </div>
+                                                </div>
+                                                <div className='popup-col adult counter'>
+                                                    <button className="minus" disabled=""> <span> - </span> </button>
+                                                    <input type="text" readOnly value="1" />
+                                                    <button className="plus"> <span> + </span> </button>
+                                                    <input type="hidden" className="adults" name="rooms[0][adults]" value="1" />
+                                                </div>
+                                            </div>
+                                            <div className='popup-row'>
+                                                <div className='popup-col'>
+                                                    <div className='inner-title'>
+                                                        <p>Children</p>
+                                                    </div>
+                                                </div>
+                                                <div className='popup-col children counter'>
+                                                    <button className="minus" disabled=""> <span> - </span> </button>
+                                                    <input type="text" readOnly value="1" />
+                                                    <button className="plus"> <span> + </span> </button>
+                                                    <input type="hidden" className="adults" name="rooms[0][adults]" value="1" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-
-                                <div className="dropdown-content" style={{ display: 'flex', marginTop: '10px' }}>
-                                    <p>Adults :</p> <button style={{ width: '16%', height: '30px', marginLeft: '27px' }}>-</button> <span style={{ marginLeft: '10px' }}>0</span> <button style={{ marginLeft: '10px', width: '16%', height: '27px' }}>+</button>
+                                <div className="new-room-wrap">
+                                    <div id="addRoom" data-index="0">Add Room <span className="icon">+</span></div>
                                 </div>
-
-                                <div className="dropdown-content" style={{ display: 'flex', marginTop: '10px' }}>
-                                    <p>Childran :</p> <button style={{ width: '16%', height: '30px', marginLeft: '7px' }}>-</button> <span style={{ marginLeft: '10px' }}>0</span> <button style={{ marginLeft: '9px', width: '16%', height: '30px' }}>+</button>
-                                </div>
-                                <div style={{ display: 'flex', justifyContent: 'center' , marginTop: '20px' }}>
-                                    <button style={{width:'100px' , height:'36px', backgroundColor:'#932595' , border:'none' , borderRadius:'10px', color:'white' , cursor:'pointer'}}>Done</button>
+                                <div className="popup-footer">
+                                    <button className='done-btn'>Done</button>
                                 </div>
                             </div>
 

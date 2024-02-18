@@ -446,8 +446,8 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         position={relative ? "relative" : "absolute"}
         left={0}
         zIndex={3}
-        sx={({ palette: { transparent: transparentColor, white }, functions: { rgba } }) => ({
-          backgroundColor: transparent ? transparentColor.main : rgba(white.main, 0.8),
+        sx={() => ({
+          backgroundColor:"#fff",
           backdropFilter: transparent ? "none" : `saturate(200%) blur(30px)`,
         })}
       >
@@ -460,8 +460,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
             pl={relative || transparent ? 0 : { xs: 0, lg: 1 }}
           >
             <img src={logo} alt={brand} className="main-logo" width={120} />
-            {/* <MKTypography variant="button" fontWeight="bold" color={light ? "white" : "dark"}>
-            </MKTypography> */}
           </MKBox>
           <MKBox
             color="inherit"

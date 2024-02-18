@@ -111,13 +111,12 @@ function DefaultNavbarMobile({ routes, open }) {
                       transition: "all 300ms linear",
                       py: 1,
                       px: 1.625,
-
                       "&:hover": {
                         backgroundColor: grey[200],
                         color: dark.main,
 
                         "& *": {
-                          color: dark.main,
+                          color: "dark.main",
                         },
                       },
                     })}

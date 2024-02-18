@@ -80,7 +80,7 @@ export default {
   },
 
   dark: {
-    main: "#344767",
+    main: "#000",
     focus: "#2c3c58",
   },
 

@@ -51,15 +51,21 @@
 
 .form-wrap .row {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
-    justify-content: space-evenly;
-    background-color: #FFFFFF9C;
-    padding: 40px 60px 20px 60px;
+    justify-content: space-around;
+    background-color: #ece4ed;
+    padding: 30px;
     border-radius: 15px;
 }
 
 .col {
-    width: 18%;
+    width: 25%;
+    margin: 10px 20px;
+}
+
+.half-col{
+    width: 45%;
 }
 
 .btn-col {
@@ -72,24 +78,26 @@
     font-size: 14px;
     color: #932595;
     font-weight: 700;
+    display: block;
 }
 
 .field-group input,
+.field-group select,
 .react-date-picker__wrapper input {
     border: 0;
     background-color: transparent;
     width: 100%;
-    color: #932595;
+    color: #000;
     font-size: 14px;
     font-family: "Poppins", sans-serif;
 }
 
-.field-group input:not(.react-date-picker__wrapper input) {
+.field-group input:not(.react-date-picker__wrapper input),.field-group select {
     border-bottom: 2px solid #932595;
     height: 33px;
 }
 
-.field-group input:focus-visible {
+.field-group input:focus-visible, .field-group select:focus-visible {
     outline: 0;
 }
 
@@ -110,9 +118,10 @@
 
 /* Datepicker CSS */
 
-.react-date-picker{
+.react-date-picker {
     cursor: pointer;
 }
+
 .react-calendar__tile,
 .react-calendar__navigation button {
     font-family: "Poppins", sans-serif;
@@ -122,10 +131,10 @@
 .react-calendar__month-view__weekdays__weekday abbr,
 .react-date-picker__inputGroup__divider,
 .react-date-picker__inputGroup__leadingZero {
-    color: #932595;
+    color: #000;
 }
 
-.react-date-picker__inputGroup__leadingZero{
+.react-date-picker__inputGroup__leadingZero {
     font-size: 14px;
 }
 
@@ -171,10 +180,101 @@ button.react-calendar__navigation__arrow {
     border-radius: 10px;
 }
 
-.react-date-picker__calendar-button__icon{
+.react-date-picker__calendar-button__icon {
     stroke: #932595;
 }
 
-.react-date-picker__clear-button{
+.react-date-picker__clear-button {
     opacity: 0;
+}
+
+.room-input {
+    margin-top: 20px;    
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 1px 0 13px 1px rgba(0, 0, 0, .2);
+    position: absolute;
+    z-index: 9;
+    max-width: 320px;
+    width: 100%;
+}
+
+.room-list{
+    padding: 20px 10px;
+}
+
+.room-input .dropdown-content .room-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-col {
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.popup-col .inner-title {
+    font-size: 12px;
+}
+
+.popup-col.counter {
+    border: 1px solid #cecece;
+    border-radius: 5px;
+    outline: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    width: 130px;
+    font-size: 14px;
+    color: #757575;
+}
+
+.popup-col.counter button {
+    background-color: transparent !important;
+    border: none;
+    outline: none;
+    color: #932A9E;
+    font-size: 18px;
+    padding: 0 10px
+}
+
+.popup-col.counter input {
+    text-align: center;
+    border-bottom: 0 !important;
+}
+
+.room-input .room-title{
+    font-size: 16px;
+    margin-left:10px;
+}
+
+.popup-footer {
+    background-color: #f4f4f4;
+    padding: 15px 30px;
+    margin-top: 10px;
+    text-align: center;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.popup-footer .done-btn{
+    background-color: #932A9E !important;
+    border: 0;
+    color: #fff;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 0 12px;
+    border-radius: 3px;
+}
+
+.room-input .new-room-wrap {
+    text-align: right;
+    font-size: 14px;
+    cursor: pointer;
+    padding-right: 20px;
+    color: #932A9E
 }
