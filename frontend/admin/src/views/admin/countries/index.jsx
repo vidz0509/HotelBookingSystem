@@ -5,6 +5,7 @@ import { countriesServices } from "services/countries";
 import { Link } from "react-router-dom";
 import AddCountry from "./add";
 import Swal from "sweetalert2";
+import Loader from "../loader";
 
 const Countries = () => {
   const [countriesData, setCountriesData] = useState(null);
@@ -42,7 +43,9 @@ const Countries = () => {
   ];
 
   useEffect(() => {
-    getCountries();
+    setTimeout(function(){
+      getCountries();
+    },500)    
   }, []);
 
   const getCountries = async () => {
@@ -81,7 +84,7 @@ const Countries = () => {
           .catch((errMsg) => {
             console.error(errMsg);
           });
-      }else{
+      } else {
         window.location.reload();
       }
     });
@@ -123,7 +126,7 @@ const Countries = () => {
   };
   return (
     <>
-      {!loading && (
+      {loading ? <Loader /> : (
         <div className="list-table countries">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">
