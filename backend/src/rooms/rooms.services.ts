@@ -17,8 +17,9 @@ export class RoomsService {
 
   async createRoom(createRoomDto: CreateRoomDto) {
     try {
-      await this.roomCollection.createRoom(createRoomDto);
-      return createRoomDto;
+      const newRoom = await this.roomCollection.createRoom(createRoomDto);
+      const response = await this.helper.buildResponse(true, null, newRoom);
+      return response;
     } catch (error) {
       console.debug(`Failed to verify token: ${error}`);
       console.debug(JSON.stringify(error, null, 2));

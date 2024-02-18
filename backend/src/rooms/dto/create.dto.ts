@@ -9,7 +9,7 @@ export class CreateRoomDto {
     @IsNotEmpty()
     readonly room_type_id: string;
     
-    readonly room_image: string[];
+    readonly room_image: string;
     
     @IsNumber()
     @IsNotEmpty()

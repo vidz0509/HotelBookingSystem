@@ -21,10 +21,10 @@ export default function EditRoom() {
   const [roomData, setRoomData] = useState(null);
   const [roomImage, setRoomImage] = useState("");
 
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [priceError, setPriceError] = useState("");
 
-  const [totalrooms, setTotalRooms] = useState("");
+  const [totalrooms, setTotalRooms] = useState(0);
   const [totalRoomsError, setTotalRoomsError] = useState("");
 
   const [error, setError] = useState("");
@@ -104,9 +104,9 @@ export default function EditRoom() {
     setBtnDisabled(true);
     const requestBody = {
       hotel_id: hotelId,
-      roomtype_id: roomtypeId,
-      price: price,
-      totalrooms: totalrooms,
+      room_type_id: roomtypeId,
+      price: parseFloat(price),
+      total_rooms: parseInt(totalrooms),
     };
 
     if (validation.isEmpty(hotelId)) {

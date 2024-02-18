@@ -16,7 +16,7 @@ export class Rooms {
   room_type_id: string;
 
   @Prop()
-  room_image: string[];
+  room_image: string;
 
   @IsNotEmpty()
   @IsNumber()

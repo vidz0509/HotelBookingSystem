@@ -139,7 +139,7 @@ export class RoomsCollection {
         return await this.roomModel.findByIdAndUpdate(
             roomId,
             {
-                roomImg: roomImage,
+                room_image: roomImage,
             },
             {
                 new: true

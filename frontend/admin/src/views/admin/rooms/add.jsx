@@ -19,10 +19,10 @@ export default function AddRooms() {
   const [hotelIdError, setHotelIdError] = useState("");
   const [roomtypeIdError, setRoomtypeIdError] = useState("");
 
-  const [price, setPrice] = useState("");
+  const [price, setPrice] = useState(0);
   const [priceError, setPriceError] = useState("");
 
-  const [totalrooms, setTotalRooms] = useState("");
+  const [totalrooms, setTotalRooms] = useState(0);
   const [totalRoomsError, setTotalRoomsError] = useState("");
 
   const [error, setError] = useState("");
@@ -107,14 +107,14 @@ export default function AddRooms() {
     const requestBody = {
       // room_name: roomName,
       hotel_id: hotelId,
-      roomtype_id: roomtypeId,
-      price: price,
-      totalrooms: totalrooms,
+      room_type_id: roomtypeId,
+      price: parseFloat(price),
+      total_rooms: parseInt(totalrooms),
     };
 
     const result = await roomsServices.addRoom(requestBody);
     if (result.isSuccessful) {
-      console.log(result.data._id);
+      // console.log(result.data._id);
       /* Upload image */
       if (image !== "" && image != null) {
         const formData = new FormData();
@@ -238,7 +238,7 @@ export default function AddRooms() {
           label="Price*"
           placeholder="Price"
           id="Price"
-          type="text"
+          type="number"
           onChange={handlePriceChange}
           state={priceError !== "" ? "error" : ""}
           errorMessage={priceError !== "" ? priceError : ""}
@@ -252,7 +252,7 @@ export default function AddRooms() {
           label="Total Rooms*"
           placeholder="Total Rooms"
           id="totalRooms"
-          type="text"
+          type="number"
           onChange={handleTotalRoomsChange}
           state={totalRoomsError !== "" ? "error" : ""}
           errorMessage={totalRoomsError !== "" ? totalRoomsError : ""}

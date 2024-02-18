@@ -99,7 +99,7 @@ const ComplexTable = (props) => {
         <input
           type="search"
           name="text"
-          placeholder="search users..."
+          placeholder="Search Here...."
           className=" bg-white p-2 outline-none float-end"
           style={{ border: "1px solid black", width: "20%", borderRadius: "10px", }}
           value={globalFilter || ''}
