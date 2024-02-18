@@ -18,8 +18,20 @@ const Room = () => {
       accessor: "room_image",
     },
     {
-      Header: "Name",
-      accessor: "room_name",
+      Header: "Hotel Name",
+      accessor: "hotel_details[0].hotel_name",
+    },
+    {
+      Header: "Roomtype Name",
+      accessor: "roomTypes_details[0].roomtype_name",
+    },
+    {
+      Header: "Price",
+      accessor: "price",
+    },
+    {
+      Header: "Total Rooms",
+      accessor: "total_rooms",
     },
     {
       Header: "Status",
