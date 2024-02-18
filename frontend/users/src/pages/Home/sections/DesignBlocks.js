@@ -49,7 +49,9 @@ function DesignBlocks() {
   ));
 
   return (
-    <MKBox component="section" my={6} py={6}>
+    <MKBox component="section" 
+    // my={6} py={2}>
+    >
       <Container>
         <Grid
           container
@@ -58,12 +60,11 @@ function DesignBlocks() {
           lg={6}
           flexDirection="column"
           alignItems="center"
-          sx={{ textAlign: "center", my: 6, mx: "auto", px: 0.75 }}
+          sx={{ textAlign: "center", my: 1, mx: "auto", px: 0.75 }}
         >
           <MKBadge
             variant="contained"
             color="info"
-            badgeContent="Infinite combinations"
             container
             sx={{ mb: 2 }}
           />

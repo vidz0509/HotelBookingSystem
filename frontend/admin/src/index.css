@@ -94,3 +94,7 @@ input[type="search"].search::-webkit-search-cancel-button {
 	filter:saturate(0.5);
   }
 
+  div:where(.swal2-icon).swal2-success .swal2-success-ring {
+	border: 0.25em solid #75d340 !important
+  }
+
