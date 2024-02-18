@@ -56,6 +56,7 @@ const Customers = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         customerServices.updateStatus(userId,status).then((result) => {
