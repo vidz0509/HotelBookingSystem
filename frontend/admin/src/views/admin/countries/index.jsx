@@ -43,9 +43,7 @@ const Countries = () => {
   ];
 
   useEffect(() => {
-    setTimeout(function(){
-      getCountries();
-    },500)    
+    getCountries();
   }, []);
 
   const getCountries = async () => {
