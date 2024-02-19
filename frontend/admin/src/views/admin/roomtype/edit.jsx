@@ -84,7 +84,7 @@ export default function EditRoomType() {
         <InputField
           variant="auth"
           extra="mb-3"
-          label="Room Type Name*"
+          label="Room type Name*"
           placeholder="Room type Name*"
           id="roomtypeName"
           type="text"

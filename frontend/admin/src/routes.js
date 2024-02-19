@@ -202,7 +202,7 @@ const routes = [
     addInMenu: false
   },
   {
-    name: "Room Types",
+    name: "Room types",
     layout: "/admin",
     path: "roomtypes",
     icon: <MdHotel className="h-6 w-6" />,
@@ -211,7 +211,7 @@ const routes = [
     addInMenu: true,
   },
   {
-    name: "Room Types",
+    name: "Room types",
     layout: "/admin",
     path: "roomtypes/add",
     icon: <MdHotel className="h-6 w-6" />,
@@ -221,7 +221,7 @@ const routes = [
   },
 
   {
-    name: "Room Types",
+    name: "Room types",
     layout: "/admin",
     path: "roomtypes/edit/:id",
     icon: <MdHotel className="h-6 w-6" />,
