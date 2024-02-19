@@ -77,7 +77,7 @@ export default function AddCountry() {
         Swal.fire({
           title: "Added",
           text: "Country has been added successfully.",
-          icon: "success"
+          icon: "success",
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);

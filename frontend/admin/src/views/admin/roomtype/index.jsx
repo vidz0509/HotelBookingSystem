@@ -5,6 +5,7 @@ import { roomtypeServices } from "services/roomtype";
 import { Link } from "react-router-dom";
 import AddRoomType from "./add";
 import Swal from "sweetalert2";
+import Loader from "../loader";
 
 const RoomType = () => {
   const [roomtypeData, setRoomTypeData] = useState(null);
@@ -42,6 +43,7 @@ const RoomType = () => {
       text: "Are you sure you want to delete RoomType?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(roomtypeId);
@@ -77,6 +79,7 @@ const RoomType = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         roomtypeServices.updateStatus(roomtypeId,status).then((result) => {
@@ -103,7 +106,7 @@ const RoomType = () => {
 
   return (
     <>
-      {!loading && (
+      {loading ? <Loader /> : (
         <div className="list-table countries">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">

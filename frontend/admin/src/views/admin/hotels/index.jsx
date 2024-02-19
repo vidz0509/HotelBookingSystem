@@ -5,6 +5,7 @@ import { hotelsServices } from "services/hotels";
 import { Link } from "react-router-dom";
 import AddHotel from "./add";
 import Swal from "sweetalert2";
+import Loader from "../loader";
 
 const Hotels = () => {
   const [hotelsData, setHotelsData] = useState(null);
@@ -58,6 +59,7 @@ const Hotels = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         hotelsServices
@@ -92,6 +94,7 @@ const Hotels = () => {
       text: "Are you sure you want to delete hotel?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(hotelId);
@@ -121,7 +124,7 @@ const Hotels = () => {
   };
   return (
     <>
-      {!loading && (
+      {loading ? <Loader /> : (
         <div className="list-table countries">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">

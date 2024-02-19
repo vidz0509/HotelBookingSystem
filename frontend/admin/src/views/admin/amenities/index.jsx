@@ -5,6 +5,7 @@ import { amenitiesServices } from "services/amenities";
 import { Link } from "react-router-dom";
 import AddAmenities from "./add";
 import Swal from "sweetalert2";
+import Loader from "../loader";
 
 const Amenities = () => {
   const [amenitiesData, setAmenitiesData] = useState(null);
@@ -42,6 +43,7 @@ const Amenities = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         amenitiesServices
@@ -76,6 +78,7 @@ const Amenities = () => {
       text: "Are you sure you want to delete Amenities?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(amenitiesId);
@@ -106,7 +109,7 @@ const Amenities = () => {
   
   return (
     <>
-      {!loading && (
+      {loading ? <Loader /> : (
         <div className="list-table countries">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">

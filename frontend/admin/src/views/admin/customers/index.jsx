@@ -4,6 +4,7 @@ import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from 'react';
 import { customerServices } from "services/customer";
 import Swal from "sweetalert2";
+import Loader from "../loader";
 
 
 const Customers = () => {
@@ -83,13 +84,14 @@ const Customers = () => {
 
   return (
     <>
-      {!loading &&
+      {loading ? <Loader /> : (
         <ComplexTable
           columnsData={columnsDataComplex}
           tableData={customersData}
           isCustomerTable={true}
           updateElement={updateStatus}
         />
+      )
       }
     </>
   );

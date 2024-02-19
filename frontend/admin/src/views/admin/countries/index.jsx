@@ -59,6 +59,7 @@ const Countries = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         countriesServices
@@ -95,6 +96,7 @@ const Countries = () => {
       text: "Are you sure you want to delete country?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(countryId);

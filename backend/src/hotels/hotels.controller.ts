@@ -4,6 +4,7 @@ import { CreateHotelDto } from './dto/create.dto';
 import { HotelsService } from './hotels.services';
 import { UpdateHotelDto } from './dto/update.dto';
 import { AnyFilesInterceptor, FileInterceptor } from '@nestjs/platform-express';
+import { SearchHotelDto } from './dto/search.dto';
 
 @Controller('hotels')
 export class HotelsController {
@@ -14,6 +15,11 @@ export class HotelsController {
     async createHotel(@Body() createHotelDto: CreateHotelDto) {
         console.log(createHotelDto);
         return await this.hotelService.createHotel(createHotelDto);
+    }
+
+    @Get('/searchHotels')
+    async searchHotels(@Body() searchHotelDto: SearchHotelDto) {
+        return await this.hotelService.searchHotels(searchHotelDto);
     }
 
     @Get()
@@ -68,4 +74,6 @@ export class HotelsController {
     async serveFile(@Param('filename') filname: string, @Res() res: Response) {
         return res.sendFile(filname, { root: 'uploads/hotelsImg' });
     }
+
+    
 }

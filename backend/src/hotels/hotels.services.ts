@@ -6,6 +6,7 @@ import { Hotels } from './hotels.schema';
 
 import { CreateHotelDto } from './dto/create.dto';
 import { UpdateHotelDto } from './dto/update.dto';
+import { SearchHotelDto } from './dto/search.dto';
 
 @Injectable()
 export class HotelsService {
@@ -99,5 +100,11 @@ export class HotelsService {
     const response = await this.helper.buildResponse(true, null, data);
     return response;
     // return { message: 'File uploaed successfully', url: frontendUrl };
+  }
+
+  async searchHotels(searchHotelDto: SearchHotelDto) {
+    const hotel = await this.hotelCollection.searchHotels(searchHotelDto);
+    const response = await this.helper.buildResponse(true, null, hotel);
+    return response;
   }
 }

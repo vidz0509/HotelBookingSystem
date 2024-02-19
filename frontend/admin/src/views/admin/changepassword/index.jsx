@@ -117,7 +117,8 @@ export default function ChangePassword() {
       Swal.fire({
         title: "Added",
         text: "ChangePassword has been Added successfully.",
-        icon: "success"
+        icon: "success",
+        allowOutsideClick: false
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);

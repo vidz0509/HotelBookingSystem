@@ -7,6 +7,7 @@ import AddCountry from "./add";
 import Swal from "sweetalert2";
 import { roomsServices } from "services/rooms";
 import AddRooms from "./add";
+import Loader from "../loader";
 
 const Room = () => {
   const [roomsdata, setRoomsData] = useState(null);
@@ -60,6 +61,7 @@ const Room = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         roomsServices
@@ -96,6 +98,7 @@ const Room = () => {
       text: "Are you sure you want to delete room?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(roomId);
@@ -125,7 +128,7 @@ const Room = () => {
   };
   return (
     <>
-      {!loading && (
+      {loading ? <Loader /> : (
         <div className="list-table countries">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">

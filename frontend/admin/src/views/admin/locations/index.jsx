@@ -5,6 +5,7 @@ import { locationsServices } from "services/locations";
 import { Link } from "react-router-dom";
 import AddLocation from "./add";
 import Swal from "sweetalert2";
+import Loader from "../loader";
 
 const Locations = () => {
   const [locationsData, setLocationsData] = useState(null);
@@ -68,6 +69,7 @@ const Locations = () => {
       text: "Are you sure you want to update status?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         locationsServices
@@ -102,6 +104,7 @@ const Locations = () => {
       text: "Are you sure you want to delete location?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
+      allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(locationId);
@@ -132,7 +135,7 @@ const Locations = () => {
 
   return (
     <>
-      {!loading && (
+      {loading ? <Loader /> : (
         <div className="list-table countries">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">

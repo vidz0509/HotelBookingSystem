@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateHotelDto } from './dto/create.dto';
 import { Hotels } from './hotels.schema';
 import { UpdateHotelDto } from './dto/update.dto';
+import { SearchHotelDto } from './dto/search.dto';
 
 @Injectable()
 export class HotelsCollection {
@@ -150,4 +151,62 @@ export class HotelsCollection {
         );
     }
 
+    async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {
+        return await this.hotelModel.aggregate([
+            {
+                $match: {
+                    isDeleted: false, 
+                    isActive: true,
+                    country_id: searchHotelDto.country_id,
+                    location_id: searchHotelDto.location_id
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            // {
+            //     $lookup: {
+            //         from: 'locations',
+            //         let: { locationId: { $toObjectId: "$location_id" } }, // Convert location_id string to ObjectId
+            //         pipeline: [
+            //             {
+            //                 $match: {
+            //                     $expr: { $eq: ["$_id", "$$locationId"] }
+            //                 }
+            //             },
+            //             {
+            //                 $project: {
+            //                     location_code: 1,
+            //                     location_name: 1
+            //                 }
+            //             }
+            //         ],
+            //         as: 'location_details'
+            //     }
+            // },
+            // {
+            //     $lookup: {
+            //         from: 'countries',
+            //         let: { countryId: { $toObjectId: "$country_id" } }, // Convert country_id string to ObjectId
+            //         pipeline: [
+            //             {
+            //                 $match: {
+            //                     $expr: { $eq: ["$_id", "$$countryId"] }
+            //                 }
+            //             },
+            //             {
+            //                 $project: {
+            //                     country_code: 1,
+            //                     country_name: 1
+            //                 }
+            //             }
+            //         ],
+            //         as: 'country_details'
+            //     }
+            // },
+            
+        ]);
+    }
 }
