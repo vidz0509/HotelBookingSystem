@@ -66,7 +66,7 @@ export default function AddRoomType() {
         <InputField
           variant="auth"
           extra="mb-3"
-          label="Room Type Name*"
+          label="Room type Name*"
           placeholder="Room type Name*"
           id="roomtypeName"
           type="text"
@@ -89,7 +89,7 @@ export default function AddRoomType() {
           >
             {btnDisabled ?
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-              : <span>Add Room Type</span>}
+              : <span>Add Room type</span>}
           </button>
         </div>
         <div className="mt-4">

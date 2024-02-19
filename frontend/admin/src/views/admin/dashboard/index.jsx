@@ -131,7 +131,7 @@ const Dashboard = () => {
         />
         <Widget
           icon={<MdHotel className="h-6 w-6" />}
-          title={"Room Types"}
+          title={"Room types"}
           link={"/admin/roomtypes"}
           subtitle={totalRoomType}
         />
