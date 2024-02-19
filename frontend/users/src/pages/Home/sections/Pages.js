@@ -40,7 +40,7 @@ function Pages() {
   ));
 
   return (
-    <MKBox component="section">
+    <MKBox component="section" my={2}>
       <Container>
         <Grid
           container

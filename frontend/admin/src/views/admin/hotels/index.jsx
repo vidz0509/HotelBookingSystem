@@ -2,6 +2,7 @@ import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { hotelsServices } from "services/hotels";
+import { roomsServices } from "services/rooms";
 import { Link } from "react-router-dom";
 import AddHotel from "./add";
 import Swal from "sweetalert2";
@@ -31,6 +32,10 @@ const Hotels = () => {
     {
       Header: "Location Code",
       accessor: "location_details[0].location_code",
+    },
+    {
+      Header: "Total Rooms",
+      accessor: "total_rooms",
     },
     {
       Header: "Status",

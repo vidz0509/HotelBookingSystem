@@ -93,6 +93,7 @@ export class HotelsCollection {
             hotel_address: createHotelDto.hotel_address,
             average_rating: createHotelDto.average_rating,
             hotel_image: createHotelDto.hotel_image,
+            total_rooms: createHotelDto.total_rooms,
 
             createdAt: new Date(),
             updatedAt: new Date(),

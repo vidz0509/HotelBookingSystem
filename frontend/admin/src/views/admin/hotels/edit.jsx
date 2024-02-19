@@ -3,6 +3,7 @@ import InputField from "components/fields/InputField";
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { hotelsServices } from "services/hotels";
+import { roomsServices } from "services/rooms";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from "react-router-dom";
@@ -32,6 +33,9 @@ export default function EditHotel() {
   const [hotelCodeError, setHotelCodeError] = useState("");
   const [hotelAddressError, setHotelAddressError] = useState("");
   const [hotelimage, setHotelImage] = useState("");
+
+  const [totalrooms, setTotalRooms] = useState(0);
+  const [totalRoomsError, setTotalRoomsError] = useState("");
 
   const [error, setError] = useState("");
   const [successful, setSuccessful] = useState("");
@@ -73,6 +77,7 @@ export default function EditHotel() {
       setHotelName(result.data?.hotel_name);
       setHotelCode(result.data?.hotel_code);
       setHotelAddress(result.data?.hotel_address);
+      setTotalRooms(result.data?.total_rooms);
     }
   };
 
@@ -106,6 +111,11 @@ export default function EditHotel() {
     setHotelImage(files);
   };
 
+  const handleTotalRoomsChange = (event) => {
+    const value = event.target.value;
+    setTotalRooms(value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     let isValid = false;
@@ -115,6 +125,7 @@ export default function EditHotel() {
     setHotelCodeError("");
     setHotelAddressError("");
     setHotelImage("");
+    setTotalRoomsError("");
     setError("");
     setSuccessful("");
 
@@ -143,6 +154,11 @@ export default function EditHotel() {
       return false;
     }
 
+    if (validation.isEmpty(totalrooms)) {
+      setTotalRooms("Please enter valid total rooms.");
+      return false;
+    }
+
     setBtnDisabled(true);
     const requestBody = {
       country_id: countryId,
@@ -150,6 +166,7 @@ export default function EditHotel() {
       hotel_name: hotelName,
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
+      total_rooms: totalrooms
     };
 
     const result = await hotelsServices.editHotel(hotelId, requestBody);
@@ -162,7 +179,11 @@ export default function EditHotel() {
         for (let i = 0; i < hotelimage.length; i++) {
           const file = hotelimage[i];
           // Append file with a new name
-          formData.append(`files[${i}]`, file, `${result.data._id}_.${file.name}`);
+          formData.append(
+            `files[${i}]`,
+            file,
+            `${result.data._id}_.${file.name}`
+          );
         }
         const imageResponse = await hotelsServices.uploadImage(
           formData,
@@ -280,6 +301,20 @@ export default function EditHotel() {
             maxLength={5}
           />
 
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Total Rooms*"
+            placeholder="Total Rooms*"
+            id="totalRooms"
+            type="text"
+            onChange={handleTotalRoomsChange}
+            state={totalRoomsError !== "" ? "error" : ""}
+            errorMessage={totalRoomsError !== "" ? totalRoomsError : ""}
+            value={totalrooms}
+            maxLength={5}
+          />
+
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
             Hotel Address*
           </label>
@@ -303,6 +338,7 @@ export default function EditHotel() {
             </span>
           )}
         </div>
+
         <div className="mb-3">
           <label
             for="image"
@@ -311,10 +347,15 @@ export default function EditHotel() {
             Hotel Image
           </label>
           {hotelData?.hotel_image && (
-            <div className="flex mb-3 hotel-imgs">
+            <div className="hotel-imgs mb-3 flex">
               {Array.isArray(hotelData?.hotel_image) ? (
                 hotelData?.hotel_image.map((img, index) => (
-                  <img src={img} alt={hotelName} key={`img_${index}`} className="mx-2 hotelImg my-2" />
+                  <img
+                    src={img}
+                    alt={hotelName}
+                    key={`img_${index}`}
+                    className="hotelImg mx-2 my-2"
+                  />
                 ))
               ) : (
                 <>
@@ -324,7 +365,8 @@ export default function EditHotel() {
             </div>
           )}
           <input
-            type="file" multiple
+            type="file"
+            multiple
             variant="auth"
             extra="mt-3"
             label="Hotel Image"
@@ -338,15 +380,20 @@ export default function EditHotel() {
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center"></div>
             <button
-              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-                }`}
+              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+                btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
               onClick={(e) => handleSubmit(e)}
               type="submit"
               disabled={btnDisabled ? "disabled" : ""}
             >
               {btnDisabled ? (
                 <span className="flex items-center justify-center">
-                  <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+                  <img
+                    src={btnLoader}
+                    className="xl:max-w-[25px]"
+                    alt="loader"
+                  />
                 </span>
               ) : (
                 <span>Edit Hotel</span>
@@ -364,7 +411,9 @@ export default function EditHotel() {
           <div className="mt-4">
             {successful !== "" && (
               <>
-                <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+                <p className="mb-9 ml-1 text-base text-green-500">
+                  {successful}
+                </p>
               </>
             )}
           </div>

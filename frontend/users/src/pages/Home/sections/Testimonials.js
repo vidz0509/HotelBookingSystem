@@ -34,7 +34,7 @@ import DefaultReviewCard from "examples/Cards/ReviewCards/DefaultReviewCard";
 
 function Information() {
   return (
-    <MKBox component="section" py={10}>
+    <MKBox component="section" my={12} py={7}>
       <Container>
         <Grid
           container

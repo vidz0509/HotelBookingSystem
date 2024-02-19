@@ -16,6 +16,9 @@ export class CreateHotelDto {
     @IsString()
     @IsNotEmpty()
     readonly hotel_name: string;
+
+    @IsNotEmpty()
+    readonly total_rooms: number;
     
     @IsString()
     @IsNotEmpty()

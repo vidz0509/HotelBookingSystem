@@ -8,7 +8,6 @@ import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 // import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 export default function AddHotel() {
   const [countriesData, setCountriesData] = useState("");
   const [hotelName, setHotelName] = useState("");
@@ -26,6 +25,8 @@ export default function AddHotel() {
   const [hotelNameError, setHotelNameError] = useState("");
   const [hotelCodeError, setHotelCodeError] = useState("");
   const [hotelimage, setHotelImage] = useState("");
+  const [totalrooms, setTotalRooms] = useState(0);
+  const [totalRoomsError, setTotalRoomsError] = useState("");
   const [hotelAddressError, setHotelAddressError] = useState("");
 
   const [error, setError] = useState("");
@@ -80,6 +81,11 @@ export default function AddHotel() {
     setHotelImage(files);
   };
 
+  const handleTotalRoomsChange = (event) => {
+    const value = event.target.value;
+    setTotalRooms(value);
+  };
+
   const handleHotelAddressChange = (event) => {
     const value = event.target.value;
     setHotelAddress(value);
@@ -94,6 +100,7 @@ export default function AddHotel() {
     setHotelCodeError("");
     setHotelImage("");
     setHotelAddressError("");
+    setTotalRoomsError("");
     setError("");
     setSuccessful("");
 
@@ -122,6 +129,11 @@ export default function AddHotel() {
       return false;
     }
 
+    if (validation.isEmpty(totalrooms)) {
+      setTotalRooms("Please enter valid total rooms.");
+      return false;
+    }
+
     setBtnDisabled(true);
     const requestBody = {
       country_id: countryId,
@@ -129,6 +141,7 @@ export default function AddHotel() {
       hotel_name: hotelName,
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
+      total_rooms: totalrooms,
     };
     const result = await hotelsServices.addHotel(requestBody);
     if (result.isSuccessful) {
@@ -142,7 +155,11 @@ export default function AddHotel() {
         for (let i = 0; i < hotelimage.length; i++) {
           const file = hotelimage[i];
           // Append file with a new name
-          formData.append(`files[${i}]`, file, `${result.data._id}_.${file.name}`);
+          formData.append(
+            `files[${i}]`,
+            file,
+            `${result.data._id}_.${file.name}`
+          );
         }
         const imageResponse = await hotelsServices.uploadImage(
           formData,
@@ -160,11 +177,11 @@ export default function AddHotel() {
         Swal.fire({
           title: "Added",
           text: "hotels has been added successfully.",
-          icon: "success"
+          icon: "success",
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
-            window.location.href = '/admin/hotels';
+            window.location.href = "/admin/hotels";
           }
         });
       } else {
@@ -172,7 +189,7 @@ export default function AddHotel() {
         Swal.fire({
           title: "Error!",
           text: "Something went wrong",
-          icon: "error"
+          icon: "error",
         });
       }
     } else {
@@ -180,10 +197,10 @@ export default function AddHotel() {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
       });
     }
-  }
+  };
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
@@ -219,8 +236,11 @@ export default function AddHotel() {
               <option value={item._id}>{item.country_name}</option>
             ))}
         </select>
-        {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
-
+        {countryIdError && (
+          <span className="mb-3 ml-1 text-sm text-red-500">
+            {countryIdError}
+          </span>
+        )}
 
         <div className="mb-3">
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
@@ -239,7 +259,11 @@ export default function AddHotel() {
                 <option value={item._id}>{item.location_name}</option>
               ))}
           </select>
-          {locationIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{locationIdError}</span>}
+          {locationIdError && (
+            <span className="mb-3 ml-1 text-sm text-red-500">
+              {locationIdError}
+            </span>
+          )}
         </div>
 
         <InputField
@@ -256,9 +280,16 @@ export default function AddHotel() {
           maxLength={5}
         />
 
-           <div className="mb-3">
-          <label for="image" class="text-sm text-navy-700 dark:text-white font-medium">Hotel Image</label>
-          <input type="file" multiple
+        <div className="mb-3">
+          <label
+            for="image"
+            class="text-sm font-medium text-navy-700 dark:text-white"
+          >
+            Hotel Image
+          </label>
+          <input
+            type="file"
+            multiple
             variant="auth"
             extra="mt-3"
             label="Hotel image"
@@ -271,7 +302,10 @@ export default function AddHotel() {
         <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
           Hotel Address*
         </label>
-        <textarea rows="4" cols="50" class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+        <textarea
+          rows="4"
+          cols="50"
+          class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
           variant="auth"
           extra="mb-3"
           placeholder="Hotel Address"
@@ -280,14 +314,33 @@ export default function AddHotel() {
           onChange={handleHotelAddressChange}
           value={hotelAddress}
         />
-        
-        {hotelAddressError && <span className="mb-3 ml-1 text-red-500 text-sm">{hotelAddressError}</span>}
+
+        <InputField
+          variant="auth"
+          extra="mb-3"
+          label="Total Rooms*"
+          placeholder="Total Rooms*"
+          id="totalRooms"
+          type="text"
+          onChange={handleTotalRoomsChange}
+          state={totalRoomsError !== "" ? "error" : ""}
+          errorMessage={totalRoomsError !== "" ? totalRoomsError : ""}
+          value={totalrooms}
+          maxLength={5}
+        />
+
+        {hotelAddressError && (
+          <span className="mb-3 ml-1 text-sm text-red-500">
+            {hotelAddressError}
+          </span>
+        )}
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>
           <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-              }`}
+            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+            }`}
             onClick={(e) => handleSubmit(e)}
             type="submit"
             disabled={btnDisabled ? "disabled" : ""}

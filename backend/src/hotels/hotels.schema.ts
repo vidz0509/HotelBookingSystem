@@ -33,6 +33,9 @@ export class Hotels {
   @Prop()
   hotel_image: string[];
 
+  @Prop({ required: true })
+  total_rooms: number;
+
   @Prop()
   createdAt: Date;
 
