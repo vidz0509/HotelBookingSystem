@@ -133,7 +133,11 @@ export default function EditRoom() {
     if (result.isSuccessful) {
       if (roomImage !== "" && roomImage != null) {
         const formData = new FormData();
-        formData.append("file", roomImage);
+        formData.append(
+          `file`,
+          roomImage,
+          `${result.data._id}_.${roomImage.name}`
+        );
         const imageResponse = await roomsServices.uploadImage(
           formData,
           result.data._id
