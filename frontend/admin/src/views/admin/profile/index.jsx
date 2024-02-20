@@ -57,7 +57,7 @@ export default function ProfileOverview() {
       setEmailError("Please enter valid email address.");
       return false;
     }
-    if (validation.isEmpty(contact)) {
+    if (validation.isEmpty(contact) || !validation.isValidPhoneNo(contact)) {
       setContactError("Please enter valid phone no.");
       return false;
     }
@@ -146,7 +146,7 @@ export default function ProfileOverview() {
           label="Phone no"
           placeholder="Phone no"
           id="contact"
-          type="number"
+          type="text"
           onChange={handleContactChange}
           state={contactError !== "" ? "error" : ""}
           errorMessage={contactError !== "" ? contactError : ""}
