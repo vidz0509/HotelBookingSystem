@@ -69,7 +69,6 @@ function SignUpBasic() {
     setconfirmpassword(value);
   }
 
-
   const handlesubmit = async (event) => {
     event.preventDefault();
     console.log(event)
