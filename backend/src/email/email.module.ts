@@ -16,7 +16,7 @@ import { join } from 'path';
                 },
             },
             defaults: {
-                from: '"Budget Suites" mail to:vairagbavadiya5@gmail.com',
+                from: '"Budget Suites" vairagbavadiya5@gmail.com',
             },
             template: {
                 dir: join(__dirname, 'templates'),

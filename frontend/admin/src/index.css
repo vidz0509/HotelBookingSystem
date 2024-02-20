@@ -51,12 +51,12 @@ input:checked.defaultCheckbox::before {
 }
 
 div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
-background-color: #932595 !important;
+	background-color: #932595 !important;
 }
 
 div:where(.swal2-icon).swal2-warning {
-border-color: #932595 !important;
-color: #932595 !important;
+	border-color: #932595 !important;
+	color: #932595 !important;
 }
 
 /* .text-gray-600 {
@@ -65,41 +65,45 @@ color: #932595 !important;
 } */
 
 .text-sm {
-    font-size: medium !important;
-    line-height: 1.25rem !important;
+	font-size: medium !important;
+	line-height: 1.25rem !important;
 }
 
 .rounded-\[20px\] {
-    border-radius: 10PX;
+	border-radius: 10PX;
 }
 
 .text-gray-600 {
-    --tw-text-opacity: 1 !important;
-    color: black !important;
+	--tw-text-opacity: 1 !important;
+	color: black !important;
 }
 
 .font-medium {
-    font-weight: 1 !important;
+	font-weight: 1 !important;
 	/* color: #932595; */
 }
 
 .text-navy-700 {
-    --tw-text-opacity: 1 !important;
-    color: rgba(0, 0, 0, 0.848) !important;
+	--tw-text-opacity: 1 !important;
+	color: rgba(0, 0, 0, 0.848) !important;
 }
 
 input[type="search"].search::-webkit-search-cancel-button {
-	filter:saturate(0.5);
-  }
+	filter: saturate(0.5);
+}
 
-  div:where(.swal2-icon).swal2-success .swal2-success-ring {
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
 	border: 0.25em solid #5cc421 !important
-  }
+}
 
-  div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
 	background-color: #5cc421 !important;
-  }
+}
 
-  .bg-lightPrimary {
+.bg-lightPrimary {
 	background: #fee2fb66 !important;
-  }
+}
+
+a, a.text-brand-500{
+	color: #932595;
+}

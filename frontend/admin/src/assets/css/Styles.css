@@ -32,6 +32,10 @@
   color: #932595;
 }
 
+.hover\:text-brand-600:hover{
+  color: #000 !important;
+}
+
 .pagination .btn {
   padding: 5px 10px;
   border-radius: 0;
