@@ -143,7 +143,7 @@ export default function ChangePassword() {
     <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
       {/* Sign in section */}
       <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <div className="field">
+        <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
           <InputField
             variant="auth"
             extra="mb-3"
@@ -156,9 +156,9 @@ export default function ChangePassword() {
             errorMessage={passwordError !== "" ? passwordError : ""}
             maxLength={12}
           />
-          <button className="icon" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          <button className="icon" type="button" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
         </div>
-        <div className="field">
+        <div className={`field${newPasswordError !== "" ? " has-error" : ""}`}>
           <InputField
             variant="auth"
             extra="mb-3"
@@ -171,9 +171,9 @@ export default function ChangePassword() {
             errorMessage={newPasswordError !== "" ? newPasswordError : ""}
             maxLength={12}
           />
-          <button className="icon" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          <button className="icon" type="button" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
         </div>
-        <div className="field">
+        <div className={`field${confirmPasswordError !== "" ? " has-error" : ""}`}>
           <InputField
             variant="auth"
             extra="mb-3"
@@ -186,7 +186,7 @@ export default function ChangePassword() {
             errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
             maxLength={12}
           />
-          <button className="icon" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          <button className="icon" type="button" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
         </div>
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">

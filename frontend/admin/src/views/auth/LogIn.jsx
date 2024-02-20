@@ -89,7 +89,7 @@ export default function SignIn() {
             errorMessage={emailError !== "" ? emailError : ""}
           />
         </div>
-        <div className="field">
+        <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
           <InputField
             variant="auth"
             extra="mb-3"
@@ -102,7 +102,7 @@ export default function SignIn() {
             errorMessage={passwordError !== "" ? passwordError : ""}
             maxLength={12}
           />
-          <button className="icon" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          <button className="icon" type="button" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
         </div>
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">

@@ -183,24 +183,24 @@ function SignUpBasic() {
 
                 </MKBox>
                 <MKBox mb={2}>
-                  <div className="field">
+                <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
                     <MKInput type={passwordType} label="Password" fullWidth
                       onChange={handlePasswordChange}
                       state={passwordError !== "" ? "error" : ""}
                       errorMessage={passwordError !== "" ? passwordError : ""}
                       maxLength={12} />
-                    <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                    <button className="icon" type="button" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                   </div>
                 </MKBox>
                 <MKBox mb={2}>
-                  <div className="field">
+                <div className={`field${confirmpasswordError !== "" ? " has-error" : ""}`}>
                     <MKInput type={confirmpasswordType} label="Confirm password" fullWidth
                       onChange={handleconfirmpassworddChange}
                       state={confirmpasswordError !== "" ? "error" : ""}
                       errorMessage={confirmpasswordError !== "" ? confirmpasswordError : ""}
                       maxLength={12}
                     />
-                    <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                    <button className="icon" type="button" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                   </div>
                 </MKBox>
                 {/* <MKTypography

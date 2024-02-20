@@ -3,8 +3,11 @@
   bottom: 46px;
   position: relative;
   right: 15px;
+  color: #932595;
 }
-
+.has-error.field button.icon{
+  bottom: 75px;
+}
 .hotelImg {
   max-width: 250px;
 }

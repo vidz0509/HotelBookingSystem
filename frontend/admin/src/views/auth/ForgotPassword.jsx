@@ -16,7 +16,7 @@ export default function ForgotPassword() {
   const [emailError, setEmailError] = useState('');
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
-  const [screen, setScreen] = useState('forgotPassword');
+  const [screen, setScreen] = useState('resetPwd');
 
   const [newpasswordType, setNewPasswordType] = useState("password");
   const [confirmpasswordType, setConfirmPasswordType] = useState("password");
@@ -263,7 +263,7 @@ export default function ForgotPassword() {
             Reset Password
           </h4>
           <p className="mb-9 ml-1 text-base text-gray-600">Enter your new password here!</p>
-          <div className="field">
+          <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
             <InputField
               variant="auth"
               extra="mb-3"
@@ -276,9 +276,9 @@ export default function ForgotPassword() {
               errorMessage={passwordError !== "" ? passwordError : ""}
               maxLength={12}
             />
-            <button className="icon" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+            <button className="icon" type="button" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
           </div>
-          <div className="field">
+          <div className={`field${confPasswordError !== "" ? " has-error" : ""}`}>
             <InputField
               variant="auth"
               extra="mb-3"
@@ -291,7 +291,7 @@ export default function ForgotPassword() {
               errorMessage={confPasswordError !== "" ? confPasswordError : ""}
               maxLength={12}
             />
-            <button className="icon" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+            <button className="icon" type="button" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
           </div>
           {error !== '' && <>
             <p className="mb-3 ml-1 text-red-500 text-sm">{error}</p>

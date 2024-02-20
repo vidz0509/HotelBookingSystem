@@ -39,8 +39,6 @@ function SignInBasic() {
 
   const handlesubmit = async (event) => {
     event.preventDefault();
-    // debugger;
-    console.log(event)
     setEmailError('');
     setPasswordError('');
     if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
@@ -121,20 +119,16 @@ function SignInBasic() {
                 <form method="post" onSubmit={handlesubmit}>
                   <MKBox mb={2}>
                     <MKInput type="email" label="Email" fullWidth
-                      onChange={handleEmailChange}
-                      error={emailError && emailError !== '' ? true : false}
-                      state={emailError !== "" ? "error" : ""}
+                      onChange={handleEmailChange}                      
                       errorMessage={emailError !== "" ? emailError : ""} />
                   </MKBox>
                   <MKBox mb={2}>
-                    <div className="field">
+                    <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
                       <MKInput type={passwordType} label="Password" fullWidth
                         onChange={handlePasswordChange}
-                        state={passwordError !== "" ? "error" : ""}
-                        error={passwordError && passwordError !== '' ? true : false}
                         errorMessage={passwordError !== "" ? passwordError : ""}
                         maxLength={12} />
-                      <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                      <button className="icon" type="button" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                     </div>
                   </MKBox>
                   <MKTypography
