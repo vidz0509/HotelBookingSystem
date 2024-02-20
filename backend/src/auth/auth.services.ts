@@ -34,11 +34,6 @@ export class AuthServices {
         await this.helper.buildResponse(false, `Pasword must have Min 8 chars Max 12 chars: 1 digit 1 Uppercase and 1 special char`),
       );
     }
-    // if (password !== confirmpassword) {
-    //   throw new UnauthorizedException(
-    //     await this.helper.buildResponse(false, 'Password and confirm password must be same'),
-    //   );
-    // }
     try {
       await this.usersCollection.createUser(createUserDto);
       const newUser = await this.usersCollection.getUserByEmail(createUserDto.email);
@@ -51,12 +46,21 @@ export class AuthServices {
     }
   }
 
-  async signIn(signInUserDto: SignInUserDto): Promise<any> {
+  async signIn(signInUserDto: SignInUserDto, isCustomer?: boolean): Promise<any> {
     const user = await this.usersService.getUserByPassword(signInUserDto.email);
-    console.log(user)
     if (!user) {
       throw new BadRequestException(
         await this.helper.buildResponse(false, 'This email is not registered.'),
+      );
+    }
+    if (isCustomer && user.userType == 1) {
+      throw new UnauthorizedException(
+        await this.helper.buildResponse(false, 'Admin can not login as a customer'),
+      );
+    }
+    if (!isCustomer && user.userType == 2) {
+      throw new UnauthorizedException(
+        await this.helper.buildResponse(false, 'You do not have admin access'),
       );
     }
     if (user.password !== signInUserDto.password) {
@@ -74,7 +78,7 @@ export class AuthServices {
       throw new InternalServerErrorException('Something went wrong.');
     }
   }
-  
+
   async checkIfUserExists(email: string) {
     const user = await this.usersCollection.getUserByEmail(email);
     return user;
@@ -181,7 +185,7 @@ export class AuthServices {
     }
   }
 
-  async getInTouch(requestData: { fullname:string, email: string, message: string }) {
+  async getInTouch(requestData: { fullname: string, email: string, message: string }) {
 
     try {
       this.logger.debug(`Sending email to ${requestData.email}`);

@@ -11,9 +11,9 @@ export class AuthController {
     constructor(private readonly authService: AuthServices) { }
 
     @Post('/login')
-    async signIn(@Body() signInUserDto: SignInUserDto) {
+    async signIn(@Body() signInUserDto: SignInUserDto,@Query('isCustomer') isCustomer?:boolean) {
         return await this.authService.signIn(
-            signInUserDto
+            signInUserDto,isCustomer
         );
     }
 

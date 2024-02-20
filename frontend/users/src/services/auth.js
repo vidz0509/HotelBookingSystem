@@ -20,7 +20,7 @@ function checkIfUserLoggedIn() {
 
 async function login(requestBody) {
     // const url = `http://localhost:5001/auth/login`;
-    const url = `http://localhost:5001/auth/login`;
+    const url = `http://localhost:5001/auth/login?isCustomer=true`;
     console.log(requestBody)
     console.log(url)
     return await axios.post(url, requestBody).then(response => {
