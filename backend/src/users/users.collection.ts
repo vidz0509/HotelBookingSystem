@@ -18,6 +18,7 @@ export class UsersCollection {
     async getUsersCount(): Promise<number> {
         return await this.userModel.countDocuments({
             isDeleted: false,
+            userType: 2,
         });
     }
 
