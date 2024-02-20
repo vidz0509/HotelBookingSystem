@@ -1,20 +1,6 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-router-dom components
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useState } from "react";
+// import { Link } from "react-router-dom";
 
 // @mui material components
 import Container from "@mui/material/Container";
@@ -29,28 +15,38 @@ import MKTypography from "components/MKTypography";
 import ExampleCard from "pages/Presentation/components/ExampleCard";
 
 // Data
-import data from "pages/Presentation/sections/data/designBlocksData";
+// import data from "pages/Presentation/sections/data/designBlocksData";
+import { locationsServices } from "services/locations";
+
+
 
 function DesignBlocks() {
-  const renderData = data.map(({ title, items }) => (
-    <Grid container spacing={3} sx={{ mb: 10 }} key={title}>
-      <Grid item xs={12} lg={12}>
-        <Grid container spacing={3}>
-          {items.map(({ image, name, count, route, pro }) => (
-            <Grid item xs={12} md={4} sx={{ mb: 2 }} key={name}>
-              <Link to={pro ? "/" : route}>
-                <ExampleCard image={image} name={name} count={count} pro={pro} />
-              </Link>
+  const [locationsData, setLocationsData] = useState(null);
+  useEffect(() => {
+    getLocations();
+  }, []);
+  
+  const getLocations = async () => {
+    let response = await locationsServices.getAllLocations();
+    setLocationsData(response.data);
+  }
+  const renderData = locationsData && locationsData?.map((location) => (
+    // <Grid container spacing={3} sx={{ mb: 10 }} key={location._id}>
+    //   <Grid item xs={12} lg={12}>
+    //     <Grid container spacing={3}>
+            <Grid item md={4} sx={{ mb: 2 }} key={location._id}>
+                <ExampleCard image={location.location_image} name={location.location_name} />
+              {/* <Link to={pro ? "/" : route}>
+              </Link> */}
             </Grid>
-          ))}
-        </Grid>
-      </Grid>
-    </Grid>
+    //     </Grid>
+    //   </Grid>
+    // </Grid>
   ));
 
   return (
-    <MKBox component="section" 
-    my={6}>
+    <MKBox component="section"
+      my={6}>
       <Container>
         <Grid
           container
@@ -76,7 +72,9 @@ function DesignBlocks() {
           </MKTypography>
         </Grid>
       </Container>
-      <Container sx={{ mt: 6 }}>{renderData}</Container>
+      <Container sx={{ mt: 6 }}>
+      <Grid container spacing={2}>{renderData}
+      </Grid></Container>
     </MKBox>
   );
 }
