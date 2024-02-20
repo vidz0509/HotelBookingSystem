@@ -31,7 +31,7 @@ export default [
     image:
       "https://raw.githubusercontent.com/creativetimofficial/public-assets/master/material-design-system/presentation/account/signin-basic.jpg",
     name: "Sign In Page",
-    route: "ign-in",
+    route: "Sign-in",
   },
   {
     image: `${imagesPrefix}/author.jpg`,

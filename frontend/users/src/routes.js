@@ -73,7 +73,7 @@ const routes = [
   },
   {
     name: authServices.checkIfUserLoggedIn() ? "Account" : "sign in",
-    route: authServices.checkIfUserLoggedIn() ? "/account" : "/sign in",
+    route: authServices.checkIfUserLoggedIn() ? "/account" : "/sign-in",
     component:  authServices.checkIfUserLoggedIn() ? <Home/> : <SignIn/>,
     addInMenu: true,
   },
