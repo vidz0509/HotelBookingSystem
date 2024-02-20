@@ -12,11 +12,11 @@ export default function EditAmenities() {
   const params = useParams();
   const amenitiesId = params.id;
 
-  // const [amenitiesData, setamenitiesData] = useState(null);
-
-  const [amenitiesName, setAmenitiesName] = useState('');
-
-  const [amenitiesNameError, setAmenitiesNameError] = useState('');
+  const [amenitiesName, setAmenitiesName] = useState("");
+  const [amenitiesNameError, setAmenitiesNameError] = useState("");
+  
+  const [amenitiesIcon, setAmenitiesIcon] = useState("");
+  const [amenitiesIconError, setAmenitiesIconError] = useState("");
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -32,6 +32,7 @@ export default function EditAmenities() {
     if (result.isSuccessful) {
       // setamenitiesData(result.data);
       setAmenitiesName(result.data?.amenities_name);
+      setAmenitiesIcon(result.data?.amenities_icon);
     }
   }
 
@@ -39,6 +40,12 @@ export default function EditAmenities() {
     const value = event.target.value;
     setAmenitiesName(value);
   }
+
+  const handleAmenitiesIconChange = (event) => {
+    const value = event.target.value;
+    setAmenitiesIcon(value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setAmenitiesNameError('');
@@ -50,9 +57,15 @@ export default function EditAmenities() {
       return false;
     }
 
+    if (validation.isEmpty(amenitiesIcon)) {
+      setAmenitiesIconError("Please enter valid amenities icon.");
+      return false;
+    }
+
     setBtnDisabled(true);
     const requestBody = {
       amenities_name: amenitiesName,
+      amenities_icon: amenitiesIcon,
     };
     const result = await amenitiesServices.editAmenities(amenitiesId,requestBody);
     if (result.isSuccessful) {
@@ -94,7 +107,19 @@ export default function EditAmenities() {
           value={amenitiesName}
           maxLength={70}
         />
-
+        <InputField
+          variant="auth"
+          extra="mb-3"
+          label="Amenities Icon*"
+          placeholder="Amenities Icon*"
+          id="amenitiesIcon"
+          type="text"
+          onChange={handleAmenitiesIconChange}
+          state={amenitiesIconError !== "" ? "error" : ""}
+          errorMessage={amenitiesIconError !== "" ? amenitiesIconError : ""}
+          value={amenitiesIcon}
+          maxLength={70}
+        />
         {/* Checkbox */}
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center">

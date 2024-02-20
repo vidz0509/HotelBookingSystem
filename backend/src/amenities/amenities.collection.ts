@@ -33,7 +33,7 @@ export class AmenitiesCollection {
     async createAmenities(createAmenitiesDto: CreateAmenitiesDto) {
         const newAmenities = await new this.AmenitiesModel({
             amenities_name: createAmenitiesDto.amenities_name,
-
+            amenities_icon: createAmenitiesDto.amenities_icon,
             createdAt: new Date(),
             updatedAt: new Date(),
             isDeleted: false,

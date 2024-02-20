@@ -8,8 +8,10 @@ import Swal from "sweetalert2";
 
 export default function AddAmenities() {
   const [amenitiesName, setAmenitiesName] = useState("");
-
   const [amenitiesNameError, setAmenitiesNameError] = useState("");
+  
+  const [amenitiesIcon, setAmenitiesIcon] = useState("");
+  const [amenitiesIconError, setAmenitiesIconError] = useState("");
 
   const [error, setError] = useState("");
   const [successful, setSuccessful] = useState("");
@@ -20,9 +22,15 @@ export default function AddAmenities() {
     setAmenitiesName(value);
   };
 
+  const handleAmenitiesIconChange = (event) => {
+    const value = event.target.value;
+    setAmenitiesIcon(value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setAmenitiesNameError("");
+    setAmenitiesIconError("");
     setError("");
     setSuccessful("");
 
@@ -31,9 +39,15 @@ export default function AddAmenities() {
       return false;
     }
 
+    if (validation.isEmpty(amenitiesIcon)) {
+      setAmenitiesIconError("Please enter valid amenities icon.");
+      return false;
+    }
+
     setBtnDisabled(true);
     const requestBody = {
       amenities_name: amenitiesName,
+      amenities_icon: amenitiesIcon,
     };
 
     const result = await amenitiesServices.addAmenities(requestBody);
@@ -74,6 +88,19 @@ export default function AddAmenities() {
           state={amenitiesNameError !== "" ? "error" : ""}
           errorMessage={amenitiesNameError !== "" ? amenitiesNameError : ""}
           value={amenitiesName}
+          maxLength={70}
+        />
+        <InputField
+          variant="auth"
+          extra="mb-3"
+          label="Amenities Icon*"
+          placeholder="Amenities Icon*"
+          id="amenitiesIcon"
+          type="text"
+          onChange={handleAmenitiesIconChange}
+          state={amenitiesIconError !== "" ? "error" : ""}
+          errorMessage={amenitiesIconError !== "" ? amenitiesIconError : ""}
+          value={amenitiesIcon}
           maxLength={70}
         />
         {/* Checkbox */}

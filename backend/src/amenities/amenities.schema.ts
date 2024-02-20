@@ -11,6 +11,9 @@ export class Amenities {
   @Prop({ required: true })
   amenities_name: string;
 
+  @Prop({ required: true })
+  amenities_icon: string;
+
   @Prop()
   createdAt: Date;
 
