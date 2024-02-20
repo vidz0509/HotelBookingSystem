@@ -11,7 +11,7 @@ import DesignBlocks from "pages/Home/sections/DesignBlocks";
 import Pages from "pages/Home/sections/Pages";
 import Testimonials from "pages/Home/sections/Testimonials";
 import Download from "pages/Home/sections/Download";
-import SearchForm from "pages/Home/sections/SearchForm";
+import SearchForm from "pages/Presentation/sections/SearchForm";
 import routes from "routes";
 import footerRoutes from "footer.routes";
 import bgImage from "assets/images/vestrahorn.webp";

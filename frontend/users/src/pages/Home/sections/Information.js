@@ -21,7 +21,7 @@ function Information() {
   }
 
   const renderData = amenitiesData && amenitiesData?.map((amenities) => (
-    <Grid item xs={12} md={6}  key={amenities._id}>
+    <Grid item xs={12} md={3}  key={amenities._id}>
       <DefaultInfoCard title={amenities.amenities_name} icon="sports_gymnastics" />
     </Grid>
   ));
@@ -30,11 +30,9 @@ function Information() {
     <MKBox component="section" py={6} my={6}>
       <Container>
         <Grid container item xs={11} spacing={3} alignItems="center" sx={{ mx: "auto" }}>
-          <Grid item xs={12} lg={7} sx={{ ml: "auto" }}>
+          <Grid item xs={12} lg={12} sx={{ ml: "auto" }}>
             <Grid container spacing={3}>
-
               {renderData}
-
             </Grid>
           </Grid>
         </Grid>

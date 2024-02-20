@@ -6,14 +6,9 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
-import Information from "pages/Home/sections/Information";
-import DesignBlocks from "pages/Home/sections/DesignBlocks";
-import Pages from "pages/Home/sections/Pages";
-import Testimonials from "pages/Home/sections/Testimonials";
-import Download from "pages/Home/sections/Download";
-import SearchForm from "pages/Home/sections/SearchForm";
+import HotelsList from "./HotelsList";
+import SearchForm from "pages/Presentation/sections/SearchForm";
 import routes from "routes";
-
 import footerRoutes from "footer.routes";
 import bgImage from "assets/images/vestrahorn.webp";
 
@@ -30,7 +25,7 @@ function Hotels() {
         minHeight="75vh"
         width="100%"
         sx={{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.5)),url(${bgImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           display: "grid",
@@ -78,13 +73,7 @@ function Hotels() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        
-        <Information />
-        <DesignBlocks />
-        <Pages />
-        
-        <Testimonials />
-        <Download />
+        <HotelsList />        
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
