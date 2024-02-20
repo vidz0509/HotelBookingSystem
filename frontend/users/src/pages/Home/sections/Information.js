@@ -49,7 +49,6 @@ function Information() {
           <Grid item xs={12} lg={7} sx={{ ml: "auto" }}>
             <Grid container spacing={3}>
               {renderData}
-
             </Grid>
           </Grid>
       </Container>
