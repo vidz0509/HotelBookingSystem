@@ -33,9 +33,6 @@ input:checked.defaultCheckbox::before {
 	color: #932595 !important;
 }
 
-.capitalize a {
-	color: #932595 !important;
-}
 
 .duration-200 {
 	background-color: #932595 !important;
@@ -101,4 +98,8 @@ input[type="search"].search::-webkit-search-cancel-button {
 
   div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
 	background-color: #5cc421 !important;
+  }
+
+  .bg-lightPrimary {
+	background: #fee2fb66 !important;
   }

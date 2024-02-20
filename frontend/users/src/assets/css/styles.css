@@ -21,7 +21,7 @@
 }
 
 .field button.icon svg {
-    fill: #81068f;
+    fill: #932595;
 }
 
 .footer-title p {
@@ -36,7 +36,7 @@
 }
 
 .footer-content a:hover {
-    color: #7E098A;
+    color: #932595;
 }
 
 .search-form {
@@ -235,7 +235,7 @@ button.react-calendar__navigation__arrow {
     background-color: transparent !important;
     border: none;
     outline: none;
-    color: #932A9E;
+    color: #932595;
     font-size: 18px;
     padding: 0 10px
 }
@@ -260,7 +260,7 @@ button.react-calendar__navigation__arrow {
 }
 
 .popup-footer .done-btn{
-    background-color: #932A9E !important;
+    background-color: #932595 !important;
     border: 0;
     color: #fff;
     width: 100%;
@@ -276,5 +276,5 @@ button.react-calendar__navigation__arrow {
     font-size: 14px;
     cursor: pointer;
     padding-right: 20px;
-    color: #932A9E
+    color: #932595
 }

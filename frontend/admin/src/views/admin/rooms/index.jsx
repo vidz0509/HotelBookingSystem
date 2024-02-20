@@ -102,8 +102,8 @@ const Room = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         console.log(roomId);
-        countriesServices
-          .softDeleteRooms(roomId)
+        roomsServices
+          .softDeleteRoom(roomId)
           .then((result) => {
             if (result.isSuccessful) {
               Swal.fire({
