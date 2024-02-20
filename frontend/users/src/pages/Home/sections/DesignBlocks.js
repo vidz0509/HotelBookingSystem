@@ -22,12 +22,13 @@ import { locationsServices } from "services/locations";
 
 function DesignBlocks() {
   const [locationsData, setLocationsData] = useState(null);
+  
   useEffect(() => {
-    getLocations();
+    getLocations(6);
   }, []);
   
-  const getLocations = async () => {
-    let response = await locationsServices.getAllLocations();
+  const getLocations = async (size) => {
+    let response = await locationsServices.getAllLocations(size);
     setLocationsData(response.data);
   }
   const renderData = locationsData && locationsData?.map((location) => (

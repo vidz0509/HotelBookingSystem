@@ -12,7 +12,7 @@ export class LocationCollection {
 
     constructor(@InjectModel('Location') private LocationModel: Model<Location>) { }
 
-    async getAllLocations(): Promise<Location[]> {
+    async getAllLocations(size?: number): Promise<Location[]> {
         return await this.LocationModel.aggregate([
             {
                 $match: {
@@ -44,7 +44,7 @@ export class LocationCollection {
                     as: 'country_details'
                 }
             },
-        ]);
+        ]).limit(size && size > 0 ? size : 1000);;
     }
 
     async getLocationsCount(): Promise<number> {

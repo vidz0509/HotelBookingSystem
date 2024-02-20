@@ -15,8 +15,8 @@ export class LocationService {
     private readonly helper: HelpersServices,
   ) { }
 
-  async getAllLocations(): Promise<any> {
-    let data = await this.locationCollection.getAllLocations();
+  async getAllLocations(size?: number): Promise<any> {
+    let data = await this.locationCollection.getAllLocations(size);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }

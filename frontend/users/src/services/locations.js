@@ -20,8 +20,8 @@ export const locationsServices = {
 
 
 
-async function getAllLocations() {
-    const url = `${process.env.REACT_APP_API_URL}/locations`;
+async function getAllLocations(size = 1000) {
+    const url = `${process.env.REACT_APP_API_URL}/locations?size=${size}`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {

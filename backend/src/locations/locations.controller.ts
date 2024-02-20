@@ -11,8 +11,8 @@ export class LocationsController {
     constructor(private readonly locationService: LocationService) { }
 
     @Get()
-    async findAll() {
-        return this.locationService.getAllLocations();
+    async findAll(@Query('size') size?: number) {
+        return this.locationService.getAllLocations(size);
     }
 
     @Get('/count')
