@@ -386,22 +386,22 @@ function ForgetPasswordBasic() {
                                         <form method="post" onSubmit={resetPassword}>
                                             <MKBox mb={2}
                                                 color="dark">
-                                                <div className="field">
+                                                <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
                                                     <MKInput type={passwordType} label="New Password" fullWidth
                                                         onChange={handlePasswordChange}
                                                         state={passwordError !== "" ? "error" : ""}
                                                         errorMessage={passwordError !== "" ? passwordError : ""} />
-                                                    <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                                                    <button className="icon" type="button" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                                                 </div>
                                             </MKBox>
                                             <MKBox mb={2}
                                                 color="dark">
-                                                <div className="field">
+                                                <div className={`field${confPasswordError !== "" ? " has-error" : ""}`}>
                                                     <MKInput type={confirmpasswordType} label="Confirm Password" fullWidth
                                                         onChange={handleConfPasswordChange}
                                                         state={confPasswordError !== "" ? "error" : ""}
                                                         errorMessage={confPasswordError !== "" ? confPasswordError : ""} />
-                                                    <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                                                    <button className="icon" type="button" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                                                 </div>
                                             </MKBox>
                                             <MKTypography component={Link} to="/SignIn" variant="button" color="info" fontWeight="medium" textGradient>

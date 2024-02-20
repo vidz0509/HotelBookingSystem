@@ -179,36 +179,36 @@ function ChnagePasswordBasic() {
                 {/* <MKBox component="form" role="form"> */}
                 <form method="post" onSubmit={handleSubmit}>
                   <MKBox mb={2}>
-                    <div className="field">
+                    <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
                       <MKInput type={passwordType} label="Current Password*" fullWidth
                         onChange={handlepasswordChange}
                         state={passwordError !== "" ? "error" : ""}
                         errorMessage={passwordError !== "" ? passwordError : ""}
                         maxLength={12}
                       />
-                      <button className="icon" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                      <button className="icon" type="button" onClick={(e) => togglePassword(e)}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                     </div>
                   </MKBox>
                   <MKBox mb={2}>
-                    <div className="field">
+                    <div className={`field${newPasswordError !== "" ? " has-error" : ""}`}>
                       <MKInput type={newpasswordType} label="New Password*" fullWidth
                         onChange={handlenewPasswordChange}
                         state={newPasswordError !== "" ? "error" : ""}
                         errorMessage={newPasswordError !== "" ? newPasswordError : ""}
                         maxLength={12}
                       />
-                      <button className="icon" onClick={(e) => toggleNewPassword(e)}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                      <button className="icon" type="button" onClick={(e) => toggleNewPassword(e)}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                     </div>
                   </MKBox>
                   <MKBox mb={2}>
-                    <div className="field">
+                    <div className={`field${confirmPasswordError !== "" ? " has-error" : ""}`}>
                       <MKInput type={confirmpasswordType} label="Re-enter Password*" fullWidth
                         onChange={handleconfirmPasswordChange}
                         state={confirmPasswordError !== "" ? "error" : ""}
                         errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
                         maxLength={12}
                       />
-                      <button className="icon" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+                      <button className="icon" type="button" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                     </div>
                   </MKBox>
                   <MKTypography

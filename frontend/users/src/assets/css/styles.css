@@ -24,6 +24,10 @@
     fill: #932595;
 }
 
+.has-error.field button.icon{
+    bottom: 55px;
+  }
+
 .footer-title p {
     font-size: 18px;
     color: #000;
