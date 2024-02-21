@@ -19,8 +19,8 @@ function checkIfUserLoggedIn() {
 }
 
 async function login(requestBody) {
-    // const url = `http://localhost:5001/auth/login`;
-    const url = `http://localhost:5001/auth/login?isCustomer=true`;
+    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/login?isCustomer=true`;
     console.log(requestBody)
     console.log(url)
     return await axios.post(url, requestBody).then(response => {
@@ -32,8 +32,8 @@ async function login(requestBody) {
     });
 }
 async function register(requestBody) {
-    // const url = `http://localhost:5001/auth/login`;
-    const url = `http://localhost:5001/auth/register`;
+    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/register`;
     console.log(requestBody)
     console.log(url)
     return await axios.post(url, requestBody).then(response => {
@@ -47,7 +47,7 @@ async function register(requestBody) {
 
 
 async function updateProfile(userId, requestBody) {
-    const url = `http://localhost:5001/users/${userId}`;
+    const url = `${process.env.REACT_APP_API_URL}/users/${userId}`;
     return await axios.put(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -58,7 +58,7 @@ async function updateProfile(userId, requestBody) {
 }
 
 async function changepassword(requestBody) {
-    const url = `http://localhost:5001/auth/changePassword`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/changePassword`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -69,7 +69,7 @@ async function changepassword(requestBody) {
 }
 
 async function forgotPassword(requestBody) {
-    const url = `http://localhost:5001/auth/forgotPassword`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/forgotPassword`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -79,7 +79,7 @@ async function forgotPassword(requestBody) {
     });
 }
 async function getintouch(requestBody) {
-    const url = `http://localhost:5001/auth/getintouch`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/getintouch`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -90,7 +90,7 @@ async function getintouch(requestBody) {
 }
 
 async function verifyResetPasswordCode(requestBody) {
-    const url = `http://localhost:5001/auth/verifyResetPasswordCode`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/verifyResetPasswordCode`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
@@ -101,7 +101,7 @@ async function verifyResetPasswordCode(requestBody) {
 }
 
 async function resetPassword(requestBody) {
-    const url = `http://localhost:5001/auth/resetPassword`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/resetPassword`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
