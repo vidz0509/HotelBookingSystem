@@ -282,3 +282,16 @@ button.react-calendar__navigation__arrow {
     padding-right: 20px;
     color: #932595
 }
+
+.location-slider .slick-slider{
+    height: 400px;
+}
+
+.location-slider .slick-initialized .slick-slide{
+    margin: 5px 10px;
+}
+.location-slider .slick-slide img {
+    display: block;
+    height: 300px;
+    object-fit: cover;
+}

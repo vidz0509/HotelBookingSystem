@@ -79,7 +79,9 @@ function Home() {
       >
 
         <Information />
-        <DesignBlocks />
+        <div className="location-slider">
+          <DesignBlocks isSlider={true} />
+        </div>
         <Pages />
 
         <Testimonials />

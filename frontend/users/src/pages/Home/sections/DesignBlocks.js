@@ -1,5 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 // import { Link } from "react-router-dom";
 
 // @mui material components
@@ -18,31 +21,32 @@ import ExampleCard from "pages/Presentation/components/ExampleCard";
 // import data from "pages/Presentation/sections/data/designBlocksData";
 import { locationsServices } from "services/locations";
 
-
-
-function DesignBlocks() {
+function DesignBlocks(props) {
   const [locationsData, setLocationsData] = useState(null);
-  
+
   useEffect(() => {
     getLocations(6);
   }, []);
-  
+
   const getLocations = async (size) => {
     let response = await locationsServices.getAllLocations(size);
     setLocationsData(response.data);
   }
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay:true,
+    autoplaySpeed: 1000,
+  };
+
   const renderData = locationsData && locationsData?.map((location) => (
-    // <Grid container spacing={3} sx={{ mb: 10 }} key={location._id}>
-    //   <Grid item xs={12} lg={12}>
-    //     <Grid container spacing={3}>
-            <Grid item md={4} sx={{ mb: 2 }} key={location._id}>
-                <ExampleCard image={location.location_image} name={location.location_name} />
-              {/* <Link to={pro ? "/" : route}>
-              </Link> */}
-            </Grid>
-    //     </Grid>
-    //   </Grid>
-    // </Grid>
+    <Grid item md={4} sx={{ mb: 2 }} key={location._id}>
+      <ExampleCard image={location.location_image} name={location.location_name} hideName={true} />
+    </Grid>
   ));
 
   return (
@@ -74,8 +78,13 @@ function DesignBlocks() {
         </Grid>
       </Container>
       <Container sx={{ mt: 6 }}>
-      <Grid container spacing={2}>{renderData}
-      </Grid></Container>
+        {props.isSlider ? <Slider {...settings}>{renderData}</Slider> :
+          <>
+            <Grid container spacing={2}>
+              {renderData}
+            </Grid>
+          </>}
+      </Container>
     </MKBox>
   );
 }

@@ -8,13 +8,13 @@ import Tooltip from "@mui/material/Tooltip";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function ExampleCard({ image, name, count, pro, ...rest }) {
+function ExampleCard({ image, name, count, pro,hideName, ...rest }) {
   const imageTemplate = (
     <MKBox
       bgColor="white"
       borderRadius="xl"
       shadow="lg"
-      minHeight="10rem"
+      minHeight="8rem"
       sx={{
         overflow: "hidden",
         transform: "perspective(999px) rotateX(0deg) translate3d(0, 0, 0)",
@@ -73,20 +73,24 @@ function ExampleCard({ image, name, count, pro, ...rest }) {
       ) : (
         imageTemplate
       )}
-      {name || count > 0 ? (
-        <MKBox mt={1} ml={1} lineHeight={1}>
-          {name && (
-            <MKTypography variant="h6" fontWeight="bold">
-              {name}
-            </MKTypography>
-          )}
-          {count > 0 && (
-            <MKTypography variant="button" fontWeight="regular" color="secondary">
-              {count} {count === 1 ? "Example" : "Examples"}
-            </MKTypography>
-          )}
-        </MKBox>
-      ) : null}
+      {!hideName &&
+        <>
+          {name || count > 0 ? (
+            <MKBox mt={1} ml={1} lineHeight={1}>
+              {name && (
+                <MKTypography variant="h6" fontWeight="bold">
+                  {name}
+                </MKTypography>
+              )}
+              {count > 0 && (
+                <MKTypography variant="button" fontWeight="regular" color="secondary">
+                  {count} {count === 1 ? "Example" : "Examples"}
+                </MKTypography>
+              )}
+            </MKBox>
+          ) : null}
+        </>
+      }
     </MKBox>
   );
 }
@@ -104,6 +108,7 @@ ExampleCard.propTypes = {
   name: PropTypes.string,
   count: PropTypes.number,
   pro: PropTypes.bool,
+  hideName: PropTypes.bool,
 };
 
 export default ExampleCard;
