@@ -22,7 +22,7 @@ const Sidebar = ({ open, onClose }) => {
 
       <div className={`mx-[40px] mt-[40px] flex items-center`}>
     
-      <a href="/admin/dashboard"><img src="../../../black-logo.png" width="182" height="64" /></a>
+      <a href="/admin/dashboard"><img src="../../../dark-logo.png" width="182" height="64" /></a>
         {/* <div className="mt-1 ml-1 h-2.5 font-poppins text-[24px] font-bold uppercase text-navy-700 dark:text-white">
            Budget suites
         </div> */}
