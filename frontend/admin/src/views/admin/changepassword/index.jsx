@@ -129,7 +129,8 @@ export default function ChangePassword() {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   }

@@ -109,48 +109,51 @@ export default function AddLocation() {
     };
     const result = await locationsServices.addLocation(requestBody);
     if (result.isSuccessful) {
-        console.log(result.data._id);
-        /* Upload image */
-        if (image !== '' && image != null) {
-          const formData = new FormData();
-          formData.append("file", image);
-          const imageResponse = await locationsServices.uploadImage(formData, result.data._id);
-          if (imageResponse.isSuccessful) {
-            isValid = true;
-          } else {
-            isValid = false;
-          }
-        } else {
+      console.log(result.data._id);
+      /* Upload image */
+      if (image !== '' && image != null) {
+        const formData = new FormData();
+        formData.append("file", image);
+        const imageResponse = await locationsServices.uploadImage(formData, result.data._id);
+        if (imageResponse.isSuccessful) {
           isValid = true;
-        }
-        if (isValid) {
-          Swal.fire({
-            title: "Added",
-            text: "Location has been added successfully.",
-            icon: "success"
-          }).then((result) => {
-            if (result.isConfirmed) {
-              setBtnDisabled(false);
-              window.location.href = '/admin/locations';
-            }
-          });
         } else {
-          setBtnDisabled(false);
-          Swal.fire({
-            title: "Error!",
-            text: "Something went wrong",
-            icon: "error"
-          });
+          isValid = false;
         }
+      } else {
+        isValid = true;
+      }
+      if (isValid) {
+        Swal.fire({
+          title: "Added",
+          text: "Location has been added successfully.",
+          icon: "success",
+          allowOutsideClick: false
+        }).then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.href = '/admin/locations';
+          }
+        });
       } else {
         setBtnDisabled(false);
         Swal.fire({
           title: "Error!",
-          text: result.errorMessage,
-          icon: "error"
+          text: "Something went wrong",
+          icon: "error",
+          allowOutsideClick: false
         });
       }
+    } else {
+      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      });
     }
+  }
 
   return (
     <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">

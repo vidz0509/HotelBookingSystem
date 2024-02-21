@@ -80,6 +80,7 @@ const Locations = () => {
                 title: "Updated",
                 text: "Update Status successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getLocations();
             } else {
@@ -87,6 +88,7 @@ const Locations = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
@@ -116,6 +118,7 @@ const Locations = () => {
                 title: "Deleted",
                 text: "Location has been deleted successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getLocations();
             } else {
@@ -123,6 +126,7 @@ const Locations = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })

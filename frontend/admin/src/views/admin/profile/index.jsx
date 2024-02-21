@@ -88,7 +88,8 @@ export default function ProfileOverview() {
         Swal.fire({
           title: "Updated",
           text: "Profile has been updated successfully.",
-          icon: "success"
+          icon: "success",
+          allowOutsideClick: false
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -99,14 +100,16 @@ export default function ProfileOverview() {
         Swal.fire({
           title: "Error!",
           text: 'Something went wrong.',
-          icon: "error"
+          icon: "error",
+          allowOutsideClick: false
         });
       }
     } else {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   }

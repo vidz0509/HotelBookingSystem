@@ -42,7 +42,8 @@ export default function AddRoomType() {
       Swal.fire({
         title: "Added",
         text: "Roomtype has been Added successfully.",
-        icon: "success"
+        icon: "success",
+        allowOutsideClick: false
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
@@ -54,7 +55,8 @@ export default function AddRoomType() {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   };
@@ -80,9 +82,8 @@ export default function AddRoomType() {
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>
           <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
-              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-            }`}
+            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
             onClick={(e) => handleSubmit(e)}
             type="submit"
             disabled={btnDisabled ? "disabled" : ""}

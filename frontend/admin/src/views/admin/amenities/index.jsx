@@ -54,6 +54,7 @@ const Amenities = () => {
                 title: "Updated",
                 text: "Update Status successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getAmenities();
             } else {
@@ -61,6 +62,7 @@ const Amenities = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
@@ -90,6 +92,7 @@ const Amenities = () => {
                 title: "Deleted",
                 text: "Amenities has been deleted successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getAmenities();
             } else {
@@ -97,6 +100,7 @@ const Amenities = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
@@ -106,7 +110,7 @@ const Amenities = () => {
       }
     });
   };
-  
+
   return (
     <>
       {loading ? <Loader /> : (

@@ -78,6 +78,7 @@ export default function AddCountry() {
           title: "Added",
           text: "Country has been added successfully.",
           icon: "success",
+          allowOutsideClick: false
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -89,7 +90,8 @@ export default function AddCountry() {
         Swal.fire({
           title: "Error!",
           text: "Something went wrong",
-          icon: "error"
+          icon: "error",
+          allowOutsideClick: false
         });
       }
     } else {
@@ -97,7 +99,8 @@ export default function AddCountry() {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   }

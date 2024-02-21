@@ -129,6 +129,7 @@ export default function EditLocation() {
           title: "Edited",
           text: "Location has been Edited successfully.",
           icon: "success",
+          allowOutsideClick: false
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -140,6 +141,7 @@ export default function EditLocation() {
           title: "Error!",
           text: "Something went wrong.",
           icon: "error",
+          allowOutsideClick: false
         });
       }
     } else {
@@ -147,6 +149,7 @@ export default function EditLocation() {
         title: "Error!",
         text: result.errorMessage,
         icon: "error",
+        allowOutsideClick: false
       });
     }
   };
@@ -234,9 +237,8 @@ export default function EditLocation() {
         <div className="mb-4 flex items-center justify-between px-2">
           <div className="flex items-center"></div>
           <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
-              btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-            }`}
+            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
             onClick={(e) => handleSubmit(e)}
             type="submit"
             disabled={btnDisabled ? "disabled" : ""}

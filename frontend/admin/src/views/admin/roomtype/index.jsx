@@ -55,6 +55,7 @@ const RoomType = () => {
                 title: "Deleted",
                 text: "RoomType has been deleted successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getRoomType();
             } else {
@@ -62,6 +63,7 @@ const RoomType = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
@@ -72,7 +74,7 @@ const RoomType = () => {
     });
   };
 
-  const updateStatus = (roomtypeId,status) => {
+  const updateStatus = (roomtypeId, status) => {
     Swal.fire({
       icon: "warning",
       title: "Update Status ",
@@ -82,19 +84,21 @@ const RoomType = () => {
       allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
-        roomtypeServices.updateStatus(roomtypeId,status).then((result) => {
+        roomtypeServices.updateStatus(roomtypeId, status).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
               title: "Updated",
               text: "Update Status successfully.",
-              icon: "success"
+              icon: "success",
+              allowOutsideClick: false
             });
             getRoomType();
           } else {
             Swal.fire({
               title: "Error!",
               text: "Something went wrong. Please try again.",
-              icon: "error"
+              icon: "error",
+              allowOutsideClick: false
             });
           }
         }).catch((errMsg) => {

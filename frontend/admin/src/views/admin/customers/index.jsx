@@ -50,7 +50,7 @@ const Customers = () => {
     setLoading(false);
   }
 
-  const updateStatus = (userId,status) => {
+  const updateStatus = (userId, status) => {
     Swal.fire({
       icon: "warning",
       title: "Update Status ",
@@ -60,19 +60,21 @@ const Customers = () => {
       allowOutsideClick: false
     }).then((result) => {
       if (result.isConfirmed) {
-        customerServices.updateStatus(userId,status).then((result) => {
+        customerServices.updateStatus(userId, status).then((result) => {
           if (result.isSuccessful) {
             Swal.fire({
               title: "Updated",
               text: "Update Status successfully.",
-              icon: "success"
+              icon: "success",
+              allowOutsideClick: false
             });
             getCustomers();
           } else {
             Swal.fire({
               title: "Error!",
               text: "Something went wrong. Please try again.",
-              icon: "error"
+              icon: "error",
+              allowOutsideClick: false
             });
           }
         }).catch((errMsg) => {

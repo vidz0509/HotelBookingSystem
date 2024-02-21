@@ -70,6 +70,7 @@ const Countries = () => {
                 title: "Updated",
                 text: "Update Status successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getCountries();
             } else {
@@ -77,6 +78,7 @@ const Countries = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
@@ -108,6 +110,7 @@ const Countries = () => {
                 title: "Deleted",
                 text: "Country has been deleted successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getCountries();
             } else {
@@ -115,6 +118,7 @@ const Countries = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })

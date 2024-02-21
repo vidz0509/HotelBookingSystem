@@ -75,6 +75,7 @@ const Hotels = () => {
                 title: "Updated",
                 text: "Update Status successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getHotels();
             } else {
@@ -82,6 +83,7 @@ const Hotels = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
@@ -111,6 +113,7 @@ const Hotels = () => {
                 title: "Deleted",
                 text: "Hotel has been deleted successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getHotels();
             } else {
@@ -118,6 +121,7 @@ const Hotels = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })

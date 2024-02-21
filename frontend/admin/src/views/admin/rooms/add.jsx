@@ -140,6 +140,7 @@ export default function AddRooms() {
           title: "Added",
           text: "Room has been added successfully.",
           icon: "success",
+          allowOutsideClick: false
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -152,6 +153,7 @@ export default function AddRooms() {
           title: "Error!",
           text: "Something went wrong",
           icon: "error",
+          allowOutsideClick: false
         });
       }
     } else {
@@ -160,6 +162,7 @@ export default function AddRooms() {
         title: "Error!",
         text: result.errorMessage,
         icon: "error",
+        allowOutsideClick: false
       });
     }
   };

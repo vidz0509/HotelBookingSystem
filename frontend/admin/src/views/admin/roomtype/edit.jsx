@@ -54,13 +54,14 @@ export default function EditRoomType() {
     const requestBody = {
       roomtype_name: roomtypeName,
     };
-    const result = await roomtypeServices.editRoomType(roomtypeId,requestBody);
+    const result = await roomtypeServices.editRoomType(roomtypeId, requestBody);
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
       Swal.fire({
         title: "Edited",
         text: "Roomtype has been Edited successfully.",
-        icon: "success"
+        icon: "success",
+        allowOutsideClick: false
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
@@ -72,7 +73,8 @@ export default function EditRoomType() {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   }

@@ -89,7 +89,8 @@ export default function EditCountry() {
         Swal.fire({
           title: "Edited",
           text: "Country has been Edited successfully.",
-          icon: "success"
+          icon: "success",
+          allowOutsideClick: false
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -100,14 +101,16 @@ export default function EditCountry() {
         Swal.fire({
           title: "Error!",
           text: 'Something went wrong.',
-          icon: "error"
+          icon: "error",
+          allowOutsideClick: false
         });
       }
     } else {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   }
@@ -149,7 +152,7 @@ export default function EditCountry() {
               <img src={countryData?.country_image} alt={countryName} />
             </div>
           }
-          <input type="file" 
+          <input type="file"
             variant="auth"
             extra="mt-3"
             label="Country Image"

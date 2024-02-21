@@ -14,7 +14,7 @@ export default function EditAmenities() {
 
   const [amenitiesName, setAmenitiesName] = useState("");
   const [amenitiesNameError, setAmenitiesNameError] = useState("");
-  
+
   const [amenitiesIcon, setAmenitiesIcon] = useState("");
   const [amenitiesIconError, setAmenitiesIconError] = useState("");
 
@@ -67,13 +67,14 @@ export default function EditAmenities() {
       amenities_name: amenitiesName,
       amenities_icon: amenitiesIcon,
     };
-    const result = await amenitiesServices.editAmenities(amenitiesId,requestBody);
+    const result = await amenitiesServices.editAmenities(amenitiesId, requestBody);
     if (result.isSuccessful) {
       // setSuccessful("Country added successfully")
       Swal.fire({
         title: "Edited",
         text: "Amenities has been Edited successfully.",
-        icon: "success"
+        icon: "success",
+        allowOutsideClick: false
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
@@ -85,7 +86,8 @@ export default function EditAmenities() {
       Swal.fire({
         title: "Error!",
         text: result.errorMessage,
-        icon: "error"
+        icon: "error",
+        allowOutsideClick: false
       });
     }
   }

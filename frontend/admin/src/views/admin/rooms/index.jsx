@@ -72,6 +72,7 @@ const Room = () => {
                 title: "Updated",
                 text: "Update Status successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getRooms();
             } else {
@@ -79,13 +80,14 @@ const Room = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
           .catch((errMsg) => {
             console.error(errMsg);
           });
-      }else{
+      } else {
         window.location.reload();
       }
     });
@@ -110,6 +112,7 @@ const Room = () => {
                 title: "Deleted",
                 text: "Room has been deleted successfully.",
                 icon: "success",
+                allowOutsideClick: false
               });
               getRooms();
             } else {
@@ -117,6 +120,7 @@ const Room = () => {
                 title: "Error!",
                 text: "Something went wrong. Please try again.",
                 icon: "error",
+                allowOutsideClick: false
               });
             }
           })
