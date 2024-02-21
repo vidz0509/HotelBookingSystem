@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { customerServices } from "services/customer";
 import { countriesServices } from "services/countries"
 import { locationsServices } from "services/locations"
+import { roomsServices } from "services/rooms";
 import { roomtypeServices } from "services/roomtype";
 import { hotelsServices } from "services/hotels";
 import { amenitiesServices } from "services/amenities";
@@ -23,6 +24,7 @@ import {
   MdPublic,
   MdHotelClass,
   MdRoom,
+  MdBedroomParent,
   // MdPayments,
   MdWifi,
   MdHotel,
@@ -35,6 +37,7 @@ const Dashboard = () => {
   const [totalUsers, setTotalUsers] = useState(0);
   const [totalCountries, setTotalCountries] = useState(0);
   const [totalLocations, setTotalLocations] = useState(0);
+  const [totalRooms, setTotalRooms] = useState(0);
   const [totalRoomType, setTotalRoomType] = useState(0);
   const [totalHotels, setTotalHotels] = useState(0);
   const [totalAmenities, setTotalAmenities] = useState(0);
@@ -71,6 +74,18 @@ const Dashboard = () => {
       setTotalLocations(result.count);
     }
   }
+
+  useEffect(() => {
+    roomCount();
+  }, []);
+
+  const roomCount = async () => {
+    const result = await roomsServices.roomCount();
+    if (result.isSuccessful) {
+      setTotalRooms(result.count);
+    }
+  }
+
 
   useEffect(() => {
     RoomTypeCount();
@@ -128,6 +143,12 @@ const Dashboard = () => {
           title={"Locations"}
           link={"/admin/locations"}
           subtitle={totalLocations}
+        />
+        <Widget
+          icon={<MdBedroomParent className="h-6 w-6" />}
+          title={"Rooms"}
+          link={"/admin/rooms"}
+          subtitle={totalRooms}
         />
         <Widget
           icon={<MdHotel className="h-6 w-6" />}
