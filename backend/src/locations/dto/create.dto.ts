@@ -14,6 +14,6 @@ export class CreateLocationDto {
     readonly location_name: string;
   
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     readonly location_image: string;
 }
