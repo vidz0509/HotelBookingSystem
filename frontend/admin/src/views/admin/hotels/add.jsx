@@ -206,172 +206,174 @@ export default function AddHotel() {
   };
 
   return (
-    <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
-      <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Hotel Name*"
-          placeholder="Hotel Name*"
-          id="hotelName"
-          type="text"
-          onChange={handleHotelNameChange}
-          state={hotelNameError !== "" ? "error" : ""}
-          errorMessage={hotelNameError !== "" ? hotelNameError : ""}
-          value={hotelName}
-          maxLength={70}
-        />
+    <form>
+      <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+        {/* Sign in section */}
+        <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Hotel Name*"
+            placeholder="Hotel Name*"
+            id="hotelName"
+            type="text"
+            onChange={handleHotelNameChange}
+            state={hotelNameError !== "" ? "error" : ""}
+            errorMessage={hotelNameError !== "" ? hotelNameError : ""}
+            value={hotelName}
+            maxLength={70}
+          />
 
-        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-          Country Name*
-        </label>
-        <select
-          id="countryId"
-          name="countryId"
-          class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-          onChange={handleCountryIdChange}
-        >
-          <option value="">-- Select Country --</option>
-          {countriesData &&
-            countriesData.length > 0 &&
-            countriesData.map((item) => (
-              <option value={item._id}>{item.country_name}</option>
-            ))}
-        </select>
-        {countryIdError && (
-          <span className="mb-3 ml-1 text-sm text-red-500">
-            {countryIdError}
-          </span>
-        )}
-
-        <div className="mb-3">
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-            Location Name*
+            Country Name*
           </label>
           <select
-            id="locationId"
-            name="locationId"
+            id="countryId"
+            name="countryId"
             class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-            onChange={handleLocationIdChange}
+            onChange={handleCountryIdChange}
           >
-            <option value="">-- Select Location --</option>
-            {locationsData &&
-              locationsData.length > 0 &&
-              locationsData.map((item) => (
-                <option value={item._id}>{item.location_name}</option>
+            <option value="">-- Select Country --</option>
+            {countriesData &&
+              countriesData.length > 0 &&
+              countriesData.map((item) => (
+                <option value={item._id}>{item.country_name}</option>
               ))}
           </select>
-          {locationIdError && (
+          {countryIdError && (
             <span className="mb-3 ml-1 text-sm text-red-500">
-              {locationIdError}
+              {countryIdError}
             </span>
           )}
-        </div>
 
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Hotel Code*"
-          placeholder="Hotel Code"
-          id="hotelCode"
-          type="text"
-          onChange={handleHotelCodeChange}
-          state={hotelCodeError !== "" ? "error" : ""}
-          errorMessage={hotelCodeError !== "" ? hotelCodeError : ""}
-          value={hotelCode}
-          maxLength={5}
-        />
-
-        <div className="mb-3">
-          <label
-            for="image"
-            class="text-sm font-medium text-navy-700 dark:text-white"
-          >
-            Hotel Image
-          </label>
-          <input
-            type="file"
-            multiple
-            variant="auth"
-            extra="mt-3"
-            label="Hotel image"
-            placeholder="Hotel image"
-            id="image"
-            onChange={handleimageChange}
-          />
-        </div>
-
-        <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-          Hotel Address*
-        </label>
-        <textarea
-          rows="4"
-          cols="50"
-          class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-          variant="auth"
-          extra="mb-3"
-          placeholder="Hotel Address"
-          id="hotelAddress"
-          type="text"
-          onChange={handleHotelAddressChange}
-          value={hotelAddress}
-        />
-
-        <InputField
-          variant="auth"
-          extra="mb-3"
-          label="Total Rooms*"
-          placeholder="Total Rooms*"
-          id="totalRooms"
-          type="text"
-          onChange={handleTotalRoomsChange}
-          state={totalRoomsError !== "" ? "error" : ""}
-          errorMessage={totalRoomsError !== "" ? totalRoomsError : ""}
-          value={totalrooms}
-          maxLength={5}
-        />
-
-        {hotelAddressError && (
-          <span className="mb-3 ml-1 text-sm text-red-500">
-            {hotelAddressError}
-          </span>
-        )}
-        {/* Checkbox */}
-        <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center"></div>
-          <button
-            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-              }`}
-            onClick={(e) => handleSubmit(e)}
-            type="submit"
-            disabled={btnDisabled ? "disabled" : ""}
-          >
-            {btnDisabled ? (
-              <span className="flex items-center justify-center">
-                <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+          <div className="mb-3">
+            <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+              Location Name*
+            </label>
+            <select
+              id="locationId"
+              name="locationId"
+              class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+              onChange={handleLocationIdChange}
+            >
+              <option value="">-- Select Location --</option>
+              {locationsData &&
+                locationsData.length > 0 &&
+                locationsData.map((item) => (
+                  <option value={item._id}>{item.location_name}</option>
+                ))}
+            </select>
+            {locationIdError && (
+              <span className="mb-3 ml-1 text-sm text-red-500">
+                {locationIdError}
               </span>
-            ) : (
-              <span>Add Hotel</span>
             )}
-          </button>
-        </div>
-        <div className="mt-4">
-          {error !== "" && (
-            <>
-              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-            </>
-          )}
-        </div>
+          </div>
 
-        <div className="mt-4">
-          {successful !== "" && (
-            <>
-              <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
-            </>
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Hotel Code*"
+            placeholder="Hotel Code"
+            id="hotelCode"
+            type="text"
+            onChange={handleHotelCodeChange}
+            state={hotelCodeError !== "" ? "error" : ""}
+            errorMessage={hotelCodeError !== "" ? hotelCodeError : ""}
+            value={hotelCode}
+            maxLength={5}
+          />
+
+          <div className="mb-3">
+            <label
+              for="image"
+              class="text-sm font-medium text-navy-700 dark:text-white"
+            >
+              Hotel Image
+            </label>
+            <input
+              type="file"
+              multiple
+              variant="auth"
+              extra="mt-3"
+              label="Hotel image"
+              placeholder="Hotel image"
+              id="image"
+              onChange={handleimageChange}
+            />
+          </div>
+
+          <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+            Hotel Address*
+          </label>
+          <textarea
+            rows="4"
+            cols="50"
+            class="dark-border mt-2 flex  w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+            variant="auth"
+            extra="mb-3"
+            placeholder="Hotel Address"
+            id="hotelAddress"
+            type="text"
+            onChange={handleHotelAddressChange}
+            value={hotelAddress}
+          />
+
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Total Rooms*"
+            placeholder="Total Rooms*"
+            id="totalRooms"
+            type="text"
+            onChange={handleTotalRoomsChange}
+            state={totalRoomsError !== "" ? "error" : ""}
+            errorMessage={totalRoomsError !== "" ? totalRoomsError : ""}
+            value={totalrooms}
+            maxLength={5}
+          />
+
+          {hotelAddressError && (
+            <span className="mb-3 ml-1 text-sm text-red-500">
+              {hotelAddressError}
+            </span>
           )}
+          {/* Checkbox */}
+          <div className="mb-4 flex items-center justify-between px-2">
+            <div className="flex items-center"></div>
+            <button
+              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+                }`}
+              onClick={(e) => handleSubmit(e)}
+              type="submit"
+              disabled={btnDisabled ? "disabled" : ""}
+            >
+              {btnDisabled ? (
+                <span className="flex items-center justify-center">
+                  <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+                </span>
+              ) : (
+                <span>Add Hotel</span>
+              )}
+            </button>
+          </div>
+          <div className="mt-4">
+            {error !== "" && (
+              <>
+                <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+              </>
+            )}
+          </div>
+
+          <div className="mt-4">
+            {successful !== "" && (
+              <>
+                <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }

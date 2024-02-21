@@ -141,84 +141,86 @@ export default function ChangePassword() {
   }
 
   return (
-    <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-      {/* Sign in section */}
-      <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-        <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
-          <InputField
-            variant="auth"
-            extra="mb-3"
-            label=" Password*"
-            placeholder="********"
-            id="password"
-            type={passwordType}
-            onChange={handlepasswordChange}
-            state={passwordError !== "" ? "error" : ""}
-            errorMessage={passwordError !== "" ? passwordError : ""}
-            maxLength={12}
-          />
-          <button className="icon" type="button" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
-        </div>
-        <div className={`field${newPasswordError !== "" ? " has-error" : ""}`}>
-          <InputField
-            variant="auth"
-            extra="mb-3"
-            label="New Password*"
-            placeholder="********"
-            id="newPassword"
-            type={newpasswordType}
-            onChange={handlenewPasswordChange}
-            state={newPasswordError !== "" ? "error" : ""}
-            errorMessage={newPasswordError !== "" ? newPasswordError : ""}
-            maxLength={12}
-          />
-          <button className="icon" type="button" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
-        </div>
-        <div className={`field${confirmPasswordError !== "" ? " has-error" : ""}`}>
-          <InputField
-            variant="auth"
-            extra="mb-3"
-            label="Confirm Password*"
-            placeholder="********"
-            id="confirmPassword"
-            type={confirmpasswordType}
-            onChange={handleconfirmPasswordChange}
-            state={confirmPasswordError !== "" ? "error" : ""}
-            errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
-            maxLength={12}
-          />
-          <button className="icon" type="button" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
-        </div>
-        <div className="mb-4 flex items-center justify-between px-2">
-          <div className="flex items-center">
-            {/* <Checkbox />
+    <form>
+      <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
+        {/* Sign in section */}
+        <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+          <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label=" Password*"
+              placeholder="********"
+              id="password"
+              type={passwordType}
+              onChange={handlepasswordChange}
+              state={passwordError !== "" ? "error" : ""}
+              errorMessage={passwordError !== "" ? passwordError : ""}
+              maxLength={12}
+            />
+            <button className="icon" type="button" onClick={togglePassword}>{passwordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          </div>
+          <div className={`field${newPasswordError !== "" ? " has-error" : ""}`}>
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="New Password*"
+              placeholder="********"
+              id="newPassword"
+              type={newpasswordType}
+              onChange={handlenewPasswordChange}
+              state={newPasswordError !== "" ? "error" : ""}
+              errorMessage={newPasswordError !== "" ? newPasswordError : ""}
+              maxLength={12}
+            />
+            <button className="icon" type="button" onClick={toggleNewPassword}>{newpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          </div>
+          <div className={`field${confirmPasswordError !== "" ? " has-error" : ""}`}>
+            <InputField
+              variant="auth"
+              extra="mb-3"
+              label="Confirm Password*"
+              placeholder="********"
+              id="confirmPassword"
+              type={confirmpasswordType}
+              onChange={handleconfirmPasswordChange}
+              state={confirmPasswordError !== "" ? "error" : ""}
+              errorMessage={confirmPasswordError !== "" ? confirmPasswordError : ""}
+              maxLength={12}
+            />
+            <button className="icon" type="button" onClick={toggleConfirmPassword}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
+          </div>
+          <div className="mb-4 flex items-center justify-between px-2">
+            <div className="flex items-center">
+              {/* <Checkbox />
             <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
               Keep me logged In
             </p> */}
-          </div>
-          {/* <a
+            </div>
+            {/* <a
                         className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
                         href="/auth/forgot-password"
                     >
                         Forgot Password?
                     </a> */}
-        </div>
-        <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" onClick={(e) => handleSubmit(e)} type="submit">
-          {btnDisabled ?
-            <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-            : <span>Update password</span>}
-        </button>
-        <div className="mt-4">
-          {error && error !== '' && <>
-            <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-          </>}
-        </div>
-        <div className="mt-4">
-          {isSuccessfull && isSuccessfull !== '' && <>
-            <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
-          </>}
+          </div>
+          <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" onClick={(e) => handleSubmit(e)} type="submit">
+            {btnDisabled ?
+              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+              : <span>Update password</span>}
+          </button>
+          <div className="mt-4">
+            {error && error !== '' && <>
+              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+            </>}
+          </div>
+          <div className="mt-4">
+            {isSuccessfull && isSuccessfull !== '' && <>
+              <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
+            </>}
+          </div>
         </div>
       </div>
-    </div>
+    </form>
   );
 }
