@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateUserDto } from '../auth/dto/register.dto';
-import { SignInUserDto } from '../auth/dto/login.dto';
+// import { SignInUserDto } from '../auth/dto/login.dto';
 import { User } from './users.schema';
 import { UpdateUserDto } from 'src/auth/dto/update.dto';
 
@@ -12,7 +12,7 @@ export class UsersCollection {
     constructor(@InjectModel('User') private userModel: Model<User>) { }
 
     async getAllUsers(): Promise<User[]> {
-        return await this.userModel.find({ isDeleted: false, userType : 2 }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+        return await this.userModel.find({ isDeleted: false, userType : 2 }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
     }
 
     async getUsersCount(): Promise<number> {
@@ -63,15 +63,15 @@ export class UsersCollection {
     }
 
     async getUserByName(name: string): Promise<User> {
-        return await this.userModel.findOne({ name: name }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+        return await this.userModel.findOne({ name: name }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
     }
 
     async getUser(id: string) {
-        return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+        return await this.userModel.findById(id).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return this.userModel.findOne({ email: email }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
+        return this.userModel.findOne({ email: email }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
     }
 
     async getUserByPassword(email: string): Promise<User> {
