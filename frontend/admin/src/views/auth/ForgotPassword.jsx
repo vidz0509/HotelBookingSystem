@@ -7,8 +7,8 @@ import {
   MdRemoveRedEye,
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
-// import { FcGoogle } from "react-icons/fc";
-// import Checkbox from "components/checkbox";
+
+import Swal from "sweetalert2";
 
 export default function ForgotPassword() {
 
@@ -69,13 +69,32 @@ export default function ForgotPassword() {
     };
     const result = await authServices.forgotPassword(requestBody);
     if (result.isSuccessful) {
-      setBtnDisabled(false);
-      setVBtnDisabled(false);
-      setScreen("verifyCode");
+      Swal.fire({
+        title: "Sucess",
+        text: "Verify Code sent successfully.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          setVBtnDisabled(false);
+          setScreen("verifyCode");
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
-      setVBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            setVBtnDisabled(false);
+            window.location.reload();
+          }
+        });
     }
   }
 
@@ -102,15 +121,32 @@ export default function ForgotPassword() {
     };
     const result = await authServices.verifyResetPasswordCode(requestBody);
     if (result.isSuccessful) {
-      setTimeout(function () {
-        setVBtnDisabled(false);
-        setVBtnLoading(false);
-        setScreen("resetPwd");
-      }, 1000);
+      Swal.fire({
+        title: "Sucess",
+        text: "Code verified successfully.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setVBtnDisabled(false);
+          setVBtnLoading(false);
+          setScreen("resetPwd");
+        }
+      });
     } else {
-      setCodeError(result.errorMessage);
-      setVBtnDisabled(false);
-      setVBtnLoading(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setVBtnDisabled(false);
+            setVBtnLoading(false);
+            window.location.reload();
+          }
+        });
     }
   }
 
@@ -161,14 +197,32 @@ export default function ForgotPassword() {
     };
     const result = await authServices.resetPassword(requestBody);
     if (result.isSuccessful) {
-      setTimeout(function () {
-        window.location.replace('/auth/login');
-      }, 1000);
+      Swal.fire({
+        title: "Sucess",
+        text: "Password changed successfully.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = '/auth/login';
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+          }
+        });
     }
   }
+
 
   const clearErrors = () => {
     setEmailError('');
