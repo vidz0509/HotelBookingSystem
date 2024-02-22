@@ -55,7 +55,8 @@ export class UsersService {
     }
 
     async updateUser(userId: string, updateUserDto: UpdateUserDto) {
-        let data = await this.collection.updateUser(userId, updateUserDto);
+        await this.collection.updateUser(userId, updateUserDto);
+        let data = await this.collection.getUser(userId);
         const response = await this.helper.buildResponse(true, null, data);
         return response;
     }
