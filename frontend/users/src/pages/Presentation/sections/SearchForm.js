@@ -18,6 +18,16 @@ function SearchForm() {
 
     const [countryIdError, setCountryIdError] = useState("");
     const [locationIdError, setLocationIdError] = useState("");
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+ 
+
+    const handleInputClick = () => {
+        setIsDropdownOpen(true);
+    };
+
+    const handleBtnClick = () => {
+        setIsDropdownOpen(false);
+    };
 
     useEffect(() => {
         getCountries();
@@ -121,10 +131,8 @@ function SearchForm() {
                     <div className="col">
                         <div className="field-group">
                             <label>Room</label>
-                            <input type="text" id="room" readOnly />
-
-                            <div className="dropdown room-input">
-
+                            <input type="text" onClick={handleInputClick} onChange={handleInputClick} id="room" readOnly />
+                            <div className={`dropdown room-input ${isDropdownOpen ? 'show-popup' : ''}`}>
                                 <div className='room-list'>
                                     <div className="dropdown-content">
                                         <div className='room-title'>
@@ -160,14 +168,15 @@ function SearchForm() {
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className="new-room-wrap">
                                     <div id="addRoom" data-index="0">Add Room <span className="icon">+</span></div>
                                 </div>
+
                                 <div className="popup-footer">
-                                    <button className='done-btn'>Done</button>
+                                <button className='done-btn' type="button" onClick={handleBtnClick}>Done</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                     <div className="col btn-col">

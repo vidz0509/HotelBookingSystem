@@ -201,7 +201,10 @@ button.react-calendar__navigation__arrow {
     z-index: 9;
     max-width: 320px;
     width: 100%;
+    display: none;
 }
+
+.room-input.show-popup{ display: block; }
 
 .room-list{
     padding: 20px 10px;
