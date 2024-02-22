@@ -184,7 +184,7 @@ button.react-calendar__navigation__arrow {
     border-radius: 10px;
 }
 
-.react-date-picker__calendar-button__icon {
+.react-date-picker__calendar-button__icon,.react-date-picker__button:enabled:hover .react-date-picker__button__icon, .react-date-picker__button:enabled:focus .react-date-picker__button__icon {
     stroke: #932595;
 }
 
@@ -298,3 +298,4 @@ button.react-calendar__navigation__arrow {
     height: 300px;
     object-fit: cover;
 }
+
