@@ -15,6 +15,9 @@ function SearchForm() {
 
     const [locationsData, setLocationsData] = useState("");
     const [locationId, setLocationId] = useState("");
+    const [Adults, setAdults] = useState(1);
+    const [Children, setChildren] = useState(0);
+
 
     const [countryIdError, setCountryIdError] = useState("");
     const [locationIdError, setLocationIdError] = useState("");
@@ -57,7 +60,23 @@ function SearchForm() {
         const value = event.target.value;
         setLocationId(value);
     };
+    const handleAdult = (flag, event) => {
+        event.preventDefault();
+        if (flag === 'add') {
+            setAdults(Adults + 1);
+        } else {
+            setAdults(Adults - 1);
+        }
+    };
 
+    const handleChildren = (flag, event) => {
+        event.preventDefault();
+        if (flag === 'add') {
+            setChildren(Children + 1);
+        } else {
+            setChildren(Children - 1);
+        }
+    };
     const handleSubmit = async (event) => {
         event.preventDefault();
         // let isValid = false;
@@ -78,6 +97,7 @@ function SearchForm() {
             setLocationIdError("Please select valid location name.");
             return false;
         }
+        
     }
 
     let currentDate = new Date();
@@ -146,10 +166,13 @@ function SearchForm() {
                                                     </div>
                                                 </div>
                                                 <div className='popup-col adult counter'>
-                                                    <button className="minus" disabled=""> <span> - </span> </button>
-                                                    <input type="text" readOnly value="1" />
-                                                    <button className="plus"> <span> + </span> </button>
-                                                    <input type="hidden" className="adults" name="rooms[0][adults]" value="1" />
+                                                <button className="minus" disabled={Adults <= 1} onClick={(e) => handleAdult('remove', e)}>
+                                                            <span> - </span>
+                                                        </button>
+                                                        <input type="text" readOnly value={Adults} />
+                                                        <button className="plus" disabled={Adults >= 3} onClick={(e) => handleAdult('add', e)}>
+                                                            <span> + </span>
+                                                        </button>
                                                 </div>
                                             </div>
                                             <div className='popup-row'>
@@ -159,12 +182,16 @@ function SearchForm() {
                                                     </div>
                                                 </div>
                                                 <div className='popup-col children counter'>
-                                                    <button className="minus" disabled=""> <span> - </span> </button>
-                                                    <input type="text" readOnly value="1" />
-                                                    <button className="plus"> <span> + </span> </button>
-                                                    <input type="hidden" className="adults" name="rooms[0][adults]" value="1" />
+                                                <button className="minus" disabled={Children <= 0} onClick={(e) => handleChildren('remove', e)}>
+                                                            <span> - </span>
+                                                        </button>
+                                                        <input type="text" readOnly value={Children} />
+                                                        <button className="plus"disabled={Children >= 3} onClick={(e) => handleChildren('add', e)}>
+                                                            <span> + </span>
+                                                        </button>
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
