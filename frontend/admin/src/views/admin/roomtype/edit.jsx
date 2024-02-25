@@ -34,6 +34,8 @@ export default function EditRoomType() {
     if (result.isSuccessful) {
       // setroomtypeData(result.data);
       setRoomTypeName(result.data?.roomtype_name);
+      setMaxAdults(result.data?.max_adults);
+      setMaxChildren(result.data?.max_children);
     }
   };
 
@@ -131,7 +133,7 @@ export default function EditRoomType() {
             label="Maximun adults*"
             placeholder="Max. adults*"
             id="max_adults"
-            type="text"
+            type="number"
             onChange={handleMaxAdultChange}
             state={max_adultsError !== "" ? "error" : ""}
             errorMessage={max_adultsError !== "" ? max_adultsError : ""}
@@ -145,7 +147,7 @@ export default function EditRoomType() {
             label="Maximum children*"
             placeholder="Max. children*"
             id="max_children"
-            type="text"
+            type="number"
             onChange={handleMaxChildrenChange}
             state={max_childrenError !== "" ? "error" : ""}
             errorMessage={max_childrenError !== "" ? max_childrenError : ""}

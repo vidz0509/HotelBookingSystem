@@ -116,7 +116,7 @@ export default function AddRoomType() {
             label="Maximun adults*"
             placeholder="Max. adults*"
             id="max_adults"
-            type="text"
+            type="number"
             onChange={handleMaxAdultChange}
             state={max_adultsError !== "" ? "error" : ""}
             errorMessage={max_adultsError !== "" ? max_adultsError : ""}
@@ -130,7 +130,7 @@ export default function AddRoomType() {
             label="Maximum children*"
             placeholder="Max. children*"
             id="max_children"
-            type="text"
+            type="number"
             onChange={handleMaxChildrenChange}
             state={max_childrenError !== "" ? "error" : ""}
             errorMessage={max_childrenError !== "" ? max_childrenError : ""}
