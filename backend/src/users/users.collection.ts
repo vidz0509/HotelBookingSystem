@@ -12,7 +12,7 @@ export class UsersCollection {
     constructor(@InjectModel('User') private userModel: Model<User>) { }
 
     async getAllUsers(): Promise<User[]> {
-        return await this.userModel.find({ isDeleted: false, userType : 2 }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
+        return await this.userModel.find({ isDeleted: false, userType : 2 }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive userType');
     }
 
     async getUsersCount(): Promise<number> {
@@ -63,15 +63,15 @@ export class UsersCollection {
     }
 
     async getUserByName(name: string): Promise<User> {
-        return await this.userModel.findOne({ name: name }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
+        return await this.userModel.findOne({ name: name }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive userType');
     }
 
     async getUser(id: string) {
-        return await this.userModel.findById(id).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
+        return await this.userModel.findById(id).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive userType');
     }
 
     async getUserByEmail(email: string): Promise<User> {
-        return this.userModel.findOne({ email: email }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive');
+        return this.userModel.findOne({ email: email }).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive userType');
     }
 
     async getUserByPassword(email: string): Promise<User> {

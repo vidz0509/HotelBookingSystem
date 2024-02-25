@@ -40,6 +40,8 @@ export class RoomTypeCollection {
     async createRoomType(createRoomTypeDto: CreateRoomTypeDto) {
         const newRoomType = await new this.RoomTypeModel({
             roomtype_name: createRoomTypeDto.roomtype_name,
+            max_adults: createRoomTypeDto.max_adults,
+            max_children: createRoomTypeDto.max_children,
 
             createdAt: new Date(),
             updatedAt: new Date(),

@@ -11,6 +11,14 @@ export class RoomType {
   @Prop({ required: true })
   roomtype_name: string;
 
+  @IsNotEmpty()
+  @Prop({ required: true })
+  max_adults: number;
+
+  @IsNotEmpty()
+  @Prop({ required: true })
+  max_children: number;
+
   @Prop()
   createdAt: Date;
 

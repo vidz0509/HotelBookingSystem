@@ -3,23 +3,25 @@ import InputField from "components/fields/InputField";
 import { roomtypeServices } from "services/roomtype";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-
 export default function EditRoomType() {
-
   const params = useParams();
   const roomtypeId = params.id;
 
   // const [roomtypeData, setroomtypeData] = useState(null);
 
-  const [roomtypeName, setRoomTypeName] = useState('');
+  const [roomtypeName, setRoomTypeName] = useState("");
+  const [max_adults, setMaxAdults] = useState("");
+  const [max_children, setMaxChildren] = useState("");
 
-  const [roomtypeNameError, setRoomTypeNameError] = useState('');
+  const [roomtypeNameError, setRoomTypeNameError] = useState("");
+  const [max_adultsError, setMaxAdultError] = useState("");
+  const [max_childrenError, setMaxChuldrenError] = useState("");
 
-  const [error, setError] = useState('');
-  const [successful, setSuccessful] = useState('');
+  const [error, setError] = useState("");
+  const [successful, setSuccessful] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   useEffect(() => {
@@ -33,17 +35,30 @@ export default function EditRoomType() {
       // setroomtypeData(result.data);
       setRoomTypeName(result.data?.roomtype_name);
     }
-  }
+  };
 
   const handleRoomTypeNameChange = (event) => {
     const value = event.target.value;
     setRoomTypeName(value);
-  }
+  };
+
+  const handleMaxAdultChange = (event) => {
+    const value = event.target.value;
+    setMaxAdults(value);
+  };
+
+  const handleMaxChildrenChange = (event) => {
+    const value = event.target.value;
+    setMaxChildren(value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setRoomTypeNameError('');
-    setError('');
-    setSuccessful('');
+    setRoomTypeNameError("");
+    setMaxAdultError("");
+    setMaxChildren("");
+    setError("");
+    setSuccessful("");
 
     if (validation.isEmpty(roomtypeName)) {
       setRoomTypeNameError("Please enter valid roomtype name.");
@@ -53,6 +68,8 @@ export default function EditRoomType() {
     setBtnDisabled(true);
     const requestBody = {
       roomtype_name: roomtypeName,
+      max_adults: max_adults,
+      max_children: max_children,
     };
     const result = await roomtypeServices.editRoomType(roomtypeId, requestBody);
     if (result.isSuccessful) {
@@ -61,11 +78,11 @@ export default function EditRoomType() {
         title: "Edited",
         text: "Roomtype has been Edited successfully.",
         icon: "success",
-        allowOutsideClick: false
+        allowOutsideClick: false,
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/roomtype/edit/'(roomtypeId);
+          window.location.href = "/admin/roomtype/edit/"(roomtypeId);
           // return <Navigate to="/admin/countries" />
         }
       });
@@ -74,10 +91,10 @@ export default function EditRoomType() {
         title: "Error!",
         text: result.errorMessage,
         icon: "error",
-        allowOutsideClick: false
+        allowOutsideClick: false,
       });
     }
-  }
+  };
 
   return (
     <form>
@@ -98,26 +115,74 @@ export default function EditRoomType() {
             maxLength={70}
           />
 
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Maximun adults*"
+            placeholder="Max. adults*"
+            id="max_adults"
+            type="text"
+            onChange={handleMaxAdultChange}
+            state={max_adultsError !== "" ? "error" : ""}
+            errorMessage={max_adultsError !== "" ? max_adultsError : ""}
+            value={max_adults}
+            maxLength={20}
+          />
+
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Maximum children*"
+            placeholder="Max. children*"
+            id="max_children"
+            type="text"
+            onChange={handleMaxChildrenChange}
+            state={max_childrenError !== "" ? "error" : ""}
+            errorMessage={max_childrenError !== "" ? max_childrenError : ""}
+            value={max_children}
+            maxLength={20}
+          />
+
           {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
-            <div className="flex items-center">
-            </div>
-            <button className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-              {btnDisabled ?
-                <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-                : <span>Edit Room Type</span>}
+            <div className="flex items-center"></div>
+            <button
+              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+                btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
+              onClick={(e) => handleSubmit(e)}
+              type="submit"
+              disabled={btnDisabled ? "disabled" : ""}
+            >
+              {btnDisabled ? (
+                <span className="flex items-center justify-center">
+                  <img
+                    src={btnLoader}
+                    className="xl:max-w-[25px]"
+                    alt="loader"
+                  />
+                </span>
+              ) : (
+                <span>Edit Room Type</span>
+              )}
             </button>
           </div>
           <div className="mt-4">
-            {error !== '' && <>
-              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-            </>}
+            {error !== "" && (
+              <>
+                <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+              </>
+            )}
           </div>
 
           <div className="mt-4">
-            {successful !== '' && <>
-              <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
-            </>}
+            {successful !== "" && (
+              <>
+                <p className="mb-9 ml-1 text-base text-green-500">
+                  {successful}
+                </p>
+              </>
+            )}
           </div>
         </div>
       </div>

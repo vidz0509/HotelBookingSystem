@@ -13,8 +13,16 @@ const RoomType = () => {
 
   const columnsDataComplex = [
     {
-      Header: " Name",
+      Header: "Name",
       accessor: "roomtype_name",
+    },
+    {
+      Header: "Max. Adults",
+      accessor: "max_adults",
+    },
+    {
+      Header: "Max. Children",
+      accessor: "max_children",
     },
     {
       Header: "Status",
