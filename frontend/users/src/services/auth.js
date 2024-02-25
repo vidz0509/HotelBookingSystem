@@ -69,7 +69,7 @@ async function changepassword(requestBody) {
 }
 
 async function forgotPassword(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/forgotPassword`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/forgotPassword?isCustomer=true`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {

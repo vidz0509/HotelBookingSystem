@@ -114,26 +114,38 @@ export class AuthServices {
     }
   }
 
-  async forgotPassword(requestData: { email: string }) {
-    this.logger.debug(`Request received to reset password : ${requestData.email}`);
+  async forgotPassword(requestData: { email: string, isCustomer?: boolean }): Promise<any> {
+    this.logger.debug(`Request received to reset password: ${requestData.email}`);
 
-    this.logger.debug(`Check if user registered with email ${requestData.email}`);
+    this.logger.debug(`Check if user is registered with email ${requestData.email}`);
     const user = await this.usersCollection.getUserByEmail(requestData.email);
 
-    if (!user)
-      throw new BadRequestException(await this.helper.buildResponse(false, 'This user id is not registered.'));
+    if (!user) {
+      throw new BadRequestException(await this.helper.buildResponse(false, 'This user is not registered.'));
+    }
+    this.logger.debug(`User type: ${user.userType}, isCustomer: ${requestData.isCustomer}`);
 
+    const isCustomer = requestData.isCustomer || false;
 
+    if (isCustomer && user.userType == 1) {
+      throw new UnauthorizedException(await this.helper.buildResponse(false, 'Admin cannot initiate a password reset for a customer'),
+      );
+    }
+
+    if (!isCustomer && user.userType == 2) {
+      throw new UnauthorizedException(await this.helper.buildResponse(false, 'Customers cannot initiate a password reset for an admin'),
+      );
+    }
     try {
       this.logger.debug(`Sending email to ${user.email}`);
       const verificationCode = await this.codeService.generateCode(user._id.toString());
       await this.emailService.sendVerificationCode(user.email, user.fullname, verificationCode);
       return await this.helper.buildResponse(true);
     } catch (error) {
-      if (error) {
-        this.logger.error(JSON.stringify(error, null, 2));
-        throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
-      }
+      this.logger.error(JSON.stringify(error, null, 2));
+      throw new InternalServerErrorException(
+        await this.helper.buildResponse(false, 'Something went wrong.')
+      );
     }
   }
 

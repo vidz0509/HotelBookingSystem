@@ -29,8 +29,8 @@ export class AuthController {
     }
 
     @Post('/forgotPassword')
-    async forgotPassword(@Body() requestData: { email: string }) {        
-        return await this.authService.forgotPassword(requestData);
+    async forgotPassword(@Body() requestData: { email: string },@Query('isCustomer') isCustomer?: boolean ) {
+      return await this.authService.forgotPassword({ email: requestData.email, isCustomer });
     }
 
     @Post('/getInTouch')
