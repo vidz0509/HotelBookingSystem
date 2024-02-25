@@ -13,12 +13,12 @@ export default function EditRoomType() {
   // const [roomtypeData, setroomtypeData] = useState(null);
 
   const [roomtypeName, setRoomTypeName] = useState("");
-  const [max_adults, setMaxAdults] = useState("");
-  const [max_children, setMaxChildren] = useState("");
+  const [max_adults, setMaxAdults] = useState(1);
+  const [max_children, setMaxChildren] = useState(0);
 
   const [roomtypeNameError, setRoomTypeNameError] = useState("");
-  const [max_adultsError, setMaxAdultError] = useState("");
-  const [max_childrenError, setMaxChuldrenError] = useState("");
+  const [max_adultsError, setMaxAdultError] = useState();
+  const [max_childrenError, setMaxChildrenError] = useState();
 
   const [error, setError] = useState("");
   const [successful, setSuccessful] = useState("");
@@ -56,7 +56,7 @@ export default function EditRoomType() {
     event.preventDefault();
     setRoomTypeNameError("");
     setMaxAdultError("");
-    setMaxChildren("");
+    setMaxChildrenError("");
     setError("");
     setSuccessful("");
 
@@ -65,11 +65,21 @@ export default function EditRoomType() {
       return false;
     }
 
+    if (validation.isEmpty(max_adults)) {
+      setRoomTypeNameError("Please enter valid maximum adults.");
+      return false;
+    }
+
+    if (validation.isEmpty(max_children)) {
+      setRoomTypeNameError("Please enter valid maximum children.");
+      return false;
+    }
+
     setBtnDisabled(true);
     const requestBody = {
       roomtype_name: roomtypeName,
-      max_adults: max_adults,
-      max_children: max_children,
+      max_adults: parseInt(max_adults),
+      max_children: parseInt(max_children)
     };
     const result = await roomtypeServices.editRoomType(roomtypeId, requestBody);
     if (result.isSuccessful) {
@@ -126,7 +136,7 @@ export default function EditRoomType() {
             state={max_adultsError !== "" ? "error" : ""}
             errorMessage={max_adultsError !== "" ? max_adultsError : ""}
             value={max_adults}
-            maxLength={20}
+            maxLength={200}
           />
 
           <InputField
@@ -140,7 +150,7 @@ export default function EditRoomType() {
             state={max_childrenError !== "" ? "error" : ""}
             errorMessage={max_childrenError !== "" ? max_childrenError : ""}
             value={max_children}
-            maxLength={20}
+            maxLength={200}
           />
 
           {/* Checkbox */}

@@ -8,13 +8,13 @@ import Swal from "sweetalert2";
 
 export default function AddRoomType() {
   const [roomtypeName, setRoomTypeName] = useState("");
-  const [max_adults, setMaxAdults] = useState("");
-  const [max_children, setMaxChildren] = useState("");
+  const [max_adults, setMaxAdults] = useState(1);
+  const [max_children, setMaxChildren] = useState(0);
 
 
   const [roomtypeNameError, setRoomTypeNameError] = useState("");
   const [max_adultsError, setMaxAdultError] = useState("");
-  const [max_childrenError, setMaxChuldrenError] = useState("");
+  const [max_childrenError, setMaxChildrenError] = useState("");
 
 
   const [error, setError] = useState("");
@@ -40,7 +40,7 @@ export default function AddRoomType() {
     event.preventDefault();
     setRoomTypeNameError("");
     setMaxAdultError("");
-    setMaxChildren("");
+    setMaxChildrenError("");
     setError("");
     setSuccessful("");
 
@@ -62,8 +62,8 @@ export default function AddRoomType() {
     setBtnDisabled(true);
     const requestBody = {
       roomtype_name: roomtypeName,
-      max_adults: max_adults,
-      max_children: max_children
+      max_adults: parseInt(max_adults),
+      max_children: parseInt(max_children)
     };
 
     const result = await roomtypeServices.addRoomType(requestBody);
