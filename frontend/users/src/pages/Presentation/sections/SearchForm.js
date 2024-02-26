@@ -92,11 +92,15 @@ function SearchForm() {
     };
 
     const addRoom = () => {
+        setRoomList(
+            [...roomList,
+            {
+                adult: 1,
+                children: 0
+            }
+            ]
+        );
         setCurrentIndex(currentIndex + 1);
-        setRoomList(...roomList, {
-            adult: 1,
-            children: 0
-        })
         let newRoom = `<div class="dropdown-content">
         <div class="room-title">
             <p>Room ${currentIndex + 1}</p>
