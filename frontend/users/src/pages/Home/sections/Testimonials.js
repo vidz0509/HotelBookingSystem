@@ -19,7 +19,7 @@ import DefaultReviewCard from "examples/Cards/ReviewCards/DefaultReviewCard";
 
 function Information() {
   return (
-    <MKBox component="section" my={12} py={7}>
+    <MKBox component="section" my={4} >
       <Container>
         <Grid
           container

@@ -78,10 +78,10 @@ function Home() {
         }}
       >
 
-        <Information />
         <div className="location-slider">
           <DesignBlocks isSlider={true} />
         </div>
+        <Information />
         <Pages />
 
         <Testimonials />

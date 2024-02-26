@@ -28,7 +28,7 @@ function Information() {
   ));
 
   return (
-    <MKBox component="section" py={6} my={6}>
+    <MKBox component="section" >
       <Container>
         <Grid
           container
