@@ -93,7 +93,7 @@ function SearchForm() {
 
     const addRoom = () => {
         setCurrentIndex(currentIndex + 1);
-        setRoomList.push({
+        setRoomList(...roomList, {
             adult: 1,
             children: 0
         })
