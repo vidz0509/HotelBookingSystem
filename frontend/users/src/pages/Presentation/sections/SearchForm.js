@@ -23,11 +23,17 @@ function SearchForm() {
     const [countryIdError, setCountryIdError] = useState("");
     const [locationIdError, setLocationIdError] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const [btnDisabled, setBtnDisabled] = useState(false);
 
     const [roomList, setRoomList] = useState([{
         adult: 1,
         children: 0
     }]);
+
+    let currentDate = new Date();
+    const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
+    const [CheckIn, CheckInOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
+    const [CheckOut, CheckOutOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1));
 
 
     const handleInputClick = () => {
@@ -36,6 +42,7 @@ function SearchForm() {
 
     const handleBtnClick = () => {
         setIsDropdownOpen(false);
+        console.log(roomList);
     };
 
     useEffect(() => {
@@ -146,12 +153,21 @@ function SearchForm() {
             return false;
         }
 
+
+        setBtnDisabled(true);
+        const requestBody = {
+            country_Id: countryId,
+            location_Id: locationId,
+            CheckIn: CheckIn,
+            CheckOut: CheckOut,
+
+        };
+        console.log(requestBody)
+
+
     }
 
-    let currentDate = new Date();
-    const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-    const [CheckIn, CheckInOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
-    const [CheckOut, CheckOutOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1));
+
     return (
         <>
             <div className="search-form" id="search-form">
@@ -255,8 +271,22 @@ function SearchForm() {
                         </div>
                     </div>
                     <div className="col btn-col">
-                        <button type="submit" name="search_hotel" id="search_hotel" onClick={(e) => handleSubmit(e)}>
-                            <img decoding="async" loading="lazy" src={btnIcon} width="50" height="50" />
+                        <button
+                            className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+                                }`}
+                            onClick={(e) => handleSubmit(e)}
+                            type="submit"
+                            disabled={btnDisabled ? "disabled" : ""}
+                        >
+                            {btnDisabled ? (
+                                <span className="flex items-center justify-center">
+                                    <img decoding="async" loading="lazy" src={btnIcon} width="50" height="50" />
+                                </span>
+                            ) : (
+                                <span> <span className="flex items-center justify-center">
+                                    <img decoding="async" loading="lazy" src={btnIcon} width="50" height="50" />
+                                </span></span>
+                            )}
                         </button>
                     </div>
                 </div>
