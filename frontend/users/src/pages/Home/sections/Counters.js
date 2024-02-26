@@ -14,20 +14,20 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
-import Divider from "@mui/material/Divider";
+// import Container from "@mui/material/Container";
+// import Grid from "@mui/material/Grid";
+// import Divider from "@mui/material/Divider";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 
 // Material Kit 2 React examples
-import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
+// import DefaultCounterCard from "examples/Cards/CounterCards/DefaultCounterCard";
 
 function Counters() {
   return (
     <MKBox component="section" py={3}>
-      <Container>
+      {/* <Container>
         <Grid container item xs={12} lg={9} sx={{ mx: "auto" }}>
           <Grid item xs={12} md={4}>
             <DefaultCounterCard
@@ -55,7 +55,7 @@ function Counters() {
             />
           </Grid>
         </Grid>
-      </Container>
+      </Container> */}
     </MKBox>
   );
 }

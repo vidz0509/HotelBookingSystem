@@ -147,7 +147,7 @@ function ContactUs() {
               mt={-3}
             >
               <MKTypography variant="h3" color="white">
-                Contact us
+               Get in touch
               </MKTypography>
             </MKBox>
             <MKBox p={3}>
