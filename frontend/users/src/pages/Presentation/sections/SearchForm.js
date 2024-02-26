@@ -12,6 +12,7 @@ function SearchForm() {
 
     const [countriesData, setCountriesData] = useState("");
     const [countryId, setCountryId] = useState("");
+    const [currentIndex, setCurrentIndex] = useState(1);
 
     const [locationsData, setLocationsData] = useState("");
     const [locationId, setLocationId] = useState("");
@@ -22,7 +23,12 @@ function SearchForm() {
     const [countryIdError, setCountryIdError] = useState("");
     const [locationIdError, setLocationIdError] = useState("");
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
- 
+
+    const [roomList, setRoomList] = useState([{
+        adult: 1,
+        children: 0
+    }]);
+
 
     const handleInputClick = () => {
         setIsDropdownOpen(true);
@@ -77,6 +83,48 @@ function SearchForm() {
             setChildren(Children - 1);
         }
     };
+
+    const addRoom = () => {
+        setCurrentIndex(currentIndex + 1);
+        setRoomList.push({
+            adult: 1,
+            children: 0
+        })
+        let newRoom = `<div class="dropdown-content">
+        <div class="room-title">
+            <p>Room ${currentIndex + 1}</p>
+        </div>
+        <div class="room-row">
+            <div class="popup-row">
+                <div class="popup-col">
+                    <div class="inner-title">
+                        <p>Adults</p>
+                    </div>
+                </div>
+                <div class="popup-col adult counter"><button class="minus" disabled=""><span> - </span></button><input
+                        type="text" readonly="" value="1"><button class="plus"><span> + </span></button></div>
+            </div>
+            <div class="popup-row">
+                <div class="popup-col">
+                    <div class="inner-title">
+                        <p>Children</p>
+                    </div>
+                </div>
+                <div class="popup-col children counter">
+                    <button class="minus" disabled="">
+                        <span> - </span>
+                    </button>
+                    <input type="text" readonly="" value="0"  disabled=${Children >= 3}>
+                    <button class="plus">
+                        <span> + </span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>`;
+        var roomListElement = document.querySelector('.room-list');
+        roomListElement.innerHTML += newRoom;
+    }
     const handleSubmit = async (event) => {
         event.preventDefault();
         // let isValid = false;
@@ -97,7 +145,7 @@ function SearchForm() {
             setLocationIdError("Please select valid location name.");
             return false;
         }
-        
+
     }
 
     let currentDate = new Date();
@@ -166,13 +214,13 @@ function SearchForm() {
                                                     </div>
                                                 </div>
                                                 <div className='popup-col adult counter'>
-                                                <button className="minus" disabled={Adults <= 1} onClick={(e) => handleAdult('remove', e)}>
-                                                            <span> - </span>
-                                                        </button>
-                                                        <input type="text" readOnly value={Adults} />
-                                                        <button className="plus" disabled={Adults >= 3} onClick={(e) => handleAdult('add', e)}>
-                                                            <span> + </span>
-                                                        </button>
+                                                    <button className="minus" disabled={Adults <= 1} onClick={(e) => handleAdult('remove', e)}>
+                                                        <span> - </span>
+                                                    </button>
+                                                    <input type="text" readOnly value={Adults} />
+                                                    <button className="plus" disabled={Adults >= 3} onClick={(e) => handleAdult('add', e)}>
+                                                        <span> + </span>
+                                                    </button>
                                                 </div>
                                             </div>
                                             <div className='popup-row'>
@@ -182,26 +230,26 @@ function SearchForm() {
                                                     </div>
                                                 </div>
                                                 <div className='popup-col children counter'>
-                                                <button className="minus" disabled={Children <= 0} onClick={(e) => handleChildren('remove', e)}>
-                                                            <span> - </span>
-                                                        </button>
-                                                        <input type="text" readOnly value={Children} />
-                                                        <button className="plus"disabled={Children >= 3} onClick={(e) => handleChildren('add', e)}>
-                                                            <span> + </span>
-                                                        </button>
+                                                    <button className="minus" disabled={Children <= 0} onClick={(e) => handleChildren('remove', e)}>
+                                                        <span> - </span>
+                                                    </button>
+                                                    <input type="text" readOnly value={Children} />
+                                                    <button className="plus" disabled={Children >= 3} onClick={(e) => handleChildren('add', e)}>
+                                                        <span> + </span>
+                                                    </button>
                                                 </div>
                                             </div>
-                                            
+
                                         </div>
                                     </div>
                                 </div>
-
-                                <div className="new-room-wrap">
-                                    <div id="addRoom" data-index="0">Add Room <span className="icon">+</span></div>
-                                </div>
-
+                                {currentIndex < 3 &&
+                                    <div className="new-room-wrap">
+                                        <div id="addRoom" data-index="1" onClick={addRoom}>Add Room <span className="icon">+</span></div>
+                                    </div>
+                                }
                                 <div className="popup-footer">
-                                <button className='done-btn' type="button" onClick={handleBtnClick}>Done</button>
+                                    <button className='done-btn' type="button" onClick={handleBtnClick}>Done</button>
                                 </div>
                             </div>
                         </div>
