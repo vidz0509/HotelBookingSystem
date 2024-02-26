@@ -51,7 +51,7 @@ function DesignBlocks(props) {
 
   return (
     <MKBox component="section"
-      my={12}>
+      my={6} py={12}>
       <Container>
         <Grid
           container
