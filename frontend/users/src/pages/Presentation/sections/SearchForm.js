@@ -187,7 +187,7 @@ function SearchForm() {
                                         <option value={item._id} key={item._id}>{item.country_name}</option>
                                     ))}
                             </select>
-                            {countryIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{countryIdError}</span>}
+                            {countryIdError && <span className="error-msg">{countryIdError}</span>}
                         </div>
                     </div>
                     <div className="col half-col">
@@ -201,7 +201,7 @@ function SearchForm() {
                                         <option value={item._id} key={item._id}>{item.location_name}</option>
                                     ))}
                             </select>
-                            {locationIdError && <span className="mb-3 ml-1 text-red-500 text-sm">{locationIdError}</span>}
+                            {locationIdError && <span className="error-msg">{locationIdError}</span>}
                         </div>
                     </div>
                     <div className="col">
