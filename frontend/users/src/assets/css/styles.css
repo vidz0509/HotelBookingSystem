@@ -24,9 +24,9 @@
     fill: #932595;
 }
 
-.has-error.field button.icon{
+.has-error.field button.icon {
     bottom: 55px;
-  }
+}
 
 .footer-title p {
     font-size: 18px;
@@ -68,7 +68,7 @@
     margin: 10px 20px;
 }
 
-.half-col{
+.half-col {
     width: 45%;
 }
 
@@ -76,6 +76,11 @@
     display: flex;
     align-items: center;
     width: 5%;
+}
+
+.btn-col button{
+    background-color: transparent;
+    border: 0;
 }
 
 .field-group label {
@@ -96,12 +101,14 @@
     font-family: "Poppins", sans-serif;
 }
 
-.field-group input:not(.react-date-picker__wrapper input),.field-group select {
+.field-group input:not(.react-date-picker__wrapper input),
+.field-group select {
     border-bottom: 2px solid #932595;
     height: 33px;
 }
 
-.field-group input:focus-visible, .field-group select:focus-visible {
+.field-group input:focus-visible,
+.field-group select:focus-visible {
     outline: 0;
 }
 
@@ -184,7 +191,9 @@ button.react-calendar__navigation__arrow {
     border-radius: 10px;
 }
 
-.react-date-picker__calendar-button__icon,.react-date-picker__button:enabled:hover .react-date-picker__button__icon, .react-date-picker__button:enabled:focus .react-date-picker__button__icon {
+.react-date-picker__calendar-button__icon,
+.react-date-picker__button:enabled:hover .react-date-picker__button__icon,
+.react-date-picker__button:enabled:focus .react-date-picker__button__icon {
     stroke: #932595;
 }
 
@@ -193,7 +202,7 @@ button.react-calendar__navigation__arrow {
 }
 
 .room-input {
-    margin-top: 20px;    
+    margin-top: 20px;
     border-radius: 10px;
     background-color: #ffffff;
     box-shadow: 1px 0 13px 1px rgba(0, 0, 0, .2);
@@ -204,9 +213,11 @@ button.react-calendar__navigation__arrow {
     display: none;
 }
 
-.room-input.show-popup{ display: block; }
+.room-input.show-popup {
+    display: block;
+}
 
-.room-list{
+.room-list {
     padding: 20px 10px;
 }
 
@@ -244,7 +255,18 @@ button.react-calendar__navigation__arrow {
     outline: none;
     color: #932595;
     font-size: 18px;
-    padding: 0 10px
+    padding: 0 10px;
+    cursor: pointer;
+}
+
+.remove-room {
+    cursor: pointer;
+    max-width: 16px;
+    line-height: 0
+}
+
+.remove-room img{
+    max-width: 100%;
 }
 
 .popup-col.counter input {
@@ -252,9 +274,12 @@ button.react-calendar__navigation__arrow {
     border-bottom: 0 !important;
 }
 
-.room-input .room-title{
+.room-input .room-title {
     font-size: 16px;
-    margin-left:10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .popup-footer {
@@ -266,7 +291,7 @@ button.react-calendar__navigation__arrow {
     border-bottom-right-radius: 10px;
 }
 
-.popup-footer .done-btn{
+.popup-footer .done-btn {
     background-color: #932595 !important;
     border: 0;
     color: #fff;
@@ -286,16 +311,21 @@ button.react-calendar__navigation__arrow {
     color: #932595
 }
 
-.location-slider .slick-slider{
+.new-room-wrap .disable {
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.location-slider .slick-slider {
     height: 400px;
 }
 
-.location-slider .slick-initialized .slick-slide{
+.location-slider .slick-initialized .slick-slide {
     margin: 5px 10px;
 }
+
 .location-slider .slick-slide img {
     display: block;
     height: 300px;
     object-fit: cover;
 }
-

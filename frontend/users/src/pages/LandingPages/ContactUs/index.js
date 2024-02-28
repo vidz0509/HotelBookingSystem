@@ -8,6 +8,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 
 // Material Kit 2 React examples
+import Container from "@mui/material/Container";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import btnLoader from "../../../assets/images/button-loader/btn-loader.gif";
@@ -105,8 +106,9 @@ function ContactUs() {
         />
       </MKBox>
       <Grid container spacing={3} alignItems="center">
-        <Grid item xs={12} lg={6}>
-          <MKBox
+        <Container>
+          <Grid item xs={12} lg={6}>
+            {/* <MKBox
             display={{ xs: "none", lg: "flex" }}
             width="calc(100% - 2rem)"
             height="calc(100vh - 2rem)"
@@ -114,8 +116,10 @@ function ContactUs() {
             ml={2}
             mt={2}
             sx={{ backgroundImage: `url(${bgImage})` }}
-          />
-        </Grid>
+          /> */}
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3714.17450673144!2d72.86636899999999!3d21.4223848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e94c5603117%3A0xb45130d58c4c3005!2sVIDHYADEEP%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1708964930435!5m2!1sen!2sin" width="600" height="450" allowfullscreen="" loading="lazy"></iframe>
+          </Grid>
+        </Container>
         <Grid
           item
           xs={12}
@@ -202,9 +206,9 @@ function ContactUs() {
                     Send Message
                   </MKButton> */}
                   <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-            {btnDisabled ?
-              <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-              : <span>Send Message</span>}
+                    {btnDisabled ?
+                      <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                      : <span>Send Message</span>}
                   </MKButton>
                   <MKBox className="mt-4">
                     {error !== '' && <>
@@ -212,10 +216,10 @@ function ContactUs() {
                     </>}
                   </MKBox>
                   <MKBox className="mt-4">
-          {successful !== '' && <>
-            <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
-          </>}
-        </MKBox>
+                    {successful !== '' && <>
+                      <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+                    </>}
+                  </MKBox>
                 </Grid>
               </MKBox>
             </MKBox>

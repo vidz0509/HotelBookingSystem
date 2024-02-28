@@ -65,7 +65,7 @@ function DefaultFooter({ content }) {
               </MKBox>
             </Grid>
           ))}
-          <Grid key={name} item md={1} sx={{ mb: 3 }}>
+          <Grid key={"test"} item md={1} sx={{ mb: 3 }}>
           </Grid>
           {quickLinks.map(({ name: name, items }) => (
             <Grid key={name} item md={2} sx={{ mb: 3 }}>
