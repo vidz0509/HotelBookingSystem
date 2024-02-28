@@ -17,7 +17,7 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [passwordType, setPasswordType] = useState("password");
 
@@ -135,11 +135,11 @@ export default function SignIn() {
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
               : <span>Log In</span>}
           </button>
-          <div className="mt-4">
+          {/* <div className="mt-4">
             {error !== '' && <>
               <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
             </>}
-          </div>
+          </div> */}
         </div>
       </div>
     </form>
