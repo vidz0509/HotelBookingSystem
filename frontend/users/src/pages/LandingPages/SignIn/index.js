@@ -14,13 +14,14 @@ import {
   MdRemoveRedEye,
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
+import Swal from "sweetalert2";
 
 function SignInBasic() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [error, setError] = useState('');
+  // const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
 
   const [passwordType, setPasswordType] = useState("password");
@@ -57,11 +58,30 @@ function SignInBasic() {
     const result = await authServices.login(requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      window.location.replace('/');
+      Swal.fire({
+        title: "Sucess",
+        text: "Login successfully.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/';
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
-
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+          }
+        });
     }
   }
 
@@ -119,7 +139,7 @@ function SignInBasic() {
                 <form method="post" onSubmit={handlesubmit}>
                   <MKBox mb={2}>
                     <MKInput type="email" label="Email" fullWidth
-                      onChange={handleEmailChange}                      
+                      onChange={handleEmailChange}
                       errorMessage={emailError !== "" ? emailError : ""} />
                   </MKBox>
                   <MKBox mb={2}>
@@ -147,11 +167,11 @@ function SignInBasic() {
                     </MKButton>
                     <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
                     </MKButton>
-                    <MKBox className="mt-4">
+                   {/*  <MKBox className="mt-4">
                       {error !== '' && <>
                         <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
                       </>}
-                    </MKBox>
+                    </MKBox> */}
                   </MKBox>
                   <MKBox mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">

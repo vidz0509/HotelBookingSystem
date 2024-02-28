@@ -15,6 +15,8 @@ import {
   MdRemoveRedEye,
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
+import Swal from "sweetalert2";
+
 
 function SignUpBasic() {
   const [fullname, setFullName] = useState('');
@@ -118,11 +120,30 @@ function SignUpBasic() {
     const result = await authServices.register(requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
-      window.location.replace('/');
+      Swal.fire({
+        title: "Sucess",
+        text: "Register successfully.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.href = '/';
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
-
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+          }
+        });
     }
   }
 
@@ -183,7 +204,7 @@ function SignUpBasic() {
 
                 </MKBox>
                 <MKBox mb={2}>
-                <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
+                  <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
                     <MKInput type={passwordType} label="Password" fullWidth
                       onChange={handlePasswordChange}
                       state={passwordError !== "" ? "error" : ""}
@@ -193,7 +214,7 @@ function SignUpBasic() {
                   </div>
                 </MKBox>
                 <MKBox mb={2}>
-                <div className={`field${confirmpasswordError !== "" ? " has-error" : ""}`}>
+                  <div className={`field${confirmpasswordError !== "" ? " has-error" : ""}`}>
                     <MKInput type={confirmpasswordType} label="Confirm password" fullWidth
                       onChange={handleconfirmpassworddChange}
                       state={confirmpasswordError !== "" ? "error" : ""}
@@ -220,7 +241,7 @@ function SignUpBasic() {
                   </MKButton>
                   <MKBox className="mt-4">
                     {error !== '' && <>
-                      <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                      <p className="error-msg">{error}</p>
                     </>}
                   </MKBox>
                 </MKBox>
