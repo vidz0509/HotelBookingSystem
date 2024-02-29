@@ -6,6 +6,34 @@
     font-weight: 700
 }
 
+.link {
+    color: #0077df;
+    text-decoration: underline;
+    text-align: right;
+}
+
+.customImage {
+    max-width: 50%;
+    height: auto;
+}
+
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+    border: 0.25em solid #5cc421 !important
+}
+
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+    background-color: #5cc421 !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
+    background-color: #932595 !important;
+}
+
+div:where(.swal2-icon).swal2-warning {
+    border-color: #932595 !important;
+    color: #932595 !important;
+}
+
 .btn-loader {
     max-width: 25%;
 }
@@ -78,7 +106,7 @@
     width: 5%;
 }
 
-.btn-col button{
+.btn-col button {
     background-color: transparent;
     border: 0;
 }
@@ -265,7 +293,7 @@ button.react-calendar__navigation__arrow {
     line-height: 0
 }
 
-.remove-room img{
+.remove-room img {
     max-width: 100%;
 }
 

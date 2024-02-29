@@ -6,7 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { validation } from "services/validation";
-import $ from 'jquery';
+// import $ from 'jquery';
 
 export default SearchForm;
 function SearchForm() {

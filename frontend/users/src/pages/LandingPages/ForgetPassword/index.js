@@ -15,6 +15,7 @@ import {
     MdRemoveRedEye,
     MdOutlineRemoveRedEye,
 } from "react-icons/md";
+import Swal from "sweetalert2";
 
 function ForgetPasswordBasic() {
     const [email, setEmail] = useState('');
@@ -77,13 +78,32 @@ function ForgetPasswordBasic() {
         };
         const result = await authServices.forgotPassword(requestBody);
         if (result.isSuccessful) {
-            setBtnDisabled(false);
-            setVBtnDisabled(false);
-            setScreen("verifycode");
+            Swal.fire({
+                title: "Sucess",
+                text: "Verify Code sent successfully.",
+                icon: "success",
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setBtnDisabled(false);
+                    setVBtnDisabled(false);
+                    setScreen("verifycode");
+                }
+            });
         } else {
-            setError(result.errorMessage);
-            setBtnDisabled(false);
-            setVBtnDisabled(false);
+            Swal.fire({
+                title: "Error!",
+                text: result.errorMessage,
+                icon: "error",
+                allowOutsideClick: false
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        setBtnDisabled(false);
+                        setVBtnDisabled(false);
+                        window.location.reload();
+                    }
+                });
         }
     }
 
@@ -110,15 +130,32 @@ function ForgetPasswordBasic() {
         };
         const result = await authServices.verifyResetPasswordCode(requestBody);
         if (result.isSuccessful) {
-            setTimeout(function () {
-                setVBtnDisabled(false);
-                setVBtnLoading(false);
-                setScreen("resetPwd");
-            }, 1000);
+            Swal.fire({
+                title: "Sucess",
+                text: "Code verified successfully.",
+                icon: "success",
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    setVBtnDisabled(false);
+                    setVBtnLoading(false);
+                    setScreen("resetPwd");
+                }
+            });
         } else {
-            setCodeError(result.errorMessage);
-            setVBtnDisabled(false);
-            setVBtnLoading(false);
+            Swal.fire({
+                title: "Error!",
+                text: result.errorMessage,
+                icon: "error",
+                allowOutsideClick: false
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        setVBtnDisabled(false);
+                        setVBtnLoading(false);
+                        window.location.reload();
+                    }
+                });
         }
     }
 
@@ -169,12 +206,29 @@ function ForgetPasswordBasic() {
         };
         const result = await authServices.resetPassword(requestBody);
         if (result.isSuccessful) {
-            setTimeout(function () {
-                window.location.replace('/SignIn');
-            }, 1000);
+            Swal.fire({
+                title: "Sucess",
+                text: "Password changed successfully.",
+                icon: "success",
+                allowOutsideClick: false
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = '/SignIn';
+                }
+            });
         } else {
-            setError(result.errorMessage);
-            setBtnDisabled(false);
+            Swal.fire({
+                title: "Error!",
+                text: result.errorMessage,
+                icon: "error",
+                allowOutsideClick: false
+            })
+                .then((result) => {
+                    if (result.isConfirmed) {
+                        setBtnDisabled(false);
+                        window.location.reload();
+                    }
+                });
         }
     }
 
@@ -408,7 +462,7 @@ function ForgetPasswordBasic() {
                                                 Back to SignIn
                                             </MKTypography>
                                             <MKBox mt={2} mb={1}>
-                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit"  disabled={btnDisabled ? 'disabled' : ''}>
+                                                <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} variant="gradient" color="info" fullWidth onclick={(e) => resetPassword(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                                                     {btnDisabled ?
                                                         <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px] btn-loader" alt="loader" /></span>
                                                         : <span>Reset Password</span>}

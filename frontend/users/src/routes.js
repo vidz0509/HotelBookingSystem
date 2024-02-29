@@ -5,6 +5,7 @@ import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
 import ForgetPassword from "pages/LandingPages/ForgetPassword";
 import ChnagePasswordBasic from "pages/LandingPages/ChangePassword";
+import Account from "pages/LandingPages/Account";
 import { authServices } from './services/auth';
 import Hotels from "pages/LandingPages/Hotels";
 
@@ -30,7 +31,7 @@ const routes = [
   {
     name: authServices.checkIfUserLoggedIn() ? "Account" : "sign in",
     route: authServices.checkIfUserLoggedIn() ? "/account" : "/sign-in",
-    component:  authServices.checkIfUserLoggedIn() ? <Home/> : <SignIn/>,
+    component:  authServices.checkIfUserLoggedIn() ? <Account/> : <SignIn/>,
     addInMenu: true,
   },
   {

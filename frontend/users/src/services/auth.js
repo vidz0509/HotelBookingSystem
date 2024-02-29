@@ -6,6 +6,7 @@ export const authServices = {
     register,
     getCurrentUser,
     updateProfile,
+    uploadUserProfile,
     changepassword,
     forgotPassword,
     verifyResetPasswordCode,
@@ -55,6 +56,23 @@ async function updateProfile(userId, requestBody) {
         console.error(errorObj);
         return errorObj;
     });
+}
+
+async function uploadUserProfile(formData) {
+    const userData = authServices.getCurrentUser();
+    return await axios.post(`${process.env.REACT_APP_API_URL}/users/upload/${userData._id}`, formData, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    })
+        .then((response) => {
+            console.log(response.data);
+            return response.data;
+        })
+        .catch((error) => {
+            // handle errors
+            console.log(error);
+        });
 }
 
 async function changepassword(requestBody) {
