@@ -105,127 +105,116 @@ function ContactUs() {
         // }}
         />
       </MKBox>
-      <Grid container spacing={3} alignItems="center">
+      <Grid container spacing={3} alignItems="center" sx={{
+        mt: 4,
+        mb: 4
+      }}>
         <Container>
-          <Grid item xs={12} lg={6}>
-            {/* <MKBox
-            display={{ xs: "none", lg: "flex" }}
-            width="calc(100% - 2rem)"
-            height="calc(100vh - 2rem)"
-            borderRadius="lg"
-            ml={2}
-            mt={2}
-            sx={{ backgroundImage: `url(${bgImage})` }}
-          /> */}
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3714.17450673144!2d72.86636899999999!3d21.4223848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e94c5603117%3A0xb45130d58c4c3005!2sVIDHYADEEP%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1708964930435!5m2!1sen!2sin" width="600" height="450" allowfullscreen="" loading="lazy"></iframe>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={6}>
+              <MKBox display="flex" className="g-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3714.17450673144!2d72.86636899999999!3d21.4223848!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e94c5603117%3A0xb45130d58c4c3005!2sVIDHYADEEP%20UNIVERSITY!5e0!3m2!1sen!2sin!4v1708964930435!5m2!1sen!2sin" width="600" height="450" allowfullscreen="" loading="lazy" />
+              </MKBox>
+            </Grid>
+            <Grid item xs={12} lg={6}>
+              <MKBox
+                bgColor="white"
+                borderRadius="xl"
+                shadow="lg"
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                mt={{ xs: 20, sm: 18, md: 20 }}
+                mb={{ xs: 20, sm: 18, md: 20 }}
+                mx={3}
+              >
+                <MKBox
+                  variant="gradient"
+                  bgColor="info"
+                  coloredShadow="info"
+                  borderRadius="lg"
+                  p={2}
+                  mx={2}
+                  mt={-3}
+                >
+                  <MKTypography variant="h3" color="white">
+                    Get in touch
+                  </MKTypography>
+                </MKBox>
+                <MKBox p={3}>
+                  <MKTypography variant="body2" color="text" mb={3}>
+                    For further questions, including partnership opportunities, please email
+                    hello@creative-tim.com or contact using our contact form.
+                  </MKTypography>
+                  <MKBox width="100%" component="form" method="post" autoComplete="off">
+                    <Grid container spacing={3}>
+                      <Grid item xs={12}>
+                        <MKInput
+                          variant="standard"
+                          label="Full Name"
+                          InputLabelProps={{ shrink: true }}
+                          fullWidth
+                          onChange={handlefullNameChange}
+                          state={fullnameError !== "" ? "error" : ""}
+                          errorMessage={fullnameError !== "" ? fullnameError : ""}
+                          value={fullname}
+                          maxLength={30} />
+
+                      </Grid>
+                      <Grid item xs={12}>
+                        <MKInput
+                          type="email"
+                          variant="standard"
+                          label="Email"
+                          InputLabelProps={{ shrink: true }}
+                          fullWidth
+                          onChange={handleEmailChange}
+                          state={emailError !== "" ? "error" : ""}
+                          value={email}
+                          errorMessage={emailError !== "" ? emailError : ""} />
+                      </Grid>
+                      <Grid item xs={12}>
+                        <MKInput
+                          variant="standard"
+                          label="What can we help you?"
+                          placeholder="Describe your problem in at least 250 characters"
+                          InputLabelProps={{ shrink: true }}
+                          multiline
+                          fullWidth
+                          rows={6}
+                          onChange={handlemessageChange}
+                          state={messageError !== "" ? "error" : ""}
+                          value={message}
+                          errorMessage={messageError !== "" ? messageError : ""} />
+                      </Grid>
+                    </Grid>
+                    <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
+                      {/* <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                      Send Message
+                    </MKButton> */}
+                      <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
+                        {btnDisabled ?
+                          <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                          : <span>Send Message</span>}
+                      </MKButton>
+                      <MKBox className="mt-4">
+                        {error !== '' && <>
+                          <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                        </>}
+                      </MKBox>
+                      <MKBox className="mt-4">
+                        {successful !== '' && <>
+                          <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+                        </>}
+                      </MKBox>
+                    </Grid>
+                  </MKBox>
+                </MKBox>
+              </MKBox>
+            </Grid>
           </Grid>
         </Container>
-        <Grid
-          item
-          xs={12}
-          sm={10}
-          md={7}
-          lg={6}
-          xl={4}
-          ml={{ xs: "auto", lg: 6 }}
-          mr={{ xs: "auto", lg: 6 }}
-        >
-          <MKBox
-            bgColor="white"
-            borderRadius="xl"
-            shadow="lg"
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            mt={{ xs: 20, sm: 18, md: 20 }}
-            mb={{ xs: 20, sm: 18, md: 20 }}
-            mx={3}
-          >
-            <MKBox
-              variant="gradient"
-              bgColor="info"
-              coloredShadow="info"
-              borderRadius="lg"
-              p={2}
-              mx={2}
-              mt={-3}
-            >
-              <MKTypography variant="h3" color="white">
-               Get in touch
-              </MKTypography>
-            </MKBox>
-            <MKBox p={3}>
-              <MKTypography variant="body2" color="text" mb={3}>
-                For further questions, including partnership opportunities, please email
-                hello@creative-tim.com or contact using our contact form.
-              </MKTypography>
-              <MKBox width="100%" component="form" method="post" autoComplete="off">
-                <Grid container spacing={3}>
-                  <Grid item xs={12}>
-                    <MKInput
-                      variant="standard"
-                      label="Full Name"
-                      InputLabelProps={{ shrink: true }}
-                      fullWidth
-                      onChange={handlefullNameChange}
-                      state={fullnameError !== "" ? "error" : ""}
-                      errorMessage={fullnameError !== "" ? fullnameError : ""}
-                      value={fullname}
-                      maxLength={30} />
-
-                  </Grid>
-                  <Grid item xs={12}>
-                    <MKInput
-                      type="email"
-                      variant="standard"
-                      label="Email"
-                      InputLabelProps={{ shrink: true }}
-                      fullWidth
-                      onChange={handleEmailChange}
-                      state={emailError !== "" ? "error" : ""}
-                      value={email}
-                      errorMessage={emailError !== "" ? emailError : ""} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <MKInput
-                      variant="standard"
-                      label="What can we help you?"
-                      placeholder="Describe your problem in at least 250 characters"
-                      InputLabelProps={{ shrink: true }}
-                      multiline
-                      fullWidth
-                      rows={6}
-                      onChange={handlemessageChange}
-                      state={messageError !== "" ? "error" : ""}
-                      value={message}
-                      errorMessage={messageError !== "" ? messageError : ""} />
-                  </Grid>
-                </Grid>
-                <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                  {/* <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                    Send Message
-                  </MKButton> */}
-                  <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                    {btnDisabled ?
-                      <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
-                      : <span>Send Message</span>}
-                  </MKButton>
-                  <MKBox className="mt-4">
-                    {error !== '' && <>
-                      <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-                    </>}
-                  </MKBox>
-                  <MKBox className="mt-4">
-                    {successful !== '' && <>
-                      <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
-                    </>}
-                  </MKBox>
-                </Grid>
-              </MKBox>
-            </MKBox>
-          </MKBox>
-        </Grid>
-      </Grid>
+      </Grid >
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

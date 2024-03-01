@@ -357,3 +357,12 @@ button.react-calendar__navigation__arrow {
     height: 300px;
     object-fit: cover;
 }
+
+.g-map{
+    align-items: center;
+    height: 100%;
+}
+
+iframe{
+    border: 0;
+}
