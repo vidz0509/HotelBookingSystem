@@ -7,12 +7,16 @@ import { Hotels } from './hotels.schema';
 import { CreateHotelDto } from './dto/create.dto';
 import { UpdateHotelDto } from './dto/update.dto';
 import { SearchHotelDto } from './dto/search.dto';
+import { BookingCollection } from 'src/bookings/booking.collection';
+import { BookingService } from 'src/bookings/booking.services';
 
 @Injectable()
 export class HotelsService {
   private readonly logger = new Logger(HotelsService.name);
   constructor(
     private readonly hotelCollection: HotelsCollection,
+    private readonly bookingServices: BookingService,
+    private readonly bookingCollection: BookingCollection,
     private readonly helper: HelpersServices,
   ) { }
 
@@ -103,8 +107,8 @@ export class HotelsService {
   }
 
   async searchHotels(searchHotelDto: SearchHotelDto) {
-    const hotel = await this.hotelCollection.searchHotels(searchHotelDto);
-    const response = await this.helper.buildResponse(true, null, hotel);
+    const sercheHotels = await this.hotelCollection.searchHotels(searchHotelDto);
+    const response = await this.helper.buildResponse(true, null, sercheHotels);
     return response;
   }
 }

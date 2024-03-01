@@ -7,12 +7,17 @@ import { HotelsCollection } from './hotels.collection';
 import { HotelsController } from './hotels.controller';
 import { HotelsService } from './hotels.services';
 
+import { BookingModule } from 'src/bookings/booking.module';
+import { BookingCollection } from 'src/bookings/booking.collection';
+import { BookingService } from 'src/bookings/booking.services';
+
 import { HelpersServices } from '../services/helpers/helpers.services';
 
 import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import path from 'path';
 import { ConfigModule } from '@nestjs/config';
+import { Booking, BookingSchema } from 'src/bookings/booking.schema';
 
 @Module({
     imports: [
@@ -21,6 +26,10 @@ import { ConfigModule } from '@nestjs/config';
             {
                 name: Hotels.name,
                 schema: HotelsSchema
+            },
+            {
+                name: Booking.name,
+                schema: BookingSchema
             },
         ]),
         MulterModule.register({
@@ -35,7 +44,7 @@ import { ConfigModule } from '@nestjs/config';
         })
     ],
     controllers: [HotelsController],
-    providers: [HotelsService, HotelsCollection, HelpersServices],
+    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection, HelpersServices],
 })
 
 export class HotelModule { }

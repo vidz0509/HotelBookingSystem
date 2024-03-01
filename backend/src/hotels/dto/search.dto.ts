@@ -9,13 +9,11 @@ export class SearchHotelDto {
     @IsNotEmpty()
     readonly country_id: string;
 
-    // @IsDate()
-    // @IsNotEmpty()
-    // readonly checkIn: Date;
+    @IsOptional()
+    readonly check_in: Date;
 
-    // @IsDate()
-    // @IsNotEmpty()
-    // readonly checkOut: Date;
+    @IsOptional()
+    readonly check_out: Date;
 
     @IsNumber()
     @IsOptional()
@@ -28,5 +26,8 @@ export class SearchHotelDto {
     @IsNumber()
     @IsOptional()
     readonly children: number;
+
+    @IsOptional()
+    readonly room_details : any[];
 
 }
