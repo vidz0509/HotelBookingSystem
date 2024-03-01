@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Card from "@mui/material/Card";
 import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
@@ -14,6 +14,7 @@ import {
   MdRemoveRedEye,
   MdOutlineRemoveRedEye,
 } from "react-icons/md";
+import Swal from "sweetalert2";
 
 function ChnagePasswordBasic() {
   const [password, setpassword] = useState('');
@@ -27,7 +28,7 @@ function ChnagePasswordBasic() {
   const [passwordError, setpasswordError] = useState('');
   const [newPasswordError, setnewPasswordError] = useState('');
   const [confirmPasswordError, setconfirmPasswordError] = useState('');
-  const [isSuccessfull, setSuccessfull] = useState('');
+  const [isSuccessfull, setSuccessfull] = useState(false);
 
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -81,6 +82,8 @@ function ChnagePasswordBasic() {
     setpasswordError('');
     setnewPasswordError('');
     setconfirmPasswordError('');
+    setError('');
+    setSuccessfull('');
     if (validation.isEmpty(password)) {
       setpasswordError("Please enter valid password.");
       return false;
@@ -117,22 +120,39 @@ function ChnagePasswordBasic() {
     };
     setSuccessfull("Password change successfully");
     const result = await authServices.changepassword(requestBody);
-    if (result.isSuccessfull) {
-      setSuccessfull(result.isSuccessfullMessage);
-      setBtnDisabled(false);
-      setTimeout(function () {
-        console.log("Password change successfully")
-        window.location.reload();
-      }, 1000);
+    if (result.isSuccessful) {
+      Swal.fire({
+        title: "Success",
+        text: "Password changed successfully.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.reload();
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+          }
+        });
     }
   }
   const clearErrors = () => {
     setconfirmPasswordError('');
     setnewPasswordError('');
     setpasswordError('');
+    setError('');
+    setSuccessfull('');
   }
 
 
@@ -211,7 +231,7 @@ function ChnagePasswordBasic() {
                       <button className="icon" type="button" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                     </div>
                   </MKBox>
-                  <MKTypography
+                  {/* <MKTypography
                     component={Link}
                     to="/sign-in"
                     variant="button"
@@ -220,7 +240,7 @@ function ChnagePasswordBasic() {
                     textGradient
                   >
                     Back to login
-                  </MKTypography>
+                  </MKTypography> */}
                   <MKBox mt={4}>
                     <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       Change Password
@@ -229,14 +249,14 @@ function ChnagePasswordBasic() {
                     </MKButton>
                     <MKBox className="mt-4">
                       {error !== '' && <>
-                        <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
+                        <p className="error-msg">{error}</p>
                       </>}
                     </MKBox>
                     <MKBox className="mt-4">
                       {isSuccessfull !== '' && <>
                         <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
                       </>}
-                    </MKBox>
+                    </MKBox> 
                   </MKBox>
                 </form>
                 {/* </MKBox> */}
