@@ -79,7 +79,7 @@ function ForgetPasswordBasic() {
         const result = await authServices.forgotPassword(requestBody);
         if (result.isSuccessful) {
             Swal.fire({
-                title: "Sucess",
+                title: "Success",
                 text: "Verify Code sent successfully.",
                 icon: "success",
                 allowOutsideClick: false
@@ -131,7 +131,7 @@ function ForgetPasswordBasic() {
         const result = await authServices.verifyResetPasswordCode(requestBody);
         if (result.isSuccessful) {
             Swal.fire({
-                title: "Sucess",
+                title: "Success",
                 text: "Code verified successfully.",
                 icon: "success",
                 allowOutsideClick: false
@@ -207,7 +207,7 @@ function ForgetPasswordBasic() {
         const result = await authServices.resetPassword(requestBody);
         if (result.isSuccessful) {
             Swal.fire({
-                title: "Sucess",
+                title: "Success",
                 text: "Password changed successfully.",
                 icon: "success",
                 allowOutsideClick: false
