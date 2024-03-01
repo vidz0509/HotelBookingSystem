@@ -22,7 +22,7 @@ export default function ChangePassword() {
   const [passwordError, setpasswordError] = useState('');
   const [newPasswordError, setnewPasswordError] = useState('');
   const [confirmPasswordError, setconfirmPasswordError] = useState('');
-  const [isSuccessfull, setSuccessfull] = useState('');
+  const [isSuccessfull, setSuccessfull] = useState(false);
 
   const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -115,14 +115,14 @@ export default function ChangePassword() {
     const result = await authServices.changepassword(requestBody);
     if (result.isSuccessful) {
       Swal.fire({
-        title: "Added",
-        text: "ChangePassword has been Added successfully.",
+        title: "Success",
+        text: "Password changed successfully.",
         icon: "success",
         allowOutsideClick: false
       }).then((result) => {
         if (result.isConfirmed) {
           setBtnDisabled(false);
-          window.location.href = '/admin/change-password';
+          window.location.reload();
         }
       });
     } else {
@@ -131,7 +131,13 @@ export default function ChangePassword() {
         text: result.errorMessage,
         icon: "error",
         allowOutsideClick: false
-      });
+      })
+        .then((result) => {
+          if (result.isConfirmed) {
+            setBtnDisabled(false);
+            window.location.reload();
+          }
+        });
     }
   }
   const clearErrors = () => {

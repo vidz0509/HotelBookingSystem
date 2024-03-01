@@ -121,7 +121,7 @@ function SignUpBasic() {
     if (result.isSuccessful) {
       localStorage.setItem('currentUser', JSON.stringify(result.data));
       Swal.fire({
-        title: "Sucess",
+        title: "Success",
         text: "Register successfully.",
         icon: "success",
         allowOutsideClick: false
