@@ -106,8 +106,7 @@ function ContactUs() {
         />
       </MKBox>
       <Grid container spacing={3} alignItems="center" sx={{
-        mt: 4,
-        mb: 4
+        mt: 12
       }}>
         <Container>
           <Grid container spacing={2}>
