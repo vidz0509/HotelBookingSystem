@@ -1,4 +1,5 @@
-
+import React, { useEffect } from "react";
+import { useState } from "react";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
@@ -11,8 +12,42 @@ import SearchForm from "pages/Presentation/sections/SearchForm";
 import routes from "routes";
 import footerRoutes from "footer.routes";
 import bgImage from "assets/images/vestrahorn.webp";
+import { hotelsServices } from "services/hotels";
 
 function Hotels() {
+  const [hotelsData, setHotelsData] = useState(null);
+  const [searchBody, setSearchBody] = useState(null);
+  const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    let params = new URLSearchParams(window.location.search);
+    let body = {
+      country_id: params.get('country_id') ? params.get('country_id') : '',
+      location_id: params.get('location_id') ? params.get('location_id') : '',
+      check_in: params.get('check_in') ? params.get('check_in') : '',
+      check_out: params.get('check_out') ? params.get('check_out') : '',
+    }
+    setSearchBody(body);
+  }, []);
+
+  useEffect(() => {
+    seachHotels();
+  }, [searchBody])
+
+  const seachHotels = async () => {
+    if (searchBody) {
+      let response = await hotelsServices.seachHotels(searchBody);
+      if (response.isSuccessful) {
+        setHotelsData(response.data);
+        setIsLoading(false);
+      } else {
+        setError(response.errorMessage);
+        setIsLoading(false);
+      }
+    }
+  }
+
   return (
     <>
       <MKBox position="fixed" top="0.5rem" width="100%">
@@ -58,7 +93,7 @@ function Hotels() {
             </MKTypography>
           </Grid>
           <Grid container item xs={12} lg={10} justifyContent="center" mx="auto" className="form-wrap">
-            <SearchForm />
+            {!isLoading && <SearchForm searchData={searchBody} />}
           </Grid>
         </Container>
       </MKBox>
@@ -73,7 +108,7 @@ function Hotels() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <HotelsList />        
+        {!isLoading && <HotelsList hotelsData={hotelsData} searchData={searchBody} />}
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const hotelsServices = {
     getAllHotel,
-    SearchForm,
+    seachHotels,
 };
 
 async function getAllHotel() {
@@ -14,9 +14,8 @@ async function getAllHotel() {
         return errorObj;
     });
 }
-async function SearchForm(requestBody) {
+async function seachHotels(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/hotels/searchHotels`;
-    debugger;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {

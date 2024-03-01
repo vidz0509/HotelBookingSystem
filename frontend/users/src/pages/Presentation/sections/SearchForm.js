@@ -9,14 +9,13 @@ import { validation } from "services/validation";
 // import $ from 'jquery';
 
 export default SearchForm;
-function SearchForm() {
-
+function SearchForm(props) {
     const [currentIndex, setCurrentIndex] = useState(1);
     const [roomString, setRoomString] = useState('1 Room 1 Adult 0 Child');
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
     const [countriesData, setCountriesData] = useState("");
-    const [countryId, setCountryId] = useState("");
+    const [countryId, setCountryId] = useState('');
     const [locationsData, setLocationsData] = useState("");
     const [locationId, setLocationId] = useState("");
     const [countryIdError, setCountryIdError] = useState("");
@@ -29,9 +28,19 @@ function SearchForm() {
     const [CheckOut, CheckOutOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1));
 
     useEffect(() => {
-        getCountries();
         document.querySelector('.room-list').addEventListener('click', handleAllButtonClick);
-    }, []);
+        getCountries();
+        if (props?.searchData?.country_id && props?.searchData.country_id !== '') {
+            setCountryId(props.searchData.country_id);
+        }
+    },[]);
+
+    useEffect(() => {
+        getLocations(countryId);
+        if (props?.searchData?.location_id && props?.searchData.location_id !== '') {
+            setLocationId(props.searchData.location_id);
+        }
+    }, [countryId]);
 
     const getCountries = async () => {
         const result = await countriesServices.getAllCountries();
@@ -41,16 +50,18 @@ function SearchForm() {
     };
 
     const getLocations = async (country_id) => {
-        const result = await locationsServices.getLocationByCountry(country_id);
-        if (result.isSuccessful) {
-            setLocationsData(result.data);
+        if (country_id) {
+            const result = await locationsServices.getLocationByCountry(country_id);
+            if (result.isSuccessful) {
+                setLocationsData(result.data);
+            }
         }
     };
 
     const handleCountryIdChange = (event) => {
         const value = event.target.value;
         setCountryId(value);
-        getLocations(value);
+        // getLocations(value);
     };
 
     const handleLocationIdChange = (event) => {
@@ -197,13 +208,13 @@ function SearchForm() {
         setBtnDisabled(true);
         let roomList = resetRoomPopupData();
         const requestBody = {
-            country_Id: countryId,
-            location_Id: locationId,
+            country_id: countryId,
+            location_id: locationId,
             check_in: CheckIn.toISOString(),
             check_out: CheckOut.toISOString(),
             roomList: roomList
         };
-        console.log(requestBody);
+        window.location.href = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
         setBtnDisabled(false);
 
     }
@@ -220,7 +231,7 @@ function SearchForm() {
                                 {countriesData &&
                                     countriesData.length > 0 &&
                                     countriesData.map((item) => (
-                                        <option value={item._id} key={item._id}>{item.country_name}</option>
+                                        <option value={item._id} key={item._id} selected={countryId !== '' && countryId === item._id}>{item.country_name}</option>
                                     ))}
                             </select>
                             {countryIdError && <span className="error-msg">{countryIdError}</span>}
@@ -234,7 +245,7 @@ function SearchForm() {
                                 {locationsData &&
                                     locationsData.length > 0 &&
                                     locationsData.map((item) => (
-                                        <option value={item._id} key={item._id}>{item.location_name}</option>
+                                        <option value={item._id} key={item._id} selected={locationId !== '' && locationId === item._id}>{item.location_name}</option>
                                     ))}
                             </select>
                             {locationIdError && <span className="error-msg">{locationIdError}</span>}

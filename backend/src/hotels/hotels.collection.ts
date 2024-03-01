@@ -153,9 +153,60 @@ export class HotelsCollection {
     }
 
     async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {
-        return await this.hotelModel.find({
-            country_id: searchHotelDto.country_id,
-            location_id: searchHotelDto.location_id
-        });
+        return await this.hotelModel.aggregate([
+            {
+                $match: {
+                    isDeleted: false,
+                    country_id: searchHotelDto.country_id,
+                    location_id: searchHotelDto.location_id,
+                    isActive: true
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'locations',
+                    let: { locationId: { $toObjectId: "$location_id" } }, // Convert location_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$locationId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                location_code: 1,
+                                location_name: 1
+                            }
+                        }
+                    ],
+                    as: 'location_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'countries',
+                    let: { countryId: { $toObjectId: "$country_id" } }, // Convert country_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$countryId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                country_code: 1,
+                                country_name: 1
+                            }
+                        }
+                    ],
+                    as: 'country_details'
+                }
+            },
+        ]);
     }
 }

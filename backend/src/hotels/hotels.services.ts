@@ -107,8 +107,8 @@ export class HotelsService {
   }
 
   async searchHotels(searchHotelDto: SearchHotelDto) {
-    const sercheHotels = await this.hotelCollection.searchHotels(searchHotelDto);
-    const response = await this.helper.buildResponse(true, null, sercheHotels);
+    const searchHotels = await this.hotelCollection.searchHotels(searchHotelDto);
+    const response = await this.helper.buildResponse(true, null, searchHotels);
     return response;
   }
 }

@@ -11,16 +11,17 @@ export class HotelsController {
 
     constructor(private readonly hotelService: HotelsService) { }
 
+    @Post('/searchHotels')
+    async searchHotels(@Body() searchHotelDto: SearchHotelDto) {
+        return await this.hotelService.searchHotels(searchHotelDto);
+    }
+    
     @Post()
     async createHotel(@Body() createHotelDto: CreateHotelDto) {
         console.log(createHotelDto);
         return await this.hotelService.createHotel(createHotelDto);
     }
 
-    @Get('/searchHotels')
-    async searchHotels(@Body() searchHotelDto: SearchHotelDto) {
-        return await this.hotelService.searchHotels(searchHotelDto);
-    }
 
     @Get()
     async findAll() {
