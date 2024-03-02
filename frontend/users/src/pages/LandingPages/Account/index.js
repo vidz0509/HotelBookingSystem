@@ -1,4 +1,4 @@
-
+import { Link } from "react-router-dom";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
@@ -145,16 +145,17 @@ function Account() {
       <MKBox position="fixed" top="0.5rem" width="100%" >
         <DefaultNavbar
           routes={routes}
-        // action={{
-        //   type: "external",
-        //   route: "https://www.creative-tim.com/product/material-kit-react",
-        //   label: "free download",
-        //   color: "info",
-        // }}
         />
       </MKBox>
-      <Grid container spacing={3} alignItems="center">
-        <Grid item xs={12} lg={6}>
+      <Grid container spacing={3} alignItems="center" >
+        <Grid item
+          xs={12}
+          sm={10}
+          md={7}
+          lg={8}
+          xl={5}
+          ml={{ xs: "auto", lg: 6 }}
+          mr={{ xs: "auto", lg: 6 }}>
           <MKBox
             variant="gradient"
             bgColor="info"
@@ -164,8 +165,38 @@ function Account() {
             mx={2}
             mt={-3}
           >
-            <MKTypography variant="h4" color="white">
+            <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
               Account
+            </MKTypography>
+          </MKBox>
+          <MKBox p={3} bgColor="white"
+            borderRadius="xl"
+            shadow="lg"
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            mt={{ xs: 20, sm: 18, md: 2 }}
+            mb={{ xs: 20, sm: 18, md: 30 }}
+            mx={3}>
+            <MKTypography variant="button h5" color="text" mb={3} fullWidth
+              component={Link}
+              to="/account"
+              >
+              My Account
+            </MKTypography>
+            <MKTypography variant="button h5" color="text" mb={3}>
+              My Booking
+            </MKTypography>
+            <MKTypography variant="button h5" color="text" mb={3}
+              component={Link}
+              to="/changepassword">
+              Security
+            </MKTypography>
+            <MKTypography color="text" mb={3} fullWidth onClick={handleLogout}
+              component={Link}
+              to="/sign-in"
+              variant="button h5">
+              Log Out
             </MKTypography>
           </MKBox>
         </Grid>
@@ -174,8 +205,8 @@ function Account() {
           xs={12}
           sm={10}
           md={7}
-          lg={6}
-          xl={4}
+          lg={8}
+          xl={5}
           ml={{ xs: "auto", lg: 6 }}
           mr={{ xs: "auto", lg: 6 }}
         >
@@ -199,7 +230,7 @@ function Account() {
               mx={2}
               mt={-3}
             >
-              <MKTypography variant="h3" color="white">
+              <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
                 Profile
               </MKTypography>
             </MKBox>

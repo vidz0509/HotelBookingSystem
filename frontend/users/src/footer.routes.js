@@ -1,9 +1,3 @@
-// @mui icons
-// import FacebookIcon from "@mui/icons-material/Facebook";
-// import TwitterIcon from "@mui/icons-material/Twitter";
-// import GitHubIcon from "@mui/icons-material/GitHub";
-// import YouTubeIcon from "@mui/icons-material/YouTube";
-
 // Material Kit 2 React components
 import MKTypography from "components/MKTypography";
 
@@ -30,10 +24,10 @@ export default {
     {
       name: "Quick Links",
       items: [
-        { name: "Home", route: "/pages/Home/index.js" },
-        { name: "About Us", route: "/pages/landing-pages/about-us" },
-        { name: "Contact Us", route: "/pages/landing-pages/contact-us" },
-        { name: "Account", route: "/pages/authentication/sign-in" },
+        { name: "Home", route: "/" },
+        { name: "About Us", route: "/about-us" },
+        { name: "Contact Us", route: "/contact-us" },
+        { name: "Account", route: "/account" },
       ],
     },
   ],
