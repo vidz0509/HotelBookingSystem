@@ -17,6 +17,12 @@ const routes = [
     addInMenu: true,
   },
   {
+    name: "Hotels",
+    route: "/hotels",
+    component: <Hotels />,
+    addInMenu: true,
+  },
+  {
     name: "About Us",
     route: "/about-us",
     component: <AboutUs />,
@@ -33,6 +39,7 @@ const routes = [
     route: authServices.checkIfUserLoggedIn() ? "/account" : "/sign-in",
     component:  authServices.checkIfUserLoggedIn() ? <Account/> : <SignIn/>,
     addInMenu: true,
+    showProfile : authServices.checkIfUserLoggedIn()
   },
   {
     name: "sign up",
@@ -50,12 +57,6 @@ const routes = [
     name: "Change Password",
     route: "/changepassword",
     component: <ChnagePasswordBasic />,
-    addInMenu: false,
-  },
-  {
-    name: "Hotels List",
-    route: "/hotels",
-    component: <Hotels />,
     addInMenu: false,
   },
 ];

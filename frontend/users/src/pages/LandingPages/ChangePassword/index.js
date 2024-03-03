@@ -231,16 +231,6 @@ function ChnagePasswordBasic() {
                       <button className="icon" type="button" onClick={(e) => toggleConfirmPassword(e)}>{confirmpasswordType === "password" ? <MdRemoveRedEye className="h-5 w-5" /> : <MdOutlineRemoveRedEye className="h-5 w-5" />}</button>
                     </div>
                   </MKBox>
-                  {/* <MKTypography
-                    component={Link}
-                    to="/sign-in"
-                    variant="button"
-                    color="info"
-                    fontWeight="medium"
-                    textGradient
-                  >
-                    Back to login
-                  </MKTypography> */}
                   <MKBox mt={4}>
                     <MKButton variant="gradient" color="info" fullWidth onclick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                       Change Password

@@ -6,9 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { validation } from "services/validation";
-// import $ from 'jquery';
 
-export default SearchForm;
 function SearchForm(props) {
     const [currentIndex, setCurrentIndex] = useState(1);
     const [roomString, setRoomString] = useState('1 Room 1 Adult 0 Child');
@@ -337,3 +335,4 @@ function SearchForm(props) {
         </>
     );
 }
+export default SearchForm;

@@ -1,19 +1,4 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// prop-types is a library for typechecking of props
+import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 
 // react-router-dom components
@@ -26,6 +11,7 @@ import Icon from "@mui/material/Icon";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
+import { authServices } from 'services/auth';
 
 function DefaultNavbarDropdown({
   name,
@@ -35,6 +21,7 @@ function DefaultNavbarDropdown({
   light,
   href,
   route,
+  showProfile,
   collapse,
   ...rest
 }) {
@@ -50,6 +37,16 @@ function DefaultNavbarDropdown({
     to: route,
   };
 
+  const [profileImg, setProfileImg] = useState('');
+  const [userName, setUserName] = useState('');
+  useEffect(() => {
+    if (showProfile) {
+      const userData = authServices.getCurrentUser();
+      setProfileImg(userData.profileImg);
+      setUserName(((userData.fullname).split(' '))[0]);
+    }
+  }, [])
+
   return (
     <>
       <MKBox
@@ -57,7 +54,7 @@ function DefaultNavbarDropdown({
         mx={1}
         p={1}
         display="flex"
-        alignItems="baseline"
+        alignItems="center"
         color={light ? "white" : "dark"}
         opacity={light ? 1 : 0.6}
         sx={{ cursor: "pointer", userSelect: "none" }}
@@ -72,14 +69,19 @@ function DefaultNavbarDropdown({
         >
           {icon}
         </MKTypography>
+        {showProfile && profileImg &&
+          <>
+            <img src={profileImg} alt='User Profile' className='user-profile' />
+          </>
+        }
         <MKTypography
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
           color={light ? "white" : "dark"}
-          sx={{ fontWeight: "bold", ml: 1, mr: 0.25, fontSize:"16px" }}
+          sx={{ fontWeight: "bold", ml: 1, mr: 0.25, fontSize: "16px" }}
         >
-          {name}
+          {showProfile && userName !== '' ? userName : name}
         </MKTypography>
         <MKTypography variant="body2" color={light ? "white" : "dark"} ml="auto">
           <Icon sx={{ fontWeight: "normal", verticalAlign: "middle" }}>
@@ -111,6 +113,7 @@ DefaultNavbarDropdown.propTypes = {
   icon: PropTypes.node.isRequired,
   children: PropTypes.node,
   collapseStatus: PropTypes.bool,
+  showProfile: PropTypes.bool,
   light: PropTypes.bool,
   href: PropTypes.string,
   route: PropTypes.string,

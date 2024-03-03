@@ -66,7 +66,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
     return () => window.removeEventListener("resize", displayMobileNavbar);
   }, []);
 
-  const renderNavbarItems = routes.map(({ name, icon, href, route, collapse, addInMenu }) => (
+  const renderNavbarItems = routes.map(({ name, icon, href, route, collapse, addInMenu,showProfile }) => (
     addInMenu && 
     <DefaultNavbarDropdown
       key={name}
@@ -74,6 +74,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
       icon={icon}
       href={href}
       route={route}
+      showProfile={showProfile}
       collapse={Boolean(collapse)}
       onMouseEnter={({ currentTarget }) => {
         if (collapse) {
