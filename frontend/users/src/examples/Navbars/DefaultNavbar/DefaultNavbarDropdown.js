@@ -60,15 +60,8 @@ function DefaultNavbarDropdown({
         sx={{ cursor: "pointer", userSelect: "none" }}
         {...(route && routeComponent)}
         {...(href && linkComponent)}
+        className='header-link'
       >
-        <MKTypography
-          variant="body2"
-          lineHeight={1}
-          color="inherit"
-          sx={{ alignSelf: "center", "& *": { verticalAlign: "middle" } }}
-        >
-          {icon}
-        </MKTypography>
         {showProfile && profileImg &&
           <>
             <img src={profileImg} alt='User Profile' className='user-profile' />
@@ -78,7 +71,7 @@ function DefaultNavbarDropdown({
           variant="button"
           fontWeight="regular"
           textTransform="capitalize"
-          color={light ? "white" : "dark"}
+          className={window.location.pathname === route ? "active" : "dark"}
           sx={{ fontWeight: "bold", ml: 1, mr: 0.25, fontSize: "16px" }}
         >
           {showProfile && userName !== '' ? userName : name}
