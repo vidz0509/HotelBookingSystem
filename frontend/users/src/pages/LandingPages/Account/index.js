@@ -19,6 +19,7 @@ import { authServices } from "services/auth";
 import { validation } from "services/validation";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { Container } from "@mui/material";
 // import bgImage from "assets/images/auth.jpg";
 
 // Image
@@ -142,36 +143,15 @@ function Account() {
   }
   return (
     <>
-      <MKBox position="fixed" top="0.5rem" width="100%" >
+      <MKBox width="100%" >
         <DefaultNavbar
           routes={routes}
         />
       </MKBox>
-      <Grid container spacing={3} alignItems="center" >
-        <Grid item
-          xs={12}
-          sm={10}
-          md={7}
-          lg={8}
-          xl={5}
-          ml={{ xs: "auto", lg: 6 }}
-          mr={{ xs: "auto", lg: 6 }}>
-          <MKBox
-            variant="gradient"
-            bgColor="info"
-            coloredShadow="info"
-            borderRadius="lg"
-            p={2}
-            mx={2}
-            mt={-3}
-          >
-            <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-              Account
-            </MKTypography>
-          </MKBox>
-          <MKBox p={3} bgColor="white"
-            borderRadius="xl"
-            shadow="lg"
+      <Container sx={{ mt: 6 }} className='main-container account-container'>
+      <Grid container spacing={3} alignItems="baseline">
+        <Grid item md={3} className="account-col">
+          <MKBox p={3}
             display="flex"
             flexDirection="column"
             justifyContent="center"
@@ -200,25 +180,13 @@ function Account() {
             </MKTypography>
           </MKBox>
         </Grid>
-        <Grid
-          item
-          xs={12}
-          sm={10}
-          md={7}
-          lg={8}
-          xl={5}
-          ml={{ xs: "auto", lg: 6 }}
-          mr={{ xs: "auto", lg: 6 }}
-        >
+        <Grid item md={9} className="account-col">
           <MKBox
-            bgColor="white"
-            borderRadius="xl"
-            shadow="lg"
             display="flex"
             flexDirection="column"
             justifyContent="center"
-            mt={{ xs: 20, sm: 18, md: 20 }}
-            mb={{ xs: 20, sm: 18, md: 20 }}
+            mt={{ md: 20 }}
+            mb={{ md: 20 }}
             mx={3}
           >
             <MKBox
@@ -311,10 +279,9 @@ function Account() {
               </MKBox>
             </MKBox>
           </MKBox>
-          <MKButton variant="gradient" fullWidth onClick={handleLogout}><span>Log Out</span>
-          </MKButton>
         </Grid>
       </Grid>
+      </Container>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

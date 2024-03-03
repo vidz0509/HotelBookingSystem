@@ -94,16 +94,13 @@ function ContactUs() {
 
   return (
     <>
-      <MKBox position="fixed" top="0.5rem" width="100%" >
+      <MKBox width="100%" >
         <DefaultNavbar
           routes={routes}
-          sticky
         />
       </MKBox>
-      <Grid container spacing={3} alignItems="center" sx={{
-        mt: 12
-      }}>
-        <Container>
+      <Grid container spacing={3} alignItems="center">
+        <Container className="main-container">
           <Grid container spacing={2}>
             <Grid item xs={12} lg={6}>
               <MKBox display="flex" className="g-map">

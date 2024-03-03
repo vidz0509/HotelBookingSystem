@@ -443,7 +443,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         borderRadius="xl"
         shadow={transparent ? "none" : "md"}
         color={light ? "white" : "dark"}
-        position={relative ? "relative" : "absolute"}
+        position={"relative"}
         left={0}
         zIndex={3}
         sx={() => ({
