@@ -11,57 +11,12 @@ export class OffersCollection {
     constructor(@InjectModel('Offers') private offerModel: Model<Offers>) { }
 
     async getAllOffer(): Promise<Offers[]> {
-        return await this.offerModel.aggregate([
-            {
-                $match: {
-                    isDeleted: false
-                }
-            },
-            {
-                $sort: {
-                    createdAt: -1
-                }
-            },
-            {
-                $lookup: {
-                    from: 'hotels',
-                    let: { hotelId: { $toObjectId: "$hotel_id" } }, // Convert hotel_id string to ObjectId
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: { $eq: ["$_id", "$$hotelId"] }
-                            }
-                        },
-                        {
-                            $project: {
-                                hotel_code: 1,
-                                hotel_name: 1
-                            }
-                        }
-                    ],
-                    as: 'hotel_details'
-                }
-            },
-            {
-                $lookup: {
-                    from: 'offertypes',
-                    let: { offerTypesId: { $toObjectId: "$offer_type_id" } }, // Convert offerType_id string to ObjectId
-                    pipeline: [
-                        {
-                            $match: {
-                                $expr: { $eq: ["$_id", "$$offerTypesId"] }
-                            }
-                        },
-                        {
-                            $project: {
-                                offertype_name: 1
-                            }
-                        }
-                    ],
-                    as: 'offerTypes_details'
-                }
-            },
-        ]);
+        return await this.offerModel.find({
+            isDeleted: false,
+        })
+            .sort({
+                createdAt: -1
+            });
     }
 
     async getOfferCount(): Promise<number> {
@@ -89,7 +44,7 @@ export class OffersCollection {
             offer_amount: createOfferDto.offer_amount,
             isOneTime: createOfferDto.isOneTime,
             expired_on: createOfferDto.expired_on,
-            
+
             createdAt: new Date(),
             updatedAt: new Date(),
             isDeleted: false,
@@ -107,8 +62,8 @@ export class OffersCollection {
         return await this.offerModel.findByIdAndUpdate(
             OfferID,
             updateOfferDto,
-            { 
-                new: true 
+            {
+                new: true
             },
         );
     }

@@ -12,6 +12,7 @@ import { HotelModule } from './hotels/hotels.module';
 import { RoomTypeModule } from './roomTypes/roomtype.module';
 import { RoomModule } from './rooms/rooms.module';
 import { OfferModule } from './offers/offers.module';
+import { ReviewModule } from './reviews/reviews.module';
 import { AmenitiesModule } from './amenities/amenities.module';
 import { BookingModule } from './bookings/booking.module';
 
@@ -32,6 +33,7 @@ import { VerificationCodesModule } from './verification-codes/verificationCodes.
   RoomTypeModule,
   RoomModule,
   OfferModule,
+  ReviewModule,
   BookingModule,
   ProductModule,
   AmenitiesModule,
