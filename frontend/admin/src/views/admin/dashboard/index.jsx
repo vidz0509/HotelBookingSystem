@@ -7,6 +7,8 @@ import { roomsServices } from "services/rooms";
 import { roomtypeServices } from "services/roomtype";
 import { hotelsServices } from "services/hotels";
 import { amenitiesServices } from "services/amenities";
+import { offersServices } from "services/offers";
+import { reviewsServices } from "services/reviews";
 
 // import { columnsDataComplex } from "./variables/columnsData";
 // columnsDataCheck,
@@ -28,6 +30,8 @@ import {
   // MdPayments,
   MdWifi,
   MdHotel,
+  MdLocalOffer,
+  MdRateReview,
   // MdReport,
   // MdRateReview,
 } from "react-icons/md";
@@ -41,6 +45,9 @@ const Dashboard = () => {
   const [totalRoomType, setTotalRoomType] = useState(0);
   const [totalHotels, setTotalHotels] = useState(0);
   const [totalAmenities, setTotalAmenities] = useState(0);
+  const [totalOffers, setTotalOffers] = useState(0);
+  const [totalReviews, setTotalReviews] = useState(0);
+
 
   useEffect(() => {
     userCount();
@@ -120,6 +127,28 @@ const Dashboard = () => {
     }
   }
 
+  useEffect(() => {
+    OffersCount();
+  }, []);
+
+  const OffersCount = async () => {
+    const result = await offersServices.OffersCount();
+    if (result.isSuccessful) {
+      setTotalOffers(result.count);
+    }
+  }
+
+  useEffect(() => {
+    ReviewsCount();
+  }, []);
+
+  const ReviewsCount = async () => {
+    const result = await reviewsServices.ReviewsCount();
+    if (result.isSuccessful) {
+      setTotalReviews(result.count);
+    }
+  }
+
   return (
     <div>
       {/* Card widget */}
@@ -167,6 +196,18 @@ const Dashboard = () => {
           title={"Amenities"}
           link={"/admin/amenities"}
           subtitle={totalAmenities}
+        />
+        <Widget
+          icon={<MdLocalOffer className="h-6 w-6" />}
+          title={"Offers"}
+          link={"/admin/offers"}
+          subtitle={totalOffers}
+        />
+        <Widget
+          icon={<MdRateReview className="h-6 w-6" />}
+          title={"Reviews"}
+          link={"/admin/reviews/customers"}
+          subtitle={totalReviews}
         />
         <Widget
           icon={<MdMenuBook className="h-7 w-7" />}
