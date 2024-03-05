@@ -16,7 +16,7 @@ export default {
     {
       name: "About Us",
       items: [
-        { name: "A hotel is a commercial establishment that provides lodging, meals, and other services to guests, travelers, and tourists." },
+        { name: "Our Website is a commercial establishment that provides lodging, meals, and other services to guests, travelers, and tourists." },
       ],
     }
   ],

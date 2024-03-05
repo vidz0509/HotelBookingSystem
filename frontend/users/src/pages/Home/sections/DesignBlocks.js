@@ -69,11 +69,10 @@ function DesignBlocks(props) {
             sx={{ mb: 2 }}
           />
           <MKTypography variant="h2" fontWeight="bold">
-            Huge collection of sections
+            Huge collection of countries
           </MKTypography>
           <MKTypography variant="body1" color="text">
-            We have created multiple options for you to put together and customise into pixel
-            perfect pages.
+            We have multiple countries for you
           </MKTypography>
         </Grid>
       </Container>

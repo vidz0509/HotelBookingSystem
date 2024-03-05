@@ -112,7 +112,7 @@ function HotelsList(props) {
                     my="auto"
                     opacity={1}
                   />
-                  <Link to={`/hotel-details/${hotel._id}`}>
+                  <Link to={`/hoteldetail/${hotel._id}`}>
                     <MKBox mt={2} lineHeight={1}>
                       <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
                         {hotel.hotel_name}
