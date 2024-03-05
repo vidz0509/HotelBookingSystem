@@ -28,7 +28,6 @@ export class ReviewsService {
 
   async getAllReview(): Promise<any> {
     let data = await this.reviewCollection.getAllReview();
-    console.log(data);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }

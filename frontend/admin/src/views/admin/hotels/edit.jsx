@@ -3,7 +3,6 @@ import InputField from "components/fields/InputField";
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { hotelsServices } from "services/hotels";
-import { roomsServices } from "services/rooms";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from "react-router-dom";

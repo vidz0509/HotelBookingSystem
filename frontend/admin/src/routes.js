@@ -348,7 +348,7 @@ const routes = [
   {
     name: "Reviews",
     layout: "/admin",
-    path: "Reviews",
+    path: "reviews/customers",
     icon: <MdRateReview className="h-6 w-6" />,
     component: <Reviews />,
     secondary: true,
