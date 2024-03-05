@@ -2,8 +2,6 @@ import { Controller, Get, Post, Req, Res, Body, HttpStatus, Param, Delete, Put, 
 import { Response } from 'express';
 import { CreateReviewDto } from './dto/create.dto';
 import { ReviewsService } from './reviews.services';
-import { UpdateReviewDto } from './dto/update.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
 
 @Controller('reviews')
 export class ReviewsController {

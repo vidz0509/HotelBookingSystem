@@ -3,7 +3,6 @@ import { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateReviewDto } from './dto/create.dto';
 import { Reviews } from './reviews.schema';
-import { UpdateReviewDto } from './dto/update.dto';
 
 @Injectable()
 export class ReviewsCollection {
@@ -11,18 +10,14 @@ export class ReviewsCollection {
     constructor(@InjectModel('Reviews') private reviewModel: Model<Reviews>) { }
 
     async getAllReview(): Promise<Reviews[]> {
-        return await this.reviewModel.find({
-            isDeleted: false,
-        })
+        return await this.reviewModel.find()
             .sort({
                 createdAt: -1
             });
     }
 
     async getReviewCount(): Promise<number> {
-        return await this.reviewModel.countDocuments({
-            isDeleted: false,
-        });
+        return await this.reviewModel.countDocuments();
     }
 
     async getReviewById(id: string): Promise<Reviews> {
