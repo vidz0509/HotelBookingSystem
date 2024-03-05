@@ -1,6 +1,7 @@
 import Home from "pages/Home";
 import AboutUs from "pages/LandingPages/AboutUs";
 import ContactUs from "pages/LandingPages/ContactUs";
+import HotelDetail from "pages/LandingPages/HotelDetails";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
 import ForgetPassword from "pages/LandingPages/ForgetPassword";
@@ -20,6 +21,12 @@ const routes = [
     name: "Hotels",
     route: "/hotels",
     component: <Hotels />,
+    addInMenu: true,
+  },
+  {
+    name: "Hotel Detail",
+    route: "/hoteldetail",
+    component: <HotelDetail />,
     addInMenu: true,
   },
   {
