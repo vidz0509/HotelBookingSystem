@@ -30,6 +30,10 @@ import Amenities from "views/admin/amenities";
 import AddAmenities from "views/admin/amenities/add";
 import EditAmenities from "views/admin/amenities/edit"; 
 
+import Offers from "views/admin/offers";
+import AddOffers from "views/admin/offers/add";
+import EditOffers from "views/admin/offers/edit";
+
 import Rooms from "views/admin/rooms";
 import AddRoom from "views/admin/rooms/add";
 import EditRoom from "views/admin/rooms/edit";
@@ -60,6 +64,7 @@ import {
   MdPayments,
   MdBedroomParent,
   MdWifi,
+  MdLocalOffer,
   MdHotel,
   MdReport,
   MdRateReview,
@@ -277,13 +282,39 @@ const routes = [
     secondary: true,
     addInMenu: false
   },
-
   {
     name: "Amenities",
     layout: "/admin",
     path: "amenities/edit/:id",
     icon: <MdWifi className="h-6 w-6" />,
     component: <EditAmenities />,
+    secondary: true,
+    addInMenu: false
+  },
+  {
+    name: "Offers",
+    layout: "/admin",
+    path: "offers",
+    icon: <MdLocalOffer className="h-6 w-6" />,
+    component: <Offers />,
+    secondary: true,
+    addInMenu: true
+  },
+  {
+    name: "Offers",
+    layout: "/admin",
+    path: "offers/add",
+    icon: <MdLocalOffer className="h-6 w-6" />,
+    component: <AddOffers />,
+    secondary: true,
+    addInMenu: false
+  },
+  {
+    name: "Offers",
+    layout: "/admin",
+    path: "offers/edit/:id",
+    icon: <MdLocalOffer className="h-6 w-6" />,
+    component: <EditOffers />,
     secondary: true,
     addInMenu: false
   },

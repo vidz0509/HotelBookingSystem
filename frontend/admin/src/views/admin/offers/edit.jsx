@@ -58,8 +58,6 @@ export default function EditCountry() {
     let isValid = false;
     setCountryNameError('');
     setCountryCodeError('');
-    setError('');
-    setSuccessful('');
     if (validation.isEmpty(countryName)) {
       setCountryNameError("Please enter valid country name.");
       return false;
