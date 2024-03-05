@@ -25,9 +25,10 @@ const routes = [
   },
   {
     name: "Hotel Detail",
-    route: "/hoteldetail",
+    route: "/hoteldetail/:id",
     component: <HotelDetail />,
-    addInMenu: true,
+    addInMenu: false,
+    secondary: true,
   },
   {
     name: "About Us",

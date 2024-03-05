@@ -1,7 +1,7 @@
 import ComplexTable from "views/admin/dashboard/components/ComplexTable";
 import React, { useState, useEffect } from "react";
 import { reviewsServices } from "services/reviews";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import Loader from "views/admin/loader";
 
 const Reviews = () => {

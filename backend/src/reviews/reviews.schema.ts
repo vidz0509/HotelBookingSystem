@@ -25,7 +25,7 @@ export class Reviews {
   @IsNumber()
   @IsNotEmpty()
   @Prop({ required: true })
-  rating: string;
+  rating: number;
 
   @Prop()
   createdAt: Date;

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const hotelsServices = {
     getAllHotel,
+    getHotelById,
     seachHotels,
 };
 
@@ -14,6 +15,17 @@ async function getAllHotel() {
         return errorObj;
     });
 }
+
+async function getHotelById(id) {
+    const url = `${process.env.REACT_APP_API_URL}/hotels/${id}`;
+    return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
 async function seachHotels(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/hotels/searchHotels`;
     return await axios.post(url, requestBody).then(response => {
