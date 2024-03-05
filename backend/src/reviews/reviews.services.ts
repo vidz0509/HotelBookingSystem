@@ -5,7 +5,6 @@ import { ReviewsCollection } from './reviews.collection';
 import { Reviews } from './reviews.schema';
 
 import { CreateReviewDto } from './dto/create.dto';
-import { UpdateReviewDto } from './dto/update.dto';
 
 @Injectable()
 export class ReviewsService {
@@ -29,6 +28,7 @@ export class ReviewsService {
 
   async getAllReview(): Promise<any> {
     let data = await this.reviewCollection.getAllReview();
+    console.log(data);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
