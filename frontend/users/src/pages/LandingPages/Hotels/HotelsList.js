@@ -1,12 +1,38 @@
-import React from "react";
+
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKBadge from "components/MKBadge";
 import MKTypography from "components/MKTypography";
-import ExampleCard from "pages/Presentation/components/ExampleCard";
+// import ExampleCard from "pages/Presentation/components/ExampleCard";
 import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { hotelsServices } from "services/hotels";
+
 function HotelsList(props) {
+
+  const [Roomtypedata, setRoomtypedata] = useState("");
+  // const [RoomtypedataError, setRoomtypedataError] = useState("");
+  const [loading, setLoading] = useState(true);
+  const [Amenities, setAmenities] = useState("");
+  // const [AmenitiesError, setAmenitiesError] = useState("");
+
+
+  useEffect(() => {
+    getRoomType();
+    getAmenities();
+  }, []);
+
+  const getRoomType = async () => {
+    let response = await hotelsServices.getAllRoomTypes();
+    setRoomtypedata(response.data);
+    setLoading(false);
+  };
+  const getAmenities = async () => {
+    let response = await hotelsServices.getAmenities();
+    setAmenities(response.data);
+    setLoading(false);
+  };
   return (
     <MKBox component="section" my={6}>
       <Container>
@@ -42,25 +68,20 @@ function HotelsList(props) {
                   <span className="icon" name="caret-right"></span>
                   <h5>Room Types</h5>
                 </div>
+
                 <div className="options default-opts">
-                  <div className="opt">
-                    <label className="opt-label checkbox-label">
-                      <input type="checkbox" value="W" name="accomodations[]" />
-                      <p className="opt-text">Resort</p>
-                    </label>
-                  </div>
-                  <div className="opt">
-                    <label className="opt-label checkbox-label">
-                      <input type="checkbox" value="W" name="accomodations[]" />
-                      <p className="opt-text">Resort</p>
-                    </label>
-                  </div>
-                  <div className="opt">
-                    <label className="opt-label checkbox-label">
-                      <input type="checkbox" value="W" name="accomodations[]" />
-                      <p className="opt-text">Resort</p>
-                    </label>
-                  </div>
+                  {Roomtypedata &&
+                    Roomtypedata.length > 0 &&
+                    Roomtypedata.map((item) => (
+
+                      <div className="opt" key={item._id}>
+                        <label className="opt-label checkbox-label">
+                          <input type="checkbox" value={item._id} name="Room_type[]" />
+                          <p className="opt-text">{item.roomtype_name}</p>
+                        </label>
+                      </div>
+                    ))}
+                 
                 </div>
               </div>
               <div className="option-row">
@@ -77,24 +98,17 @@ function HotelsList(props) {
                   <h5>Amenities</h5>
                 </div>
                 <div className="options default-opts">
-                  <div className="opt">
-                    <label className="opt-label checkbox-label">
-                      <input type="checkbox" value="W" name="accomodations[]" />
-                      <p className="opt-text">Free Breakfast</p>
-                    </label>
-                  </div>
-                  <div className="opt">
-                    <label className="opt-label checkbox-label">
-                      <input type="checkbox" value="W" name="accomodations[]" />
-                      <p className="opt-text">Free Breakfast</p>
-                    </label>
-                  </div>
-                  <div className="opt">
-                    <label className="opt-label checkbox-label">
-                      <input type="checkbox" value="W" name="accomodations[]" />
-                      <p className="opt-text">Free Breakfast</p>
-                    </label>
-                  </div>
+                {Amenities &&
+                    Amenities.length > 0 &&
+                    Amenities.map((item) => (
+
+                      <div className="opt" key={item._id}>
+                        <label className="opt-label checkbox-label">
+                          <input type="checkbox" value={item._id} name="Amenities_type[]" />
+                          <p className="opt-text">{item.amenities_name}</p>
+                        </label>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -112,7 +126,7 @@ function HotelsList(props) {
                     my="auto"
                     opacity={1}
                   />
-                  <Link to={`/hoteldetail/${hotel._id}`}>
+                  <Link to={`/hotel-details/${hotel._id}`}>
                     <MKBox mt={2} lineHeight={1}>
                       <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
                         {hotel.hotel_name}
@@ -120,6 +134,7 @@ function HotelsList(props) {
                       <MKTypography variant="p" className="hotel-location">
                         {hotel.location_details[0].location_name}
                       </MKTypography>
+
                     </MKBox>
                   </Link>
                 </MKBox>

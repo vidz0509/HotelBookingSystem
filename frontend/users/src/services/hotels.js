@@ -4,6 +4,8 @@ export const hotelsServices = {
     getAllHotel,
     getHotelById,
     seachHotels,
+    getAllRoomTypes,
+    getAmenities,
 };
 
 async function getAllHotel() {
@@ -29,6 +31,24 @@ async function getHotelById(id) {
 async function seachHotels(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/hotels/searchHotels`;
     return await axios.post(url, requestBody).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+async function getAllRoomTypes() {
+    const url = `${process.env.REACT_APP_API_URL}/roomtypes`;
+    return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+async function getAmenities() {
+    const url = `${process.env.REACT_APP_API_URL}/amenities`;
+    return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
