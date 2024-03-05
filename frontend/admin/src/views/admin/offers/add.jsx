@@ -11,9 +11,11 @@ import Swal from "sweetalert2";
 export default function AddOffer() {
   const [offerType, setOfferType] = useState('');
   const [offerCode, setOfferCode] = useState('');
+  const [offerAmount, setOfferAmount] = useState('');
 
   const [offerTypeError, setOfferTypeError] = useState('');
   const [offerCodeError, setOfferCodeError] = useState('');
+  const [offerAmountError, setOfferAmountError] = useState('');
 
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -29,10 +31,16 @@ export default function AddOffer() {
     setOfferCode(value);
   }
 
+  const handleOfferAmountChange = (event) => {
+    const value = event.target.value;
+    setOfferAmount(value);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setOfferTypeError('');
     setOfferCodeError('');
+    setOfferAmountError('');
     setError('');
     setSuccessful('');
 
@@ -44,10 +52,15 @@ export default function AddOffer() {
       setOfferCodeError("Please enter valid offer code.");
       return false;
     }
+    if (validation.isEmpty(offerAmount)) {
+      setOfferAmountError("Please enter valid offer amount.");
+      return false;
+    }
     setBtnDisabled(true);
     const requestBody = {
       offer_type: offerType,
       offer_code: offerCode,
+      offer_amount: offerAmount,
     };
     const result = await offersServices.addOffers(requestBody);
     if (result.isSuccessful) {
@@ -102,6 +115,19 @@ export default function AddOffer() {
             state={offerCodeError !== "" ? "error" : ""}
             errorMessage={offerCodeError !== "" ? offerCodeError : ""}
             value={offerCode}
+            maxLength={15}
+          />
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Offer Amount*"
+            placeholder="Offer Amount"
+            id="offerAmount"
+            type="text"
+            onChange={handleOfferAmountChange}
+            state={offerAmountError !== "" ? "error" : ""}
+            errorMessage={offerAmountError !== "" ? offerAmountError : ""}
+            value={offerAmount}
             maxLength={15}
           />
           {/* Checkbox */}

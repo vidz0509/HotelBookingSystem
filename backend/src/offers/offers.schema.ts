@@ -22,13 +22,15 @@ export class Offers {
   @Prop({ required: true })
   offer_amount: string;
 
-  @IsNotEmpty()
-  @Prop({ required: true })
+  // @IsNotEmpty()
+  @IsOptional()
+  @Prop()
+  // @Prop({ required: true })
   isOneTime: boolean;
 
   @IsOptional()
   @Prop()
-  expired_on : Date;
+  expired_on: Date;
 
   @Prop()
   createdAt: Date;

@@ -13,7 +13,8 @@ export class CreateOfferDto {
     @IsNotEmpty()
     readonly offer_amount: string;
 
-    @IsNotEmpty()
+    // @IsNotEmpty()
+    @IsOptional()
     readonly isOneTime: boolean;
 
     @IsOptional()

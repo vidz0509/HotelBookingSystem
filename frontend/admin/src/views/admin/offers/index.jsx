@@ -21,6 +21,10 @@ const Offers = () => {
       accessor: "offer_type",
     },
     {
+      Header: "Offer Amount",
+      accessor: "offer_amount",
+    },
+    {
       Header: "Status",
       accessor: "isActive",
     },
@@ -79,10 +83,10 @@ const Offers = () => {
     });
   };
 
-  const softDeleteCountry = (offerId) => {
+  const softDeleteOffers = (offerId) => {
     Swal.fire({
       icon: "warning",
-      title: "Delete Country",
+      title: "Delete Offers",
       text: "Are you sure you want to delete offer?",
       showCancelButton: true,
       confirmButtonText: "Confirm",
@@ -91,7 +95,7 @@ const Offers = () => {
       if (result.isConfirmed) {
         console.log(offerId);
         offersServices
-          .softDeleteCountry(offerId)
+          .softDeleteOffers(offerId)
           .then((result) => {
             if (result.isSuccessful) {
               Swal.fire({
@@ -129,7 +133,7 @@ const Offers = () => {
             columnsData={columnsDataComplex}
             tableData={offersData}
             element="offers"
-            deleteElement={softDeleteCountry}
+            deleteElement={softDeleteOffers}
             updateElement={updateStatus}
           />
           <Routes>
