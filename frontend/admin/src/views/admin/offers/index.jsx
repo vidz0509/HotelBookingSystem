@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { offersServices } from "services/offers";
 import { Link } from "react-router-dom";
-import AddCountry from "./add";
 import Swal from "sweetalert2";
 import Loader from "../loader";
+import AddOffer from "./add";
 
 const Offers = () => {
   const [offersData, setOffersData] = useState(null);
@@ -96,7 +96,7 @@ const Offers = () => {
             if (result.isSuccessful) {
               Swal.fire({
                 title: "Deleted",
-                text: "Country has been deleted successfully.",
+                text: "Offer has been deleted successfully.",
                 icon: "success",
                 allowOutsideClick: false
               });
@@ -122,7 +122,7 @@ const Offers = () => {
         <div className="list-table offers">
           <div className="add-row text-align-right mb-5 px-6">
             <Link to="add" className="btn btn-primary">
-              Add Country
+              Add Offers
             </Link>
           </div>
           <ComplexTable
@@ -133,7 +133,7 @@ const Offers = () => {
             updateElement={updateStatus}
           />
           <Routes>
-            <Route path="/add" element={<AddCountry />} />
+            <Route path="/add" element={<AddOffer />} />
           </Routes>
         </div>
       )}
