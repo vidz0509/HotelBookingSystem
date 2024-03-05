@@ -5,6 +5,7 @@ import { CreateHotelDto } from './dto/create.dto';
 import { Hotels } from './hotels.schema';
 import { UpdateHotelDto } from './dto/update.dto';
 import { SearchHotelDto } from './dto/search.dto';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class HotelsCollection {
@@ -79,8 +80,40 @@ export class HotelsCollection {
         ]);
     }
 
-    async getHotelById(id: string): Promise<Hotels> {
-        return this.hotelModel.findById(id);
+    async getHotelById(id: string): Promise<Hotels[]> {
+        return this.hotelModel.aggregate([
+            {
+                $match: {
+                    _id: new ObjectId(id), // Convert the string id to ObjectId
+                    isDeleted: false,
+                    isActive: true
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'roomtypes',
+                    let: { roomtypeId: { $toObjectId: "$roomtype_id" } }, // Convert country_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$roomtypeId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                roomtype_name : 1
+                            }
+                        }
+                    ],
+                    as: 'roomtype_details'
+                }
+            },
+        ]);
     }
 
     async createHotel(createHotelDto: CreateHotelDto) {
