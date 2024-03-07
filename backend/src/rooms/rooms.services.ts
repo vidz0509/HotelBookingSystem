@@ -61,6 +61,12 @@ export class RoomsService {
     return await this.roomCollection.sortedRooms(order);
   }
 
+  async getRoomByHotelId(hotel_id: string) {
+    const room = await this.roomCollection.getRoomByHotelId(hotel_id);
+    const response = await this.helper.buildResponse(true, null, room);
+    return response;
+  }
+
   async getRoomById(id: string) {
     const room = await this.roomCollection.getRoomById(id);
     const response = await this.helper.buildResponse(true, null, room);

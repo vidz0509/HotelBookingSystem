@@ -42,6 +42,11 @@ export class RoomsController {
         return await this.roomService.sortedRooms(order);
     }
 
+    @Get('RoomByHotel/:id')
+    async getRoomByHotelId(@Param('id') hotel_id: string) {
+        return this.roomService.getRoomByHotelId(hotel_id);
+    }
+
     @Get(':id')
     async getById(@Param('id') id: string) {
         return this.roomService.getRoomById(id);
