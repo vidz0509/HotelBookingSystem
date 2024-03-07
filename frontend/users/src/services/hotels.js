@@ -6,6 +6,7 @@ export const hotelsServices = {
     seachHotels,
     getAllRoomTypes,
     getAmenities,
+    HotelsCount,
 };
 
 async function getAllHotel() {
@@ -48,6 +49,15 @@ async function getAllRoomTypes() {
 }
 async function getAmenities() {
     const url = `${process.env.REACT_APP_API_URL}/amenities`;
+    return await axios.get(url).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+async function HotelsCount() {
+    const url = `${process.env.REACT_APP_API_URL}/hotels/count`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
