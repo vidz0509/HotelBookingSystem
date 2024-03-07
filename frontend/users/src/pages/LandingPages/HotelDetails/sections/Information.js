@@ -76,7 +76,7 @@ function Information() {
               description="Website visitors today demand a frictionless user expericence — especially when using search. Because of the hight standards."
               action={{
                 type: "internal",
-                route: "pages/company/about-us",
+                route: "hotels?country_id=65b1f282bf71a7a0133e47a3",
                 color: "info",
                 label: "find out more",
               }}
