@@ -79,29 +79,31 @@ function HotelDetail() {
       <Container sx={{ mt: 2 }} className='main-container account-container'>
         <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left">
           <MKBox display="flex" flexDirection="column" justifyContent="center">
-            <MKTypography variant="button h5" color="text" mb={2} >
-              Hotel Image
-            </MKTypography>
-            <Grid>
-              {hotelData?.hotel_image && (
-                <div className="hotel-imgs mb-3 flex">
-                  {Array.isArray(hotelData?.hotel_image) ? (
-                    hotelData?.hotel_image.map((img, index) => (
-                      <img
-                        src={img}
-                        alt={hotelName}
-                        key={`img_${index}`}
-                        className="hotelImg mx-2 my-2"
-                      />
-                    ))
-                  ) : (
-                    <>
-                      <img src={hotelData?.hotel_image} alt={hotelName} />
-                    </>
-                  )}
-                </div>
-              )}
-            </Grid>
+            <div className="hotel-images">
+              <MKTypography variant="button h5" color="text" mb={2} >
+                Hotel Image
+              </MKTypography>
+              <Grid>
+                {hotelData?.hotel_image && (
+                  <div className="hotel-imgs mb-3 flex">
+                    {Array.isArray(hotelData?.hotel_image) ? (
+                      hotelData?.hotel_image.map((img, index) => (
+                        <img
+                          src={img}
+                          alt={hotelName}
+                          key={`img_${index}`}
+                          className="hotelImg mx-2 my-2"
+                        />
+                      ))
+                    ) : (
+                      <>
+                        <img src={hotelData?.hotel_image} alt={hotelName} />
+                      </>
+                    )}
+                  </div>
+                )}
+              </Grid>
+            </div>
             <MKTypography variant="button h5" color="text" mb={2} >
               Hotel Name
             </MKTypography>
