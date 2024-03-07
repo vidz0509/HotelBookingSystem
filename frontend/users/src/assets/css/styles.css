@@ -344,15 +344,16 @@ button.react-calendar__navigation__arrow {
     opacity: 0.8;
 }
 
-.location-slider .slick-slider{
+.location-slider .slick-slider {
     height: 400px;
 }
 
-.hotel-main-container .slick-slider{
+.hotel-main-container .slick-slider {
     height: 450px;
 }
 
-.location-slider .slick-initialized .slick-slide, .hotel-main-container .slick-initialized .slick-slide {
+.location-slider .slick-initialized .slick-slide,
+.hotel-main-container .slick-initialized .slick-slide {
     margin: 5px 10px;
 }
 
@@ -434,7 +435,8 @@ iframe {
     max-width: 200px;
 }
 
-.account-content, .hotel-main-container {
+.account-content,
+.hotel-main-container {
     margin-right: 24px;
     margin-left: 0px !important;
     padding: 30px 15px;
@@ -450,11 +452,12 @@ iframe {
     cursor: pointer;
 }
 
-.header-link{
+.header-link {
     opacity: 1 !important;
 }
 
-.account-content .account-link.active, .header-link .active {
+.account-content .account-link.active,
+.header-link .active {
     color: #912A90;
     font-weight: 700;
 }
@@ -471,7 +474,7 @@ img.user-profile {
     width: 40px;
 }
 
-.hotel-img img{
+.hotel-img img {
     border-radius: 10px;
     overflow: hidden;
     height: 400px;
@@ -539,4 +542,25 @@ img.user-profile {
 
 .filter-options .option-row:last-of-type {
     border: none;
+}
+
+.room-item-wrap .room-head {
+    padding: 20px;
+    cursor: pointer;
+    background-color: #6A196F;
+    margin: 10px auto;
+}
+
+.room-image img {
+    width: 100%;
+}
+
+.room-result>div {
+    padding-top: 0 !important;
+}
+
+.room-item-wrap {
+    box-shadow: 0.2px 7px 35px 0 rgb(0 0 0 / 7%);
+    background-color: #fff;
+    margin-bottom: 20px
 }

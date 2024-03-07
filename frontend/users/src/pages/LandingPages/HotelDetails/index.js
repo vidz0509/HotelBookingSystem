@@ -110,9 +110,36 @@ function HotelDetail() {
               </Slider>
             )}
           </Grid>
-          <MKBox className='room-details' sx={{ mt: 9, mb: 9 }} px={3}>
-          </MKBox>
-          <Grid container spacing={1}  sx={{ mt: 9, mb: 9 }} px={3}>
+          {roomsData && roomsData.length > 0 &&
+            <MKBox className='room-details' sx={{ mt: 9, mb: 9 }}>
+              {
+                roomsData.map((room, index) => (
+                  <>
+                    <div className="room-item-wrap" key={`room-${index}`}>
+                      <div className="room-head">
+                        <MKTypography variant="h4" color="white">
+                          {room.roomTypes_details[0].roomtype_name}
+                        </MKTypography>
+                      </div>
+                      <div className="item-content">
+                        <Grid container spacing={2} className="room-result">
+                          <Grid item md={3} className="room-left" mt={2}>
+                            <div className="room-image">
+                              <img src={room.room_image} />
+                            </div>
+                          </Grid>
+                          <Grid item md={9} className="room-right" mt={2}>
+                      
+                          </Grid>
+                        </Grid>
+                      </div>
+                    </div>
+                  </>
+                ))
+              }
+            </MKBox>
+          }
+          <Grid container spacing={1} sx={{ mt: 9, mb: 9 }} px={3}>
             <MKBox>
               <MKTypography variant="h3" fontWeight="bold">
                 What is this place offers
