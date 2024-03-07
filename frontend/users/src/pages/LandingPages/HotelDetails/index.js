@@ -119,7 +119,8 @@ function HotelDetail() {
             {totalrooms}
           </MKBox>
 
-          <Grid item md={5} className="account-col">
+
+          <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6 }} justifyContent="left">
             <MKTypography variant="h3" fontWeight="bold">
               What is this place offers
             </MKTypography>
@@ -128,7 +129,6 @@ function HotelDetail() {
           <Grid container spacing={1}>
             {renderData}
           </Grid>
-
         </Grid>
       </Container >
 
