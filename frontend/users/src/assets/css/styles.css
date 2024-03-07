@@ -344,11 +344,15 @@ button.react-calendar__navigation__arrow {
     opacity: 0.8;
 }
 
-.location-slider .slick-slider {
+.location-slider .slick-slider{
     height: 400px;
 }
 
-.location-slider .slick-initialized .slick-slide {
+.hotel-main-container .slick-slider{
+    height: 450px;
+}
+
+.location-slider .slick-initialized .slick-slide, .hotel-main-container .slick-initialized .slick-slide {
     margin: 5px 10px;
 }
 
@@ -430,7 +434,7 @@ iframe {
     max-width: 200px;
 }
 
-.account-content {
+.account-content, .hotel-main-container {
     margin-right: 24px;
     margin-left: 0px !important;
     padding: 30px 15px;
@@ -465,6 +469,14 @@ img.user-profile {
     border-radius: 50%;
     height: 40px;
     width: 40px;
+}
+
+.hotel-img img{
+    border-radius: 10px;
+    overflow: hidden;
+    height: 400px;
+    width: 600px;
+    object-fit: cover;
 }
 
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
