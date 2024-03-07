@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { CreateRoomDto } from './dto/create.dto';
 import { Rooms } from './rooms.schema';
 import { UpdateRoomDto } from './dto/update.dto';
+import { Hotels } from 'src/hotels/hotels.schema';
 
 @Injectable()
 export class RoomsCollection {
@@ -77,6 +78,61 @@ export class RoomsCollection {
         ]);
     }
 
+    async getRoomByHotelId(hotel_id: string): Promise<Hotels[]> {
+        return this.roomModel.aggregate([
+            {
+                $match: {
+                    hotel_id : hotel_id,
+                    isDeleted: false
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'hotels',
+                    let: { hotelId: { $toObjectId: "$hotel_id" } }, // Convert hotel_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$hotelId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                hotel_code: 1,
+                                hotel_name: 1
+                            }
+                        }
+                    ],
+                    as: 'hotel_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'roomtypes',
+                    let: { roomTypesId: { $toObjectId: "$room_type_id" } }, // Convert roomType_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$roomTypesId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                roomtype_name: 1
+                            }
+                        }
+                    ],
+                    as: 'roomTypes_details'
+                }
+            },
+        ]);
+    }
+
     async getRoomById(id: string): Promise<Rooms> {
         return this.roomModel.findById(id);
     }
@@ -107,8 +163,8 @@ export class RoomsCollection {
         return await this.roomModel.findByIdAndUpdate(
             RoomID,
             updateRoomDto,
-            { 
-                new: true 
+            {
+                new: true
             },
         );
     }
