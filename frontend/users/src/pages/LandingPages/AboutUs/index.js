@@ -130,8 +130,8 @@ function AboutUs() {
       >
         <Counters />
         <Information />
-        <Team />
         <Featuring />
+        <Team />
         <Newsletter />
       </Card>
       <MKBox pt={6} px={1} mt={6}>
