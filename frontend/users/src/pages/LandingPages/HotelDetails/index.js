@@ -79,10 +79,10 @@ function HotelDetail() {
       <Container sx={{ mt: 2 }} className='main-container account-container'>
         <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left">
           <MKBox display="flex" flexDirection="column" justifyContent="center">
-            <div className="hotel-images">
-              <MKTypography variant="button h5" color="text" mb={2} >
+            <MKBox className="hotel-images">
+              {/* <MKTypography variant="button h5" color="text" mb={2} >
                 Hotel Image
-              </MKTypography>
+              </MKTypography> */}
               <Grid>
                 {hotelData?.hotel_image && (
                   <div className="hotel-imgs mb-3 flex">
@@ -102,35 +102,45 @@ function HotelDetail() {
                     )}
                   </div>
                 )}
+
               </Grid>
-            </div>
+            </MKBox>
+            <MKBox>
             <MKTypography variant="button h5" color="text" mb={2} >
-              Hotel Name
+              Hotel Name:
             </MKTypography>
             {hotelName}
+            </MKBox>
+            <MKBox>
             <MKTypography variant="button h5" color="text" mb={2} >
-              Room Types
+              Room Types:
             </MKTypography>
+            </MKBox>
+            <MKBox>
             <MKTypography variant="button h5" color="text" mb={2} >
-              Hotel Address
+              Hotel Address: 
             </MKTypography>
             {hotelAddress}
+            </MKBox>
+            <MKBox>
             <MKTypography variant="button h5" color="text" mb={2} >
-              Total Rooms
+              Total Rooms:
             </MKTypography>
             {totalrooms}
+            </MKBox>
           </MKBox>
-
-
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6 }} justifyContent="left">
+            <MKBox>
             <MKTypography variant="h3" fontWeight="bold">
               What is this place offers
             </MKTypography>
+            </MKBox>
           </Grid>
-
+        <MKBox>
           <Grid container spacing={1}>
-            {renderData}
+            {renderData}  
           </Grid>
+          </MKBox>
         </Grid>
       </Container >
 
