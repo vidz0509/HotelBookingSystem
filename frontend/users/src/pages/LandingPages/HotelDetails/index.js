@@ -111,14 +111,18 @@ function HotelDetail() {
                 }
               </Slider>
             )}
-          </Grid>
+            </Grid>
+          
+
           {roomsData && roomsData.length > 0 &&
             <MKBox className='room-details' sx={{ mt: 9, mb: 9 }}>
+               
               {
                 roomsData.map((room, index) => (
                   <>
                     <div className="room-item-wrap" key={`room-${index}`}>
                       <div className={`room-head ${isDropdownOpen ? 'show-popup' : ''}`}>
+                      
 
                         <MKTypography variant="h4" color="white">
                           {room.roomTypes_details[0].roomtype_name}
@@ -132,6 +136,28 @@ function HotelDetail() {
                             </div>
                           </Grid>
                           <Grid item md={9} className="room-right" mt={2}>
+                          <MKTypography variant="h4" color="text">
+                          Roomtype_name:
+                          {room.roomTypes_details[0].roomtype_name}
+                        </MKTypography>
+                        <MKTypography variant="h4" color="text">
+                        Max_adults
+                          {room.roomTypes_details[0].max_adults}
+                        </MKTypography>
+                        <MKTypography variant="h4" color="text">
+                        Max_children:
+                          {room.roomTypes_details[0].max_children}
+                        </MKTypography>
+                        <MKTypography variant="h4" color="text">
+                          Price:
+                         {room.price}
+                        </MKTypography>
+                        <select name="Rooms" id="Rooms">
+            <option  value={room.price*1}>Room1-{room.price*1}</option>
+            <option value={room.price*2}>Room2-{room.price*2}</option>
+             <option value={room.price*3}>Room3-{room.price*3}</option>
+            
+            </select>
                           </Grid>
                         </Grid>
                       </div>
@@ -149,7 +175,7 @@ function HotelDetail() {
               </MKTypography>
             </MKBox>
           </Grid>
-
+               
           <Grid container spacing={1} sx={{ mt: 1, mb: 9 }} px={3}>
             {renderData}
           </Grid>
