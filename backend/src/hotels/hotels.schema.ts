@@ -14,6 +14,15 @@ export class Hotels {
 
   @Prop()
   country_id: string;
+  
+  @Prop()
+  roomTypes: string[];
+  
+  @Prop()
+  amenities: string[];
+
+  @Prop()
+  amenities_id: string;
 
   @IsNotEmpty()
   @Prop({ required: true })

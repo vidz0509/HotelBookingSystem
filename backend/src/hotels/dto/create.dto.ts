@@ -3,11 +3,11 @@ export class CreateHotelDto {
 
     @IsString()
     @IsNotEmpty()
-    readonly location_id: string;
+    readonly country_id: string;
 
     @IsString()
     @IsNotEmpty()
-    readonly country_id: string;
+    readonly location_id: string;
 
     @IsString()
     @IsNotEmpty()
@@ -19,12 +19,12 @@ export class CreateHotelDto {
 
     @IsNotEmpty()
     readonly total_rooms: number;
-    
+
     @IsString()
     @IsNotEmpty()
     readonly hotel_address: string;
 
     readonly average_rating: string;
-  
+
     readonly hotel_image: string[];
 }

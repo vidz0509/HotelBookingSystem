@@ -2,12 +2,18 @@ import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength, IsEmail, IsOption
 export class SearchHotelDto {
 
     @IsString()
+    @IsNotEmpty()
+    readonly country_id: string;
+
+    @IsString()
     @IsOptional()
     readonly location_id: string;
 
-    @IsString()
-    @IsNotEmpty()
-    readonly country_id: string;
+    @IsOptional()
+    readonly roomTypes: string[];
+
+    @IsOptional()
+    readonly amenities: string[];
 
     @IsOptional()
     readonly check_in: Date;
@@ -28,6 +34,6 @@ export class SearchHotelDto {
     readonly children: number;
 
     @IsOptional()
-    readonly room_details : any[];
+    readonly room_details: any[];
 
 }

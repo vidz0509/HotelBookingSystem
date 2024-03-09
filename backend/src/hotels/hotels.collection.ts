@@ -153,13 +153,17 @@ export class HotelsCollection {
     }
 
     async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {
+        console.log(searchHotelDto)
         return await this.hotelModel.aggregate([
             {
                 $match: {
                     isDeleted: false,
                     country_id: searchHotelDto.country_id,
                     location_id: searchHotelDto.location_id,
-                    isActive: true
+                    // roomTypes: searchHotelDto.roomTypes,
+                    isActive: true,
+                    roomTypes: { $in: searchHotelDto.roomTypes },
+                    amenities: { $in: searchHotelDto.amenities }
                 }
             },
             {
