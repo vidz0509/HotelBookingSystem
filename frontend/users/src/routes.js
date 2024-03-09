@@ -9,6 +9,7 @@ import ChnagePasswordBasic from "pages/LandingPages/ChangePassword";
 import Account from "pages/LandingPages/Account";
 import { authServices } from './services/auth';
 import Hotels from "pages/LandingPages/Hotels";
+import Bookings from "pages/LandingPages/Bookings";
 
 const routes = [
   {
@@ -29,6 +30,12 @@ const routes = [
     component: <HotelDetail />,
     addInMenu: false,
     secondary: true,
+  },
+  {
+    name: "Bookings",
+    route: "/bookings",
+    component: <Bookings />,
+    addInMenu: true,
   },
   {
     name: "About Us",

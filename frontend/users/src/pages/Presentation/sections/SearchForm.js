@@ -264,6 +264,7 @@ function SearchForm(props) {
                     <div className="col">
                         <div className="field-group">
                             <label>Room</label>
+                            
                             <input type="text" onClick={handleInputClick} onChange={handleInputClick} id="room" value={roomString} />
                             <div className={`dropdown room-input ${isDropdownOpen ? 'show-popup' : ''}`}>
                                 <div className='room-list'>
@@ -309,6 +310,7 @@ function SearchForm(props) {
                                     <button className='done-btn' type="button" onClick={handleDoneBtnClick}>Done</button>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                     <div className="col btn-col">

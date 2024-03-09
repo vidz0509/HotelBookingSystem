@@ -26,6 +26,8 @@ function HotelDetail() {
   const [roomsData, setRoomsData] = useState(null);
   const [totalrooms, setTotalRooms] = useState(0);
   const [amenitiesData, setAmenitiesData] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   useEffect(() => {
     getAmenities();
   }, []);
@@ -116,7 +118,8 @@ function HotelDetail() {
                 roomsData.map((room, index) => (
                   <>
                     <div className="room-item-wrap" key={`room-${index}`}>
-                      <div className="room-head">
+                      <div className={`room-head ${isDropdownOpen ? 'show-popup' : ''}`}>
+
                         <MKTypography variant="h4" color="white">
                           {room.roomTypes_details[0].roomtype_name}
                         </MKTypography>
@@ -129,7 +132,6 @@ function HotelDetail() {
                             </div>
                           </Grid>
                           <Grid item md={9} className="room-right" mt={2}>
-                      
                           </Grid>
                         </Grid>
                       </div>
@@ -139,16 +141,24 @@ function HotelDetail() {
               }
             </MKBox>
           }
-          <Grid container spacing={1} sx={{ mt: 9, mb: 9 }} px={3}>
+
+          <Grid container spacing={1} sx={{ mt: 9, mb: 4 }} px={3}>
             <MKBox>
               <MKTypography variant="h3" fontWeight="bold">
                 What is this place offers
               </MKTypography>
             </MKBox>
+          </Grid>
+
+          <Grid container spacing={1} sx={{ mt: 1, mb: 9 }} px={3}>
             {renderData}
           </Grid>
+
+
+
         </Container>
       </MKBox>
+
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
