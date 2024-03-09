@@ -26,7 +26,12 @@ function HotelDetail() {
   const [roomsData, setRoomsData] = useState(null);
   const [totalrooms, setTotalRooms] = useState(0);
   const [amenitiesData, setAmenitiesData] = useState(null);
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [accordionIndex, setAccordionIndex] = useState(0);
+
+  const handleToggle = (index) => {
+    setAccordionIndex(index)
+  }
+
 
   useEffect(() => {
     getAmenities();
@@ -111,56 +116,62 @@ function HotelDetail() {
                 }
               </Slider>
             )}
-            </Grid>
-          
+          </Grid>
+
 
           {roomsData && roomsData.length > 0 &&
             <MKBox className='room-details' sx={{ mt: 9, mb: 9 }}>
-               
+
               {
                 roomsData.map((room, index) => (
                   <>
-                    <div className="room-item-wrap" key={`room-${index}`}>
-                      <div className={`room-head ${isDropdownOpen ? 'show-popup' : ''}`}>
-                      
+                    <div className="room-item-wrap" onClick={(e) => {
+                      setAccordionIndex(index)
+                    }} key={`room-${index}`}>
+                      <div className="room-head">
 
                         <MKTypography variant="h4" color="white">
                           {room.roomTypes_details[0].roomtype_name}
                         </MKTypography>
                       </div>
-                      <div className="item-content">
-                        <Grid container spacing={2} className="room-result">
-                          <Grid item md={3} className="room-left" mt={2}>
-                            <div className="room-image">
-                              <img src={room.room_image} />
-                            </div>
+                      {accordionIndex === index && <>
+                        <div className="item-content">
+                          <Grid container spacing={2} className="room-result">
+                            <Grid item md={3} className="room-left" mt={2}>
+                              <div className="room-image">
+                                <img src={room.room_image} />
+                              </div>
+                            </Grid>
+                            <Grid item md={9} className="room-right" mt={2}>
+                              <MKBox>
+                                <MKTypography variant="h4" color="text">
+                                  Roomtype_name:
+                                  {room.roomTypes_details[0].roomtype_name}
+                                </MKTypography>
+                              </MKBox>
+                              <MKTypography variant="h4" color="text">
+                                Max_adults
+                                {room.roomTypes_details[0].max_adults}
+                              </MKTypography>
+                              <MKTypography variant="h4" color="text">
+                                Max_children:
+                                {room.roomTypes_details[0].max_children}
+                              </MKTypography>
+                              <MKTypography variant="h4" color="text">
+                                Price:
+                                {room.price}
+                              </MKTypography>
+                              <select name="Rooms" id="Rooms">
+                                <option value={room.price * 1}>Room1-{room.price * 1}</option>
+                                <option value={room.price * 2}>Room2-{room.price * 2}</option>
+                                <option value={room.price * 3}>Room3-{room.price * 3}</option>
+
+                              </select>
+                            </Grid>
                           </Grid>
-                          <Grid item md={9} className="room-right" mt={2}>
-                          <MKTypography variant="h4" color="text">
-                          Roomtype_name:
-                          {room.roomTypes_details[0].roomtype_name}
-                        </MKTypography>
-                        <MKTypography variant="h4" color="text">
-                        Max_adults
-                          {room.roomTypes_details[0].max_adults}
-                        </MKTypography>
-                        <MKTypography variant="h4" color="text">
-                        Max_children:
-                          {room.roomTypes_details[0].max_children}
-                        </MKTypography>
-                        <MKTypography variant="h4" color="text">
-                          Price:
-                         {room.price}
-                        </MKTypography>
-                        <select name="Rooms" id="Rooms">
-            <option  value={room.price*1}>Room1-{room.price*1}</option>
-            <option value={room.price*2}>Room2-{room.price*2}</option>
-             <option value={room.price*3}>Room3-{room.price*3}</option>
-            
-            </select>
-                          </Grid>
-                        </Grid>
-                      </div>
+                        </div>
+                      </>}
+
                     </div>
                   </>
                 ))
@@ -175,7 +186,7 @@ function HotelDetail() {
               </MKTypography>
             </MKBox>
           </Grid>
-               
+
           <Grid container spacing={1} sx={{ mt: 1, mb: 9 }} px={3}>
             {renderData}
           </Grid>
