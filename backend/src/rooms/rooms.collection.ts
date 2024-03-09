@@ -123,7 +123,9 @@ export class RoomsCollection {
                         },
                         {
                             $project: {
-                                roomtype_name: 1
+                                roomtype_name: 1,
+                                max_adults: 1,
+                                max_children: 1
                             }
                         }
                     ],
