@@ -25,7 +25,7 @@ import MKTypography from "components/MKTypography";
 
 function DefaultInfoCard({ color, icon, title, description, direction, small }) {
   return (
-    <MKBox lineHeight={1} p={direction === "center" ? 2 : 0} textAlign={direction}>
+    <MKBox lineHeight={1} p={direction === "center" ? 2 : 0} textAlign={direction} className="amenities-box">
       {typeof icon === "string" ? (
         <MKTypography
           display="block"
@@ -64,7 +64,7 @@ function DefaultInfoCard({ color, icon, title, description, direction, small }) 
 // Setting default props for the DefaultInfoCard
 DefaultInfoCard.defaultProps = {
   color: "info",
-  direction: "left",
+  direction: "center",
   small: false,
 };
 

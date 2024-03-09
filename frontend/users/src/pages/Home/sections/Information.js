@@ -23,7 +23,7 @@ function Information() {
 
   const renderData = amenitiesData && amenitiesData?.map((amenities) => (
     <Grid item xs={12} md={2} key={amenities._id}>
-      <DefaultInfoCard title={amenities.amenities_name} icon={amenities.amenities_icon ? amenities.amenities_icon : "sports_gymnastics"} />
+      <DefaultInfoCard title={amenities.amenities_name} icon={amenities.amenities_icon ? amenities.amenities_icon : "sports_gymnastics"} textAlign="center" />
     </Grid>
   ));
 

@@ -179,9 +179,9 @@ function HotelDetail() {
             </MKBox>
           }
 
-          <Grid container spacing={1} sx={{ mt: 9, mb: 4 }} px={3}>
+          <Grid container spacing={1} sx={{ mt: 9, mb: 4 }} px={3} justifyContent={"center"}>
             <MKBox>
-              <MKTypography variant="h3" fontWeight="bold">
+              <MKTypography variant="h3" fontWeight="bold" >
                 What is this place offers
               </MKTypography>
             </MKBox>

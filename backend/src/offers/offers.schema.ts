@@ -22,11 +22,9 @@ export class Offers {
   @Prop({ required: true })
   offer_amount: string;
 
-  // @IsNotEmpty()
-  @IsOptional()
-  @Prop()
-  // @Prop({ required: true })
-  isOneTime: boolean;
+  @IsNotEmpty()
+  @Prop({ required: true })
+  isOneTime: string;
 
   @IsOptional()
   @Prop()

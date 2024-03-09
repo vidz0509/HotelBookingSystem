@@ -6,17 +6,22 @@ import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 // import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
+import Checkbox from "components/checkbox";
 
 
 export default function AddOffer() {
   const [offerType, setOfferType] = useState('');
   const [offerCode, setOfferCode] = useState('');
   const [offerAmount, setOfferAmount] = useState('');
+  const [isOneTime, setIsOneTime] = useState('');
+  const [expiredOn, setExpiredOn] = useState('');
 
   const [offerTypeError, setOfferTypeError] = useState('');
   const [offerCodeError, setOfferCodeError] = useState('');
   const [offerAmountError, setOfferAmountError] = useState('');
-
+  const [isOneTimeError, setIsOneTimeError] = useState('');
+  const [expiredOnError, setExpiredOnError] = useState('');
+  
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -36,11 +41,23 @@ export default function AddOffer() {
     setOfferAmount(value);
   }
 
+  const handleIsOneTimeChange = async (event) => {
+    const value = event.target.value;
+    setIsOneTime(value);
+  }
+
+  const handleExpiredOnChange = async (event) => {
+    const value = event.target.value;
+    setExpiredOn(value);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setOfferTypeError('');
     setOfferCodeError('');
     setOfferAmountError('');
+    setIsOneTimeError('');
+    setExpiredOnError('');
     setError('');
     setSuccessful('');
 
@@ -56,11 +73,22 @@ export default function AddOffer() {
       setOfferAmountError("Please enter valid offer amount.");
       return false;
     }
+    if (validation.isEmpty(isOneTime)) {
+      setIsOneTimeError("Please enter valid is one time.");
+      return false;
+    }
+    if (validation.isEmpty(expiredOn)) {
+      setExpiredOnError("Please enter valid is expired on.");
+      return false;
+    }
+
     setBtnDisabled(true);
     const requestBody = {
       offer_type: offerType,
       offer_code: offerCode,
       offer_amount: offerAmount,
+      isOneTime: isOneTime,
+      expiredOn: expiredOn,
     };
     const result = await offersServices.addOffers(requestBody);
     if (result.isSuccessful) {
@@ -129,6 +157,31 @@ export default function AddOffer() {
             errorMessage={offerAmountError !== "" ? offerAmountError : ""}
             value={offerAmount}
             maxLength={15}
+          />
+          <label className="text-sm text-navy-700 dark:text-white ml-1.5 font-medium check-label">
+            <Checkbox
+              variant="auth"
+              extra="mb-3"
+              type="checkbox"
+              id="isOneTime"
+              value="yes"
+              onChange={handleIsOneTimeChange}
+              state={isOneTimeError !== "" ? "error" : ""}
+              errorMessage={isOneTimeError !== "" ? isOneTimeError : ""}
+            />
+            <span>isOneTime*</span>
+          </label>
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Expired On*"
+            placeholder="Expired On"
+            id="expiredOn"
+            type="date"
+            onChange={handleExpiredOnChange}
+            state={expiredOnError !== "" ? "error" : ""}
+            errorMessage={expiredOnError !== "" ? expiredOnError : ""}
+            value={expiredOn}
           />
           {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">

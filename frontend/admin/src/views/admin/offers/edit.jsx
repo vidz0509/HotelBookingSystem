@@ -5,6 +5,7 @@ import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 import { useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
+import Checkbox from "components/checkbox";
 
 
 export default function EditOffers() {
@@ -15,6 +16,8 @@ export default function EditOffers() {
   const [offerType, setOfferType] = useState('');
   const [offerCode, setOfferCode] = useState('');
   const [offerAmount, setOfferAmount] = useState('');
+  const [isOneTime, setIsOneTime] = useState('');
+  const [expiredOn, setExpiredOn] = useState('');
 
   const [offerTypeError, setOfferTypeError] = useState('');
   const [offerCodeError, setOfferCodeError] = useState('');
@@ -35,6 +38,8 @@ export default function EditOffers() {
       setOfferCode(result.data?.offer_code);
       setOfferType(result.data?.offer_type);
       setOfferAmount(result.data?.offer_amount);
+      setIsOneTime(result.data?.isOneTime);
+      setExpiredOn(result.data?.expired_on);
     }
   }
 
@@ -53,6 +58,16 @@ export default function EditOffers() {
     setOfferAmount(value);
   }
 
+  const handleIsOneTimeChange = async (event) => {
+    const value = event.target.value;
+    setIsOneTime(value);
+  }
+
+  const handleExpiredOnChange = async (event) => {
+    const value = event.target.value;
+    setExpiredOn(value);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setOfferTypeError('');
@@ -60,6 +75,7 @@ export default function EditOffers() {
     setOfferAmountError('');
     setError('');
     setSuccessful('');
+
     if (validation.isEmpty(offerType)) {
       setOfferTypeError("Please enter valid offer type.");
       return false;
@@ -72,11 +88,14 @@ export default function EditOffers() {
       setOfferAmountError("Please enter valid offer amount.");
       return false;
     }
+
     setBtnDisabled(true);
     const requestBody = {
       offer_type: offerType,
       offer_code: offerCode,
       offer_amount: offerAmount,
+      isOneTime: isOneTime,
+      expired_on: expiredOn,
     };
     const result = await offersServices.editOffers(offerId, requestBody);
     if (result.isSuccessful) {
@@ -144,6 +163,27 @@ export default function EditOffers() {
             errorMessage={offerAmountError !== "" ? offerAmountError : ""}
             value={offerAmount}
             maxLength={15}
+          />
+          <label className="text-sm text-navy-700 dark:text-white ml-1.5 font-medium check-label">
+            <Checkbox
+              variant="auth"
+              extra="mb-3"
+              type="checkbox"
+              id="isOneTime"
+              value="yes"
+              onChange={handleIsOneTimeChange}
+            />
+            <span>isOneTime*</span>
+          </label>
+          <InputField
+            variant="auth"
+            extra="mb-3"
+            label="Expired On*"
+            placeholder="Expired On"
+            id="expiredOn"
+            type="date"
+            onChange={handleExpiredOnChange}
+            value={`${(new Date(expiredOn).getFullYear())}-${(new Date(expiredOn).getMonth() + 1) < 10 ? '0' : ''}${(new Date(expiredOn).getMonth() + 1)}-${(new Date(expiredOn).getDate())}`}
           />
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center">
