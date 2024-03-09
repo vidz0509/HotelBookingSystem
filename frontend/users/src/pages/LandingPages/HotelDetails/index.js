@@ -149,18 +149,24 @@ function HotelDetail() {
                                   {room.roomTypes_details[0].roomtype_name}
                                 </MKTypography>
                               </MKBox>
+                              <MKBox>
                               <MKTypography variant="h4" color="text">
                                 Max_adults
                                 {room.roomTypes_details[0].max_adults}
                               </MKTypography>
+                              </MKBox>
+                              <MKBox>
                               <MKTypography variant="h4" color="text">
                                 Max_children:
                                 {room.roomTypes_details[0].max_children}
                               </MKTypography>
+                              </MKBox>
+                              <MKBox>
                               <MKTypography variant="h4" color="text">
                                 Price:
                                 {room.price}
                               </MKTypography>
+                              </MKBox>
                               <select name="Rooms" id="Rooms">
                                 <option value={room.price * 1}>Room1-{room.price * 1}</option>
                                 <option value={room.price * 2}>Room2-{room.price * 2}</option>
