@@ -482,6 +482,10 @@ img.user-profile {
     object-fit: cover;
 }
 
+.hotel-imgs .slick-list{
+    height: 520px;
+}
+
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
     input[type=checkbox]:after {
         content: "";
