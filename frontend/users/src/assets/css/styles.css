@@ -131,7 +131,8 @@ div:where(.swal2-icon).swal2-warning {
 }
 
 .field-group input:not(.react-date-picker__wrapper input),
-.field-group select, .room-right select {
+.field-group select,
+.room-right select {
     border-bottom: 2px solid #932595;
     height: 33px;
 }
@@ -483,7 +484,7 @@ img.user-profile {
     object-fit: cover;
 }
 
-.hotel-imgs .slick-list{
+.hotel-imgs .slick-list {
     height: 520px;
 }
 
@@ -497,7 +498,7 @@ img.user-profile {
         position: absolute;
         width: 7px;
         height: 13px;
-        border: 3px solid var(--form--color-text);
+        border: 3px solid #932595;
         border-top: 0;
         border-left: 0;
         transform: rotate(30deg);
@@ -518,6 +519,12 @@ img.user-profile {
         background: #fff;
     }
 
+}
+
+@supports (-webkit-appearance: none) or (-moz-appearance: none) {
+    input[type=checkbox]:checked:after {
+        opacity: 1;
+    }
 }
 
 .filter-wrapper {
