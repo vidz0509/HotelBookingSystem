@@ -24,14 +24,8 @@ function HotelDetail() {
   const [isLoading, setLoading] = useState(true);
   const [hotelData, setHotelData] = useState(null);
   const [roomsData, setRoomsData] = useState(null);
-  const [totalrooms, setTotalRooms] = useState(0);
   const [amenitiesData, setAmenitiesData] = useState(null);
   const [accordionIndex, setAccordionIndex] = useState(0);
-
-  const handleToggle = (index) => {
-    setAccordionIndex(index)
-  }
-
 
   useEffect(() => {
     getAmenities();
@@ -60,7 +54,6 @@ function HotelDetail() {
       setHotelData(result.data);
       setHotelName(result.data?.hotel_name);
       setHotelAddress(result.data?.hotel_address);
-      setTotalRooms(result.data?.total_rooms);
     }
   };
 
@@ -77,8 +70,7 @@ function HotelDetail() {
     speed: 500,
     slidesToShow: 2,
     slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 1000,
+    autoplay: true,
   };
   return (
     <>
