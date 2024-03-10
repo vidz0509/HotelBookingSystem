@@ -2,7 +2,7 @@ import { IsNotEmpty, IsNumber, IsString, MaxLength, MinLength, IsEmail, IsOption
 export class SearchHotelDto {
 
     @IsString()
-    @IsNotEmpty()
+    @IsOptional()
     readonly country_id: string;
 
     @IsString()

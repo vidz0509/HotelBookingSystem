@@ -132,7 +132,7 @@ function HotelsList(props) {
                         {hotel.hotel_name}
                       </MKTypography>
                       <MKTypography variant="p" className="hotel-location">
-                        {hotel.location_details[0].location_name}
+                        {hotel.location_details[0]?.location_name}
                       </MKTypography>
 
                     </MKBox>
