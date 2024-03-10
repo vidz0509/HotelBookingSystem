@@ -152,19 +152,23 @@ export class HotelsCollection {
         );
     }
 
-    async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {
-        console.log(searchHotelDto)
+    async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {        
+        let searchArr: any = {
+            isDeleted: false,
+            isActive: true,
+        };
+        if (searchHotelDto.country_id)
+            searchArr.country_id = searchHotelDto.country_id;
+        if (searchHotelDto.location_id)
+            searchArr.location_id = searchHotelDto.location_id;
+        if (searchHotelDto.roomTypes)
+            searchArr.roomTypes = { $in: searchHotelDto.roomTypes };
+        if (searchHotelDto.amenities)
+            searchArr.amenities = { $in: searchHotelDto.amenities };
+        console.log(searchArr);
         return await this.hotelModel.aggregate([
             {
-                $match: {
-                    isDeleted: false,
-                    country_id: searchHotelDto.country_id,
-                    location_id: searchHotelDto.location_id,
-                    // roomTypes: searchHotelDto.roomTypes,
-                    isActive: true,
-                    roomTypes: { $in: searchHotelDto.roomTypes },
-                    amenities: { $in: searchHotelDto.amenities }
-                }
+                $match: searchArr
             },
             {
                 $sort: {
