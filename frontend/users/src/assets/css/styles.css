@@ -528,6 +528,7 @@ img.user-profile {
 
 .hotels-wrapper {
     width: 70%;
+    height: fit-content;
 }
 
 .filter-wrapper .filter-head {
