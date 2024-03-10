@@ -120,7 +120,8 @@ div:where(.swal2-icon).swal2-warning {
 
 .field-group input,
 .field-group select,
-.react-date-picker__wrapper input {
+.react-date-picker__wrapper input,
+.room-right select {
     border: 0;
     background-color: transparent;
     width: 100%;
@@ -130,7 +131,7 @@ div:where(.swal2-icon).swal2-warning {
 }
 
 .field-group input:not(.react-date-picker__wrapper input),
-.field-group select {
+.field-group select, .room-right select {
     border-bottom: 2px solid #932595;
     height: 33px;
 }
@@ -550,7 +551,7 @@ img.user-profile {
 }
 
 .room-item-wrap .room-head {
-    padding: 20px;
+    padding: 10px 20px;
     cursor: pointer;
     background-color: #6A196F;
     margin: 10px auto;

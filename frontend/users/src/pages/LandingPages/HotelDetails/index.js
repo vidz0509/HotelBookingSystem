@@ -14,6 +14,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import routes from "routes";
 import footerRoutes from "footer.routes";
+import Select from "assets/theme/components/form/select";
 
 function HotelDetail() {
   const params = useParams();
@@ -122,7 +123,7 @@ function HotelDetail() {
                     }} key={`room-${index}`}>
                       <div className="room-head">
 
-                        <MKTypography variant="h4" color="white">
+                        <MKTypography variant="h4" color="white" fontSize={18}>
                           {room.roomTypes_details[0].roomtype_name}
                         </MKTypography>
                       </div>
@@ -134,8 +135,28 @@ function HotelDetail() {
                                 <img src={room.room_image} />
                               </div>
                             </Grid>
-                            <Grid item md={9} className="room-right" mt={2}>
-                              <MKBox>
+                            <Grid item md={8} className="room-right" mt={3} ml={2}>
+                              <Grid container spacing={2}>
+                                <Grid item md={4}>
+                                  <MKTypography variant="h6" color="text" mb={1}>Guests/Rooms</MKTypography>
+                                  <MKTypography component="p" variant="p" color="text" fontSize={14}>{`Adults : ${room.roomTypes_details[0].max_adults}`}</MKTypography>
+                                  <MKTypography variant="p" component="p" color="text" fontSize={14}>{`Children : ${room.roomTypes_details[0].max_children}`}</MKTypography>
+                                  <MKTypography variant="p" component="p" color="text" fontSize={14}>{`Total Rooms : ${room.total_rooms}`}</MKTypography>
+                                </Grid>
+                                <Grid item md={4}>
+                                  <MKTypography variant="h6" color="text">Price</MKTypography>
+                                  <MKTypography variant="p" component="p" color="text" fontSize={14}>{`₹${room.price} per adult`}</MKTypography>
+                                </Grid>
+                                <Grid item md={4}>
+                                  <MKTypography variant="h6" color="text">Select Rooms</MKTypography>
+                                  <select name="Rooms" id="Rooms">
+                                    <option value={0}>-- Select Rooms --</option>
+                                    <option value={room.price * 1} selected>1 (₹{room.price * 1})</option>
+                                    <option value={room.price * 2}>2 (₹{room.price * 2})</option>
+                                    <option value={room.price * 3}>3 (₹{room.price * 3})</option>
+                                  </select>
+                                </Grid>
+                                {/* <MKBox>
                                 <MKTypography variant="h4" color="text">
                                   Roomtype_name:
                                   {room.roomTypes_details[0].roomtype_name}
@@ -164,7 +185,9 @@ function HotelDetail() {
                                 <option value={room.price * 2}>Room2-{room.price * 2}</option>
                                 <option value={room.price * 3}>Room3-{room.price * 3}</option>
 
-                              </select>
+                              </select> */}
+
+                              </Grid>
                             </Grid>
                           </Grid>
                         </div>
