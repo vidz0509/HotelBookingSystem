@@ -12,11 +12,41 @@ import { hotelsServices } from "services/hotels";
 function HotelsList(props) {
 
   const [Roomtypedata, setRoomtypedata] = useState("");
-  // const [RoomtypedataError, setRoomtypedataError] = useState("");
-  const [loading, setLoading] = useState(true);
+  // const [loading, setLoading] = useState(true);
   const [Amenities, setAmenities] = useState("");
-  // const [AmenitiesError, setAmenitiesError] = useState("");
+  const [selectedRoomTypes, setSelectedRoomTypes] = useState([]);
 
+  const [hotelsData, setHotelsData] = useState(null);
+  const [searchBody, setSearchBody] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    let params = new URLSearchParams(window.location.search);
+    let body = {
+      country_id: params.get('country_id') ? params.get('country_id') : '',
+      location_id: params.get('location_id') ? params.get('location_id') : '',
+      check_in: params.get('check_in') ? params.get('check_in') : '',
+      check_out: params.get('check_out') ? params.get('check_out') : '',
+    }
+    setSearchBody(body);
+  }, []);
+
+  useEffect(() => {
+    seachHotels();
+  }, [searchBody])
+
+  const seachHotels = async () => {
+    if (searchBody) {
+      let response = await hotelsServices.seachHotels(searchBody);
+      if (response.isSuccessful) {
+        setHotelsData(response.data);
+        // setIsLoading(false);
+      } else {
+        setError(response.errorMessage);
+        // setIsLoading(false);
+      }
+    }
+  }
 
   useEffect(() => {
     getRoomType();
@@ -26,13 +56,27 @@ function HotelsList(props) {
   const getRoomType = async () => {
     let response = await hotelsServices.getAllRoomTypes();
     setRoomtypedata(response.data);
-    setLoading(false);
+    // setLoading(false);
   };
   const getAmenities = async () => {
     let response = await hotelsServices.getAmenities();
     setAmenities(response.data);
-    setLoading(false);
+    // setLoading(false);
   };
+
+  const handleRoomTypeChange = (event) => {
+    let roomTypeID = event.target.value;
+    if (event.target.checked === true) {
+      setSelectedRoomTypes((prevalue) => [...prevalue, roomTypeID])
+      console.log(roomTypeID);
+    }else {
+      const roomTypes = selectedRoomTypes.filter((type) => {
+        return type !== roomTypeID;
+      });
+      setSelectedRoomTypes(roomTypes);
+    }
+  }
+
   return (
     <MKBox component="section" my={6}>
       <Container>
@@ -76,12 +120,12 @@ function HotelsList(props) {
 
                       <div className="opt" key={item._id}>
                         <label className="opt-label checkbox-label">
-                          <input type="checkbox" value={item._id} name="Room_type[]" />
+                          <input type="checkbox" value={item._id} name="Room_type[]" onChange={handleRoomTypeChange} />
                           <p className="opt-text">{item.roomtype_name}</p>
                         </label>
                       </div>
                     ))}
-                 
+
                 </div>
               </div>
               <div className="option-row">
@@ -98,7 +142,7 @@ function HotelsList(props) {
                   <h5>Amenities</h5>
                 </div>
                 <div className="options default-opts">
-                {Amenities &&
+                  {Amenities &&
                     Amenities.length > 0 &&
                     Amenities.map((item) => (
 
