@@ -24,7 +24,7 @@ export class Offers {
 
   @IsNotEmpty()
   @Prop({ required: true })
-  isOneTime: string;
+  isOneTime: boolean;
 
   @IsOptional()
   @Prop()
