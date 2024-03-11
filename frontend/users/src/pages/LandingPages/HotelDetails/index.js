@@ -88,17 +88,18 @@ function HotelDetail() {
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>
               <MKBox className='hotel-head'>
-              
+              {!isLoading&&
                 <MKButton
                   component="a"
-                  href="/hotels"
+                  href={`/hotels?country_id=${hotelData.country_id}&location_id=${hotelData.location_id}`}
                   rel="noreferrer"
                   variant="contained"
                   color=""
-                  size="big"
+                  size="big "
                 >
                    <FontAwesomeIcon   icon={faArrowLeft} /> 
                 </MKButton>
+              }
                 <MKTypography variant="h4" color="text" mb={1} >
                   {hotelName}
                 </MKTypography>
