@@ -1,3 +1,4 @@
+import { RoomsService } from './../rooms/rooms.services';
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 
@@ -18,6 +19,8 @@ import { diskStorage } from 'multer';
 import path from 'path';
 import { ConfigModule } from '@nestjs/config';
 import { Booking, BookingSchema } from 'src/bookings/booking.schema';
+import { Rooms, RoomsSchema, RoomsDocument } from 'src/rooms/rooms.schema';
+import { RoomsCollection } from 'src/rooms/rooms.collection';
 
 @Module({
     imports: [
@@ -30,6 +33,10 @@ import { Booking, BookingSchema } from 'src/bookings/booking.schema';
             {
                 name: Booking.name,
                 schema: BookingSchema
+            },
+            {
+                name: Rooms.name,
+                schema: RoomsSchema
             },
         ]),
         MulterModule.register({
@@ -44,7 +51,7 @@ import { Booking, BookingSchema } from 'src/bookings/booking.schema';
         })
     ],
     controllers: [HotelsController],
-    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection, HelpersServices],
+    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection,RoomsService,RoomsCollection, HelpersServices],
 })
 
 export class HotelModule { }

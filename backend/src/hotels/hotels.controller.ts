@@ -11,6 +11,11 @@ export class HotelsController {
 
     constructor(private readonly hotelService: HotelsService) { }
 
+    @Put('updateHotels')
+    async updateHotels(){
+        return await this.hotelService.getAllHotelIDs();
+    }
+
     @Post('/searchHotels')
     async searchHotels(@Body() searchHotelDto: SearchHotelDto) {
         return await this.hotelService.searchHotels(searchHotelDto);
@@ -67,7 +72,6 @@ export class HotelsController {
     @Post('upload/:id')
     @UseInterceptors(AnyFilesInterceptor())
     uploadFile(@UploadedFiles() files: Array<Express.Multer.File>, @Param('id') hotelId: string) {
-        console.log(files)
         return this.hotelService.uploadHotelsImg(hotelId, files);
     }
 
@@ -75,6 +79,4 @@ export class HotelsController {
     async serveFile(@Param('filename') filname: string, @Res() res: Response) {
         return res.sendFile(filname, { root: 'uploads/hotelsImg' });
     }
-
-    
 }

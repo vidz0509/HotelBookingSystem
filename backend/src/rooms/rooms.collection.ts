@@ -205,4 +205,15 @@ export class RoomsCollection {
         );
     }
 
+    async getRoomTypesByHotelId(hotel_id: string): Promise<Rooms[]> {
+        return this.roomModel.aggregate([
+            {
+                $match: {
+                    hotel_id : hotel_id,
+                    isDeleted: false
+                }
+            }
+        ]);
+    }
+
 }

@@ -217,4 +217,23 @@ export class HotelsCollection {
         ]);
 
     }
+
+    async getAllHotels(): Promise<any> {
+        return this.hotelModel.find({
+            isDeleted : false
+        }).select("_id");
+    }
+
+    async updateRoomTypesByHotelID(hotelId,roomTypes){
+        console.log(hotelId);
+        return await this.hotelModel.findByIdAndUpdate(
+            hotelId,
+            {
+                roomTypes: roomTypes,
+            },
+            {
+                new: true
+            }
+        );
+    }
 }
