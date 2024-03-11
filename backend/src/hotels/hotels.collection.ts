@@ -152,7 +152,7 @@ export class HotelsCollection {
         );
     }
 
-    async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {        
+    async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {
         let searchArr: any = {
             isDeleted: false,
             isActive: true,
@@ -161,11 +161,10 @@ export class HotelsCollection {
             searchArr.country_id = searchHotelDto.country_id;
         if (searchHotelDto.location_id)
             searchArr.location_id = searchHotelDto.location_id;
-        if (searchHotelDto.roomTypes)
+        if (searchHotelDto.roomTypes.length > 0)
             searchArr.roomTypes = { $in: searchHotelDto.roomTypes };
-        if (searchHotelDto.amenities)
+        if (searchHotelDto.amenities.length > 0)
             searchArr.amenities = { $in: searchHotelDto.amenities };
-        console.log(searchArr);
         return await this.hotelModel.aggregate([
             {
                 $match: searchArr

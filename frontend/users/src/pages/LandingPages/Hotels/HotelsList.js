@@ -12,7 +12,7 @@ import { hotelsServices } from "services/hotels";
 function HotelsList(props) {
 
   const [Roomtypedata, setRoomtypedata] = useState("");
-  // const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [Amenities, setAmenities] = useState("");
   const [selectedRoomTypes, setSelectedRoomTypes] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
@@ -23,12 +23,15 @@ function HotelsList(props) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    setHotelsData(props.hotelData)
     let params = new URLSearchParams(window.location.search);
     let body = {
       country_id: params.get('country_id') ? params.get('country_id') : '',
       location_id: params.get('location_id') ? params.get('location_id') : '',
       check_in: params.get('check_in') ? params.get('check_in') : '',
       check_out: params.get('check_out') ? params.get('check_out') : '',
+      roomTypes: [],
+      amenities: [],
     }
     setSearchBody(body);
   }, []);
@@ -38,14 +41,15 @@ function HotelsList(props) {
   }, [searchBody])
 
   const seachHotels = async () => {
-    if (searchBody) {
+    setLoading(true);
+    if (searchBody) {      
       let response = await hotelsServices.seachHotels(searchBody);
       if (response.isSuccessful) {
         setHotelsData(response.data);
-        // setIsLoading(false);
+        setLoading(false);
       } else {
         setError(response.errorMessage);
-        // setIsLoading(false);
+        setLoading(false);
       }
     }
   }
@@ -69,13 +73,16 @@ function HotelsList(props) {
   const handleRoomTypeChange = (event) => {
     let roomTypeID = event.target.value;
     if (event.target.checked === true) {
-      setSelectedRoomTypes((prevalue) => [...prevalue, roomTypeID])
-      console.log(roomTypeID);
+      let roomTypeArr = selectedRoomTypes;
+      roomTypeArr.push(roomTypeID);
+      setSelectedRoomTypes((prevalue) => [...prevalue, roomTypeID]);
+      setSearchBody({ ...searchBody, roomTypes: roomTypeArr, amenities : selectedAmenities });
     } else {
       const roomTypes = selectedRoomTypes.filter((type) => {
         return type !== roomTypeID;
       });
       setSelectedRoomTypes(roomTypes);
+      setSearchBody({ ...searchBody, roomTypes: roomTypes, amenities : selectedAmenities });
     }
   }
 
@@ -181,7 +188,7 @@ function HotelsList(props) {
             </div>
           </div>
           <Grid container spacing={2} lg={9} className="hotels-wrapper">
-            {props.hotelsData && props.hotelsData?.map((hotel) => (
+            {hotelsData && hotelsData?.map((hotel) => (
               <Grid item md={4} sx={{ mb: 2 }} key={hotel._id} className="hotel-item">
                 <MKBox position="relative">
                   <MKBox
