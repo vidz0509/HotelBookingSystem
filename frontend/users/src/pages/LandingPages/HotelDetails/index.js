@@ -15,6 +15,9 @@ import "slick-carousel/slick/slick-theme.css";
 import routes from "routes";
 import footerRoutes from "footer.routes";
 import Select from "assets/theme/components/form/select";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import MKButton from "components/MKButton";
 
 function HotelDetail() {
   const params = useParams();
@@ -83,8 +86,19 @@ function HotelDetail() {
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
-            <MKBox className='hotel-details'>
+            <MKBox className='hotel-detaclick'>
               <MKBox className='hotel-head'>
+              
+                <MKButton
+                  component="a"
+                  href="/hotels"
+                  rel="noreferrer"
+                  variant="contained"
+                  color=""
+                  size="big"
+                >
+                   <FontAwesomeIcon   icon={faArrowLeft} /> 
+                </MKButton>
                 <MKTypography variant="h4" color="text" mb={1} >
                   {hotelName}
                 </MKTypography>
