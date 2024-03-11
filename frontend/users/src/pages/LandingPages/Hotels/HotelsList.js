@@ -15,6 +15,8 @@ function HotelsList(props) {
   // const [loading, setLoading] = useState(true);
   const [Amenities, setAmenities] = useState("");
   const [selectedRoomTypes, setSelectedRoomTypes] = useState([]);
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
+
 
   const [hotelsData, setHotelsData] = useState(null);
   const [searchBody, setSearchBody] = useState(null);
@@ -69,13 +71,32 @@ function HotelsList(props) {
     if (event.target.checked === true) {
       setSelectedRoomTypes((prevalue) => [...prevalue, roomTypeID])
       console.log(roomTypeID);
-    }else {
+    } else {
       const roomTypes = selectedRoomTypes.filter((type) => {
         return type !== roomTypeID;
       });
       setSelectedRoomTypes(roomTypes);
     }
   }
+
+  const handleAmenitiesChange = (event) => {
+    let amenitiesID = event.target.value;
+    if (event.target.checked === true) {
+      setSelectedAmenities((prevalue) => [...prevalue, amenitiesID])
+      console.log(amenitiesID);
+    } else {
+      const amenities = selectedAmenities.filter((type) => {
+        return type !== amenitiesID;
+      });
+      setSelectedAmenities(amenities);
+    }
+  }
+
+  const clearAllFilters = () => {
+    setSelectedRoomTypes([]); // Clear selected room types
+    setSelectedAmenities([]); // Clear selected amenities
+  }
+
 
   return (
     <MKBox component="section" my={6}>
@@ -104,7 +125,7 @@ function HotelsList(props) {
           <div className="filter-wrapper">
             <div className="filter-head">
               <h5 className="filter-title">Filters</h5>
-              <a href="javascript(0);" className="clear-filters">Clear All</a>
+              <h5 onClick={clearAllFilters} className="clear-filters">Clear All</h5>
             </div>
             <div className="filter-options">
               <div className="option-row">
@@ -120,7 +141,8 @@ function HotelsList(props) {
 
                       <div className="opt" key={item._id}>
                         <label className="opt-label checkbox-label">
-                          <input type="checkbox" value={item._id} name="Room_type[]" onChange={handleRoomTypeChange} />
+                          <input type="checkbox" value={item._id} name="Room_type[]" onChange={handleRoomTypeChange}
+                            checked={selectedRoomTypes.includes(item._id)} />
                           <p className="opt-text">{item.roomtype_name}</p>
                         </label>
                       </div>
@@ -148,7 +170,8 @@ function HotelsList(props) {
 
                       <div className="opt" key={item._id}>
                         <label className="opt-label checkbox-label">
-                          <input type="checkbox" value={item._id} name="Amenities_type[]" />
+                          <input type="checkbox" value={item._id} name="Amenities_type[]" onChange={handleAmenitiesChange}
+                            checked={selectedAmenities.includes(item._id)} />
                           <p className="opt-text">{item.amenities_name}</p>
                         </label>
                       </div>
