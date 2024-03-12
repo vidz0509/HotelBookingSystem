@@ -239,7 +239,7 @@ export class HotelsCollection {
 
     async updateRoomType(hotelId,roomTypes){
         console.log(hotelId);
-        return await this.hotelModel.updateOne(
+        return await this.hotelModel.findByIdAndUpdate(
             hotelId,
             { $push: { roomTypes: roomTypes } },
         );
