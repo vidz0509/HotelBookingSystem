@@ -51,6 +51,7 @@ export class RoomsService {
 
   async updateRoom(userId: string, updateRoomDto: UpdateRoomDto) {
     let data = await this.roomCollection.updateRoom(userId, updateRoomDto);
+    await this.hotelsCollection.updateRoomTypesByHotelID(data.hotel_id, data.room_type_id);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }

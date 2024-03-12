@@ -228,11 +228,9 @@ export class HotelsCollection {
         console.log(hotelId);
         return await this.hotelModel.findByIdAndUpdate(
             hotelId,
+            { $push: { roomTypes: roomTypes } },
             {
-                roomTypes: roomTypes,
-            },
-            {
-                new: true
+                new : true
             }
         );
     }
@@ -241,7 +239,7 @@ export class HotelsCollection {
         console.log(hotelId);
         return await this.hotelModel.findByIdAndUpdate(
             hotelId,
-            { $push: { roomTypes: roomTypes } },
+            { $addToSet: { roomTypes: roomTypes } },
         );
     }
 }
