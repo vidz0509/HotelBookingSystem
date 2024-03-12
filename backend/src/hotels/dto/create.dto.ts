@@ -22,6 +22,10 @@ export class CreateHotelDto {
 
     @IsString()
     @IsNotEmpty()
+    readonly amenities_id: string[];
+
+    @IsString()
+    @IsNotEmpty()
     readonly hotel_address: string;
 
     readonly average_rating: string;

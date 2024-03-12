@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputField from "components/fields/InputField";
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
+import { amenitiesServices } from "services/amenities";
 import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
@@ -16,11 +17,15 @@ export default function AddHotel() {
   const [locationsData, setLocationsData] = useState("");
   const [locationId, setLocationId] = useState("");
 
+  const [amenitiesData, setAmenitiesData] = useState("");
+  const [amenitiesId, setAmenitiesId] = useState("");
+
   const [hotelCode, setHotelCode] = useState("");
   const [hotelAddress, setHotelAddress] = useState("");
 
   const [countryIdError, setCountryIdError] = useState("");
   const [locationIdError, setLocationIdError] = useState("");
+  const [amenitiesIdError, setAmenitiesIdError] = useState("");
 
   const [hotelNameError, setHotelNameError] = useState("");
   const [hotelCodeError, setHotelCodeError] = useState("");
@@ -35,6 +40,7 @@ export default function AddHotel() {
 
   useEffect(() => {
     getCountries();
+    getAmenities();
   }, []);
 
   // useEffect(() => {
@@ -55,6 +61,13 @@ export default function AddHotel() {
     }
   };
 
+  const getAmenities = async () => {
+    const result = await amenitiesServices.getAllAmenities();
+    if (result.isSuccessful) {
+      setAmenitiesData(result.data);
+    }
+  };
+
   const handleHotelNameChange = (event) => {
     const value = event.target.value;
     setHotelName(value);
@@ -69,6 +82,11 @@ export default function AddHotel() {
   const handleLocationIdChange = (event) => {
     const value = event.target.value;
     setLocationId(value);
+  };
+
+  const handleAmenitiesIdChange = (event) => {
+    const value = event.target.value;
+    setAmenitiesId(value);
   };
 
   const handleHotelCodeChange = (event) => {
@@ -97,6 +115,7 @@ export default function AddHotel() {
     setHotelNameError("");
     setCountryIdError("");
     setLocationIdError("");
+    setAmenitiesIdError("");
     setHotelCodeError("");
     setHotelImage("");
     setHotelAddressError("");
@@ -119,6 +138,11 @@ export default function AddHotel() {
       return false;
     }
 
+    if (validation.isEmpty(amenitiesId)) {
+      setAmenitiesIdError("Please select valid amenities name.");
+      return false;
+    }
+
     if (validation.isEmpty(hotelCode)) {
       setHotelCodeError("Please enter valid hotel code.");
       return false;
@@ -138,6 +162,7 @@ export default function AddHotel() {
     const requestBody = {
       country_id: countryId,
       location_id: locationId,
+      amenities_id: amenitiesId,
       hotel_name: hotelName,
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
@@ -178,7 +203,7 @@ export default function AddHotel() {
           title: "Added",
           text: "hotels has been added successfully.",
           icon: "success",
-          allowOutsideClick: false
+          allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -191,7 +216,7 @@ export default function AddHotel() {
           title: "Error!",
           text: "Something went wrong",
           icon: "error",
-          allowOutsideClick: false
+          allowOutsideClick: false,
         });
       }
     } else {
@@ -200,7 +225,7 @@ export default function AddHotel() {
         title: "Error!",
         text: result.errorMessage,
         icon: "error",
-        allowOutsideClick: false
+        allowOutsideClick: false,
       });
     }
   };
@@ -266,6 +291,30 @@ export default function AddHotel() {
             {locationIdError && (
               <span className="mb-3 ml-1 text-sm text-red-500">
                 {locationIdError}
+              </span>
+            )}
+          </div>
+
+          <div className="mb-3">
+            <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+              Amenitites Name*
+            </label>
+            <select
+              id="amenitiesId"
+              name="amenitiesId"
+              class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+              onChange={handleAmenitiesIdChange}
+            >
+              <option value="">-- Select Amenities --</option>
+              {amenitiesData &&
+                amenitiesData.length > 0 &&
+                amenitiesData.map((item) => (
+                  <option value={item._id}>{item.amenities_name}</option>
+                ))}
+            </select>
+            {amenitiesIdError && (
+              <span className="mb-3 ml-1 text-sm text-red-500">
+                {amenitiesIdError}
               </span>
             )}
           </div>
@@ -342,15 +391,20 @@ export default function AddHotel() {
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center"></div>
             <button
-              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-                }`}
+              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+                btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
               onClick={(e) => handleSubmit(e)}
               type="submit"
               disabled={btnDisabled ? "disabled" : ""}
             >
               {btnDisabled ? (
                 <span className="flex items-center justify-center">
-                  <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+                  <img
+                    src={btnLoader}
+                    className="xl:max-w-[25px]"
+                    alt="loader"
+                  />
                 </span>
               ) : (
                 <span>Add Hotel</span>
@@ -368,7 +422,9 @@ export default function AddHotel() {
           <div className="mt-4">
             {successful !== "" && (
               <>
-                <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+                <p className="mb-9 ml-1 text-base text-green-500">
+                  {successful}
+                </p>
               </>
             )}
           </div>

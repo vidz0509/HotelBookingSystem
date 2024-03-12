@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import InputField from "components/fields/InputField";
 import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
+import { amenitiesServices } from "services/amenities";
 import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
@@ -21,11 +22,15 @@ export default function EditHotel() {
   const [locationsData, setLocationsData] = useState("");
   const [locationId, setLocationId] = useState("");
 
+  const [amenitiesData, setAmenitiesData] = useState("");
+  const [amenitiesId, setAmenitiesId] = useState("");
+
   const [hotelCode, setHotelCode] = useState("");
   const [hotelAddress, setHotelAddress] = useState("");
 
   const [countryIdError, setCountryIdError] = useState("");
   const [locationIdError, setLocationIdError] = useState("");
+  const [amenitiesIdError, setAmenitiesIdError] = useState("");
 
   const [hotelData, setHotelData] = useState(null);
   const [hotelNameError, setHotelNameError] = useState("");
@@ -67,12 +72,20 @@ export default function EditHotel() {
     }
   };
 
+  const getAmenities = async () => {
+    const result = await amenitiesServices.getAllAmenities();
+    if (result.isSuccessful) {
+      setAmenitiesData(result.data);
+    }
+  };
+
   const getHotelById = async (hotelId) => {
     const result = await hotelsServices.getHotelById(hotelId);
     if (result.isSuccessful) {
       setHotelData(result.data);
       setCountryId(result.data?.country_id);
       setLocationId(result.data?.location_id);
+      setAmenitiesId(result.data?.amenities_id);
       setHotelName(result.data?.hotel_name);
       setHotelCode(result.data?.hotel_code);
       setHotelAddress(result.data?.hotel_address);
@@ -88,11 +101,18 @@ export default function EditHotel() {
   const handleCountryIdChange = (event) => {
     const value = event.target.value;
     setCountryId(value);
+    setLocationId(value);
+    getAmenities(value);
   };
 
   const handleLocationIdChange = (event) => {
     const value = event.target.value;
     setLocationId(value);
+  };
+
+  const handleAmenitiesIdChange = (event) => {
+    const value = event.target.value;
+    setAmenitiesId(value);
   };
 
   const handleHotelCodeChange = (event) => {
@@ -121,6 +141,7 @@ export default function EditHotel() {
     setHotelNameError("");
     setCountryIdError("");
     setLocationIdError("");
+    setAmenitiesIdError("");
     setHotelCodeError("");
     setHotelAddressError("");
     setHotelImage("");
@@ -147,6 +168,11 @@ export default function EditHotel() {
       setHotelCodeError("Please enter valid hotel code.");
       return false;
     }
+    
+    if (validation.isEmpty(amenitiesId)) {
+      setAmenitiesIdError("Please select valid amenities name.");
+      return false;
+    }
 
     if (validation.isEmpty(hotelAddress)) {
       setHotelAddressError("Please enter valid hotel address.");
@@ -162,6 +188,7 @@ export default function EditHotel() {
     const requestBody = {
       country_id: countryId,
       location_id: locationId,
+      amenities_id: amenitiesId,
       hotel_name: hotelName,
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
@@ -288,6 +315,30 @@ export default function EditHotel() {
                 </span>
               )}
             </div>
+
+            <div className="mb-3">
+            <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+              Amenitites Name*
+            </label>
+            <select
+              id="amenitiesId"
+              name="amenitiesId"
+              class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+              onChange={handleAmenitiesIdChange}
+            >
+              <option value="">-- Select Amenities --</option>
+              {amenitiesData &&
+                amenitiesData.length > 0 &&
+                amenitiesData.map((item) => (
+                  <option value={item._id}>{item.amenities_name}</option>
+                ))}
+            </select>
+            {amenitiesIdError && (
+              <span className="mb-3 ml-1 text-sm text-red-500">
+                {amenitiesIdError}
+              </span>
+            )}
+          </div>
 
             <InputField
               variant="auth"

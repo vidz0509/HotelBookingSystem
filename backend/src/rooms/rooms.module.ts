@@ -7,6 +7,10 @@ import { RoomsCollection } from './rooms.collection';
 import { RoomsController } from './rooms.controller';
 import { RoomsService } from './rooms.services';
 
+import { HotelsService } from 'src/hotels/hotels.services';
+import { HotelsCollection } from 'src/hotels/hotels.collection';
+import { Hotels, HotelsSchema, HotelsDocument } from 'src/hotels/hotels.schema';
+
 import { HelpersServices } from '../services/helpers/helpers.services';
 
 import { MulterModule } from '@nestjs/platform-express';
@@ -22,6 +26,10 @@ import { ConfigModule } from '@nestjs/config';
                 name: Rooms.name,
                 schema: RoomsSchema
             },
+            {
+                name: Hotels.name,
+                schema: HotelsSchema
+            },
         ]),
         MulterModule.register({
             dest: './uploads/roomsImg',
@@ -35,7 +43,7 @@ import { ConfigModule } from '@nestjs/config';
         })
     ],
     controllers: [RoomsController],
-    providers: [RoomsService, RoomsCollection, HelpersServices],
+    providers: [RoomsService, RoomsCollection, HotelsCollection, HelpersServices],
 })
 
 export class RoomModule { }

@@ -236,4 +236,12 @@ export class HotelsCollection {
             }
         );
     }
+
+    async updateRoomType(hotelId,roomTypes){
+        console.log(hotelId);
+        return await this.hotelModel.updateOne(
+            hotelId,
+            { $push: { roomTypes: roomTypes } },
+        );
+    }
 }

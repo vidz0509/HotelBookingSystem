@@ -4,6 +4,9 @@ import { HelpersServices } from '../services/helpers/helpers.services';
 import { RoomsCollection } from './rooms.collection';
 import { Rooms } from './rooms.schema';
 
+import { HotelsService } from 'src/hotels/hotels.services';
+import { HotelsCollection } from 'src/hotels/hotels.collection';
+
 import { CreateRoomDto } from './dto/create.dto';
 import { UpdateRoomDto } from './dto/update.dto';
 
@@ -12,12 +15,14 @@ export class RoomsService {
   private readonly logger = new Logger(RoomsService.name);
   constructor(
     private readonly roomCollection: RoomsCollection,
+    private readonly hotelsCollection: HotelsCollection,
     private readonly helper: HelpersServices,
   ) { }
 
   async createRoom(createRoomDto: CreateRoomDto) {
     try {
       const newRoom = await this.roomCollection.createRoom(createRoomDto);
+      await this.hotelsCollection.updateRoomType(newRoom.hotel_id, newRoom.room_type_id);
       const response = await this.helper.buildResponse(true, null, newRoom);
       return response;
     } catch (error) {
@@ -93,4 +98,5 @@ export class RoomsService {
     return response;
     // return { message: 'File uploaed successfully', url: frontendUrl };
   }
+
 }
