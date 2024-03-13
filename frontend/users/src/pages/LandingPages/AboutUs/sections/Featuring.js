@@ -59,21 +59,21 @@ function Featuring() {
           <Grid item xs={12} md={3}>
             <DefaultCounterCard
               title={"Countries"}
-              description="That meets quality standards required by our users"
+              description="Countries are sovereign territories with defined borders and unique."
               count={totalCountries}
             />
           </Grid>
           <Grid item xs={12} md={3}>
             <DefaultCounterCard
               title={"Locations"}
-              description="That meets quality standards required by our users"
+              description="Locations encompass specific points or areas on the Earth's."
               count={totalLocations}
             />
           </Grid>
           <Grid item xs={12} md={3}>
             <DefaultCounterCard
             title={"Hotels"}
-              description="Of “high-performing” level are led by a certified project manager"
+              description="Hotels are accommodations that offer lodging, meals."
               count={totalHotels}
             />
           </Grid>
