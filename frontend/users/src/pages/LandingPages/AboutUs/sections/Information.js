@@ -11,7 +11,7 @@ import CenteredBlogCard from "examples/Cards/BlogCards/CenteredBlogCard";
 
 function Information() {
   return (
-    <MKBox component="section" py={12}>
+    <MKBox component="section" py={2}>
       <Container>
         <Grid container spacing={3} alignItems="center">
           <Grid item xs={12} lg={6}>

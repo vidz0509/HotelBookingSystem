@@ -51,7 +51,7 @@ function Featuring() {
     }
   }
   return (
-    <MKBox component="section" pt={12}>
+    <MKBox component="section" pb={6} pt={6}>
       <Container>
       
         <Grid container justifyContent="center" sx={{ textAlign: "center" }}>
