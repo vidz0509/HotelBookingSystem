@@ -219,7 +219,12 @@ function SearchForm(props) {
             window.location.href = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
             setBtnDisabled(false);
         } else {
-            window.location.href = `/bookings?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
+            const roomQueryString = roomList.map((room, index) => {
+                const roomIndex = index + 1;
+                window.location.href = `/bookings?room[${index}][adult]=${room.adult}&room[${index}][children]=${room.children}`
+            }).join('&');
+            const fullUrl = `${roomQueryString}`;
+            console.log(fullUrl);
             setBtnDisabled(false);
         }
 
