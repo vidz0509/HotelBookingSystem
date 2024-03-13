@@ -7,6 +7,7 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import { hotelsServices } from "services/hotels";
+import SearchForm from "pages/Presentation/sections/SearchForm";
 import { amenitiesServices } from "services/amenities";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
@@ -85,21 +86,24 @@ function HotelDetail() {
       </MKBox>
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
+
+          <Grid className="searchform"><SearchForm /></Grid>
+          
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>
               <MKBox className='hotel-head'>
-              {!isLoading&&
-                <MKButton
-                  component="a"
-                  href={`/hotels?country_id=${hotelData.country_id}&location_id=${hotelData.location_id}`}
-                  rel="noreferrer"
-                  variant="contained"
-                  color=""
-                  size="big "
-                >
-                   <FontAwesomeIcon   icon={faArrowLeft} /> 
-                </MKButton>
-              }
+                {!isLoading &&
+                  <MKButton
+                    component="a"
+                    href={`/hotels?country_id=${hotelData.country_id}&location_id=${hotelData.location_id}`}
+                    rel="noreferrer"
+                    variant="contained"
+                    color=""
+                    size="big"
+                  >
+                    <FontAwesomeIcon icon={faArrowLeft} />
+                  </MKButton>
+                }
                 <MKTypography variant="h4" color="text" mb={1} >
                   {hotelName}
                 </MKTypography>
