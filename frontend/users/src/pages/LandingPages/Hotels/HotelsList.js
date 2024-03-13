@@ -87,15 +87,18 @@ function HotelsList(props) {
   }
 
   const handleAmenitiesChange = (event) => {
-    let amenitiesID = event.target.value;
+    let amenitieID = event.target.value;
     if (event.target.checked === true) {
-      setSelectedAmenities((prevalue) => [...prevalue, amenitiesID])
-      console.log(amenitiesID);
+      let amenitieArr = selectedAmenities;
+      amenitieArr.push(amenitieID);
+      setSelectedAmenities((prevalue) => [...prevalue, amenitieID]);
+      setSearchBody({ ...searchBody, amenities: amenitieArr, amenities : selectedAmenities });
     } else {
       const amenities = selectedAmenities.filter((type) => {
-        return type !== amenitiesID;
+        return type !== amenitieID;
       });
       setSelectedAmenities(amenities);
+      setSearchBody({ ...searchBody, amenities: amenities, amenities : selectedAmenities });
     }
   }
 
