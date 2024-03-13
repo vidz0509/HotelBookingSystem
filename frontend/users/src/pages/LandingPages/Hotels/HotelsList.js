@@ -92,19 +92,21 @@ function HotelsList(props) {
       let amenitieArr = selectedAmenities;
       amenitieArr.push(amenitieID);
       setSelectedAmenities((prevalue) => [...prevalue, amenitieID]);
-      setSearchBody({ ...searchBody, amenities: amenitieArr, amenities : selectedAmenities });
+      setSearchBody({ ...searchBody, roomTypes: selectedRoomTypes, amenities : amenitieArr });
     } else {
       const amenities = selectedAmenities.filter((type) => {
         return type !== amenitieID;
       });
+      console.log(amenities)
       setSelectedAmenities(amenities);
-      setSearchBody({ ...searchBody, amenities: amenities, amenities : selectedAmenities });
+      setSearchBody({ ...searchBody, roomTypes: selectedRoomTypes, amenities : amenities });
     }
   }
 
   const clearAllFilters = () => {
     setSelectedRoomTypes([]); // Clear selected room types
     setSelectedAmenities([]); // Clear selected amenities
+    setSearchBody({ ...searchBody, roomTypes: [], amenities : [] })
   }
 
 
