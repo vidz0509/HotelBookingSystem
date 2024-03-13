@@ -62,7 +62,7 @@ function Information() {
                 <MKBox mb={{ xs: 5, md: 0 }}>
                   <DefaultInfoCard
                     icon="3p"
-                    title="Improved platform"
+                    title="Improved platform12"
                     description="We get insulted by others, lose trust for those We get back freezes"
                   />
                 </MKBox>
