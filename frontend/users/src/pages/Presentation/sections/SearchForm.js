@@ -218,17 +218,17 @@ function SearchForm(props) {
         if (!props.hideHotelDetail) {
             window.location.href = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
             setBtnDisabled(false);
-        }else{
+        } else {
             window.location.href = `/bookings?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
             setBtnDisabled(false);
         }
-        
+
 
     }
 
     return (
         <>
-            <div className="search-form" id="search-form">
+            <div className={`search-form ${props.hideHotelDetail ? 'hotel-details-page' : ''}`} id="search-form">
                 <div className="row searchform">
                     {
                         !props.hideHotelDetail &&
@@ -327,7 +327,7 @@ function SearchForm(props) {
 
                         </div>
                     </div>
-                    <div className="col btn-col">
+                    <div className={`col btn-col`}>
                         <button
                             className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
                                 }`}

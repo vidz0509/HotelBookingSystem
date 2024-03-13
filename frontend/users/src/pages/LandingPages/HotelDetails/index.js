@@ -86,9 +86,7 @@ function HotelDetail() {
       </MKBox>
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
-
           <Grid className="searchform"><SearchForm hideHotelDetail={true} /></Grid>
-          
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>
               <MKBox className='hotel-head'>
@@ -104,15 +102,18 @@ function HotelDetail() {
                     <FontAwesomeIcon icon={faArrowLeft} />
                   </MKButton>
                 }
-                <MKTypography variant="h4" color="text" mb={1} >
-                  {hotelName}
-                </MKTypography>
-                <MKTypography variant="p" color="text" mb={2} >
-                  {hotelAddress}
-                </MKTypography>
+                <MKBox>
+                  <MKTypography variant="h4" color="text">
+                    {hotelName}
+                  </MKTypography>
+                  <MKTypography variant="p" color="text" mb={2} >
+                    {hotelAddress}
+                  </MKTypography>
+                </MKBox>
               </MKBox>
             </MKBox>
           </Grid>
+
           <Grid container spacing={2} className="hotel-imgs" sx={{ display: 'block' }} px={3}>
             {!isLoading && hotelData?.hotel_image && (
               <Slider {...settings}>

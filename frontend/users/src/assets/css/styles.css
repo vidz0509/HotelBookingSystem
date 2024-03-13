@@ -73,6 +73,7 @@ div:where(.swal2-icon).swal2-warning {
 
 .search-form {
     margin-top: 30px;
+    width: 100%;
 }
 
 .form-wrap {
@@ -94,6 +95,12 @@ div:where(.swal2-icon).swal2-warning {
 .col {
     width: 25%;
     margin: 10px 20px;
+}
+
+.hotel-details-page .col {
+    width: 23%;
+    margin: 0;
+    justify-content: center;
 }
 
 .half-col {
@@ -582,8 +589,23 @@ img.user-profile {
     text-align: center !important;
 }
 
-.searchform{
+.searchform {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+}
+
+.hotel-details-page .searchform {
+    justify-content: center;
+    max-width: 1200px;
+    margin: auto
+}
+
+.hotel-head{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.hotel-head a{
+    padding: 0 !important
 }
