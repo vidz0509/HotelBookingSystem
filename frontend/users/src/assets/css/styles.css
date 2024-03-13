@@ -618,3 +618,7 @@ img.user-profile {
 .hotel-head a {
     padding: 0 !important
 }
+
+.about-section{
+    padding-bottom: 0 !important;
+}

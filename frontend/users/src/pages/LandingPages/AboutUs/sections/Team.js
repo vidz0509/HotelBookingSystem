@@ -38,6 +38,7 @@ function Team() {
       bgColor="dark"
       position="relative"
       py={6}
+      mt={6}
       px={{ xs: 2, lg: 0 }}
       mx={-2}
     >
