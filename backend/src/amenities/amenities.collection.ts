@@ -5,6 +5,7 @@ import { CreateAmenitiesDto } from './dto/create.dto';
 // import { SignInUserDto } from '../auth/dto/login.dto';
 import { Amenities } from './amenities.schema';
 import { UpdateAmenitiesDto } from './dto/update.dto';
+import { retry } from 'rxjs';
 
 @Injectable()
 export class AmenitiesCollection {
@@ -18,6 +19,23 @@ export class AmenitiesCollection {
             .sort({
                 createdAt: -1
             });
+    }
+
+    async getRandomamenities(): Promise<any> {
+        return await this.AmenitiesModel.aggregate([
+            {
+                $match:{
+                    isDeleted: false,
+                    isActive:true,
+                }
+            },
+            {
+                $sample: {size: 5}
+            },
+            {
+                $project : { _id : { $toString: "$_id" } }
+            }
+        ])
     }
     
     async getAmenitiesCount(): Promise<number> {

@@ -10,6 +10,7 @@ import { SearchHotelDto } from './dto/search.dto';
 import { BookingCollection } from 'src/bookings/booking.collection';
 import { BookingService } from 'src/bookings/booking.services';
 import { RoomsCollection } from 'src/rooms/rooms.collection';
+import { AmenitiesCollection } from 'src/amenities/amenities.collection';
 
 @Injectable()
 export class HotelsService {
@@ -18,6 +19,7 @@ export class HotelsService {
     private readonly hotelCollection: HotelsCollection,
     private readonly bookingServices: BookingService,
     private readonly bookingCollection: BookingCollection,
+    private readonly amenitiesCollection : AmenitiesCollection,
     private readonly roomsCollection: RoomsCollection,
     private readonly helper: HelpersServices,
   ) { }
@@ -129,6 +131,18 @@ export class HotelsService {
     const allHotels = await this.hotelCollection.getAllHotels();
     allHotels.map((hotel)=>{
       this.updateRoomTypesForHotel((hotel._id).toString());
+    });
+  }
+
+  async updateHotelAmenities(){
+    const allHotels = await this.hotelCollection.getAllHotels();
+    allHotels.map(async (hotel)=>{
+      const randomAmenities = await this.amenitiesCollection.getRandomamenities();
+      let amenitiesArr = [];
+      randomAmenities.map((amenity) =>{
+        amenitiesArr.push(amenity._id);
+      })
+      this.hotelCollection.updateAmenitiesForHotel((hotel._id).toString(),amenitiesArr);
     });
   }
 

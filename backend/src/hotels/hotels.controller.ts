@@ -11,6 +11,11 @@ export class HotelsController {
 
     constructor(private readonly hotelService: HotelsService) { }
 
+    @Put('updateHotelAmenities')
+    async updateHotelAmenities(){
+        return await this.hotelService.updateHotelAmenities();
+    }
+
     @Put('updateHotels')
     async updateHotels(){
         return await this.hotelService.getAllHotelIDs();
@@ -78,5 +83,5 @@ export class HotelsController {
     @Get('uploads/hotelsImg/:filename')
     async serveFile(@Param('filename') filname: string, @Res() res: Response) {
         return res.sendFile(filname, { root: 'uploads/hotelsImg' });
-    }
+    } 
 }

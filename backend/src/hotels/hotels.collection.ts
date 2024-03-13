@@ -235,6 +235,16 @@ export class HotelsCollection {
         );
     }
 
+    async updateAmenitiesForHotel(hotelId,amenities){
+        return await this.hotelModel.findByIdAndUpdate(
+            hotelId,
+            { $set: { amenities: amenities } },
+            {
+                new : true
+            }
+        );
+    }
+
     async updateRoomType(hotelId,roomTypes){
         console.log(hotelId);
         return await this.hotelModel.findByIdAndUpdate(

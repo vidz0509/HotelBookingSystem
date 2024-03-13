@@ -26,6 +26,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3c9cd148f987d4e4e6d42_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3c9cd148f987d4e4e6d42_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3c9cd148f987d4e4e6d42_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -56,6 +61,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cbe2148f987d4e4e6d61_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cbe2148f987d4e4e6d61_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cbe2148f987d4e4e6d61_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -86,6 +95,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cbfb148f987d4e4e6d65_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cbfb148f987d4e4e6d65_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cbfb148f987d4e4e6d65_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -116,6 +129,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cc0d148f987d4e4e6d69_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cc0d148f987d4e4e6d69_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cc0d148f987d4e4e6d69_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -146,6 +163,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cc9b148f987d4e4e6d75_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cc9b148f987d4e4e6d75_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cc9b148f987d4e4e6d75_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -174,6 +196,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ccbf148f987d4e4e6d79_.4.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ccbf148f987d4e4e6d79_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ccbf148f987d4e4e6d79_.6.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -204,6 +230,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ccd4148f987d4e4e6d7d_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ccd4148f987d4e4e6d7d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ccd4148f987d4e4e6d7d_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -234,6 +264,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cd09148f987d4e4e6d81_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cd09148f987d4e4e6d81_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cd09148f987d4e4e6d81_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -264,6 +298,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cd21148f987d4e4e6d85_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cd21148f987d4e4e6d85_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cd21148f987d4e4e6d85_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -332,6 +370,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cdd9148f987d4e4e6dad_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cdd9148f987d4e4e6dad_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3cdd9148f987d4e4e6dad_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -381,6 +423,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce0e148f987d4e4e6db5_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce0e148f987d4e4e6db5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce0e148f987d4e4e6db5_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -411,6 +457,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce23148f987d4e4e6db9_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce23148f987d4e4e6db9_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce23148f987d4e4e6db9_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -442,6 +492,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce37148f987d4e4e6dbd_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce37148f987d4e4e6dbd_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce37148f987d4e4e6dbd_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -472,6 +527,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce46148f987d4e4e6dc1_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce46148f987d4e4e6dc1_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce46148f987d4e4e6dc1_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e22f390635b2cd9f14f8"
   ]
 },
 {
@@ -502,6 +562,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce58148f987d4e4e6dc5_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce58148f987d4e4e6dc5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce58148f987d4e4e6dc5_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -533,6 +597,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce76148f987d4e4e6dc9_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce76148f987d4e4e6dc9_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce76148f987d4e4e6dc9_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -564,6 +632,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce89148f987d4e4e6dcd_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce89148f987d4e4e6dcd_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ce89148f987d4e4e6dcd_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -594,6 +667,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ced5148f987d4e4e6dd5_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ced5148f987d4e4e6dd5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ced5148f987d4e4e6dd5_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -625,6 +702,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d8a024e798230fdce60b_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d8a024e798230fdce60b_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d8a024e798230fdce60b_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -656,6 +737,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d8ec24e798230fdce613_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d8ec24e798230fdce613_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d8ec24e798230fdce613_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -706,6 +791,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d92224e798230fdce61b_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d92224e798230fdce61b_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d92224e798230fdce61b_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -737,6 +827,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d93024e798230fdce61f_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d93024e798230fdce61f_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d93024e798230fdce61f_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -769,6 +864,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d94a24e798230fdce623_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d94a24e798230fdce623_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d94a24e798230fdce623_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -800,6 +900,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d96c24e798230fdce62a_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d96c24e798230fdce62a_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d96c24e798230fdce62a_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -831,6 +936,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d97924e798230fdce62e_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d97924e798230fdce62e_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3d97924e798230fdce62e_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -862,6 +972,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e20124e798230fdce6ae_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e20124e798230fdce6ae_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e20124e798230fdce6ae_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -892,6 +1008,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e22924e798230fdce6b2_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e22924e798230fdce6b2_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e22924e798230fdce6b2_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -922,6 +1042,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e23924e798230fdce6b6_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e23924e798230fdce6b6_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e23924e798230fdce6b6_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -953,6 +1077,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e24c24e798230fdce6ba_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e24c24e798230fdce6ba_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e24c24e798230fdce6ba_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -984,6 +1112,9 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e25c24e798230fdce6be_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e25c24e798230fdce6be_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e25c24e798230fdce6be_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -1016,6 +1147,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e2da24e798230fdce6c5_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e2da24e798230fdce6c5_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e2da24e798230fdce6c5_.481325932.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -1047,6 +1183,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e2fc24e798230fdce6cd_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e2fc24e798230fdce6cd_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e2fc24e798230fdce6cd_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -1077,6 +1218,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e35024e798230fdce6d2_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e35024e798230fdce6d2_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e35024e798230fdce6d2_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -1108,6 +1253,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e39c24e798230fdce6de_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e39c24e798230fdce6de_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e39c24e798230fdce6de_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -1138,6 +1287,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3ae24e798230fdce6e2_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3ae24e798230fdce6e2_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3ae24e798230fdce6e2_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -1168,6 +1321,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3c124e798230fdce6e6_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3c124e798230fdce6e6_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3c124e798230fdce6e6_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -1198,6 +1356,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3eb24e798230fdce6ee_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3eb24e798230fdce6ee_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3eb24e798230fdce6ee_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -1227,6 +1389,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3fa24e798230fdce6f2_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3fa24e798230fdce6f2_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e3fa24e798230fdce6f2_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1277,6 +1445,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e46b24e798230fdce6fe_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e46b24e798230fdce6fe_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e46b24e798230fdce6fe_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1309,6 +1482,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e47e24e798230fdce702_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e47e24e798230fdce702_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e47e24e798230fdce702_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -1339,6 +1516,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e48f24e798230fdce706_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e48f24e798230fdce706_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e48f24e798230fdce706_.14838303.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -1369,6 +1550,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4a024e798230fdce70a_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4a024e798230fdce70a_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4a024e798230fdce70a_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -1399,6 +1584,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4d324e798230fdce70f_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4d324e798230fdce70f_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4d324e798230fdce70f_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -1428,6 +1618,9 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4e024e798230fdce713_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4e024e798230fdce713_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e4e024e798230fdce713_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0"
   ]
 },
 {
@@ -1460,6 +1653,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e51024e798230fdce718_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e51024e798230fdce718_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e51024e798230fdce718_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1490,6 +1688,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e58224e798230fdce71c_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e58224e798230fdce71c_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e58224e798230fdce71c_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -1520,6 +1722,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e59624e798230fdce720_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e59624e798230fdce720_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e59624e798230fdce720_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1550,6 +1756,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e5aa24e798230fdce724_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e5aa24e798230fdce724_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e5aa24e798230fdce724_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -1580,6 +1790,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e5c424e798230fdce728_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e5c424e798230fdce728_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3e5c424e798230fdce728_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -1611,6 +1825,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee4a24e798230fdce72c_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee4a24e798230fdce72c_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee4a24e798230fdce72c_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -1642,6 +1861,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee6b24e798230fdce731_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee6b24e798230fdce731_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee6b24e798230fdce731_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -1672,6 +1896,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee8224e798230fdce735_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee8224e798230fdce735_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ee8224e798230fdce735_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -1722,6 +1950,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3eed424e798230fdce73d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3eed424e798230fdce73d_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3eed424e798230fdce73d_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7cbe63cc4ccc32a439a8e",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1753,6 +1987,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3eeef24e798230fdce741_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3eeef24e798230fdce741_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3eeef24e798230fdce741_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -1785,6 +2023,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef0824e798230fdce745_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef0824e798230fdce745_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef0824e798230fdce745_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -1816,6 +2059,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef1c24e798230fdce749_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef1c24e798230fdce749_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef1c24e798230fdce749_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -1847,6 +2094,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef3024e798230fdce74d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef3024e798230fdce74d_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef3024e798230fdce74d_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1879,6 +2131,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef4024e798230fdce751_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef4024e798230fdce751_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef4024e798230fdce751_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1911,6 +2168,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef5124e798230fdce755_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef5124e798230fdce755_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef5124e798230fdce755_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -1942,6 +2203,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef6924e798230fdce759_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef6924e798230fdce759_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef6924e798230fdce759_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -1972,6 +2239,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef7624e798230fdce75d_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef7624e798230fdce75d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef7624e798230fdce75d_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -2003,6 +2275,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef8724e798230fdce761_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef8724e798230fdce761_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef8724e798230fdce761_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2033,6 +2310,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef9424e798230fdce765_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef9424e798230fdce765_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3ef9424e798230fdce765_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -2062,6 +2343,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3efa824e798230fdce769_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3efa824e798230fdce769_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3efa824e798230fdce769_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -2094,6 +2379,9 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3efc524e798230fdce76d_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3efc524e798230fdce76d_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3efc524e798230fdce76d_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0"
   ]
 },
 {
@@ -2124,6 +2412,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f02824e798230fdce772_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f02824e798230fdce772_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f02824e798230fdce772_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -2155,6 +2448,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f03824e798230fdce776_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f03824e798230fdce776_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f03824e798230fdce776_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -2187,6 +2484,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f04324e798230fdce77a_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f04324e798230fdce77a_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f04324e798230fdce77a_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -2218,6 +2520,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f05c24e798230fdce77e_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f05c24e798230fdce77e_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f05c24e798230fdce77e_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e22f390635b2cd9f14f8",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -2249,6 +2557,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f0db24e798230fdce782_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f0db24e798230fdce782_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f0db24e798230fdce782_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2280,6 +2594,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f0f824e798230fdce786_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f0f824e798230fdce786_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f0f824e798230fdce786_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -2311,6 +2629,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f10924e798230fdce78a_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f10924e798230fdce78a_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f10924e798230fdce78a_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2341,6 +2664,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f12f24e798230fdce78e_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f12f24e798230fdce78e_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f12f24e798230fdce78e_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -2372,6 +2699,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f13f24e798230fdce792_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f13f24e798230fdce792_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f13f24e798230fdce792_.326841914.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -2402,6 +2733,9 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f15724e798230fdce796_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f15724e798230fdce796_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f15724e798230fdce796_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0"
   ]
 },
 {
@@ -2432,6 +2766,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f16824e798230fdce79a_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f16824e798230fdce79a_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f16824e798230fdce79a_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -2503,6 +2841,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f18624e798230fdce7a2_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f18624e798230fdce7a2_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f18624e798230fdce7a2_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -2535,6 +2877,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f19b24e798230fdce7a6_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f19b24e798230fdce7a6_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f19b24e798230fdce7a6_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2567,6 +2914,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f1c424e798230fdce7aa_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f1c424e798230fdce7aa_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f1c424e798230fdce7aa_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -2597,6 +2949,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f21024e798230fdce7af_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f21024e798230fdce7af_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f21024e798230fdce7af_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -2627,6 +2984,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f23024e798230fdce7b3_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f23024e798230fdce7b3_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f23024e798230fdce7b3_.255333174.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2657,6 +3018,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f23f24e798230fdce7b7_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f23f24e798230fdce7b7_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f23f24e798230fdce7b7_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -2687,6 +3052,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f25324e798230fdce7bb_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f25324e798230fdce7bb_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f25324e798230fdce7bb_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -2718,6 +3088,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f26924e798230fdce7bf_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f26924e798230fdce7bf_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f26924e798230fdce7bf_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2747,6 +3123,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f27a24e798230fdce7c3_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f27a24e798230fdce7c3_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f27a24e798230fdce7c3_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2777,6 +3157,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f28824e798230fdce7c7_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f28824e798230fdce7c7_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f28824e798230fdce7c7_.227683809.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -2808,6 +3193,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f29424e798230fdce7cb_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f29424e798230fdce7cb_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f29424e798230fdce7cb_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -2840,6 +3229,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2a024e798230fdce7cf_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2a024e798230fdce7cf_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2a024e798230fdce7cf_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2870,6 +3264,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2ba24e798230fdce7d3_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2ba24e798230fdce7d3_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2ba24e798230fdce7d3_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -2901,6 +3299,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2cc24e798230fdce7d7_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2cc24e798230fdce7d7_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2cc24e798230fdce7d7_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -2930,6 +3332,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2d924e798230fdce7db_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2d924e798230fdce7db_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2d924e798230fdce7db_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -2961,6 +3367,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2ec24e798230fdce7df_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2ec24e798230fdce7df_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2ec24e798230fdce7df_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -2992,6 +3403,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2f924e798230fdce7e3_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2f924e798230fdce7e3_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b3f2f924e798230fdce7e3_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3022,6 +3437,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ccd38ec2cecf9c69628d_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ccd38ec2cecf9c69628d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ccd38ec2cecf9c69628d_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e22f390635b2cd9f14f8",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -3052,6 +3473,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cce48ec2cecf9c696291_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cce48ec2cecf9c696291_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cce48ec2cecf9c696291_.8.webp"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3083,6 +3509,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ccf28ec2cecf9c696295_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ccf28ec2cecf9c696295_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ccf28ec2cecf9c696295_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3113,6 +3544,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd028ec2cecf9c696299_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd028ec2cecf9c696299_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd028ec2cecf9c696299_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3162,6 +3598,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd2f8ec2cecf9c6962a1_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd2f8ec2cecf9c6962a1_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd2f8ec2cecf9c6962a1_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3193,6 +3635,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd3b8ec2cecf9c6962a5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd3b8ec2cecf9c6962a5_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd3b8ec2cecf9c6962a5_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -3226,6 +3672,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd4c8ec2cecf9c6962a9_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd4c8ec2cecf9c6962a9_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd4c8ec2cecf9c6962a9_.11.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3257,6 +3708,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd658ec2cecf9c6962ad_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd658ec2cecf9c6962ad_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd658ec2cecf9c6962ad_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3289,6 +3746,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd898ec2cecf9c6962b1_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd898ec2cecf9c6962b1_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd898ec2cecf9c6962b1_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -3319,6 +3782,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd9f8ec2cecf9c6962b5_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd9f8ec2cecf9c6962b5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cd9f8ec2cecf9c6962b5_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -3349,6 +3817,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdad8ec2cecf9c6962b9_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdad8ec2cecf9c6962b9_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdad8ec2cecf9c6962b9_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3379,6 +3851,9 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdc08ec2cecf9c6962bd_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdc08ec2cecf9c6962bd_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdc08ec2cecf9c6962bd_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0"
   ]
 },
 {
@@ -3410,6 +3885,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdd18ec2cecf9c6962c1_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdd18ec2cecf9c6962c1_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cdd18ec2cecf9c6962c1_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3440,6 +3920,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cddf8ec2cecf9c6962c5_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cddf8ec2cecf9c6962c5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cddf8ec2cecf9c6962c5_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -3471,6 +3955,9 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce158ec2cecf9c6962c9_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce158ec2cecf9c6962c9_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce158ec2cecf9c6962c9_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3501,6 +3988,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce238ec2cecf9c6962cd_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce238ec2cecf9c6962cd_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce238ec2cecf9c6962cd_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -3533,6 +4024,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce308ec2cecf9c6962d1_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce308ec2cecf9c6962d1_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce308ec2cecf9c6962d1_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3565,6 +4061,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce3f8ec2cecf9c6962d5_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce3f8ec2cecf9c6962d5_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce3f8ec2cecf9c6962d5_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -3597,6 +4097,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce4f8ec2cecf9c6962d9_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce4f8ec2cecf9c6962d9_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce4f8ec2cecf9c6962d9_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3629,6 +4134,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce648ec2cecf9c6962dd_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce648ec2cecf9c6962dd_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce648ec2cecf9c6962dd_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -3660,6 +4169,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce728ec2cecf9c6962e1_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce728ec2cecf9c6962e1_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce728ec2cecf9c6962e1_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e237390635b2cd9f14fc",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -3691,6 +4206,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce818ec2cecf9c6962e5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce818ec2cecf9c6962e5_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce818ec2cecf9c6962e5_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3723,6 +4242,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce8e8ec2cecf9c6962e9_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce8e8ec2cecf9c6962e9_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce8e8ec2cecf9c6962e9_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3755,6 +4280,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce9d8ec2cecf9c6962ed_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce9d8ec2cecf9c6962ed_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ce9d8ec2cecf9c6962ed_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -3805,6 +4336,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cec28ec2cecf9c6962f5_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cec28ec2cecf9c6962f5_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cec28ec2cecf9c6962f5_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -3835,6 +4370,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cecd8ec2cecf9c6962f9_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cecd8ec2cecf9c6962f9_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cecd8ec2cecf9c6962f9_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -3866,6 +4405,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ceda8ec2cecf9c6962fd_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ceda8ec2cecf9c6962fd_.8.webp",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ceda8ec2cecf9c6962fd_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -3897,6 +4440,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cee98ec2cecf9c696301_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cee98ec2cecf9c696301_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cee98ec2cecf9c696301_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -3929,6 +4477,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ceff8ec2cecf9c696305_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ceff8ec2cecf9c696305_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4ceff8ec2cecf9c696305_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -3959,6 +4512,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf0b8ec2cecf9c696309_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf0b8ec2cecf9c696309_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf0b8ec2cecf9c696309_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -3989,6 +4546,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf1f8ec2cecf9c69630d_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf1f8ec2cecf9c69630d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf1f8ec2cecf9c69630d_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -4022,6 +4583,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf2d8ec2cecf9c696311_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf2d8ec2cecf9c696311_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf2d8ec2cecf9c696311_.94.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4053,6 +4619,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf3a8ec2cecf9c696315_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf3a8ec2cecf9c696315_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf3a8ec2cecf9c696315_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -4086,6 +4657,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf538ec2cecf9c696319_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf538ec2cecf9c696319_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf538ec2cecf9c696319_.11.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4116,6 +4691,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf608ec2cecf9c69631d_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf608ec2cecf9c69631d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf608ec2cecf9c69631d_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -4149,6 +4728,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf6c8ec2cecf9c696321_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf6c8ec2cecf9c696321_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf6c8ec2cecf9c696321_.11.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4178,6 +4762,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf768ec2cecf9c696325_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf768ec2cecf9c696325_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf768ec2cecf9c696325_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4208,6 +4797,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf808ec2cecf9c696329_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf808ec2cecf9c696329_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf808ec2cecf9c696329_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4239,6 +4832,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf9a8ec2cecf9c69632d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf9a8ec2cecf9c69632d_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cf9a8ec2cecf9c69632d_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -4270,6 +4868,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfa58ec2cecf9c696331_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfa58ec2cecf9c696331_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfa58ec2cecf9c696331_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4301,6 +4903,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfb38ec2cecf9c696335_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfb38ec2cecf9c696335_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfb38ec2cecf9c696335_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -4331,6 +4937,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfbf8ec2cecf9c696339_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfbf8ec2cecf9c696339_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfbf8ec2cecf9c696339_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -4363,6 +4973,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfcf8ec2cecf9c69633d_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfcf8ec2cecf9c69633d_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfcf8ec2cecf9c69633d_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4394,6 +5009,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfe58ec2cecf9c696341_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfe58ec2cecf9c696341_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cfe58ec2cecf9c696341_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -4425,6 +5045,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cff18ec2cecf9c696345_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cff18ec2cecf9c696345_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cff18ec2cecf9c696345_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -4456,6 +5081,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cffd8ec2cecf9c696349_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cffd8ec2cecf9c696349_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4cffd8ec2cecf9c696349_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e22f390635b2cd9f14f8"
   ]
 },
 {
@@ -4488,6 +5117,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0108ec2cecf9c69634d_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0108ec2cecf9c69634d_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0108ec2cecf9c69634d_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -4519,6 +5153,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0228ec2cecf9c696351_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0228ec2cecf9c696351_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0228ec2cecf9c696351_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4549,6 +5187,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0a48ec2cecf9c696359_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0a48ec2cecf9c696359_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0a48ec2cecf9c696359_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4579,6 +5222,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0b18ec2cecf9c69635d_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0b18ec2cecf9c69635d_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0b18ec2cecf9c69635d_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4609,6 +5256,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0be8ec2cecf9c696361_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0be8ec2cecf9c696361_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0be8ec2cecf9c696361_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -4640,6 +5292,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0dd8ec2cecf9c69636a_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0dd8ec2cecf9c69636a_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d0dd8ec2cecf9c69636a_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -4670,6 +5328,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6078ec2cecf9c696372_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6078ec2cecf9c696372_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6078ec2cecf9c696372_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e22f390635b2cd9f14f8"
   ]
 },
 {
@@ -4699,6 +5361,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d63b8ec2cecf9c69637e_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d63b8ec2cecf9c69637e_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d63b8ec2cecf9c69637e_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4730,6 +5396,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6558ec2cecf9c696386_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6558ec2cecf9c696386_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6558ec2cecf9c696386_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4760,6 +5430,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d66c8ec2cecf9c69638a_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d66c8ec2cecf9c69638a_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d66c8ec2cecf9c69638a_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -4792,6 +5466,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d67a8ec2cecf9c69638e_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d67a8ec2cecf9c69638e_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d67a8ec2cecf9c69638e_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4823,6 +5502,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6858ec2cecf9c696392_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6858ec2cecf9c696392_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6858ec2cecf9c696392_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e22f390635b2cd9f14f8"
   ]
 },
 {
@@ -4854,6 +5537,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6908ec2cecf9c696396_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6908ec2cecf9c696396_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d6908ec2cecf9c696396_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4886,6 +5573,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7a58ec2cecf9c6963a2_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7a58ec2cecf9c6963a2_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7a58ec2cecf9c6963a2_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -4917,6 +5608,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7bb8ec2cecf9c6963a6_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7bb8ec2cecf9c6963a6_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7bb8ec2cecf9c6963a6_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -4946,6 +5641,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7ec8ec2cecf9c6963aa_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7ec8ec2cecf9c6963aa_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d7ec8ec2cecf9c6963aa_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -4975,6 +5675,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8518ec2cecf9c6963af_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8518ec2cecf9c6963af_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8518ec2cecf9c6963af_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -5005,6 +5709,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8968ec2cecf9c6963b3_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8968ec2cecf9c6963b3_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8968ec2cecf9c6963b3_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -5037,6 +5745,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8a68ec2cecf9c6963b7_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8a68ec2cecf9c6963b7_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8a68ec2cecf9c6963b7_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -5068,6 +5780,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8ba8ec2cecf9c6963bb_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8ba8ec2cecf9c6963bb_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8ba8ec2cecf9c6963bb_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -5100,6 +5818,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8c68ec2cecf9c6963bf_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8c68ec2cecf9c6963bf_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8c68ec2cecf9c6963bf_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -5130,6 +5852,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8d28ec2cecf9c6963c3_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8d28ec2cecf9c6963c3_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4d8d28ec2cecf9c6963c3_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -5162,6 +5888,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1308ec2cecf9c6963c7_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1308ec2cecf9c6963c7_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1308ec2cecf9c6963c7_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -5194,6 +5925,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1438ec2cecf9c6963cb_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1438ec2cecf9c6963cb_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1438ec2cecf9c6963cb_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -5226,6 +5962,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1528ec2cecf9c6963cf_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1528ec2cecf9c6963cf_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1528ec2cecf9c6963cf_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -5258,6 +5999,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1628ec2cecf9c6963d3_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1628ec2cecf9c6963d3_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1628ec2cecf9c6963d3_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e"
   ]
 },
 {
@@ -5289,6 +6034,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f16f8ec2cecf9c6963d7_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f16f8ec2cecf9c6963d7_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f16f8ec2cecf9c6963d7_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -5320,6 +6070,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1918ec2cecf9c6963db_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1918ec2cecf9c6963db_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1918ec2cecf9c6963db_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -5352,6 +6107,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1a28ec2cecf9c6963df_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1a28ec2cecf9c6963df_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1a28ec2cecf9c6963df_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e",
+    "65b7e24f390635b2cd9f1508"
   ]
 },
 {
@@ -5380,6 +6141,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1af8ec2cecf9c6963e3_.4.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1af8ec2cecf9c6963e3_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1af8ec2cecf9c6963e3_.6.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -5412,6 +6177,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1bb8ec2cecf9c6963e7_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1bb8ec2cecf9c6963e7_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1bb8ec2cecf9c6963e7_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
   ]
 },
 {
@@ -5444,6 +6213,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1cb8ec2cecf9c6963eb_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1cb8ec2cecf9c6963eb_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1cb8ec2cecf9c6963eb_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -5473,6 +6247,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1f68ec2cecf9c6963ef_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1f68ec2cecf9c6963ef_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f1f68ec2cecf9c6963ef_.7.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -5503,6 +6281,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f20f8ec2cecf9c6963f7_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f20f8ec2cecf9c6963f7_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f20f8ec2cecf9c6963f7_.8.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -5534,6 +6316,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f21d8ec2cecf9c6963fb_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f21d8ec2cecf9c6963fb_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f21d8ec2cecf9c6963fb_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e227390635b2cd9f14f4"
   ]
 },
 {
@@ -5565,6 +6352,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f22a8ec2cecf9c6963ff_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f22a8ec2cecf9c6963ff_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f22a8ec2cecf9c6963ff_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7"
   ]
 },
 {
@@ -5595,6 +6387,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2428ec2cecf9c696403_.6.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2428ec2cecf9c696403_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2428ec2cecf9c696403_.8.webp"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e23e390635b2cd9f1500"
   ]
 },
 {
@@ -5627,6 +6424,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2508ec2cecf9c696407_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2508ec2cecf9c696407_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2508ec2cecf9c696407_.10.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -5658,6 +6460,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f25e8ec2cecf9c69640b_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f25e8ec2cecf9c69640b_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f25e8ec2cecf9c69640b_.9.jpg"
+  ],
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
   ]
 },
 {
@@ -5690,7 +6496,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f26d8ec2cecf9c69640f_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f26d8ec2cecf9c69640f_.10.jpg"
   ],
-  "total_rooms": 48
+  "total_rooms": 48,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -5722,7 +6533,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f27d8ec2cecf9c696413_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f27d8ec2cecf9c696413_.10.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -5752,7 +6568,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2a78ec2cecf9c696417_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2a78ec2cecf9c696417_.8.jpg"
   ],
-  "total_rooms": 30
+  "total_rooms": 30,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
+  ]
 },
 {
   "_id": {
@@ -5782,7 +6602,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2b88ec2cecf9c69641b_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2b88ec2cecf9c69641b_.8.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -5812,7 +6636,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2c68ec2cecf9c69641f_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2c68ec2cecf9c69641f_.8.jpg"
   ],
-  "total_rooms": 45
+  "total_rooms": 45,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -5843,7 +6672,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2d38ec2cecf9c696423_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2d38ec2cecf9c696423_.9.jpg"
   ],
-  "total_rooms": 62
+  "total_rooms": 62,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -5875,7 +6709,13 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2e28ec2cecf9c696427_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f2e28ec2cecf9c696427_.10.jpg"
   ],
-  "total_rooms": 75
+  "total_rooms": 75,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7",
+    "65b7e247390635b2cd9f1504"
+  ]
 },
 {
   "_id": {
@@ -5908,7 +6748,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f30a8ec2cecf9c69642b_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f30a8ec2cecf9c69642b_.11.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -5938,7 +6782,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3158ec2cecf9c69642f_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3158ec2cecf9c69642f_.8.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -5968,7 +6817,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f32e8ec2cecf9c696437_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f32e8ec2cecf9c696437_.8.jpg"
   ],
-  "total_rooms": 45
+  "total_rooms": 45,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -5996,7 +6850,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3428ec2cecf9c69643b_.5.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3428ec2cecf9c69643b_.6.jpg"
   ],
-  "total_rooms": 25
+  "total_rooms": 25,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -6030,7 +6888,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3758ec2cecf9c696443_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3758ec2cecf9c696443_.12.jpg"
   ],
-  "total_rooms": 45
+  "total_rooms": 45,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -6060,7 +6923,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3818ec2cecf9c696447_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3818ec2cecf9c696447_.8.jpg"
   ],
-  "total_rooms": 30
+  "total_rooms": 30,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
+  ]
 },
 {
   "_id": {
@@ -6090,7 +6957,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3958ec2cecf9c69644f_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3958ec2cecf9c69644f_.8.jpg"
   ],
-  "total_rooms": 25
+  "total_rooms": 25,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -6123,7 +6994,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3ac8ec2cecf9c696453_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3ac8ec2cecf9c696453_.92010916.jpg"
   ],
-  "total_rooms": 55
+  "total_rooms": 55,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -6155,7 +7031,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3ef8ec2cecf9c69645b_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3ef8ec2cecf9c69645b_.10.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -6187,7 +7067,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3ff8ec2cecf9c69645f_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f3ff8ec2cecf9c69645f_.10.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504"
+  ]
 },
 {
   "_id": {
@@ -6219,7 +7103,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f40e8ec2cecf9c696463_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f40e8ec2cecf9c696463_.10.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -6251,7 +7139,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4208ec2cecf9c696467_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4208ec2cecf9c696467_.10.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6283,7 +7176,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4318ec2cecf9c69646b_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4318ec2cecf9c69646b_.10.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
+  ]
 },
 {
   "_id": {
@@ -6314,7 +7211,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f45e8ec2cecf9c696470_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f45e8ec2cecf9c696470_.9.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
+  ]
 },
 {
   "_id": {
@@ -6344,7 +7245,10 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f46b8ec2cecf9c696474_.7.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f46b8ec2cecf9c696474_.8.jpg"
   ],
-  "total_rooms": 20
+  "total_rooms": 20,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0"
+  ]
 },
 {
   "_id": {
@@ -6375,7 +7279,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4778ec2cecf9c696478_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4778ec2cecf9c696478_.9.jpg"
   ],
-  "total_rooms": 25
+  "total_rooms": 25,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
+  ]
 },
 {
   "_id": {
@@ -6406,7 +7314,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4808ec2cecf9c69647c_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b4f4808ec2cecf9c69647c_.9.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6438,7 +7350,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b51fe358b2f471c896852a_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b51fe358b2f471c896852a_.10.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7"
+  ]
 },
 {
   "_id": {
@@ -6470,7 +7387,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b51ffd58b2f471c896852e_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b51ffd58b2f471c896852e_.10.jpg"
   ],
-  "total_rooms": 72
+  "total_rooms": 72,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6501,7 +7423,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5200f58b2f471c8968532_.8.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5200f58b2f471c8968532_.170448465.jpg"
   ],
-  "total_rooms": 43
+  "total_rooms": 43,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -6533,7 +7460,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5201e58b2f471c8968536_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5201e58b2f471c8968536_.10.jpg"
   ],
-  "total_rooms": 66
+  "total_rooms": 66,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7cbe63cc4ccc32a439a8e"
+  ]
 },
 {
   "_id": {
@@ -6565,7 +7497,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5202e58b2f471c896853a_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5202e58b2f471c896853a_.10.jpg"
   ],
-  "total_rooms": 60
+  "total_rooms": 60,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6597,7 +7534,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5204258b2f471c896853e_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5204258b2f471c896853e_.10.jpg"
   ],
-  "total_rooms": 54
+  "total_rooms": 54,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6629,7 +7571,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5205058b2f471c8968542_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5205058b2f471c8968542_.10.jpg"
   ],
-  "total_rooms": 45
+  "total_rooms": 45,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500",
+    "65b680e6f5e7544c196901c7"
+  ]
 },
 {
   "_id": {
@@ -6664,7 +7611,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5205f58b2f471c8968546_.12.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5205f58b2f471c8968546_.13.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
+  ]
 },
 {
   "_id": {
@@ -6698,7 +7649,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5206f58b2f471c896854a_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5206f58b2f471c896854a_.12.jpg"
   ],
-  "total_rooms": 30
+  "total_rooms": 30,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
+  ]
 },
 {
   "_id": {
@@ -6731,7 +7686,13 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5208158b2f471c896854e_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5208158b2f471c896854e_.11.jpg"
   ],
-  "total_rooms": 80
+  "total_rooms": 80,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6765,7 +7726,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520ab58b2f471c8968552_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520ab58b2f471c8968552_.12.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6798,7 +7764,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520bd58b2f471c8968556_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520bd58b2f471c8968556_.11.jpg"
   ],
-  "total_rooms": 45
+  "total_rooms": 45,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e24f390635b2cd9f1508",
+    "65b680e6f5e7544c196901c7"
+  ]
 },
 {
   "_id": {
@@ -6831,7 +7802,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520d558b2f471c896855a_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520d558b2f471c896855a_.11.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -6864,7 +7839,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520ea58b2f471c896855e_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b520ea58b2f471c896855e_.11.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
+  ]
 },
 {
   "_id": {
@@ -6898,7 +7877,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5210458b2f471c8968562_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5210458b2f471c8968562_.12.jpg"
   ],
-  "total_rooms": 70
+  "total_rooms": 70,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b680e6f5e7544c196901c7"
+  ]
 },
 {
   "_id": {
@@ -6931,7 +7915,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5212158b2f471c8968566_.10.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5212158b2f471c8968566_.11.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -6965,7 +7954,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5213e58b2f471c896856a_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5213e58b2f471c896856a_.12.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4"
+  ]
 },
 {
   "_id": {
@@ -6997,7 +7990,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5214c58b2f471c896856e_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5214c58b2f471c896856e_.10.jpg"
   ],
-  "total_rooms": 45
+  "total_rooms": 45,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e24f390635b2cd9f1508"
+  ]
 },
 {
   "_id": {
@@ -7029,7 +8027,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5215f58b2f471c8968572_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5215f58b2f471c8968572_.10.jpg"
   ],
-  "total_rooms": 35
+  "total_rooms": 35,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
+  ]
 },
 {
   "_id": {
@@ -7061,7 +8063,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5216e58b2f471c8968576_.9.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5216e58b2f471c8968576_.10.jpg"
   ],
-  "total_rooms": 65
+  "total_rooms": 65,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e237390635b2cd9f14fc"
+  ]
 },
 {
   "_id": {
@@ -7096,7 +8103,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5218558b2f471c896857a_.12.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5218558b2f471c896857a_.13.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e23e390635b2cd9f1500"
+  ]
 },
 {
   "_id": {
@@ -7132,7 +8143,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5219558b2f471c896857e_.13.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b5219558b2f471c896857e_.15.jpg"
   ],
-  "total_rooms": 50
+  "total_rooms": 50,
+  "roomTypes": [
+    "65b7e21f390635b2cd9f14f0",
+    "65b680e6f5e7544c196901c7",
+    "65b7e262390635b2cd9f1514"
+  ]
 },
 {
   "_id": {
@@ -7166,7 +8182,11 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b521ad58b2f471c8968582_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b521ad58b2f471c8968582_.12.jpg"
   ],
-  "total_rooms": 60
+  "total_rooms": 60,
+  "roomTypes": [
+    "65b7e23e390635b2cd9f1500",
+    "65b7e21f390635b2cd9f14f0"
+  ]
 },
 {
   "_id": {
@@ -7200,7 +8220,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b521ba58b2f471c8968586_.11.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b521ba58b2f471c8968586_.12.jpg"
   ],
-  "total_rooms": 40
+  "total_rooms": 40,
+  "roomTypes": [
+    "65b7e262390635b2cd9f1514",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e21f390635b2cd9f14f0"
+  ]
 },
 {
   "_id": {
@@ -7235,7 +8260,12 @@
     "http://localhost:5001/hotels/uploads/hotelsImg/65b521cc58b2f471c896858a_.12.jpg",
     "http://localhost:5001/hotels/uploads/hotelsImg/65b521cc58b2f471c896858a_.13.jpg"
   ],
-  "total_rooms": 65
+  "total_rooms": 65,
+  "roomTypes": [
+    "65b7e24f390635b2cd9f1508",
+    "65b7e227390635b2cd9f14f4",
+    "65b7e21f390635b2cd9f14f0"
+  ]
 },
 {
   "_id": {
@@ -7257,6 +8287,34 @@
     "$date": "2024-02-24T06:26:48.043Z"
   },
   "isDeleted": true,
+  "isActive": true,
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "65f0898f408557ffbf05f40e"
+  },
+  "location_id": "65b1f8d9bf71a7a0133e4899",
+  "country_id": "65b1f282bf71a7a0133e47a3",
+  "roomTypes": [
+    "65b7e227390635b2cd9f14f4",
+    "65b7e21f390635b2cd9f14f0",
+    "65b7e247390635b2cd9f1504",
+    "65b7cbe63cc4ccc32a439a8e"
+  ],
+  "amenities": [],
+  "hotel_name": "test",
+  "hotel_code": "CHT",
+  "hotel_address": "knfljk",
+  "hotel_image": [],
+  "total_rooms": 55,
+  "createdAt": {
+    "$date": "2024-03-12T16:57:51.433Z"
+  },
+  "updatedAt": {
+    "$date": "2024-03-12T16:57:51.433Z"
+  },
+  "isDeleted": false,
   "isActive": true,
   "__v": 0
 }]

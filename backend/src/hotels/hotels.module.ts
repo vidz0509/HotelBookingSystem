@@ -21,6 +21,8 @@ import { ConfigModule } from '@nestjs/config';
 import { Booking, BookingSchema } from 'src/bookings/booking.schema';
 import { Rooms, RoomsSchema, RoomsDocument } from 'src/rooms/rooms.schema';
 import { RoomsCollection } from 'src/rooms/rooms.collection';
+import { Amenities, AmenitiesSchema } from 'src/amenities/amenities.schema';
+import { AmenitiesCollection } from 'src/amenities/amenities.collection';
 
 @Module({
     imports: [
@@ -38,6 +40,10 @@ import { RoomsCollection } from 'src/rooms/rooms.collection';
                 name: Rooms.name,
                 schema: RoomsSchema
             },
+            {
+                name: Amenities.name,
+                schema: AmenitiesSchema
+            },
         ]),
         MulterModule.register({
             dest: './uploads/hotelsImg',
@@ -51,7 +57,7 @@ import { RoomsCollection } from 'src/rooms/rooms.collection';
         })
     ],
     controllers: [HotelsController],
-    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection,RoomsService,RoomsCollection, HelpersServices],
+    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection,RoomsService,RoomsCollection, AmenitiesCollection,HelpersServices],
 })
 
 export class HotelModule { }
