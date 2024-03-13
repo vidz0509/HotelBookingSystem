@@ -581,3 +581,9 @@ img.user-profile {
 .amenities-box {
     text-align: center !important;
 }
+
+.searchform{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}

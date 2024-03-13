@@ -220,7 +220,7 @@ function SearchForm(props) {
     return (
         <>
             <div className="search-form" id="search-form">
-                <div className="row">
+                <div className="row searchform">
                     <div className="col half-col">
                         <div className="field-group">
                             <label htmlFor='country'>Select Country</label>
