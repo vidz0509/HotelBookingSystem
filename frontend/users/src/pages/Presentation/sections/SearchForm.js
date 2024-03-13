@@ -215,20 +215,16 @@ function SearchForm(props) {
             check_out: CheckOut.toISOString(),
             roomList: roomList
         };
+        let fullURL = '';
         if (!props.hideHotelDetail) {
-            window.location.href = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
-            setBtnDisabled(false);
+            fullURL = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
         } else {
-            const roomQueryString = roomList.map((room, index) => {
-                const roomIndex = index + 1;
-                window.location.href = `/bookings?room[${index}][adult]=${room.adult}&room[${index}][children]=${room.children}`
-            }).join('&');
-            const fullUrl = `${roomQueryString}`;
-            console.log(fullUrl);
-            setBtnDisabled(false);
+            fullURL = `/bookings?check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`;
         }
-
-
+        roomList.map((room, index) => {
+            fullURL += `&room[${index}][adult]=${room.adult}&room[${index}][children]=${room.children}`
+        });
+        window.location.href = fullURL;
     }
 
     return (

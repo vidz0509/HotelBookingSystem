@@ -118,6 +118,14 @@ div:where(.swal2-icon).swal2-warning {
     border: 0;
 }
 
+.btn-col img {
+    transition: ease-in-out 0.2s;
+}
+
+.btn-col img:hover {
+    transform: rotate(360deg);
+}
+
 .field-group label {
     font-size: 14px;
     color: #932595;
@@ -601,11 +609,12 @@ img.user-profile {
     margin: auto
 }
 
-.hotel-head{
+.hotel-head {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
 }
-.hotel-head a{
+
+.hotel-head a {
     padding: 0 !important
 }
