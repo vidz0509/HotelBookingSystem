@@ -87,7 +87,7 @@ function HotelDetail() {
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
 
-          <Grid className="searchform"><SearchForm /></Grid>
+          <Grid className="searchform"><SearchForm hideHotelDetail={true} /></Grid>
           
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>

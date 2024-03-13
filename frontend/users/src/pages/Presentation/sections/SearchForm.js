@@ -31,7 +31,7 @@ function SearchForm(props) {
         if (props?.searchData?.country_id && props?.searchData.country_id !== '') {
             setCountryId(props.searchData.country_id);
         }
-    },[]);
+    }, []);
 
     useEffect(() => {
         getLocations(countryId);
@@ -194,15 +194,18 @@ function SearchForm(props) {
         setCountryIdError("");
         setLocationIdError("");
 
-        if (validation.isEmpty(countryId)) {
-            setCountryIdError("Please select valid country name.");
-            return false;
+
+        if (!props.hideHotelDetail) {
+            if (validation.isEmpty(countryId)) {
+                setCountryIdError("Please select valid country name.");
+                return false;
+            }
+            if (validation.isEmpty(locationId)) {
+                setLocationIdError("Please select valid location name.");
+                return false;
+            }
         }
 
-        if (validation.isEmpty(locationId)) {
-            setLocationIdError("Please select valid location name.");
-            return false;
-        }
         setBtnDisabled(true);
         let roomList = resetRoomPopupData();
         const requestBody = {
@@ -212,8 +215,14 @@ function SearchForm(props) {
             check_out: CheckOut.toISOString(),
             roomList: roomList
         };
-        window.location.href = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
-        setBtnDisabled(false);
+        if (!props.hideHotelDetail) {
+            window.location.href = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
+            setBtnDisabled(false);
+        }else{
+            window.location.href = `/bookings?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
+            setBtnDisabled(false);
+        }
+        
 
     }
 
@@ -221,34 +230,39 @@ function SearchForm(props) {
         <>
             <div className="search-form" id="search-form">
                 <div className="row searchform">
-                    <div className="col half-col">
-                        <div className="field-group">
-                            <label htmlFor='country'>Select Country</label>
-                            <select id='country' onChange={handleCountryIdChange}>
-                                <option value="">-- Select Country --</option>
-                                {countriesData &&
-                                    countriesData.length > 0 &&
-                                    countriesData.map((item) => (
-                                        <option value={item._id} key={item._id} selected={countryId !== '' && countryId === item._id}>{item.country_name}</option>
-                                    ))}
-                            </select>
-                            {countryIdError && <span className="error-msg">{countryIdError}</span>}
-                        </div>
-                    </div>
-                    <div className="col half-col">
-                        <div className="field-group">
-                            <label htmlFor='location'>Select Location</label>
-                            <select id='location' onChange={handleLocationIdChange}>
-                                <option value="">-- Select Location --</option>
-                                {locationsData &&
-                                    locationsData.length > 0 &&
-                                    locationsData.map((item) => (
-                                        <option value={item._id} key={item._id} selected={locationId !== '' && locationId === item._id}>{item.location_name}</option>
-                                    ))}
-                            </select>
-                            {locationIdError && <span className="error-msg">{locationIdError}</span>}
-                        </div>
-                    </div>
+                    {
+                        !props.hideHotelDetail &&
+                        <>
+                            <div className="col half-col">
+                                <div className="field-group">
+                                    <label htmlFor='country'>Select Country</label>
+                                    <select id='country' onChange={handleCountryIdChange}>
+                                        <option value="">-- Select Country --</option>
+                                        {countriesData &&
+                                            countriesData.length > 0 &&
+                                            countriesData.map((item) => (
+                                                <option value={item._id} key={item._id} selected={countryId !== '' && countryId === item._id}>{item.country_name}</option>
+                                            ))}
+                                    </select>
+                                    {countryIdError && <span className="error-msg">{countryIdError}</span>}
+                                </div>
+                            </div>
+                            <div className="col half-col">
+                                <div className="field-group">
+                                    <label htmlFor='location'>Select Location</label>
+                                    <select id='location' onChange={handleLocationIdChange}>
+                                        <option value="">-- Select Location --</option>
+                                        {locationsData &&
+                                            locationsData.length > 0 &&
+                                            locationsData.map((item) => (
+                                                <option value={item._id} key={item._id} selected={locationId !== '' && locationId === item._id}>{item.location_name}</option>
+                                            ))}
+                                    </select>
+                                    {locationIdError && <span className="error-msg">{locationIdError}</span>}
+                                </div>
+                            </div>
+                        </>
+                    }
                     <div className="col">
                         <div className="field-group">
                             <label>Check-in</label>
@@ -264,7 +278,7 @@ function SearchForm(props) {
                     <div className="col">
                         <div className="field-group">
                             <label>Room</label>
-                            
+
                             <input type="text" onClick={handleInputClick} onChange={handleInputClick} id="room" value={roomString} />
                             <div className={`dropdown room-input ${isDropdownOpen ? 'show-popup' : ''}`}>
                                 <div className='room-list'>
