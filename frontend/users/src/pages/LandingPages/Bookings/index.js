@@ -1,6 +1,6 @@
 
 import Grid from "@mui/material/Grid";
-
+import { useEffect } from "react";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKInput from "components/MKInput";
@@ -25,6 +25,15 @@ import bgImage from "assets/images/auth.jpg";
 // import bgImage from "assets/images/illustrations/illustration-reset.jpg";
 
 function Bookings() {
+
+  const [bookingData, setBookingData] = useState(null);
+
+  useEffect(() => {
+    let bookingData = JSON.parse(localStorage.getItem('bookingData'));
+    console.log(bookingData.roomList)
+    setBookingData(bookingData);
+  }, [])
+
   return (
     <>
       <MKBox width="100%" >
@@ -37,20 +46,56 @@ function Bookings() {
         <Container className="main-container">
           <Grid container spacing={2}>
             <Grid item xs={12} lg={8}>
-              <Grid spacing={1} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left">
+              <Grid spacing={1} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left" px={3}>
 
-                <MKTypography variant="h4"  color="text" className="css-MuiGrid-root">
-                  Who&apos;s checking in
+                <MKTypography variant="h4" color="text" className="css-MuiGrid-root">
+                 {" Who's checking in"}
                 </MKTypography>
 
-                <Grid item md={4} className="account-col">
+                <Grid item className="account-col">
+                  {
+                    bookingData && bookingData.roomList.length > 0 &&
+                    <>
+                      {
+                        bookingData.roomList.map((room, index) => {
+                          return (
+                            <MKBox key={`room-${index}`} className="room-item" mt={3}>
+                              <MKBox className='room-title'>
+                                <MKTypography variant="h5" color="text">{`Room ${index + 1}`}</MKTypography>
+                              </MKBox>
+                              <MKBox className='adult-details'>
+                                {/* <MKBox className='adult-title'>
+                                  <MKTypography variant="h6" color="text">Adult Details</MKTypography>
+                                </MKBox> */}
+                                <MKBox className='adult-info'>
+                                  <div className="adult-col">
+                                    <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*" />
+                                  </div>
+                                  <div className="adult-col">
+                                    <input type="text" id={`room-${index + 1}-adult-lname`} placeholder="Last Name*" />
+                                  </div>
+                                  {index === 0 &&
+                                    <>
+                                      <div className="adult-col">
+                                        <input type="tel" id={`room-${index + 1}-adult-phone`} placeholder="Phone Number" />
+                                      </div>
+                                      <div className="adult-col">
+                                        <input type="email" id={`room-${index + 1}-adult-email`} placeholder="Email*" />
+                                      </div>
+                                    </>
+                                  }
+                                </MKBox>
+                              </MKBox>
+                            </MKBox>
+                          )
+                        })
+                      }
+                    </>
+                  }
 
 
-                  <MKTypography variant="h5" color="text">
-                    Room 1
-                  </MKTypography>
 
-                  <MKTypography variant="h6" color="text">
+                  {/* <MKTypography variant="h6" color="text">
                     Adult 1
                   </MKTypography>
 
@@ -58,8 +103,7 @@ function Bookings() {
                     <div className="wrap">
                       <div className="form-control required">
                         <MKTypography>
-                          <MKInput>
-                          </MKInput>
+
                           <MKInput>
                           </MKInput>
                           <MKInput>
@@ -69,7 +113,7 @@ function Bookings() {
                         </MKTypography>
                       </div>
                     </div>
-                  </Grid>
+                  </Grid> */}
 
                   <Grid container item xs={12} mt={5} mb={2}>
 

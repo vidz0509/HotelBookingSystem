@@ -30,6 +30,7 @@ function HotelDetail() {
   const [hotelData, setHotelData] = useState(null);
   const [roomsData, setRoomsData] = useState(null);
   const [amenitiesData, setAmenitiesData] = useState(null);
+  const [searchBody, setSearchBody] = useState(null);
   const [accordionIndex, setAccordionIndex] = useState(0);
 
   useEffect(() => {
@@ -86,7 +87,7 @@ function HotelDetail() {
       </MKBox>
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
-          <Grid className="searchform"><SearchForm hideHotelDetail={true} /></Grid>
+          <Grid className="searchform"><SearchForm hideHotelDetail={true} searchBody={searchBody} hotelId={hotelId} /></Grid>
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>
               <MKBox className='hotel-head'>
@@ -176,36 +177,6 @@ function HotelDetail() {
                                     <option value={room.price * 3}>3 (₹{room.price * 3})</option>
                                   </select>
                                 </Grid>
-                                {/* <MKBox>
-                                <MKTypography variant="h4" color="text">
-                                  Roomtype_name:
-                                  {room.roomTypes_details[0].roomtype_name}
-                                </MKTypography>
-                              </MKBox>
-                              <MKBox>
-                              <MKTypography variant="h4" color="text">
-                                Max_adults
-                                {room.roomTypes_details[0].max_adults}
-                              </MKTypography>
-                              </MKBox>
-                              <MKBox>
-                              <MKTypography variant="h4" color="text">
-                                Max_children:
-                                {room.roomTypes_details[0].max_children}
-                              </MKTypography>
-                              </MKBox>
-                              <MKBox>
-                              <MKTypography variant="h4" color="text">
-                                Price:
-                                {room.price}
-                              </MKTypography>
-                              </MKBox>
-                              <select name="Rooms" id="Rooms">
-                                <option value={room.price * 1}>Room1-{room.price * 1}</option>
-                                <option value={room.price * 2}>Room2-{room.price * 2}</option>
-                                <option value={room.price * 3}>Room3-{room.price * 3}</option>
-
-                              </select> */}
 
                               </Grid>
                             </Grid>

@@ -7,7 +7,8 @@ export const hotelsServices = {
     getAllRoomTypes,
     getAmenities,
     HotelsCount,
-    getRoomsByHotelId
+    getRoomsByHotelId,
+    getArrayFromQueryString
 };
 
 async function getAllHotel() {
@@ -75,4 +76,25 @@ async function getRoomsByHotelId(id) {
         let errorObj = error.response.data;
         return errorObj;
     });
+}
+
+function getArrayFromQueryString(queryString) {
+    const params = new URLSearchParams(queryString);
+    const roomDetails = [];
+
+    params.forEach((value, key) => {
+        const matches = key.match(/^room\[(\d+)\]\[(\w+)\]$/);
+        if (matches) {
+            const [, index, subKey] = matches;
+            const objIndex = parseInt(index);
+
+            if (!roomDetails[objIndex]) {
+                roomDetails[objIndex] = {};
+            }
+
+            roomDetails[objIndex][subKey] = value;
+        }
+    });
+
+    return roomDetails.filter(Boolean);
 }
