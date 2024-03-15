@@ -32,16 +32,7 @@ function HotelDetail() {
   const [amenitiesData, setAmenitiesData] = useState(null);
   const [searchBody, setSearchBody] = useState(null);
   const [accordionIndex, setAccordionIndex] = useState(0);
-
-  useEffect(() => {
-    getAmenities();
-  }, []);
-
-  const getAmenities = async () => {
-    let response = await amenitiesServices.getAllAmenities();
-    setAmenitiesData(response.data);
-  }
-
+ 
   const renderData = amenitiesData && amenitiesData?.map((amenities) => (
     <Grid item xs={12} md={2} key={amenities._id}>
       <DefaultInfoCard title={amenities.amenities_name} icon={amenities.amenities_icon ? amenities.amenities_icon : "sports_gymnastics"} />
@@ -60,6 +51,7 @@ function HotelDetail() {
       setHotelData(result.data);
       setHotelName(result.data?.hotel_name);
       setHotelAddress(result.data?.hotel_address);
+      setAmenitiesData(result.data?.amenities);
     }
   };
 
@@ -199,7 +191,7 @@ function HotelDetail() {
             </MKBox>
           </Grid>
 
-          <Grid container spacing={1} sx={{ mt: 1, mb: 9 }} px={3}>
+          <Grid container spacing={1} sx={{ mt: 1, mb: 9 }} px={3} justifyContent={"center"}>
             {renderData}
           </Grid>
 

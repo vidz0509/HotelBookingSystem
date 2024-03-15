@@ -79,7 +79,7 @@ export class HotelsService {
 
   async getHotelById(id: string) {
     const hotel = await this.hotelCollection.getHotelById(id);
-    const response = await this.helper.buildResponse(true, null, hotel);
+    const response = await this.helper.buildResponse(true, null, hotel[0]);
     return response;
   }
 

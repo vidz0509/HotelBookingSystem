@@ -1,5 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateHotelDto } from './dto/create.dto';
 import { Hotels } from './hotels.schema';
@@ -79,8 +79,78 @@ export class HotelsCollection {
         ]);
     }
 
-    async getHotelById(id: string): Promise<Hotels> {
-        return this.hotelModel.findById(id);
+    async getHotelById(id: string): Promise<any> {
+        const hotelId = new mongoose.Types.ObjectId(id);
+        return await this.hotelModel.aggregate([
+            {
+                $match: {
+                    isDeleted: false,
+                    _id:hotelId,
+                    isActive:true
+                }
+            },
+            {
+                $lookup: {
+                    from: 'locations',
+                    let: { locationId: { $toObjectId: "$location_id" } }, // Convert location_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$locationId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                location_code: 1,
+                                location_name: 1
+                            }
+                        }
+                    ],
+                    as: 'location_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'countries',
+                    let: { countryId: { $toObjectId: "$country_id" } }, // Convert country_id string to ObjectId
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$countryId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                country_code: 1,
+                                country_name: 1
+                            }
+                        }
+                    ],
+                    as: 'country_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'amenities',
+                    let: { amenities: "$amenities" }, // No need for $toObjectId conversion
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $in: ["$_id", { $map: { input: "$$amenities", as: "amenity", in: { $toObjectId: "$$amenity" } } }] }
+                            }
+                        },
+                        {
+                            $project: {
+                                amenities_name: 1,
+                                amenities_icon: 1
+                            }
+                        }
+                    ],
+                    as: 'amenities'
+                }
+            },
+        ]);
+        // return this.hotelModel.findById(id);
     }
 
     async createHotel(createHotelDto: CreateHotelDto) {
