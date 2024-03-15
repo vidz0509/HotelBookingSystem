@@ -20,6 +20,7 @@ import { authServices } from "services/auth";
 import { validation } from "services/validation";
 import { useState } from "react";
 import bgImage from "assets/images/auth.jpg";
+import { hotelsServices } from "services/hotels";
 
 // Image
 // import bgImage from "assets/images/illustrations/illustration-reset.jpg";
@@ -27,12 +28,22 @@ import bgImage from "assets/images/auth.jpg";
 function Bookings() {
 
   const [bookingData, setBookingData] = useState(null);
+  const [hotelData, setHotelData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let bookingData = JSON.parse(localStorage.getItem('bookingData'));
-    console.log(bookingData.roomList)
     setBookingData(bookingData);
-  }, [])
+    getHotelById(bookingData.hotelId);
+  }, []);
+
+  const getHotelById = async (hotelId) => {
+    const result = await hotelsServices.getHotelById(hotelId);
+    if (result.isSuccessful) {
+      setLoading(false);
+      setHotelData(result.data);
+    }
+  };
 
   return (
     <>
@@ -49,7 +60,7 @@ function Bookings() {
               <Grid spacing={1} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left" px={3}>
 
                 <MKTypography variant="h4" color="text" className="css-MuiGrid-root">
-                 {" Who's checking in"}
+                  {" Who's checking in"}
                 </MKTypography>
 
                 <Grid item className="account-col">
@@ -93,28 +104,6 @@ function Bookings() {
                     </>
                   }
 
-
-
-                  {/* <MKTypography variant="h6" color="text">
-                    Adult 1
-                  </MKTypography>
-
-                  <Grid item xs={12}>
-                    <div className="wrap">
-                      <div className="form-control required">
-                        <MKTypography>
-
-                          <MKInput>
-                          </MKInput>
-                          <MKInput>
-                          </MKInput>
-                          <MKInput>
-                          </MKInput>
-                        </MKTypography>
-                      </div>
-                    </div>
-                  </Grid> */}
-
                   <Grid container item xs={12} mt={5} mb={2}>
 
                     <MKButton variant="gradient" color="info" type="submit"><span>Proceed to payment</span>
@@ -129,10 +118,45 @@ function Bookings() {
             <Grid item xs={10} lg={4} my={3}>
               <Grid container spacing={3} alignItems="center">
                 <Container className="main-container">
-                  <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left">
-                    <MKTypography variant="h5" color="text">
-                      checking
-                    </MKTypography>
+                  <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6 }} className="account-content" justifyContent="left" px={0}>
+                    <MKTypography variant="h5" color="text" px={3}>Hotel Details</MKTypography>
+                    {hotelData &&
+                      <>
+                        <MKBox className="hotel-detail-row info" px={3}>
+                          <MKBox className="booking-inner-col">
+                            <img decoding="async" src={hotelData.hotel_image[0]} />
+                          </MKBox>
+                          <MKBox className="booking-inner-col">
+                            <MKTypography variant="h6" color="text" mt={2}>{hotelData.hotel_name}</MKTypography>
+                            <MKTypography variant="p" className="hotel-address" fontSize={14}>{hotelData.hotel_address}</MKTypography>
+                          </MKBox>
+                        </MKBox>
+                        <MKBox className="hotel-detail-row flex-item dates" px={3} py={2}>
+                          <MKBox className="checkin">
+                            <MKTypography variant="h6" color="text">Check In</MKTypography>
+                            <MKTypography fontSize={14}>30 Mar 2024</MKTypography>
+                          </MKBox>
+                          <MKBox className="icon">
+                            <img decoding="async" src="https://untamed.sourcenettechnology.in/wp-content/themes/untamed/assets/images/checkinout-arrow.svg" />
+                          </MKBox>
+                          <MKBox className="checkout">
+                            <MKTypography variant="h6" color="text">Check Out</MKTypography>
+                            <MKTypography fontSize={14}>01 Apr 2024</MKTypography>
+                          </MKBox>
+                        </MKBox>
+                        <MKBox className="hotel-detail-row guests" px={3}>
+                          {bookingData && bookingData.roomList.map((room, index) => {
+                            return (
+                              <MKTypography key={`room-row-${index}`} fontSize={14}>Room {index + 1} : {room.adult} Adult {room.children} Children</MKTypography>
+                            )
+                          })}
+                        </MKBox>
+                        <MKBox className="hotel-detail-row flex-item price" px={3}>
+                          <MKTypography variant="h4" color="text">Price</MKTypography>
+                          <MKTypography variant="h4" color="text">₹1000.00</MKTypography>
+                        </MKBox>
+                      </>
+                    }
                   </Grid>
                 </Container>
               </Grid >
