@@ -50,21 +50,24 @@ export default function AddHotel() {
   const getCountries = async () => {
     const result = await countriesServices.getAllCountries();
     if (result.isSuccessful) {
-      setCountriesData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setCountriesData(activeData);
     }
   };
 
   const getLocations = async (country_id) => {
     const result = await locationsServices.getLocationByCountry(country_id);
     if (result.isSuccessful) {
-      setLocationsData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setLocationsData(activeData);
     }
   };
 
   const getAmenities = async () => {
     const result = await amenitiesServices.getAllAmenities();
     if (result.isSuccessful) {
-      setAmenitiesData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setAmenitiesData(activeData);
     }
   };
 

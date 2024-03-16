@@ -55,7 +55,8 @@ export default function AddLocation() {
   const getCountries = async () => {
     const result = await countriesServices.getAllCountries();
     if (result.isSuccessful) {
-      setCountriesData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setCountriesData(activeData);
     }
   }
 

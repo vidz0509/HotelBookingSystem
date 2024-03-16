@@ -44,14 +44,16 @@ export default function EditRoom() {
   const getHotels = async () => {
     const result = await hotelsServices.getAllHotel();
     if (result.isSuccessful) {
-      setHotelsData(result.data);
+      const activeData = result.data.filter((item) => item.isActive);
+      setHotelsData(activeData);
     }
   };
 
   const getRoomType = async () => {
     const result = await roomtypeServices.getAllRoomType();
     if (result.isSuccessful) {
-      setRoomTypesData(result.data);
+      const activeData = result.data.filter((item) => item.isActive);
+      setRoomTypesData(activeData);
     }
   };
 
@@ -155,7 +157,7 @@ export default function EditRoom() {
           title: "Edited",
           text: "Room has been Edited successfully.",
           icon: "success",
-          allowOutsideClick: false
+          allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -167,7 +169,7 @@ export default function EditRoom() {
           title: "Error!",
           text: "Something went wrong.",
           icon: "error",
-          allowOutsideClick: false
+          allowOutsideClick: false,
         });
       }
     } else {
@@ -175,7 +177,7 @@ export default function EditRoom() {
         title: "Error!",
         text: result.errorMessage,
         icon: "error",
-        allowOutsideClick: false
+        allowOutsideClick: false,
       });
     }
   };
@@ -185,7 +187,6 @@ export default function EditRoom() {
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
         {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
             Hotel Name*
           </label>
@@ -290,15 +291,20 @@ export default function EditRoom() {
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center"></div>
             <button
-              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-                }`}
+              className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+                btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+              }`}
               onClick={(e) => handleSubmit(e)}
               type="submit"
               disabled={btnDisabled ? "disabled" : ""}
             >
               {btnDisabled ? (
                 <span className="flex items-center justify-center">
-                  <img src={btnLoader} className="xl:max-w-[25px]" alt="loader" />
+                  <img
+                    src={btnLoader}
+                    className="xl:max-w-[25px]"
+                    alt="loader"
+                  />
                 </span>
               ) : (
                 <span>Edit Room</span>
@@ -316,7 +322,9 @@ export default function EditRoom() {
           <div className="mt-4">
             {successful !== "" && (
               <>
-                <p className="mb-9 ml-1 text-base text-green-500">{successful}</p>
+                <p className="mb-9 ml-1 text-base text-green-500">
+                  {successful}
+                </p>
               </>
             )}
           </div>

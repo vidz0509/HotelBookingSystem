@@ -61,21 +61,24 @@ export default function EditHotel() {
   const getCountries = async () => {
     const result = await countriesServices.getAllCountries();
     if (result.isSuccessful) {
-      setCountriesData(result.data);
+      const activeData = result.data.filter((item) => item.isActive);
+      setCountriesData(activeData);
     }
   };
 
   const getLocations = async () => {
     const result = await locationsServices.getAllLocations();
     if (result.isSuccessful) {
-      setLocationsData(result.data);
+      const activeData = result.data.filter((item) => item.isActive);
+      setLocationsData(activeData);
     }
   };
 
   const getAmenities = async () => {
     const result = await amenitiesServices.getAllAmenities();
     if (result.isSuccessful) {
-      setAmenitiesData(result.data);
+      const activeData = result.data.filter((item) => item.isActive);
+      setAmenitiesData(activeData);
     }
   };
 
@@ -168,7 +171,7 @@ export default function EditHotel() {
       setHotelCodeError("Please enter valid hotel code.");
       return false;
     }
-    
+
     if (validation.isEmpty(amenitiesId)) {
       setAmenitiesIdError("Please select valid amenities name.");
       return false;
@@ -192,7 +195,7 @@ export default function EditHotel() {
       hotel_name: hotelName,
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
-      total_rooms: totalrooms
+      total_rooms: totalrooms,
     };
 
     const result = await hotelsServices.editHotel(hotelId, requestBody);
@@ -228,7 +231,7 @@ export default function EditHotel() {
           title: "Edited",
           text: "Hotel has been Edited successfully.",
           icon: "success",
-          allowOutsideClick: false
+          allowOutsideClick: false,
         }).then((result) => {
           if (result.isConfirmed) {
             setBtnDisabled(false);
@@ -240,7 +243,7 @@ export default function EditHotel() {
           title: "Error!",
           text: result.errorMessage,
           icon: "error",
-          allowOutsideClick: false
+          allowOutsideClick: false,
         });
       }
     }
@@ -317,28 +320,28 @@ export default function EditHotel() {
             </div>
 
             <div className="mb-3">
-            <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-              Amenitites Name*
-            </label>
-            <select
-              id="amenitiesId"
-              name="amenitiesId"
-              class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-              onChange={handleAmenitiesIdChange}
-            >
-              <option value="">-- Select Amenities --</option>
-              {amenitiesData &&
-                amenitiesData.length > 0 &&
-                amenitiesData.map((item) => (
-                  <option value={item._id}>{item.amenities_name}</option>
-                ))}
-            </select>
-            {amenitiesIdError && (
-              <span className="mb-3 ml-1 text-sm text-red-500">
-                {amenitiesIdError}
-              </span>
-            )}
-          </div>
+              <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+                Amenitites Name*
+              </label>
+              <select
+                id="amenitiesId"
+                name="amenitiesId"
+                class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+                onChange={handleAmenitiesIdChange}
+              >
+                <option value="">-- Select Amenities --</option>
+                {amenitiesData &&
+                  amenitiesData.length > 0 &&
+                  amenitiesData.map((item) => (
+                    <option value={item._id}>{item.amenities_name}</option>
+                  ))}
+              </select>
+              {amenitiesIdError && (
+                <span className="mb-3 ml-1 text-sm text-red-500">
+                  {amenitiesIdError}
+                </span>
+              )}
+            </div>
 
             <InputField
               variant="auth"
@@ -433,8 +436,9 @@ export default function EditHotel() {
             <div className="mb-4 flex items-center justify-between px-2">
               <div className="flex items-center"></div>
               <button
-                className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
-                  }`}
+                className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${
+                  btnDisabled ? "py-[10px] opacity-80" : "py-[12px]"
+                }`}
                 onClick={(e) => handleSubmit(e)}
                 type="submit"
                 disabled={btnDisabled ? "disabled" : ""}

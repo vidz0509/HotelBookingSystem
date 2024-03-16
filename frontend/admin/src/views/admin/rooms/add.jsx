@@ -37,14 +37,16 @@ export default function AddRooms() {
   const getHotels = async () => {
     const result = await hotelsServices.getAllHotel();
     if (result.isSuccessful) {
-      setHotelsData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setHotelsData(activeData);
     }
   };
 
   const getRoomType = async () => {
     const result = await roomtypeServices.getAllRoomType();
     if (result.isSuccessful) {
-      setRoomTypesData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setRoomTypesData(activeData);
     }
   };
 
