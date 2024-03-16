@@ -197,8 +197,15 @@ input:checked+.slider:before {
 .check-label {
   display: flex;
   align-items: center;
+  justify-content: start;
+  width: 100%;
 }
 
 .check-label input{
   margin-right: 5px;
+}
+
+.amenities-item-set{
+  display: flex;
+  width: 50%;
 }

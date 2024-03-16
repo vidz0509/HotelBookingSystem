@@ -8,6 +8,7 @@ import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
 // import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import Checkbox from "components/checkbox";
 
 export default function AddHotel() {
   const [countriesData, setCountriesData] = useState("");
@@ -50,7 +51,7 @@ export default function AddHotel() {
   const getCountries = async () => {
     const result = await countriesServices.getAllCountries();
     if (result.isSuccessful) {
-      const activeData = result.data.filter(item => item.isActive);
+      const activeData = result.data.filter((item) => item.isActive);
       setCountriesData(activeData);
     }
   };
@@ -58,7 +59,7 @@ export default function AddHotel() {
   const getLocations = async (country_id) => {
     const result = await locationsServices.getLocationByCountry(country_id);
     if (result.isSuccessful) {
-      const activeData = result.data.filter(item => item.isActive);
+      const activeData = result.data.filter((item) => item.isActive);
       setLocationsData(activeData);
     }
   };
@@ -66,7 +67,7 @@ export default function AddHotel() {
   const getAmenities = async () => {
     const result = await amenitiesServices.getAllAmenities();
     if (result.isSuccessful) {
-      const activeData = result.data.filter(item => item.isActive);
+      const activeData = result.data.filter((item) => item.isActive);
       setAmenitiesData(activeData);
     }
   };
@@ -237,7 +238,7 @@ export default function AddHotel() {
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
         {/* Sign in section */}
-        <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
+        <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[600px]">
           <InputField
             variant="auth"
             extra="mb-3"
@@ -299,24 +300,28 @@ export default function AddHotel() {
           </div>
 
           <div className="mb-3">
-            <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-              Amenitites Name*
+            <label className="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+              Amenities Name*
             </label>
-            <select
-              id="amenitiesId"
-              name="amenitiesId"
-              class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
-              onChange={handleAmenitiesIdChange}
-            >
-              <option value="">-- Select Amenities --</option>
+            <div className="mt-2 flex flex-wrap text-sm text-navy-700 dark:text-white font-medium check-label main-amenities-item-set">
               {amenitiesData &&
-                amenitiesData.length > 0 &&
                 amenitiesData.map((item) => (
-                  <option value={item._id}>{item.amenities_name}</option>
+                  <div key={item._id} className="mb-2 amenities-item-set">
+                    <Checkbox
+                      variant="auth"
+                      type="checkbox"
+                      id={item._id}
+                      onChange={() => handleAmenitiesIdChange(item._id)}
+                      state={amenitiesIdError !== "" ? "error" : ""}
+                    />
+                    <label htmlFor={item._id} className="ml-1 text-sm">
+                      {item.amenities_name}
+                    </label>
+                  </div>
                 ))}
-            </select>
+            </div>
             {amenitiesIdError && (
-              <span className="mb-3 ml-1 text-sm text-red-500">
+              <span className="ml-1 text-sm text-red-500">
                 {amenitiesIdError}
               </span>
             )}
