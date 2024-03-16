@@ -48,26 +48,38 @@ export class BookingService {
   async payment() {
     const options = {
       method: 'POST',
+      url: 'https://gate.reviopay.com/api/v1/purchases/',
       headers: {
-        'accept': 'application/json',
-        'content-type': 'application/json',
-        'authorization': 'Bearer Jcy0PEL4b3WAlxzMb6DmfUn0sXI7Q1_HY07bYS3Lyygrxv0SuAjJ4fa5qTCURHSFLoHSnRYK4L8oroFi5lWcaw==',
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer GyUjxb883ZGCHlIRjKXexWx3_5ORCg3r-_pkZz9ctDog1SE48ZkLWnYWpdJSmGFIgnvUCZe4rQ4ZibFYKCWVsA==',
       },
       body: JSON.stringify({
-        purchase: {
-          products: [{ quantity: 1, discount: 0, tax_percent: 0 }],
+        "client_id": "1ba24d02-4b8e-4b22-9f37-fef9b09e28a3",
+        "payment_method_whitelist": ["visa", "mastercard", "maestro", "ozow", "capitec_pay"],
+        "purchase": {
+          "currency": "ZAR",
+          "language": "en",
+          "products": [
+            {
+              "name": "My product or service",
+              "price": 100
+            }
+          ]
         },
-        client_id: "2e9ee5f2-2166-49dd-a795-d00060d9677a",
-        brand_id: "ce8b9ed8-bdc0-485c-9ad7-b6672cda895f",
+        "brand_id": "ce8b9ed8-bdc0-485c-9ad7-b6672cda895f",
+        "send_receipt": false,
+        "success_redirect": "https://www.cnn.com",
+        "failure_redirect": "https://www.cnn.com",
+        "cancel_redirect": "https://www.cnn.com"
       })
     };
 
-    console.log(options);
-
-    fetch('https://gate.revio.co.za/api/v1/purchases/', options)
+    fetch('https://gate.reviopay.com/api/v1/purchases/', options)
       .then(response => response.json())
-      .then(response => console.log(response))
+      .then(response => console.log(JSON.stringify(response)))
       .catch(err => console.error(err));
+
   }
 
 }
