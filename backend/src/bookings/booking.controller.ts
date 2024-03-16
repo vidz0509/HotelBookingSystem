@@ -29,4 +29,10 @@ export class BookingController {
   async hardDelete(@Param('id') id: string) {
     return this.bookingServices.hardDeleteCountry(id);
   }
+
+  @Post('/payment')
+  async payment(){
+    return this.bookingServices.payment();
+  }
+
 }
