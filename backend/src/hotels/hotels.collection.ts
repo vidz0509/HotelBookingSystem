@@ -231,9 +231,9 @@ export class HotelsCollection {
             searchArr.country_id = searchHotelDto.country_id;
         if (searchHotelDto.location_id)
             searchArr.location_id = searchHotelDto.location_id;
-        if (searchHotelDto.roomTypes.length > 0)
+        if (searchHotelDto.roomTypes?.length > 0)
             searchArr.roomTypes = { $in: searchHotelDto.roomTypes };
-        if (searchHotelDto.amenities.length > 0)
+        if (searchHotelDto.amenities?.length > 0)
             searchArr.amenities = { $in: searchHotelDto.amenities };
         return await this.hotelModel.aggregate([
             {
