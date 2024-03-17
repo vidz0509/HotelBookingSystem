@@ -35,6 +35,8 @@ export default function AddHotel() {
   const [totalRoomsError, setTotalRoomsError] = useState("");
   const [hotelAddressError, setHotelAddressError] = useState("");
 
+  const [selectedAmenities, setSelectedAmenities] = useState([]);
+
   const [error, setError] = useState("");
   const [successful, setSuccessful] = useState("");
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -90,7 +92,18 @@ export default function AddHotel() {
 
   const handleAmenitiesIdChange = (event) => {
     const value = event.target.value;
-    setAmenitiesId(value);
+    setSelectedAmenities((prevalue) => [...prevalue, value]);
+    if (event.target.checked === true) {
+      let amenitieArr = selectedAmenities;
+      amenitieArr.push(amenitiesId);
+      setSelectedAmenities((prevalue) => [...prevalue, amenitiesId]);
+    } else {
+      const amenities = selectedAmenities.filter((type) => {
+        return type !== amenitiesId;
+      });
+      console.log(amenities);
+      setSelectedAmenities(amenities);
+    }
   };
 
   const handleHotelCodeChange = (event) => {
@@ -303,10 +316,10 @@ export default function AddHotel() {
             <label className="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
               Amenities Name*
             </label>
-            <div className="mt-2 flex flex-wrap text-sm text-navy-700 dark:text-white font-medium check-label main-amenities-item-set">
+            <div className="check-label main-amenities-item-set mt-2 flex flex-wrap text-sm font-medium text-navy-700 dark:text-white">
               {amenitiesData &&
                 amenitiesData.map((item) => (
-                  <div key={item._id} className="mb-2 amenities-item-set">
+                  <div key={item._id} className="amenities-item-set mb-2">
                     <Checkbox
                       variant="auth"
                       type="checkbox"
