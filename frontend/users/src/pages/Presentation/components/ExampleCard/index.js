@@ -8,7 +8,7 @@ import Tooltip from "@mui/material/Tooltip";
 import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
-function ExampleCard({ image, name, count, pro,hideName, ...rest }) {
+function ExampleCard({ image, name, address, count, pro, hideName, ...rest }) {
   const imageTemplate = (
     <MKBox
       bgColor="white"
@@ -78,9 +78,14 @@ function ExampleCard({ image, name, count, pro,hideName, ...rest }) {
           {name || count > 0 ? (
             <MKBox mt={1} ml={1} lineHeight={1}>
               {name && (
-                <MKTypography variant="h6" fontWeight="bold">
-                  {name}
-                </MKTypography>
+                <>
+                  <MKTypography variant="h6" fontWeight="bold">
+                    {name}
+                  </MKTypography>
+                  <MKTypography variant="h6" fontWeight="bold">
+                    {address}
+                  </MKTypography>
+                </>
               )}
               {count > 0 && (
                 <MKTypography variant="button" fontWeight="regular" color="secondary">

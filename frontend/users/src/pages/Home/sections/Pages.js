@@ -23,7 +23,7 @@ import ExampleCard from "pages/Presentation/components/ExampleCard";
 import { hotelsServices } from "services/hotels";
 
 function Pages(props) {
-  
+
   const [hotelsData, sethotelsData] = useState(null);
 
   useEffect(() => {
@@ -37,19 +37,19 @@ function Pages(props) {
     sethotelsData(response.data);
   }
 
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    autoplay: false,
-    autoplaySpeed: 1000,
-  };
+  // var settings = {
+  //   dots: true,
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 4,
+  //   slidesToScroll: 1,
+  //   autoplay: false,
+  //   autoplaySpeed: 1000,
+  // };
 
   const renderData = hotelsData && hotelsData?.map((hotels) => (
     <Grid item md={4} sx={{ mb: 2 }} key={hotels._id}>
-      <ExampleCard image={hotels.hotel_image} name={hotels.hotel_name} hideName={true} />
+      <ExampleCard image={hotels.hotel_image[0]} name={hotels.hotel_name} address={hotels.hotel_address} hideName={false} />
     </Grid>
   ));
 
@@ -67,7 +67,7 @@ function Pages(props) {
           sx={{ textAlign: "center", my: 1, mx: "auto", px: 0.75 }}
         >
           <MKTypography variant="h2" fontWeight="bold">
-            Explore new countries 
+            Explore new hotels
           </MKTypography>
           <MKTypography variant="body1" color="text">
             One that&apos;s accessible to all anywhere at affordable prices.
@@ -76,12 +76,11 @@ function Pages(props) {
         </Grid>
       </Container>
       <Container sx={{ mt: 6 }}>
-        {props.isSlider ? <Slider {...settings}>{renderData}</Slider> :
-          <>
-            <Grid container spacing={2}>
-              {renderData}
-            </Grid>
-          </>}
+        <>
+          <Grid container spacing={2}>
+            {renderData}
+          </Grid>
+        </>
       </Container>
     </MKBox>
   );

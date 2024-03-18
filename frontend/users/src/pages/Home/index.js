@@ -16,7 +16,7 @@ import routes from "routes";
 import footerRoutes from "footer.routes";
 import bgImage from "assets/images/vestrahorn.webp";
 
-function Home() {
+function Home(props) {
   return (
     <>
       <MKBox position="fixed" top="0.5rem" width="100%">
