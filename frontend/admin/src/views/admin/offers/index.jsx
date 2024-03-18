@@ -13,7 +13,7 @@ const Offers = () => {
 
   const columnsDataComplex = [
     {
-      Header: " Code",
+      Header: "Code",
       accessor: "offer_code",
     },
     {
@@ -23,6 +23,14 @@ const Offers = () => {
     {
       Header: "Offer Amount",
       accessor: "offer_amount",
+    },
+    {
+      Header: "isOneTime",
+      accessor: "isOneTime",
+    },
+    {
+      Header: "isOneTime",
+      accessor: "expired_on",
     },
     {
       Header: "Status",

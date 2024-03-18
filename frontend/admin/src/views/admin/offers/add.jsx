@@ -13,14 +13,12 @@ export default function AddOffer() {
   const [offerType, setOfferType] = useState('');
   const [offerCode, setOfferCode] = useState('');
   const [offerAmount, setOfferAmount] = useState('');
-  const [isOneTime, setIsOneTime] = useState('');
+  const [isOneTime, setIsOneTime] = useState(true);
   const [expiredOn, setExpiredOn] = useState('');
 
   const [offerTypeError, setOfferTypeError] = useState('');
   const [offerCodeError, setOfferCodeError] = useState('');
   const [offerAmountError, setOfferAmountError] = useState('');
-  const [isOneTimeError, setIsOneTimeError] = useState('');
-  const [expiredOnError, setExpiredOnError] = useState('');
   
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
@@ -42,8 +40,7 @@ export default function AddOffer() {
   }
 
   const handleIsOneTimeChange = async (event) => {
-    const value = event.target.value;
-    setIsOneTime(value);
+    setIsOneTime(event.target.checked);
   }
 
   const handleExpiredOnChange = async (event) => {
@@ -56,8 +53,6 @@ export default function AddOffer() {
     setOfferTypeError('');
     setOfferCodeError('');
     setOfferAmountError('');
-    setIsOneTimeError('');
-    setExpiredOnError('');
     setError('');
     setSuccessful('');
 
@@ -71,14 +66,6 @@ export default function AddOffer() {
     }
     if (validation.isEmpty(offerAmount)) {
       setOfferAmountError("Please enter valid offer amount.");
-      return false;
-    }
-    if (validation.isEmpty(isOneTime)) {
-      setIsOneTimeError("Please enter valid is one time.");
-      return false;
-    }
-    if (validation.isEmpty(expiredOn)) {
-      setExpiredOnError("Please enter valid is expired on.");
       return false;
     }
 
@@ -164,10 +151,8 @@ export default function AddOffer() {
               extra="mb-3"
               type="checkbox"
               id="isOneTime"
-              value="yes"
+              checked={isOneTime}
               onChange={handleIsOneTimeChange}
-              state={isOneTimeError !== "" ? "error" : ""}
-              errorMessage={isOneTimeError !== "" ? isOneTimeError : ""}
             />
             <span>isOneTime*</span>
           </label>
@@ -179,8 +164,6 @@ export default function AddOffer() {
             id="expiredOn"
             type="date"
             onChange={handleExpiredOnChange}
-            state={expiredOnError !== "" ? "error" : ""}
-            errorMessage={expiredOnError !== "" ? expiredOnError : ""}
             value={expiredOn}
           />
           {/* Checkbox */}
