@@ -35,7 +35,7 @@ const routes = [
     name: "Bookings",
     route: "/bookings",
     component: <Bookings />,
-    addInMenu: true,
+    addInMenu: false,
   },
   {
     name: "About Us",

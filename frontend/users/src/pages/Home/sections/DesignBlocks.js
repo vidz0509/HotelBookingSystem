@@ -69,7 +69,7 @@ function DesignBlocks(props) {
             sx={{ mb: 2 }}
           />
           <MKTypography variant="h2" fontWeight="bold">
-            Huge collection of countries
+            countries
           </MKTypography>
           <MKTypography variant="body1" color="text">
             We have multiple countries for you

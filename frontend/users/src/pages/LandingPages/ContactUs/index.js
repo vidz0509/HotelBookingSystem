@@ -134,8 +134,7 @@ function ContactUs() {
                 </MKBox>
                 <MKBox p={3}>
                   <MKTypography variant="body2" color="text" mb={3}>
-                    For further questions, including partnership opportunities, please email
-                    hello@creative-tim.com or contact using our contact form.
+                  Are easy to find, so a visitor can quickly get in touch with you.
                   </MKTypography>
                   <MKBox width="100%" component="form" method="post" autoComplete="off">
                     <Grid container spacing={3}>
@@ -172,7 +171,7 @@ function ContactUs() {
                           InputLabelProps={{ shrink: true }}
                           multiline
                           fullWidth
-                          rows={6}
+                          rows={4}
                           onChange={handlemessageChange}
                           state={messageError !== "" ? "error" : ""}
                           value={message}

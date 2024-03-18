@@ -35,9 +35,9 @@ export default {
     {
       name: "Contact Us",
       items: [
-        { name: "terms & conditions", href: "https://www.creative-tim.com/terms" },
-        { name: "privacy policy", href: "https://www.creative-tim.com/privacy" },
-        { name: "licenses (EULA)", href: "https://www.creative-tim.com/license" },
+        { name: "darshanmangukiya4@gmail.com", href: "https://www.creative-tim.com/terms" },
+        { name: "8866638422", href: "https://www.creative-tim.com/privacy" },
+        
       ],
     },
   ],
