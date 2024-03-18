@@ -25,10 +25,11 @@ import MKTypography from "components/MKTypography";
 import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
-import team1 from "assets/images/team-5.jpg";
-import team2 from "assets/images/bruce-mars.jpg";
-import team3 from "assets/images/ivana-squares.jpg";
-import team4 from "assets/images/ivana-square.jpg";
+import team1 from "assets/images/team1.jpg";
+import team2 from "assets/images/team3.jpg";
+import team3 from "assets/images/team2.jpg";
+
+
 
 function Team() {
   return (
@@ -58,10 +59,10 @@ function Team() {
           <Grid item xs={12} lg={4}>
             <MKBox mb={1}>
               <HorizontalTeamCard
-                image={team1}
+                image={team3}
                 name="Yash Bhimani"
-                position={{ color: "info", label: "UI Designer" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                position={{ color: "info", label: "Developer" }}
+                description="I am an innovative developer experienced in Angular and React.."
               />
             </MKBox>
           </Grid>
@@ -70,18 +71,18 @@ function Team() {
               <HorizontalTeamCard
                 image={team2}
                 name="Virag Bavadiya"
-                position={{ color: "info", label: "Boss" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                position={{ color: "info", label: "Developer" }}
+                description="I develop dynamic and responsive interfaces that meet client needs.."
               />
             </MKBox>
           </Grid>
           <Grid item xs={12} lg={4}>
             <MKBox mb={{ xs: 1, lg: 0 }}>
               <HorizontalTeamCard
-                image={team3}
+                image={team1}
                 name="Darshan Mangukiya"
-                position={{ color: "info", label: "Athlete" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                position={{ color: "info", label: "Designer" }}
+                description="A graphic designer is a professional who uses their artistic abilities"
               />
             </MKBox>
           </Grid>

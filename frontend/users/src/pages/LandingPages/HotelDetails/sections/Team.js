@@ -60,7 +60,7 @@ function Team() {
                 image={team1}
                 name="Virag Bavadiya"
                 position={{ color: "info", label: "Bossr" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                description="Artist is a term applied t a person who engages in an activity deemed to be an art."
               />
             </MKBox>
           </Grid>
