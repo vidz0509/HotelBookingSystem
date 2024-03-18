@@ -1,73 +1,87 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.1.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2023 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
-// react-router-dom components
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useState } from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+// import { Link } from "react-router-dom";
 
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
 // Material Kit 2 React components
-import MKBox from "components/MKBox"; 
+import MKBox from "components/MKBox";
+import MKBadge from "components/MKBadge";
 import MKTypography from "components/MKTypography";
 
 // Presentation page components
-import ExampleCard from "pages/Home/components/ExampleCard";
+import ExampleCard from "pages/Presentation/components/ExampleCard";
 
 // Data
-import data from "pages/Home/sections/data/pagesData";
+// import data from "pages/Presentation/sections/data/designBlocksData";
 
-function Pages() {
-  const renderData = data.map(({ image, name, route }) => (
-    <Grid item xs={12} md={6} sx={{ mb: { xs: 3, lg: 0 } }} key={name}>
-      <Link to={route}>
-        <ExampleCard image={image} name={name} display="grid" minHeight="auto" />
-      </Link>
+import { hotelsServices } from "services/hotels";
+
+function Pages(props) {
+  
+  const [hotelsData, sethotelsData] = useState(null);
+
+  useEffect(() => {
+
+    gethotels(6);
+
+  }, []);
+
+  const gethotels = async (size) => {
+    let response = await hotelsServices.getAllHotel(size);
+    sethotelsData(response.data);
+  }
+
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: false,
+    autoplaySpeed: 1000,
+  };
+
+  const renderData = hotelsData && hotelsData?.map((hotels) => (
+    <Grid item md={4} sx={{ mb: 2 }} key={hotels._id}>
+      <ExampleCard image={hotels.hotel_image} name={hotels.hotel_name} hideName={true} />
     </Grid>
   ));
 
   return (
-    <MKBox component="section" py={12} >
+    <MKBox component="section"
+      py={12}>
       <Container>
         <Grid
           container
           item
           xs={12}
-          lg={6}
+          lg={7}
           flexDirection="column"
           alignItems="center"
-          sx={{ textAlign: "center", mx: "auto", px: 0.75 }}
+          sx={{ textAlign: "center", my: 1, mx: "auto", px: 0.75 }}
         >
           <MKTypography variant="h2" fontWeight="bold">
-            With our coded pages
+            Explore new countries 
           </MKTypography>
           <MKTypography variant="body1" color="text">
-            The easiest way to get started is to use one of our
-            <br /> pre-built example pages.
+            One that&apos;s accessible to all anywhere at affordable prices.
+            You can choose tailored travel experiences - whatever you&apos;re looking for, we&apos;ve got it.
           </MKTypography>
         </Grid>
       </Container>
-      <Container sx={{ mt: { xs: 8, lg: 1 } }}>
-        <Grid container spacing={3}>
-          <Grid item xs={12} lg={12} sx={{ mt: 3, px: { xs: 0, lg: 8 } }}>
-            <Grid container spacing={3}>
+      <Container sx={{ mt: 6 }}>
+        {props.isSlider ? <Slider {...settings}>{renderData}</Slider> :
+          <>
+            <Grid container spacing={2}>
               {renderData}
             </Grid>
-          </Grid>
-        </Grid>
+          </>}
       </Container>
     </MKBox>
   );
