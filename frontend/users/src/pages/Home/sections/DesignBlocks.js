@@ -19,18 +19,22 @@ import ExampleCard from "pages/Presentation/components/ExampleCard";
 
 // Data
 // import data from "pages/Presentation/sections/data/designBlocksData";
-import { locationsServices } from "services/locations";
+
+import { countriesServices } from "services/countries";
 
 function DesignBlocks(props) {
-  const [locationsData, setLocationsData] = useState(null);
+  
+  const [countriesData, setcountriesData] = useState(null);
 
   useEffect(() => {
-    getLocations(6);
+
+    getcountries(6);
+
   }, []);
 
-  const getLocations = async (size) => {
-    let response = await locationsServices.getAllLocations(size);
-    setLocationsData(response.data);
+  const getcountries = async (size) => {
+    let response = await countriesServices.getAllCountries(size);
+    setcountriesData(response.data);
   }
 
   var settings = {
@@ -43,9 +47,9 @@ function DesignBlocks(props) {
     autoplaySpeed: 1000,
   };
 
-  const renderData = locationsData && locationsData?.map((location) => (
-    <Grid item md={4} sx={{ mb: 2 }} key={location._id}>
-      <ExampleCard image={location.location_image} name={location.location_name} hideName={true} />
+  const renderData = countriesData && countriesData?.map((country) => (
+    <Grid item md={4} sx={{ mb: 2 }} key={country._id}>
+      <ExampleCard image={country.country_image} name={country.country_name} hideName={true} />
     </Grid>
   ));
 
@@ -63,7 +67,7 @@ function DesignBlocks(props) {
           sx={{ textAlign: "center", my: 1, mx: "auto", px: 0.75 }}
         >
           <MKTypography variant="h2" fontWeight="bold">
-            Explore new countries
+            Explore new countries 
           </MKTypography>
           <MKTypography variant="body1" color="text">
             One that&apos;s accessible to all anywhere at affordable prices.
