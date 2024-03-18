@@ -78,7 +78,7 @@ export class RoomsCollection {
         ]);
     }
 
-    async getRoomByHotelId(hotel_id: string): Promise<Hotels[]> {
+    async getRoomByHotelId(hotel_id: string): Promise<any[]> {
         return this.roomModel.aggregate([
             {
                 $match: {
@@ -130,6 +130,27 @@ export class RoomsCollection {
                         }
                     ],
                     as: 'roomTypes_details'
+                }
+            },
+        ]);
+    }
+
+    async getRoomPriceByHotelId(hotel_id: string): Promise<any[]> {
+        return this.roomModel.aggregate([
+            {
+                $match: {
+                    hotel_id : hotel_id,
+                    isDeleted: false
+                }
+            },
+            {
+                 $project: {
+                 price: 1,
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
                 }
             },
         ]);

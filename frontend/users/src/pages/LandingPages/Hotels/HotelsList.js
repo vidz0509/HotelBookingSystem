@@ -37,13 +37,13 @@ function HotelsList(props) {
   }, []);
 
   useEffect(() => {
-    seachHotels();
+    searchHotels();
   }, [searchBody])
 
-  const seachHotels = async () => {
+  const searchHotels = async () => {
     setLoading(true);
     if (searchBody) {      
-      let response = await hotelsServices.seachHotels(searchBody);
+      let response = await hotelsServices.searchHotels(searchBody);
       if (response.isSuccessful) {
         setHotelsData(response.data);
         setLoading(false);
@@ -64,6 +64,7 @@ function HotelsList(props) {
     setRoomtypedata(response.data);
     // setLoading(false);
   };
+
   const getAmenities = async () => {
     let response = await hotelsServices.getAmenities();
     setAmenities(response.data);
@@ -216,6 +217,14 @@ function HotelsList(props) {
                     </MKBox>
                   </Link>
                 </MKBox>
+                    {/* <MKBox mt={2} lineHeight={1}>
+                      <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
+                        {room.price}
+                      </MKTypography>
+                      <MKTypography variant="p" className="hotel-location">
+                        {hotel.location_details[0]?.location_name}
+                      </MKTypography>
+                    </MKBox> */}
               </Grid>
             ))
             }

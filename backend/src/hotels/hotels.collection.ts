@@ -222,7 +222,7 @@ export class HotelsCollection {
         );
     }
 
-    async searchHotels(searchHotelDto: SearchHotelDto): Promise<Hotels[]> {
+    async searchHotels(searchHotelDto: SearchHotelDto): Promise<any[]> {
         let searchArr: any = {
             isDeleted: false,
             isActive: true,
