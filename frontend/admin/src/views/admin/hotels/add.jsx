@@ -92,16 +92,15 @@ export default function AddHotel() {
 
   const handleAmenitiesIdChange = (event) => {
     const value = event.target.value;
-    setSelectedAmenities((prevalue) => [...prevalue, value]);
+    console.log(value);
     if (event.target.checked === true) {
-      let amenitieArr = selectedAmenities;
-      amenitieArr.push(amenitiesId);
-      setSelectedAmenities((prevalue) => [...prevalue, amenitiesId]);
+      if(!selectedAmenities.includes(value)){
+        setSelectedAmenities((prevalue) => [...prevalue, value]);
+      }
     } else {
       const amenities = selectedAmenities.filter((type) => {
-        return type !== amenitiesId;
+        return type !== value;
       });
-      console.log(amenities);
       setSelectedAmenities(amenities);
     }
   };
@@ -139,6 +138,7 @@ export default function AddHotel() {
     setTotalRoomsError("");
     setError("");
     setSuccessful("");
+    console.log(selectedAmenities);
 
     if (validation.isEmpty(hotelName)) {
       setHotelNameError("Please enter valid hotel name.");
@@ -155,7 +155,7 @@ export default function AddHotel() {
       return false;
     }
 
-    if (validation.isEmpty(amenitiesId)) {
+    if (selectedAmenities.length === 0) {
       setAmenitiesIdError("Please select valid amenities name.");
       return false;
     }
@@ -179,7 +179,7 @@ export default function AddHotel() {
     const requestBody = {
       country_id: countryId,
       location_id: locationId,
-      amenities_id: amenitiesId,
+      amenities: selectedAmenities,
       hotel_name: hotelName,
       hotel_code: hotelCode,
       hotel_address: hotelAddress,
@@ -323,8 +323,9 @@ export default function AddHotel() {
                     <Checkbox
                       variant="auth"
                       type="checkbox"
+                      value={item._id}
                       id={item._id}
-                      onChange={() => handleAmenitiesIdChange(item._id)}
+                      onChange={handleAmenitiesIdChange}
                       state={amenitiesIdError !== "" ? "error" : ""}
                     />
                     <label htmlFor={item._id} className="ml-1 text-sm">

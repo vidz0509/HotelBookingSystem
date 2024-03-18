@@ -39,7 +39,7 @@ function DesignBlocks(props) {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay:false,
+    autoplay: false,
     autoplaySpeed: 1000,
   };
 
@@ -51,28 +51,23 @@ function DesignBlocks(props) {
 
   return (
     <MKBox component="section"
-      my={6} py={12}>
+      py={12}>
       <Container>
         <Grid
           container
           item
           xs={12}
-          lg={6}
+          lg={7}
           flexDirection="column"
           alignItems="center"
           sx={{ textAlign: "center", my: 1, mx: "auto", px: 0.75 }}
         >
-          <MKBadge
-            variant="contained"
-            color="info"
-            container
-            sx={{ mb: 2 }}
-          />
           <MKTypography variant="h2" fontWeight="bold">
-            Huge collection of countries
+            Explore new countries
           </MKTypography>
           <MKTypography variant="body1" color="text">
-            We have multiple countries for you
+            One that&apos;s accessible to all anywhere at affordable prices.
+            You can choose tailored travel experiences - whatever you&apos;re looking for, we&apos;ve got it.
           </MKTypography>
         </Grid>
       </Container>

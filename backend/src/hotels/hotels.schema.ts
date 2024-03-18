@@ -21,9 +21,6 @@ export class Hotels {
   @Prop()
   amenities: string[];
 
-  @Prop()
-  amenities_id: string;
-
   @IsNotEmpty()
   @Prop({ required: true })
   hotel_name: string;

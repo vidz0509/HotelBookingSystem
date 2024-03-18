@@ -20,9 +20,8 @@ export class CreateHotelDto {
     @IsNotEmpty()
     readonly total_rooms: number;
 
-    @IsString()
     @IsNotEmpty()
-    readonly amenities_id: string[];
+    readonly amenities: string[];
 
     @IsString()
     @IsNotEmpty()
