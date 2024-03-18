@@ -34,8 +34,8 @@ export class HotelsController {
 
 
     @Get()
-    async findAll() {
-        return await this.hotelService.getAllHotel();
+    async findAll(@Query('size') size?: number) {
+        return await this.hotelService.getAllHotel(size);
     }
 
     @Get('/count')

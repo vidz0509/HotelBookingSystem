@@ -11,8 +11,8 @@ export const hotelsServices = {
     getArrayFromQueryString
 };
 
-async function getAllHotel() {
-    const url = `${process.env.REACT_APP_API_URL}/hotels`;
+async function getAllHotel(size = 1000) {
+    const url = `${process.env.REACT_APP_API_URL}/hotels?size=${size}`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {

@@ -44,7 +44,7 @@ export class LocationCollection {
                     as: 'country_details'
                 }
             },
-        ]).limit(size && size > 0 ? size : 1000);;
+        ]).limit(size && size > 0 ? size : 1000);
     }
 
     async getLocationsCount(): Promise<number> {

@@ -11,7 +11,7 @@ export class HotelsCollection {
 
     constructor(@InjectModel('Hotels') private hotelModel: Model<Hotels>) { }
 
-    async getAllHotel(): Promise<Hotels[]> {
+    async getAllHotel(size?: number): Promise<Hotels[]> {
         return await this.hotelModel.aggregate([
             {
                 $match: {
@@ -63,7 +63,7 @@ export class HotelsCollection {
                     as: 'country_details'
                 }
             },
-        ]);
+        ]).limit(size && size > 0 ? size : 1000);
     }
 
     async getHotelCount(): Promise<number> {

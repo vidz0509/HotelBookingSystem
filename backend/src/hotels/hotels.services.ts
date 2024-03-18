@@ -43,8 +43,8 @@ export class HotelsService {
     }
   }
 
-  async getAllHotel(): Promise<any> {
-    let data = await this.hotelCollection.getAllHotel();
+  async getAllHotel(size?: number): Promise<any> {
+    let data = await this.hotelCollection.getAllHotel(size);
     const response = await this.helper.buildResponse(true, null, data);
     return response;
   }
