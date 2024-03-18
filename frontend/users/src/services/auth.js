@@ -97,7 +97,7 @@ async function forgotPassword(requestBody) {
     });
 }
 async function getintouch(requestBody) {
-    const url = `${process.env.REACT_APP_API_URL}/auth/getintouch`;
+    const url = `${process.env.REACT_APP_API_URL}/auth/getInTouch`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {

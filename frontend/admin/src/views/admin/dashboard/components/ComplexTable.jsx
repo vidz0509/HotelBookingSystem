@@ -227,7 +227,15 @@ const ComplexTable = (props) => {
                           </p>
                         ))
                       );
-                    } else {
+                    } else if (cell.column.Header === "isOneTime") {
+                      data = (
+                        <p className="text-sm font-bold text-navy-700 dark:text-white">
+                          {cell.value}
+                          {cell.value === true ? 'Yes' : 'No'}
+                        </p>
+                      );
+                    }
+                    else {
                       data = (
                         <p className="text-sm font-bold text-navy-700 dark:text-white">
                           {cell.value}

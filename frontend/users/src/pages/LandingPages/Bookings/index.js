@@ -11,16 +11,18 @@ import MKTypography from "components/MKTypography";
 import Container from "@mui/material/Container";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
-import btnLoader from "../../../assets/images/button-loader/btn-loader.gif";
+// import btnLoader from "../../../assets/images/button-loader/btn-loader.gif";
 
 // Routes
 import routes from "routes";
 import footerRoutes from "footer.routes";
+import { useState } from "react";
 import { authServices } from "services/auth";
 import { validation } from "services/validation";
-import { useState } from "react";
+
 import bgImage from "assets/images/auth.jpg";
 import { hotelsServices } from "services/hotels";
+
 
 // Image
 // import bgImage from "assets/images/illustrations/illustration-reset.jpg";
@@ -30,6 +32,17 @@ function Bookings() {
   const [bookingData, setBookingData] = useState(null);
   const [hotelData, setHotelData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [firstname, setFirstName] = useState('');
+  const [lastname, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contact, setContact] = useState('');
+  const [contactError, setContactError] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [firstnameError, setFirstNameError] = useState('');
+  const [lastnameError, setLastNameError] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [error, setError] = useState('');
+
 
   useEffect(() => {
     let bookingData = JSON.parse(localStorage.getItem('bookingData'));
@@ -42,8 +55,64 @@ function Bookings() {
     if (result.isSuccessful) {
       setLoading(false);
       setHotelData(result.data);
+      setError(result.errorMessage);
+      setBtnDisabled(false);
     }
   };
+  const handlefirstNameChange = (event) => {
+    const value = event.target.value;
+    setFirstName(value);
+  }
+  const handlelastNameChange = (event) => {
+    const value = event.target.value;
+    setLastName(value);
+  }
+  const handleEmailChange = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    setEmail(value);
+  }
+  const handleContactdChange = (event) => {
+    const value = event.target.value;
+    console.log(value)
+    setContact(value);
+  }
+  const handlesubmit = async (event) => {
+    event.preventDefault();
+    console.log(event)
+    setEmailError('');
+    setFirstNameError('');
+    setContactError('')
+    setLastNameError('');
+
+
+    if (validation.isEmpty(firstname)) {
+      setFirstNameError("Please enter valid firstname.");
+      return false;
+    }
+    if (validation.isEmpty(lastname)) {
+      setLastNameError("Please enter valid lastname.");
+      return false;
+    }
+    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
+      setEmailError("Please enter valid email address.");
+      return false;
+    }
+
+    if (validation.isEmpty(contact)) {
+      setContactError("Please enter phone number.");
+      return false;
+    }
+    setBtnDisabled(true);
+    const requestBody = {
+      firstname: firstname,
+      email: email,
+      lastname: lastname,
+      phone: contact
+
+    };
+
+  }
 
   return (
     <>
@@ -80,18 +149,36 @@ function Bookings() {
                                 </MKBox> */}
                                 <MKBox className='adult-info'>
                                   <div className="adult-col">
-                                    <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*" />
+                                    <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*"
+                                      onChange={handlefirstNameChange}
+                                      value={firstname}
+                                    // maxLength={30}
+
+                                    />
+                                    {firstnameError && <p className="error">{firstnameError}</p>}
                                   </div>
                                   <div className="adult-col">
-                                    <input type="text" id={`room-${index + 1}-adult-lname`} placeholder="Last Name*" />
+                                    <input type="text" id={`room-${index + 1}-adult-lname`} placeholder="Last Name*"
+                                      onChange={handlelastNameChange}
+                                      value={lastname}
+                                    // maxLength={30}
+                                    />
+                                    {lastnameError && <p className="error">{lastnameError}</p>}
+
                                   </div>
                                   {index === 0 &&
                                     <>
                                       <div className="adult-col">
-                                        <input type="tel" id={`room-${index + 1}-adult-phone`} placeholder="Phone Number" />
+                                        <input type="tel" id={`room-${index + 1}-adult-phone`} placeholder="Phone Number"
+                                          onChange={handleContactdChange} />
+                                        {contactError && <p className="error">{contactError}</p>}
+
                                       </div>
                                       <div className="adult-col">
-                                        <input type="email" id={`room-${index + 1}-adult-email`} placeholder="Email*" />
+                                        <input type="email" id={`room-${index + 1}-adult-email`} placeholder="Email*"
+                                          onChange={handleEmailChange} />
+
+                                        {emailError && <p className="error">{emailError}</p>}
                                       </div>
                                     </>
                                   }
@@ -106,7 +193,7 @@ function Bookings() {
 
                   <Grid container item xs={12} mt={5} mb={2}>
 
-                    <MKButton variant="gradient" color="info" type="submit"><span>Proceed to payment</span>
+                    <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}><span>Proceed to payment</span>
                     </MKButton>
 
                   </Grid>

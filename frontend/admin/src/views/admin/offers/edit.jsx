@@ -16,7 +16,7 @@ export default function EditOffers() {
   const [offerType, setOfferType] = useState('');
   const [offerCode, setOfferCode] = useState('');
   const [offerAmount, setOfferAmount] = useState('');
-  const [isOneTime, setIsOneTime] = useState('');
+  const [isOneTime, setIsOneTime] = useState(true);
   const [expiredOn, setExpiredOn] = useState('');
 
   const [offerTypeError, setOfferTypeError] = useState('');
@@ -59,8 +59,7 @@ export default function EditOffers() {
   }
 
   const handleIsOneTimeChange = async (event) => {
-    const value = event.target.value;
-    setIsOneTime(value);
+    setIsOneTime(event.target.checked);
   }
 
   const handleExpiredOnChange = async (event) => {
@@ -170,7 +169,7 @@ export default function EditOffers() {
               extra="mb-3"
               type="checkbox"
               id="isOneTime"
-              value="yes"
+              checked={isOneTime}
               onChange={handleIsOneTimeChange}
             />
             <span>isOneTime*</span>

@@ -22,7 +22,6 @@ async function getAllOffers() {
 
 async function addOffers(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/offers`;
-    debugger;
     return await axios.post(url, requestBody).then(response => {
         return response.data;
     }).catch(error => {
