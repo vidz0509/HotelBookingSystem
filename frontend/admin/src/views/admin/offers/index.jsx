@@ -29,7 +29,7 @@ const Offers = () => {
       accessor: "isOneTime",
     },
     {
-      Header: "isOneTime",
+      Header: "Expired On",
       accessor: "expired_on",
     },
     {
