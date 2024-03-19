@@ -3,7 +3,7 @@ import axios from 'axios';
 export const hotelsServices = {
     getAllHotel,
     getHotelById,
-    seachHotels,
+    searchHotels,
     getAllRoomTypes,
     getAmenities,
     HotelsCount,
@@ -31,7 +31,7 @@ async function getHotelById(id) {
     });
 }
 
-async function seachHotels(requestBody) {
+async function searchHotels(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/hotels/searchHotels`;
     return await axios.post(url, requestBody).then(response => {
         return response.data;

@@ -113,17 +113,19 @@ export class HotelsService {
   async searchHotels(searchHotelDto: SearchHotelDto) {
     const searchHotels = await this.hotelCollection.searchHotels(searchHotelDto);
     let allHotels = [];
-    searchHotels.map(async(hotel) => {
+    const promises = searchHotels.map(async(hotel,index) => {
       let hotel_id = hotel._id.toString();
-      console.log(hotel_id);
-
       const roomsdata = await this.roomsCollection.getRoomPriceByHotelId(hotel_id);
       const smallestRoomPrice = roomsdata.reduce((minPrice, room) => {
         return room.price < minPrice ? room.price : minPrice;
       }, Infinity);
       hotel['room_price'] = smallestRoomPrice;
-      allHotels.push(hotel);
-    })
+      allHotels[index] = hotel;
+      return allHotels;
+    });
+    await Promise.all(promises).then((result) =>{
+      return result;
+    });
     const response = await this.helper.buildResponse(true, null, allHotels);
     return response;
   }

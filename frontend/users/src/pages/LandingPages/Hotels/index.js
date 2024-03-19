@@ -32,12 +32,12 @@ function Hotels() {
   }, []);
 
   useEffect(() => {
-    seachHotels();
+    searchHotels();
   }, [searchBody])
 
-  const seachHotels = async () => {
+  const searchHotels = async () => {
     if (searchBody) {
-      let response = await hotelsServices.seachHotels(searchBody);
+      let response = await hotelsServices.searchHotels(searchBody);
       if (response.isSuccessful) {
         setHotelsData(response.data);
         setIsLoading(false);

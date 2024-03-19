@@ -42,7 +42,7 @@ function HotelsList(props) {
 
   const searchHotels = async () => {
     setLoading(true);
-    if (searchBody) {      
+    if (searchBody) {
       let response = await hotelsServices.searchHotels(searchBody);
       if (response.isSuccessful) {
         setHotelsData(response.data);
@@ -77,13 +77,13 @@ function HotelsList(props) {
       let roomTypeArr = selectedRoomTypes;
       roomTypeArr.push(roomTypeID);
       setSelectedRoomTypes((prevalue) => [...prevalue, roomTypeID]);
-      setSearchBody({ ...searchBody, roomTypes: roomTypeArr, amenities : selectedAmenities });
+      setSearchBody({ ...searchBody, roomTypes: roomTypeArr, amenities: selectedAmenities });
     } else {
       const roomTypes = selectedRoomTypes.filter((type) => {
         return type !== roomTypeID;
       });
       setSelectedRoomTypes(roomTypes);
-      setSearchBody({ ...searchBody, roomTypes: roomTypes, amenities : selectedAmenities });
+      setSearchBody({ ...searchBody, roomTypes: roomTypes, amenities: selectedAmenities });
     }
   }
 
@@ -93,21 +93,21 @@ function HotelsList(props) {
       let amenitieArr = selectedAmenities;
       amenitieArr.push(amenitieID);
       setSelectedAmenities((prevalue) => [...prevalue, amenitieID]);
-      setSearchBody({ ...searchBody, roomTypes: selectedRoomTypes, amenities : amenitieArr });
+      setSearchBody({ ...searchBody, roomTypes: selectedRoomTypes, amenities: amenitieArr });
     } else {
       const amenities = selectedAmenities.filter((type) => {
         return type !== amenitieID;
       });
       console.log(amenities)
       setSelectedAmenities(amenities);
-      setSearchBody({ ...searchBody, roomTypes: selectedRoomTypes, amenities : amenities });
+      setSearchBody({ ...searchBody, roomTypes: selectedRoomTypes, amenities: amenities });
     }
   }
 
   const clearAllFilters = () => {
     setSelectedRoomTypes([]); // Clear selected room types
     setSelectedAmenities([]); // Clear selected amenities
-    setSearchBody({ ...searchBody, roomTypes: [], amenities : [] })
+    setSearchBody({ ...searchBody, roomTypes: [], amenities: [] })
   }
 
 
@@ -217,14 +217,11 @@ function HotelsList(props) {
                     </MKBox>
                   </Link>
                 </MKBox>
-                    {/* <MKBox mt={2} lineHeight={1}>
-                      <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
-                        {room.price}
-                      </MKTypography>
-                      <MKTypography variant="p" className="hotel-location">
-                        {hotel.location_details[0]?.location_name}
-                      </MKTypography>
-                    </MKBox> */}
+                <MKBox mt={2} lineHeight={1}>
+                  <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
+                  ₹{hotel.room_price.toFixed(2)}
+                  </MKTypography>
+                </MKBox>
               </Grid>
             ))
             }
