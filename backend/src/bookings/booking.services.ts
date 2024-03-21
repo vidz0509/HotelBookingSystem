@@ -7,6 +7,7 @@ import { Booking } from './booking.schema';
 import { CreateBookingDto } from './dto/create.dto';
 import { UpdateBookingDto } from './dto/update.dto';
 import axios from 'axios';
+import { PaymentDto } from './dto/payment.dto';
 
 @Injectable()
 export class BookingService {
@@ -45,40 +46,44 @@ export class BookingService {
     return response;
   }
 
-  async payment() {
+  async payment(paymentDto: PaymentDto) {
+
+    
     const options = {
       method: 'POST',
-      url: 'https://gate.reviopay.com/api/v1/purchases/',
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer GyUjxb883ZGCHlIRjKXexWx3_5ORCg3r-_pkZz9ctDog1SE48ZkLWnYWpdJSmGFIgnvUCZe4rQ4ZibFYKCWVsA==',
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: 'Bearer ' + process.env.REVIO_PAY_TOKEN
       },
       body: JSON.stringify({
-        "client_id": "1ba24d02-4b8e-4b22-9f37-fef9b09e28a3",
-        "payment_method_whitelist": ["visa", "mastercard", "maestro", "ozow", "capitec_pay"],
-        "purchase": {
-          "currency": "ZAR",
-          "language": "en",
-          "products": [
-            {
-              "name": "My product or service",
-              "price": 100
-            }
-          ]
+        purchase: {
+          currency: "INR",
+          language: "en",
+          products: [{
+            "name": "My product or service",
+            "price": 100
+          }],
         },
-        "brand_id": "ce8b9ed8-bdc0-485c-9ad7-b6672cda895f",
-        "send_receipt": false,
-        "success_redirect": "https://www.cnn.com",
-        "failure_redirect": "https://www.cnn.com",
-        "cancel_redirect": "https://www.cnn.com"
+        client_id: "a0572ffd-877b-41f3-a0a5-531390f83827",
+        brand_id: process.env.REVIO_PAY_BRANDID,
+        success_redirect:  process.env.SITE_URL,
+        failure_redirect: process.env.SITE_URL,
+        cancel_redirect: process.env.SITE_URL,
       })
     };
 
-    fetch('https://gate.reviopay.com/api/v1/purchases/', options)
-      .then(response => response.json())
-      .then(response => console.log(JSON.stringify(response)))
-      .catch(err => console.error(err));
+    try {
+      const purchaseResponse = await fetch(`${process.env.REVIO_PAY_URL}/purchases/`, options);
+      if (!purchaseResponse.ok) {
+        throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Network response was not ok'));
+      }
+      const result = await purchaseResponse.json();
+      const finalResponse = await this.helper.buildResponse(true, null, result);
+      return finalResponse;
+    } catch (error) {
+      throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
+    }
 
   }
 

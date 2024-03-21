@@ -1,9 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Put, Query, Req, Res, HttpStatus, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { CreateBookingDto } from './dto/create.dto';
+import { PaymentDto } from './dto/payment.dto';
 import { BookingService } from './booking.services';
-import { UpdateBookingDto } from './dto/update.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
-import { Response } from 'express';
 
 @Controller('bookings')
 export class BookingController {
@@ -31,8 +29,8 @@ export class BookingController {
   }
 
   @Post('/payment')
-  async payment(){
-    return this.bookingServices.payment();
+  async payment(@Body() paymentDto: PaymentDto) {
+    return this.bookingServices.payment(paymentDto);
   }
 
 }

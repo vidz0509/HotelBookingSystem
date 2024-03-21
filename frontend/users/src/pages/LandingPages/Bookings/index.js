@@ -22,6 +22,8 @@ import { validation } from "services/validation";
 
 import bgImage from "assets/images/auth.jpg";
 import { hotelsServices } from "services/hotels";
+import { bookingsServices } from "services/bookings";
+import { check } from "prettier";
 
 
 // Image
@@ -33,14 +35,8 @@ function Bookings() {
   const [hotelData, setHotelData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState([]);
-  const [firstname, setFirstName] = useState('');
-  const [lastname, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [contact, setContact] = useState('');
   const [contactError, setContactError] = useState('');
   const [emailError, setEmailError] = useState('');
-  const [firstnameError, setFirstNameError] = useState('');
-  const [lastnameError, setLastNameError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [error, setError] = useState('');
 
@@ -61,94 +57,42 @@ function Bookings() {
     }
   };
 
-  const handlefirstNameChange = (event) => {
-    const value = event.target.value;
-    setFirstName(value);
-  }
-
-  const handleEmailChange = (event) => {
-    const value = event.target.value;
-    console.log(value)
-    setEmail(value);
-  }
-
-  const handlelastNameChange = (event) => {
-    const value = event.target.value;
-    setLastName(value);
-  }
-
-  const handleContactChange = (event) => {
-    const value = event.target.value;
-    console.log(value)
-    setContact(value);
-  }
-
   const handleUserDetailsChange = (event) => {
-    let firstname = event.target.value;
-    if (event.target.value === true) {
-      let firstNameArr = userDetails;
-      firstNameArr.push(firstname);
-      setUserDetails((prevalue) => [...prevalue, firstname]);
-    } else {
-      const firstname = userDetails.filter((type) => {
-        return type !== firstname;
-      });
-      setUserDetails(firstname);
-    }
-  }
-
-  const handleFirstNameBlur = () => {
-    if (validation.isEmpty(firstname)) {
-      setFirstNameError("Please enter a valid first name.");
-    } else {
-      setFirstNameError("");
-    }
-  }
-  
-  const handleEmailBlur = () => {
-    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
-      setEmailError("Please enter a valid email address.");
-    } else {
-      setEmailError("");
-    }
+    const value = event.target.value;
+    const index = parseInt(event.target.getAttribute('data-index'));
+    const fieldType = event.target.getAttribute('data-field');
+    const updatedUserDetails = [...userDetails];
+    updatedUserDetails[index] = {
+      ...updatedUserDetails[index],
+      [fieldType]: value
+    };
+    setUserDetails(updatedUserDetails);
   }
 
   const handlesubmit = async (event) => {
     event.preventDefault();
-    console.log(event)
-    setEmailError('');
-    setFirstNameError('');
-    setContactError('')
-    setLastNameError('');
-
-
-    if (validation.isEmpty(firstname)) {
-      setFirstNameError("Please enter valid firstname.");
-      return false;
-    }
-    if (validation.isEmpty(lastname)) {
-      setLastNameError("Please enter valid lastname.");
-      return false;
-    }
-    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
-      setEmailError("Please enter valid email address.");
-      return false;
-    }
-
-    if (validation.isEmpty(contact)) {
-      setContactError("Please enter phone number.");
-      return false;
-    }
     setBtnDisabled(true);
-    const requestBody = {
-      firstname: firstname,
-      email: email,
-      lastname: lastname,
-      phone: contact
-    };
-  }
+    console.log(userDetails);
+    console.log(bookingData);
+    const currentUser = authServices.getCurrentUser();
+    let requestBody = {
+      check_in: bookingData.check_in,
+      check_out: bookingData.check_out,
+      user_id: currentUser._id,
+      hotelId: bookingData.hotelId,
+      roomList: bookingData.roomList,
+      finalSelectedRooms: bookingData.finalSelectedRooms,
+      user_detail: userDetails,
 
-  // console.log(firstname);
+    }
+    const result = await bookingsServices.payment(requestBody);
+    if (result.isSuccessful) {
+      window.location.href = result.data.checkout_url;
+    } else {
+      setError(result.errorMessage);
+      setBtnDisabled(false);
+    }
+  }
 
   return (
     <>
@@ -185,37 +129,27 @@ function Bookings() {
                                 </MKBox> */}
                                 <MKBox className='adult-info'>
                                   <div className="adult-col">
-                                    <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*"
-                                      onBlur={handleFirstNameBlur}
-                                      value={firstname}
-                                    // maxLength={30}
-
+                                    <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*" data-index={index} data-field={'firstname'}
+                                      onBlur={handleUserDetailsChange}
                                     />
-                                    {firstnameError && <p className="error">{firstnameError}</p>}
                                   </div>
                                   <div className="adult-col">
-                                    <input type="text" id={`room-${index + 1}-adult-lname`} placeholder="Last Name*"
-                                      onChange={handlelastNameChange}
-                                      value={lastname}
-                                    // maxLength={30}
+                                    <input type="text" id={`room-${index + 1}-adult-lname`} placeholder="Last Name*" data-field={'lastname'} data-index={index}
+                                      onBlur={handleUserDetailsChange}
                                     />
-                                    {lastnameError && <p className="error">{lastnameError}</p>}
-
                                   </div>
                                   {index === 0 &&
                                     <>
                                       <div className="adult-col">
-                                        <input type="tel" id={`room-${index + 1}-adult-phone`} placeholder="Phone Number"
-                                          onChange={handleContactChange} />
+                                        <input type="tel" id={`room-${index + 1}-adult-phone`} placeholder="Phone Number" data-index={index} data-field={'contact'}
+                                          onBlur={handleUserDetailsChange} />
                                         {contactError && <p className="error">{contactError}</p>}
 
                                       </div>
                                       <div className="adult-col">
-                                        <input type="email" id={`room-${index + 1}-adult-email`} placeholder="Email*"
-                                          onBlur={handleEmailBlur}
+                                        <input type="email" id={`room-${index + 1}-adult-email`} placeholder="Email*" data-index={index} data-field={'email'}
+                                          onBlur={handleUserDetailsChange}
                                         />
-
-                                        {emailError && <p className="error">{emailError}</p>}
                                       </div>
                                     </>
                                   }
