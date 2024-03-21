@@ -32,7 +32,8 @@ function HotelDetail() {
   const [amenitiesData, setAmenitiesData] = useState(null);
   const [searchBody, setSearchBody] = useState(null);
   const [accordionIndex, setAccordionIndex] = useState(0);
- 
+  const [selectedRooms, setSelectedRooms] = useState([]);
+
   const renderData = amenitiesData && amenitiesData?.map((amenities) => (
     <Grid item xs={12} md={2} key={amenities._id}>
       <DefaultInfoCard title={amenities.amenities_name} icon={amenities.amenities_icon ? amenities.amenities_icon : "sports_gymnastics"} />
@@ -42,7 +43,7 @@ function HotelDetail() {
   useEffect(() => {
     getHotelById(hotelId);
     getRoomsByHotelId(hotelId);
-  }, [hotelId]);
+  }, [hotelId]); 
 
   const getHotelById = async (hotelId) => {
     const result = await hotelsServices.getHotelById(hotelId);
@@ -62,6 +63,28 @@ function HotelDetail() {
     }
   };
 
+  const handleRoomChange = async (event) => {
+    let target = event.target;
+    const value = event.target.value;
+    const roomType = target.options[target.selectedIndex].getAttribute('data-room-type');
+    const room = target.options[target.selectedIndex].getAttribute('data-room');
+    let roomList = selectedRooms;
+    for (var i = 0; i < room; i++) {
+      roomList.push({
+        adult: 1,
+        children: 0,
+      });
+    }
+    setSelectedRooms((prevalue) => [...prevalue, {
+      adult: 1,
+      children: 1,
+      room_type_id: roomType,
+      rooms: parseInt(room),
+      amount: parseFloat(value),
+    }])
+    setSearchBody({ ...searchBody, roomList: roomList });
+  }
+
   var settings = {
     dots: true,
     infinite: true,
@@ -79,7 +102,9 @@ function HotelDetail() {
       </MKBox>
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
-          <Grid className="searchform"><SearchForm hideHotelDetail={true} searchBody={searchBody} hotelId={hotelId} /></Grid>
+          <Grid className="searchform">
+            <SearchForm hideHotelDetail={true} searchBody={searchBody} hotelId={hotelId} finalSelectedRooms={selectedRooms} isDetailPage={true} />
+          </Grid>
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>
               <MKBox className='hotel-head'>
@@ -162,11 +187,11 @@ function HotelDetail() {
                                 </Grid>
                                 <Grid item md={4}>
                                   <MKTypography variant="h6" color="text">Select Rooms</MKTypography>
-                                  <select name="Rooms" id="Rooms">
+                                  <select name="Rooms" id="Rooms" onChange={handleRoomChange}>
                                     <option value={0}>-- Select Rooms --</option>
-                                    <option value={room.price * 1} selected>1 (₹{room.price * 1})</option>
-                                    <option value={room.price * 2}>2 (₹{room.price * 2})</option>
-                                    <option value={room.price * 3}>3 (₹{room.price * 3})</option>
+                                    <option value={room.price * 1} data-room-type={room.room_type_id} data-room="1">1 (₹{room.price * 1})</option>
+                                    <option value={room.price * 2} data-room-type={room.room_type_id} data-room="2">2 (₹{room.price * 2})</option>
+                                    <option value={room.price * 3} data-room-type={room.room_type_id} data-room="3">3 (₹{room.price * 3})</option>
                                   </select>
                                 </Grid>
 

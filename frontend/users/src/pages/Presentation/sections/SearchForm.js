@@ -20,22 +20,30 @@ function SearchForm(props) {
     const [countryIdError, setCountryIdError] = useState("");
     const [locationIdError, setLocationIdError] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(false);
+    const [isRefresh, setIsRefresh] = useState(false);
 
     let currentDate = new Date();
     const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
     const [CheckIn, CheckInOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
     const [CheckOut, CheckOutOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1));
-    const params = new URLSearchParams(window.location.search);
-    const searchBody = {
-        check_in: params.get('check_in') ? params.get('check_in') : '',
-        check_out: params.get('check_out') ? params.get('check_out') : '',
-        roomList: hotelsServices.getArrayFromQueryString(window.location.search),
+    let searchBody = {};
+    
+    if (props.isDetailPage) {
+        searchBody = props.searchBody;
+    } else {
+        const params = new URLSearchParams(window.location.search);
+        searchBody = {
+            check_in: params.get('check_in') ? params.get('check_in') : '',
+            check_out: params.get('check_out') ? params.get('check_out') : '',
+            roomList: hotelsServices.getArrayFromQueryString(window.location.search),
+        }
     }
-    searchBody.roomList.forEach((room, index) => {
-        console.log(room.adult);
-    })
-
+    
     useEffect(() => {
+        if (props.isDetailPage) {
+            debugger;
+            setIsRefresh(true);
+        } 
         document.querySelector('.room-list').addEventListener('click', handleAllButtonClick);
         getCountries();
         if (props?.searchData?.country_id && props?.searchData.country_id !== '') {
@@ -43,6 +51,10 @@ function SearchForm(props) {
         }
         appendRoomData();
     }, []);
+
+    useEffect(() => {
+        console.log(searchBody);
+    }, [isRefresh]);
 
     useEffect(() => {
         getLocations(countryId);
@@ -198,7 +210,6 @@ function SearchForm(props) {
         setCountryIdError("");
         setLocationIdError("");
 
-
         if (!props.hideHotelDetail) {
             if (validation.isEmpty(countryId)) {
                 setCountryIdError("Please select valid country name.");
@@ -239,7 +250,7 @@ function SearchForm(props) {
     }
 
     const appendRoomData = () => {
-        if (searchBody.roomList.length > 0) {
+        if (searchBody?.roomList.length > 0) {
             let roomString = '';
             let totalRooms = 0;
             let totalAdults = 0;
@@ -342,7 +353,7 @@ function SearchForm(props) {
                             <input type="text" onClick={handleInputClick} onChange={handleInputClick} id="room" value={roomString} />
                             <div className={`dropdown room-input ${isDropdownOpen ? 'show-popup' : ''} `}>
                                 <div className='room-list'>
-                                    {!searchBody?.roomList.length > 0 &&
+                                    {!searchBody?.roomList?.length > 0 &&
                                         <>
                                             <div className="dropdown-content" id="room-1" data-index="0">
                                                 <div className='room-title'>
