@@ -240,7 +240,9 @@ function Bookings() {
                         </MKBox>
                         <MKBox className="hotel-detail-row flex-item price" px={3}>
                           <MKTypography variant="h4" color="text">Price</MKTypography>
-                          <MKTypography variant="h4" color="text">₹1000.00</MKTypography>
+                          {bookingData?.finalSelectedRooms[0]?.amount &&
+                            <MKTypography variant="h4" color="text">₹{bookingData?.finalSelectedRooms[0]?.amount.toFixed(2)}</MKTypography>
+                          }
                         </MKBox>
                       </>
                     }

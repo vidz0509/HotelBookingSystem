@@ -7,7 +7,7 @@ import DefaultInfoCard from "examples/Cards/InfoCards/DefaultInfoCard";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import { hotelsServices } from "services/hotels";
-import SearchForm from "pages/Presentation/sections/SearchForm";
+import HotelSearchForm from "pages/Presentation/sections/HotelSearchForm";
 import { amenitiesServices } from "services/amenities";
 import { useParams } from "react-router-dom";
 import Slider from "react-slick";
@@ -43,7 +43,7 @@ function HotelDetail() {
   useEffect(() => {
     getHotelById(hotelId);
     getRoomsByHotelId(hotelId);
-  }, [hotelId]); 
+  }, [hotelId]);
 
   const getHotelById = async (hotelId) => {
     const result = await hotelsServices.getHotelById(hotelId);
@@ -68,7 +68,7 @@ function HotelDetail() {
     const value = event.target.value;
     const roomType = target.options[target.selectedIndex].getAttribute('data-room-type');
     const room = target.options[target.selectedIndex].getAttribute('data-room');
-    let roomList = selectedRooms;
+    let roomList = [];
     for (var i = 0; i < room; i++) {
       roomList.push({
         adult: 1,
@@ -103,7 +103,7 @@ function HotelDetail() {
       <MKBox component="section">
         <Container sx={{ mt: 2 }} className='main-container account-container hotel-main-container'>
           <Grid className="searchform">
-            <SearchForm hideHotelDetail={true} searchBody={searchBody} hotelId={hotelId} finalSelectedRooms={selectedRooms} isDetailPage={true} />
+            <HotelSearchForm hideHotelDetail={true} searchBody={searchBody} hotelId={hotelId} finalSelectedRooms={selectedRooms} isDetailPage={true} />
           </Grid>
           <Grid container spacing={2} alignItems="flex-start" sx={{ mt: 6, mb: 6 }} justifyContent="left" px={3}>
             <MKBox className='hotel-detaclick'>
