@@ -32,6 +32,7 @@ function Bookings() {
   const [bookingData, setBookingData] = useState(null);
   const [hotelData, setHotelData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [userDetails, setUserDetails] = useState([]);
   const [firstname, setFirstName] = useState('');
   const [lastname, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -59,24 +60,59 @@ function Bookings() {
       setBtnDisabled(false);
     }
   };
+
   const handlefirstNameChange = (event) => {
     const value = event.target.value;
     setFirstName(value);
   }
-  const handlelastNameChange = (event) => {
-    const value = event.target.value;
-    setLastName(value);
-  }
+
   const handleEmailChange = (event) => {
     const value = event.target.value;
     console.log(value)
     setEmail(value);
   }
-  const handleContactdChange = (event) => {
+
+  const handlelastNameChange = (event) => {
+    const value = event.target.value;
+    setLastName(value);
+  }
+
+  const handleContactChange = (event) => {
     const value = event.target.value;
     console.log(value)
     setContact(value);
   }
+
+  const handleUserDetailsChange = (event) => {
+    let firstname = event.target.value;
+    if (event.target.value === true) {
+      let firstNameArr = userDetails;
+      firstNameArr.push(firstname);
+      setUserDetails((prevalue) => [...prevalue, firstname]);
+    } else {
+      const firstname = userDetails.filter((type) => {
+        return type !== firstname;
+      });
+      setUserDetails(firstname);
+    }
+  }
+
+  const handleFirstNameBlur = () => {
+    if (validation.isEmpty(firstname)) {
+      setFirstNameError("Please enter a valid first name.");
+    } else {
+      setFirstNameError("");
+    }
+  }
+  
+  const handleEmailBlur = () => {
+    if (validation.isEmpty(email) || !validation.isValidEmail(email)) {
+      setEmailError("Please enter a valid email address.");
+    } else {
+      setEmailError("");
+    }
+  }
+
   const handlesubmit = async (event) => {
     event.preventDefault();
     console.log(event)
@@ -109,10 +145,10 @@ function Bookings() {
       email: email,
       lastname: lastname,
       phone: contact
-
     };
-
   }
+
+  // console.log(firstname);
 
   return (
     <>
@@ -150,7 +186,7 @@ function Bookings() {
                                 <MKBox className='adult-info'>
                                   <div className="adult-col">
                                     <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*"
-                                      onChange={handlefirstNameChange}
+                                      onBlur={handleFirstNameBlur}
                                       value={firstname}
                                     // maxLength={30}
 
@@ -170,13 +206,14 @@ function Bookings() {
                                     <>
                                       <div className="adult-col">
                                         <input type="tel" id={`room-${index + 1}-adult-phone`} placeholder="Phone Number"
-                                          onChange={handleContactdChange} />
+                                          onChange={handleContactChange} />
                                         {contactError && <p className="error">{contactError}</p>}
 
                                       </div>
                                       <div className="adult-col">
                                         <input type="email" id={`room-${index + 1}-adult-email`} placeholder="Email*"
-                                          onChange={handleEmailChange} />
+                                          onBlur={handleEmailBlur}
+                                        />
 
                                         {emailError && <p className="error">{emailError}</p>}
                                       </div>

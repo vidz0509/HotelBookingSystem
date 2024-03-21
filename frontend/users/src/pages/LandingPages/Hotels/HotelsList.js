@@ -16,8 +16,6 @@ function HotelsList(props) {
   const [Amenities, setAmenities] = useState("");
   const [selectedRoomTypes, setSelectedRoomTypes] = useState([]);
   const [selectedAmenities, setSelectedAmenities] = useState([]);
-
-
   const [hotelsData, setHotelsData] = useState(null);
   const [searchBody, setSearchBody] = useState(null);
   const [error, setError] = useState(null);
@@ -62,13 +60,11 @@ function HotelsList(props) {
   const getRoomType = async () => {
     let response = await hotelsServices.getAllRoomTypes();
     setRoomtypedata(response.data);
-    // setLoading(false);
   };
 
   const getAmenities = async () => {
     let response = await hotelsServices.getAmenities();
     setAmenities(response.data);
-    // setLoading(false);
   };
 
   const handleRoomTypeChange = (event) => {
