@@ -117,7 +117,7 @@ export default function AddOffer() {
             state={offerTypeError !== "" ? "error" : ""}
             errorMessage={offerTypeError !== "" ? offerTypeError : ""}
             value={offerType}
-            maxLength={30}
+            maxLength={100}
           />
           <InputField
             variant="auth"
