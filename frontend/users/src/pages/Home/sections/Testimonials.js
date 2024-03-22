@@ -19,7 +19,7 @@ import DefaultReviewCard from "examples/Cards/ReviewCards/DefaultReviewCard";
 
 function Information() {
   return (
-    <MKBox component="section" my={4} >
+    <MKBox component="section" my={0} >
       <Container>
         <Grid
           container
@@ -29,14 +29,14 @@ function Information() {
           justifyContent="center"
           sx={{ mx: "auto", textAlign: "center" }}
         >
-          <MKTypography variant="h2">Customers Reviews</MKTypography>
-          <MKTypography variant="h2" color="info" textGradient mb={2}>
+          <MKTypography variant="h2"mb={3}>Customers Reviews</MKTypography>
+          {/* <MKTypography variant="h2" color="info" textGradient mb={2}>
             1,679,477+ web developers
           </MKTypography>
           <MKTypography variant="body1" color="text" mb={2}>
             Many Fortune 500 companies, startups, universities and governmental institutions love
             Creative Tim&apos;s products.
-          </MKTypography>
+          </MKTypography> */}
         </Grid>
         <Grid container spacing={2}>
           <Grid item xs={12} md={6} lg={4}>
