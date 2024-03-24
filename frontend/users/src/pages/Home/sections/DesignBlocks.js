@@ -49,7 +49,7 @@ function DesignBlocks(props) {
 
   const renderData = countriesData && countriesData?.map((country) => (
     <Grid item md={4} sx={{ mb: 2 }} key={country._id}>
-      <ExampleCard image={country.country_image} name={country.country_name} hideName={true} />
+      <ExampleCard image={country.country_image} name={country.country_name} url={`/hotels?country_id=${country._id}`}  hideName={true} />
     </Grid>
   ));
 

@@ -49,7 +49,7 @@ function Pages(props) {
 
   const renderData = hotelsData && hotelsData?.map((hotels) => (
     <Grid item md={4} sx={{ mb: 2 }} key={hotels._id}>
-      <ExampleCard image={hotels.hotel_image[0]} name={hotels.hotel_name} address={hotels.hotel_address} hideName={false} />
+      <ExampleCard image={hotels.hotel_image[0]} name={hotels.hotel_name} address={hotels.hotel_address} url={`/hotel-details/${hotels._id}`} hideName={false} />
     </Grid>
   ));
 
