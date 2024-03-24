@@ -72,8 +72,6 @@ function Bookings() {
   const handlesubmit = async (event) => {
     event.preventDefault();
     setBtnDisabled(true);
-    console.log(userDetails);
-    console.log(bookingData);
     const currentUser = authServices.getCurrentUser();
     let requestBody = {
       check_in: bookingData.check_in,
@@ -83,8 +81,8 @@ function Bookings() {
       roomList: bookingData.roomList,
       finalSelectedRooms: bookingData.finalSelectedRooms,
       user_detail: userDetails,
-
     }
+    console.log(requestBody);
     const result = await bookingsServices.payment(requestBody);
     if (result.isSuccessful) {
       window.location.href = result.data.checkout_url;

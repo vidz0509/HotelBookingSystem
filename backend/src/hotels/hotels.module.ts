@@ -23,6 +23,8 @@ import { Rooms, RoomsSchema, RoomsDocument } from 'src/rooms/rooms.schema';
 import { RoomsCollection } from 'src/rooms/rooms.collection';
 import { Amenities, AmenitiesSchema } from 'src/amenities/amenities.schema';
 import { AmenitiesCollection } from 'src/amenities/amenities.collection';
+import { UsersCollection } from 'src/users/users.collection';
+import { User, UserSchema } from 'src/users/users.schema';
 
 @Module({
     imports: [
@@ -44,6 +46,10 @@ import { AmenitiesCollection } from 'src/amenities/amenities.collection';
                 name: Amenities.name,
                 schema: AmenitiesSchema
             },
+            {
+                name: User.name,
+                schema: UserSchema
+            },
         ]),
         MulterModule.register({
             dest: './uploads/hotelsImg',
@@ -57,7 +63,7 @@ import { AmenitiesCollection } from 'src/amenities/amenities.collection';
         })
     ],
     controllers: [HotelsController],
-    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection,RoomsService,RoomsCollection, AmenitiesCollection,HelpersServices],
+    providers: [HotelsService, HotelsCollection, BookingService, BookingCollection,UsersCollection,RoomsService,RoomsCollection, AmenitiesCollection,HelpersServices],
 })
 
 export class HotelModule { }

@@ -12,6 +12,11 @@ import { MulterModule } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import path from 'path';
 import { ConfigModule } from '@nestjs/config';
+import { User, UserSchema } from 'src/users/users.schema';
+import { UsersCollection } from 'src/users/users.collection';
+import { UsersService } from 'src/users/users.services';
+import { Hotels, HotelsSchema } from 'src/hotels/hotels.schema';
+import { HotelsCollection } from 'src/hotels/hotels.collection';
 
 @Module({
   imports: [
@@ -20,6 +25,14 @@ import { ConfigModule } from '@nestjs/config';
       {
         name: Booking.name,
         schema: BookingSchema
+      },
+      {
+        name: User.name,
+        schema: UserSchema
+      },
+      {
+        name: Hotels.name,
+        schema: HotelsSchema
       },
     ]),
     MulterModule.register({
@@ -34,7 +47,7 @@ import { ConfigModule } from '@nestjs/config';
     })
   ],
   controllers: [BookingController],
-  providers: [BookingService, BookingCollection, HelpersServices],
+  providers: [BookingService, BookingCollection, UsersCollection, HotelsCollection, HelpersServices],
 })
 
 export class BookingModule { }

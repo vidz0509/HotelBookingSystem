@@ -18,6 +18,9 @@ export class User {
   password: string;
 
   @Prop()
+  revio_client_id: string;
+
+  @Prop()
   phone: string;
 
   @Prop()
