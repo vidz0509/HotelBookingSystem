@@ -86,6 +86,14 @@ export class UsersCollection {
         );
     }
 
+    async updateClient(revio_client_id: string, updateUserDto: UpdateUserDto) {
+        return await this.userModel.findByIdAndUpdate(
+            revio_client_id,
+            updateUserDto,
+            { new: true },
+        )
+    }
+
     async deleteUser(userID: string) {
         return this.userModel.deleteOne(
             { _id: userID },
@@ -99,7 +107,7 @@ export class UsersCollection {
             //   { $set: { createAt: new Date(), isDeleted: true } },
         ]);
     }
-
+    
     async changePassword(userId: string, password: string) {
         return await this.userModel.findByIdAndUpdate(
             userId,
