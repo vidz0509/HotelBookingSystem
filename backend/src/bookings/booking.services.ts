@@ -10,6 +10,7 @@ import axios from 'axios';
 import { PaymentDto } from './dto/payment.dto';
 import { UsersCollection } from 'src/users/users.collection';
 import { HotelsCollection } from 'src/hotels/hotels.collection';
+import { error } from 'console';
 
 @Injectable()
 export class BookingService {
@@ -51,17 +52,60 @@ export class BookingService {
   }
 
   async payment(paymentDto: PaymentDto) {
-
     const userId = paymentDto?.user_id;
 
     if (userId) {
       const currentUserData = await this.usersCollection.getUser(userId);
       const hotelData = await this.hotelCollection.getHotelById(paymentDto.hotelId);
       if (hotelData) {
-
         /* Create client in Revio */
+        let revio_client_id = ""
+        if(!currentUserData.revio_client_id){
 
-        const clientoption = {
+          const clientoption = {
+            method: 'POST',
+            headers: {
+              accept: 'application/json',
+              'content-type': 'application/json',
+              authorization: 'Bearer ' + process.env.REVIO_PAY_TOKEN
+            },
+            body: JSON.stringify({
+              email: currentUserData.email,
+              phone: currentUserData.phone,
+              full_name: currentUserData.fullname,
+              registration_number: userId,
+              country: 'IN',
+            })
+          };
+          try {
+            const customerResponse = await fetch(`${process.env.REVIO_PAY_URL}/clients/`, clientoption);
+            const customerResult = await customerResponse.json();
+            if (!customerResponse.ok) {
+              if (customerResult?.__all__[0]?.message) {
+                const errorMessage = customerResult?.__all__[0]?.message;
+                throw new InternalServerErrorException(await this.helper.buildResponse(false, errorMessage));
+              }
+              throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
+            }
+            if (customerResult.id) {
+              const currentClientData = await this.usersCollection.updateClient(customerResult.id,userId);          
+  
+              revio_client_id = customerResult.id
+              /* Create purchase for the created client */
+              
+              
+            }
+          } catch (error) {
+            throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
+          }
+        }
+        else{
+          revio_client_id=currentUserData.revio_client_id
+        }
+        if(revio_client_id == ""){
+          throw new InternalServerErrorException(await this.helper.buildResponse(false, "Cannot found revio client"));
+        }
+        const options = {
           method: 'POST',
           headers: {
             accept: 'application/json',
@@ -69,68 +113,35 @@ export class BookingService {
             authorization: 'Bearer ' + process.env.REVIO_PAY_TOKEN
           },
           body: JSON.stringify({
-            email: paymentDto.user_detail[0].email,
-            phone: paymentDto.user_detail[0].contact,
-            full_name: currentUserData.fullname,
-            registration_number: userId,
-            country: 'IN',
+            purchase: {
+              currency: "INR",
+              language: "en",
+              products: [{
+                "name": hotelData[0].hotel_name,
+                "price": paymentDto.finalSelectedRooms[0].amount * 100
+              }],
+            },
+            client_id: revio_client_id,
+            brand_id: process.env.REVIO_PAY_BRANDID,
+            success_redirect: process.env.SITE_URL,
+            failure_redirect: process.env.SITE_URL,
+            cancel_redirect: process.env.SITE_URL,
           })
         };
-        try {
-          const customerResponse = await fetch(`${process.env.REVIO_PAY_URL}/clients/`, clientoption);
-          const customerResult = await customerResponse.json();
-          if (!customerResponse.ok) {
-            if (customerResult?.__all__[0]?.message) {
-              const errorMessage = customerResult?.__all__[0]?.message;
-              throw new InternalServerErrorException(await this.helper.buildResponse(false, errorMessage));
-            }
-            throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
+        
+        const purchaseResponse = await fetch(`${process.env.REVIO_PAY_URL}/purchases/`, options);
+        const purchaseResult = await purchaseResponse.json();
+        
+        if (!purchaseResponse.ok) {
+          if (purchaseResult?.__all__[0]?.message) {
+            const errorMessage = purchaseResult?.__all__[0]?.message;
+            throw new InternalServerErrorException(await this.helper.buildResponse(false, errorMessage));
           }
-
-          if (customerResult.id) {
-
-            /* Create purchase for the created client */
-
-            const options = {
-              method: 'POST',
-              headers: {
-                accept: 'application/json',
-                'content-type': 'application/json',
-                authorization: 'Bearer ' + process.env.REVIO_PAY_TOKEN
-              },
-              body: JSON.stringify({
-                purchase: {
-                  currency: "INR",
-                  language: "en",
-                  products: [{
-                    "name": hotelData[0].hotel_name,
-                    "price": paymentDto.finalSelectedRooms[0].amount
-                  }],
-                },
-                client_id: customerResult.id,
-                brand_id: process.env.REVIO_PAY_BRANDID,
-                success_redirect: process.env.SITE_URL,
-                failure_redirect: process.env.SITE_URL,
-                cancel_redirect: process.env.SITE_URL,
-              })
-            };
-
-            const purchaseResponse = await fetch(`${process.env.REVIO_PAY_URL}/purchases/`, options);
-            const purchaseResult = await purchaseResponse.json();
-
-            if (!purchaseResponse.ok) {
-              if (purchaseResult?.__all__[0]?.message) {
-                const errorMessage = purchaseResult?.__all__[0]?.message;
-                throw new InternalServerErrorException(await this.helper.buildResponse(false, errorMessage));
-              }
-              throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
-            }
-            const finalCustomerResponse = await this.helper.buildResponse(true, null, purchaseResult);
-            return finalCustomerResponse;
-          }
-        } catch (error) {
-          throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
+          throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
         }
+        const finalCustomerResponse = await this.helper.buildResponse(true, null, purchaseResult);
+        return finalCustomerResponse;
+
       } else {
         throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Invalid Hotel'));
       }
@@ -139,7 +150,4 @@ export class BookingService {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Invalid User'));
     }
   }
-
-
-
 }

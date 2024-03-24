@@ -67,7 +67,7 @@ export class UsersCollection {
     }
 
     async getUser(id: string) {
-        return await this.userModel.findById(id).select('_id fullname email phone profileImg createdAt updatedAt isDeleted isActive userType');
+        return await this.userModel.findById(id).select('_id fullname email phone profileImg revio_client_id createdAt updatedAt isDeleted isActive userType');
     }
 
     async getUserByEmail(email: string): Promise<User> {
@@ -86,10 +86,12 @@ export class UsersCollection {
         );
     }
 
-    async updateClient(revio_client_id: string, updateUserDto: UpdateUserDto) {
+    async updateClient(revio_client_id: string, userID: string) {
         return await this.userModel.findByIdAndUpdate(
-            revio_client_id,
-            updateUserDto,
+            userID,
+            {
+                revio_client_id : revio_client_id
+            },
             { new: true },
         )
     }
