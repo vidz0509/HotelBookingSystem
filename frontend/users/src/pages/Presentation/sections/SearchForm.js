@@ -18,7 +18,6 @@ function SearchForm(props) {
     const [locationsData, setLocationsData] = useState("");
     const [locationId, setLocationId] = useState("");
     const [countryIdError, setCountryIdError] = useState("");
-    const [locationIdError, setLocationIdError] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(false);
 
     let currentDate = new Date();
@@ -31,7 +30,7 @@ function SearchForm(props) {
         check_out: params.get('check_out') ? params.get('check_out') : '',
         roomList: hotelsServices.getArrayFromQueryString(window.location.search),
     }
-    
+
     useEffect(() => {
         document.querySelector('.room-list').addEventListener('click', handleAllButtonClick);
         getCountries();
@@ -193,16 +192,10 @@ function SearchForm(props) {
     const handleSubmit = async (event) => {
         event.preventDefault();
         setCountryIdError("");
-        setLocationIdError("");
-
 
         if (!props.hideHotelDetail) {
             if (validation.isEmpty(countryId)) {
                 setCountryIdError("Please select valid country name.");
-                return false;
-            }
-            if (validation.isEmpty(locationId)) {
-                setLocationIdError("Please select valid location name.");
                 return false;
             }
         }
@@ -316,7 +309,6 @@ function SearchForm(props) {
                                                 <option value={item._id} key={item._id} selected={locationId !== '' && locationId === item._id}>{item.location_name}</option>
                                             ))}
                                     </select>
-                                    {locationIdError && <span className="error-msg">{locationIdError}</span>}
                                 </div>
                             </div>
                         </>
