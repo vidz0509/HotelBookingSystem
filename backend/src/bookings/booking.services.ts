@@ -48,7 +48,6 @@ export class BookingService {
 
   async payment(paymentDto: PaymentDto) {
 
-    
     const options = {
       method: 'POST',
       headers: {
@@ -72,6 +71,26 @@ export class BookingService {
         cancel_redirect: process.env.SITE_URL,
       })
     };
+    
+    const clientoption = {
+      method: 'POST',
+      headers: {
+        accept: 'application/json',
+        'content-type': 'application/json',
+        authorization: 'Bearer ' + process.env.REVIO_PAY_TOKEN
+      },
+      body: JSON.stringify({
+        email: 'user@example.com',
+        phone: '+44 45643564564',
+        full_name: 'string',
+        country: 'string',
+      })
+    };
+    console.log(clientoption);
+    fetch(`${process.env.REVIO_PAY_URL}/clients/`, clientoption)
+      .then(response => response.json())
+      .then(response => console.log(response))
+      .catch(err => console.error(err));
 
     try {
       const purchaseResponse = await fetch(`${process.env.REVIO_PAY_URL}/purchases/`, options);
@@ -84,7 +103,8 @@ export class BookingService {
     } catch (error) {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
     }
-
   }
 
+  
+    
 }
