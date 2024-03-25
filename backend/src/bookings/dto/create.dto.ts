@@ -23,6 +23,10 @@ export class CreateBookingDto {
     @IsNotEmpty()
     readonly country_id: string;
 
+    @IsString()
+    @IsNotEmpty()
+    readonly room_type_id: string;
+
     @IsNumber()
     @IsNotEmpty()
     readonly total_rooms: number;
@@ -38,6 +42,9 @@ export class CreateBookingDto {
     @IsOptional()
     readonly room_details : any[];
 
+    @IsOptional()
+    readonly user_details : any[];
+
     @IsString()
     @IsNotEmpty()
     readonly total_amount: string;
@@ -48,7 +55,7 @@ export class CreateBookingDto {
 
     @IsString()
     @IsNotEmpty()
-    readonly payment_id: string;
+    readonly payment_method: string;
 
     @IsString()
     @IsNotEmpty()
@@ -57,4 +64,8 @@ export class CreateBookingDto {
     @IsString()
     @IsNotEmpty()
     readonly booking_status: string;
+
+    @IsString()
+    @IsNotEmpty()
+    readonly checkout_url: string;
 }

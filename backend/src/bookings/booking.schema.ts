@@ -54,6 +54,9 @@ export class Booking {
   @Prop()
   room_details: any[];
 
+  @Prop()
+  user_details: any[];
+
   @IsString()
   @IsNotEmpty()
   @Prop({ required: true })
@@ -67,7 +70,7 @@ export class Booking {
   @IsString()
   @IsNotEmpty()
   @Prop({ required: true })
-  payment_id: string;
+  payment_method: string;
 
   @IsString()
   @IsNotEmpty()
@@ -78,6 +81,11 @@ export class Booking {
   @IsNotEmpty()
   @Prop({ required: true })
   booking_status: string;
+
+  @IsString()
+  @IsNotEmpty()
+  @Prop({ required: true })
+  checkout_url: string;
 
   @Prop()
   createdAt: Date;

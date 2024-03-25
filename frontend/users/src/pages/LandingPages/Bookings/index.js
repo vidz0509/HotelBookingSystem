@@ -85,6 +85,7 @@ function Bookings() {
     console.log(requestBody);
     const result = await bookingsServices.payment(requestBody);
     if (result.isSuccessful) {
+      localStorage.setItem('bookingData',null);
       window.location.href = result.data.checkout_url;
     } else {
       setError(result.errorMessage);
@@ -190,14 +191,14 @@ function Bookings() {
                         <MKBox className="hotel-detail-row flex-item dates" px={3} py={2}>
                           <MKBox className="checkin">
                             <MKTypography variant="h6" color="text">Check In</MKTypography>
-                            <MKTypography fontSize={14}>30 Mar 2024</MKTypography>
+                            <MKTypography fontSize={14}>{bookingsServices.formatDate(bookingData.check_in)}</MKTypography>
                           </MKBox>
                           <MKBox className="icon">
                             <img decoding="async" src="https://untamed.sourcenettechnology.in/wp-content/themes/untamed/assets/images/checkinout-arrow.svg" />
                           </MKBox>
                           <MKBox className="checkout">
                             <MKTypography variant="h6" color="text">Check Out</MKTypography>
-                            <MKTypography fontSize={14}>01 Apr 2024</MKTypography>
+                            <MKTypography fontSize={14}>{bookingsServices.formatDate(bookingData.check_out)}</MKTypography>
                           </MKBox>
                         </MKBox>
                         <MKBox className="hotel-detail-row guests" px={3}>

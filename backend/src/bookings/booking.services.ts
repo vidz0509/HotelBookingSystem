@@ -57,7 +57,7 @@ export class BookingService {
     if (userId) {
       const currentUserData = await this.usersCollection.getUser(userId);
       const hotelData = await this.hotelCollection.getHotelById(paymentDto.hotelId);
-      if (hotelData) {
+      if (hotelData.length > 0) {
         /* Create client in Revio */
         let revio_client_id = ""
         if(!currentUserData.revio_client_id){
@@ -139,9 +139,30 @@ export class BookingService {
           }
           throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
         }
-        const finalCustomerResponse = await this.helper.buildResponse(true, null, purchaseResult);
-        return finalCustomerResponse;
 
+        /* Create object to add data in booking collection */
+
+        let createBookingDto : CreateBookingDto = {
+          check_in : paymentDto.check_in,
+          check_out : paymentDto.check_out,
+          user_id: userId,
+          hotel_id: paymentDto.hotelId,
+          location_id : hotelData[0].location_id,
+          country_id : hotelData[0].country_id,
+          room_type_id : paymentDto.finalSelectedRooms[0]?.room_type_id,
+          total_rooms : paymentDto.finalSelectedRooms[0]?.rooms,
+          total_adults : paymentDto.finalSelectedRooms[0]?.adult,
+          total_children : paymentDto.finalSelectedRooms[0]?.children,
+          room_details : paymentDto.roomList,
+          user_details : paymentDto.user_detail,
+          total_amount : paymentDto.finalSelectedRooms[0]?.amount,
+          transaction_id : purchaseResult.id,
+          payment_method : "Credit/Debit Card",
+          payment_status : "complete",
+          booking_status : "active",
+          checkout_url : purchaseResult.checkout_url
+        }
+        return await this.createBooking(createBookingDto);
       } else {
         throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Invalid Hotel'));
       }
