@@ -45,6 +45,13 @@ export class BookingService {
     return response;
   }
 
+  async getBookingByUserId(user_id: string) {
+    const booking = await this.bookingCollection.getBookingByUserId(user_id);
+    const response = await this.helper.buildResponse(true, null, booking);
+    return response;
+  }
+  
+
   async hardDeleteCountry(countryId: string) {
     let data = await this.bookingCollection.hardDeleteCountry(countryId);
     const response = await this.helper.buildResponse(true, null, null);

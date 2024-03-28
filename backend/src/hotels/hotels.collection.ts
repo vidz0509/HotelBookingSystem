@@ -132,7 +132,7 @@ export class HotelsCollection {
             {
                 $lookup: {
                     from: 'amenities',
-                    let: { amenities: "$amenities" }, // No need for $toObjectId conversion
+                    let: { amenities: "$amenities" }, 
                     pipeline: [
                         {
                             $match: {

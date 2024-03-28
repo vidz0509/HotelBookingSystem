@@ -2,12 +2,23 @@ import axios from 'axios';
 
 export const bookingsServices = {
     payment,
+    getBookingByUserId,
     formatDate
 };
 
 async function payment(requestBody) {
     const url = `${process.env.REACT_APP_API_URL}/bookings/payment`;
     return await axios.post(url, requestBody).then(response => {
+        return response.data;
+    }).catch(error => {
+        let errorObj = error.response.data;
+        return errorObj;
+    });
+}
+
+async function getBookingByUserId(id) {
+    const url = `${process.env.REACT_APP_API_URL}/bookings/getbookingbyuser/${id}`;
+    return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;

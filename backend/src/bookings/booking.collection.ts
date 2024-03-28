@@ -1,5 +1,6 @@
+import { User } from './../users/users.schema';
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { Model } from "mongoose";
+import mongoose, { Model } from "mongoose";
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateBookingDto } from './dto/create.dto';
 // import { SignInUserDto } from '../auth/dto/login.dto';
@@ -58,4 +59,77 @@ export class BookingCollection {
         return this.bookingModel.find({ _id: { $nin : hotelIds } });
     }
 
+    async getBookingByUserId(user_id: string): Promise<Booking[]> {
+        return await this.bookingModel.aggregate([
+            {
+                $match: {
+                    user_id : user_id,
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'countries',
+                    let: { countryId: { $toObjectId: "$country_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$countryId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                country_code: 1,
+                                country_name: 1
+                            }
+                        }
+                    ],
+                    as: 'country_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'locations',
+                    let: { locationId: { $toObjectId: "$location_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$locationId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                location_code: 1,
+                                location_name: 1
+                            }
+                        }
+                    ],
+                    as: 'location_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'room',
+                    let: { roomId: { $toObjectId: "$room_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$roomId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                room_name: 1
+                            }
+                        }
+                    ],
+                    as: 'room_details'
+                }
+            },
+        ]);
+    }
 }
