@@ -19,6 +19,7 @@ import { Container } from "@mui/material";
 import Profile from "./Profile";
 import Booking from "./Booking";
 import ChangePassword from "./ChangePassword";
+import Offers from "./Offers";
 
 export default function Account() {
 
@@ -50,7 +51,7 @@ export default function Account() {
               <MKTypography variant="button h5" color="text" mb={2} className={`account-link${tabName === 'security' ? ' active' : ''}`} onClick={(e) => setTabName('security')}>
                 Security
               </MKTypography>
-              <MKTypography variant="button h5" color="text" mb={2} className={`account-link${tabName === 'offer' ? ' active' : ''}`} onClick={(e) => setTabName('offer')}>
+              <MKTypography variant="button h5" color="text" mb={2} className={`account-link${tabName === 'offers' ? ' active' : ''}`} onClick={(e) => setTabName('offers')}>
                 Offers
               </MKTypography>
               <MKTypography color="text" mb={2} onClick={handleLogout} variant="button h5" className='account-link'> Log Out </MKTypography>
@@ -65,6 +66,9 @@ export default function Account() {
             }
             {
               tabName === 'security' && <ChangePassword />
+            }
+            {
+              tabName === 'offers' && <Offers />
             }
           </Grid>
         </Grid>
