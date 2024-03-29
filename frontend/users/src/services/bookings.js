@@ -17,7 +17,7 @@ async function payment(requestBody) {
 }
 
 async function getBookingByUserId(id) {
-    const url = `${process.env.REACT_APP_API_URL}/bookings/getbookingbyuser/${id}`;
+    const url = `${process.env.REACT_APP_API_URL}/bookings/getbookingbyuserid/${id}`;
     return await axios.get(url).then(response => {
         return response.data;
     }).catch(error => {

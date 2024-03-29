@@ -3,24 +3,43 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import { Grid, Card, CardMedia, CardContent } from "@mui/material";
 import { authServices } from "services/auth";
-
+import { bookingsServices } from "services/bookings";
 
 export default function Booking() {
-  const [bookings, setBookings] = useState([]);
+  // const [bookings, setBookings] = useState([]);
 
-  const getBookingByUserId = async () => {
-    try {
-      const response = await fetch("getbookingbyuser");
-      const data = await response.json();
-      setBookings(data);
-    } catch (error) {
-      console.error("Error fetching bookings:", error);
+  // const getBookingByUserId = async () => {
+  //   try {
+  //     const response = await fetch("getbookingbyuser");
+  //     const data = await response.json();
+  //     setBookings(data);
+  //   } catch (error) {
+  //     console.error("Error fetching bookings:", error);
+  //   }
+  // };
+
+  const userData = authServices.getCurrentUser();
+  const [user_id, setUserId] = useState(userData._id);
+  const [bookings, setBookings] = useState([]);
+  
+  useEffect(() => {
+    const currentUser = authServices.getCurrentUser();
+    if (currentUser && currentUser.user_id) {
+      setUserId(currentUser.user_id);
+      getBookingByUserId(currentUser.user_id);
+    }
+  }, []);
+  
+  useEffect(() => {
+    getBookingByUserId(user_id);
+  }, [user_id]);
+  
+  const getBookingByUserId = async (user_id) => {
+    const result = await bookingsServices.getBookingByUserId(user_id);
+    if (result.isSuccessful) {
+      setBookings(result.data);
     }
   };
-
-  useEffect(() => {
-    getBookingByUserId();
-  }, []);
   return (
     <>
       <MKBox display="flex" flexDirection="column" justifyContent="center">
@@ -33,18 +52,22 @@ export default function Booking() {
               {bookings.map((booking, index) => (
                 <Grid item xs={12} key={index}>
                   <Card>
-                      <CardMedia
-                        component="img"
-                        height="140"
-                        image={booking.hotelImage} 
-                        alt={booking.hotelName}
-                      />
-                      <CardContent>
-                        <p>{booking.hotelName}</p>
-                        <p>{booking.checkInDate}</p>
-                        <p>{booking.checkOutDate}</p>
-                      </CardContent>
-                    </Card>
+                    <CardMedia
+                      component="img"
+                      height="140"
+                      image={booking.hotel_id}/*hotelimage*/
+                      alt={booking.hotel_id}/*hotelName*/
+                    />
+                    <CardContent>
+                      <p>{booking.country_id}</p>{/*coutryName*/}
+                      <p>{booking.location_id}</p>{/*locationName*/}
+                      <p>{booking.total_rooms}</p>{/*Rooms*/}
+                      <p>{booking.room_details}</p>{/*Roomtype*/}
+                      <p>{booking.total_amount}</p>{/*price*/}
+                      <p>{booking.check_in}</p>
+                      <p>{booking.check_out}</p>
+                    </CardContent>
+                  </Card>
                 </Grid>
               ))}
             </Grid>

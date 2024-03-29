@@ -18,7 +18,7 @@ export class BookingController {
     return await this.bookingServices.getAllBookings();
   }
 
-  @Get('/getbookingbyuser/:id')
+  @Get('/getbookingbyuserid/:id')
   async getbooking(@Param('id') user_id: string) {
       return this.bookingServices.getBookingByUserId(user_id);
   }
