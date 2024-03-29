@@ -59,8 +59,8 @@ export default function Booking() {
                       alt={booking.hotel_id}/*hotelName*/
                     />
                     <CardContent>
-                      <p>{booking.country_id}</p>{/*coutryName*/}
-                      <p>{booking.location_id}</p>{/*locationName*/}
+                      <p>{booking.country_details[0].country_name}</p>{/*coutryName*/}
+                      <p>{booking.location_details[0].location_name}</p>{/*locationName*/}
                       <p>{booking.total_rooms}</p>{/*Rooms*/}
                       <p>{booking.room_details}</p>{/*Roomtype*/}
                       <p>{booking.total_amount}</p>{/*price*/}
