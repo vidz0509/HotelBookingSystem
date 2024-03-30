@@ -18,6 +18,11 @@ export class BookingController {
     return await this.bookingServices.getAllBookings();
   }
 
+  @Get('/count')
+  async getBookingsCount(): Promise<number> {
+      return this.bookingServices.getBookingsCount();
+  }
+
   @Get('/getbookingbyuserid/:id')
   async getbooking(@Param('id') user_id: string) {
       return this.bookingServices.getBookingByUserId(user_id);

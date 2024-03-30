@@ -28,6 +28,12 @@ export class BookingService {
     return response;
   }
 
+  async getBookingsCount(): Promise<any> {
+    let count = await this.bookingCollection.getBookingsCount();
+    const response = await this.helper.countResponse(true, null, count);
+    return response;
+  }
+
   async createBooking(createBookingDto: CreateBookingDto) {
     try {
       const booking = await this.bookingCollection.createBooking(createBookingDto);

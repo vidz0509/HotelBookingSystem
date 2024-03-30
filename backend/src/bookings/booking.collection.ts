@@ -102,6 +102,10 @@ export class BookingCollection {
         ]);
     }
 
+    async getBookingsCount(): Promise<number> {
+        return await this.bookingModel.countDocuments();
+    }
+
     async getBookingById(id: string): Promise<Booking> {
         return this.bookingModel.findById(id);
     }
