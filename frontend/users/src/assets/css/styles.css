@@ -550,9 +550,10 @@ img.user-profile {
     height: 30px;
 }
 
-.price h4{
+.price h4 {
     color: #932595 !important;
 }
+
 @supports (-webkit-appearance: none) or (-moz-appearance: none) {
     input[type=checkbox]:after {
         content: "";
@@ -671,4 +672,9 @@ img.user-profile {
 
 .about-section {
     padding-bottom: 0 !important;
+}
+
+.offer-card {
+    text-align: center;
+    height: 180px;
 }

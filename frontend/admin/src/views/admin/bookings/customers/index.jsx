@@ -1,137 +1,156 @@
-// import Banner from "./components/Banner";
-// import NFt2 from "assets/img/nfts/Nft2.png";
-// import NFt4 from "assets/img/nfts/Nft4.png";
-// import NFt3 from "assets/img/nfts/Nft3.png";
-// import NFt5 from "assets/img/nfts/Nft5.png";
-// import NFt6 from "assets/img/nfts/Nft6.png";
-// import avatar1 from "assets/img/avatars/avatar1.png";
-// import avatar2 from "assets/img/avatars/avatar2.png";
-// import avatar3 from "assets/img/avatars/avatar3.png";
-
-// import tableDataTopCreators from "views/admin/marketplace/variables/tableDataTopCreators.json";
-// import { tableColumnsTopCreators } from "views/admin/marketplace/variables/tableColumnsTopCreators";
-// import HistoryCard from "./components/HistoryCard";
-// import TopCreatorTable from "./components/TableTopCreators";
-// import NftCard from "components/card/NftCard";
+import ComplexTable from "../dashboard/components/ComplexTable";
+import React, { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
+import { bookingsServices } from "services/bookings";
+import { Link } from "react-router-dom";
+import AddCountry from "./add";
+import Swal from "sweetalert2";
+import Loader from "../loader";
 
 const Bookings = () => {
-  // return (
-  //   <div className="mt-3 grid h-full grid-cols-1 gap-5 xl:grid-cols-2 2xl:grid-cols-3">
-  //     <div className="col-span-1 h-fit w-full xl:col-span-1 2xl:col-span-2">
-  //       {/* NFt Banner */}
-  //       <Banner />
+  const [bookingsdata, setBookingsData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  //       {/* NFt Header */}
-  //       <div className="mb-4 mt-5 flex flex-col justify-between px-4 md:flex-row md:items-center">
-  //         <h4 className="ml-1 text-2xl font-bold text-navy-700 dark:text-white">
-  //           Trending NFTs
-  //         </h4>
-  //         <ul className="mt-4 flex items-center justify-between md:mt-0 md:justify-center md:!gap-5 2xl:!gap-12">
-  //           <li>
-  //             <a
-  //               className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-  //               href=" "
-  //             >
-  //               Art
-  //             </a>
-  //           </li>
-  //           <li>
-  //             <a
-  //               className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-  //               href=" "
-  //             >
-  //               Music
-  //             </a>
-  //           </li>
-  //           <li>
-  //             <a
-  //               className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-  //               href=" "
-  //             >
-  //               Collection
-  //             </a>
-  //           </li>
-  //           <li>
-  //             <a
-  //               className="text-base font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-  //               href=" "
-  //             >
-  //               <a href=" ">Sports</a>
-  //             </a>
-  //           </li>
-  //         </ul>
-  //       </div>
+  const columnsDataComplex = [
+    {
+      Header: "Image",
+      accessor: "country_image",
+    },
+    {
+      Header: " Code",
+      accessor: "country_code",
+    },
+    {
+      Header: " Name",
+      accessor: "country_name",
+    },
+    // {
+    //   Header: "Register On",
+    //   accessor: "createdAt",
+    // },
+    // {
+    //   Header: "Modify On",
+    //   accessor: "updatedAt",
+    // },
+    {
+      Header: "Status",
+      accessor: "isActive",
+    },
+    {
+      Header: "Actions",
+      accessor: d => `${d._id}_${d.isActive}`,
+    },
+  ];
 
-  //       {/* NFTs trending card */}
-  //       <div className="z-20 grid grid-cols-1 gap-5 md:grid-cols-3">
-  //         <NftCard
-  //           bidders={[avatar1, avatar2, avatar3]}
-  //           title="Abstract Colors"
-  //           author="Esthera Jackson"
-  //           price="0.91"
-  //           image={NFt3}
-  //         />
-  //         <NftCard
-  //           bidders={[avatar1, avatar2, avatar3]}
-  //           title="ETH AI Brain"
-  //           author="Nick Wilson"
-  //           price="0.7"
-  //           image={NFt2}
-  //         />
-  //         <NftCard
-  //           bidders={[avatar1, avatar2, avatar3]}
-  //           title="Mesh Gradients"
-  //           author="Will Smith"
-  //           price="2.91"
-  //           image={NFt4}
-  //         />
-  //       </div>
+  useEffect(() => {
+    getBookings();
+  }, []);
 
-  //       {/* Recenlty Added setion */}
-  //       <div className="mb-5 mt-5 flex items-center justify-between px-[26px]">
-  //         <h4 className="text-2xl font-bold text-navy-700 dark:text-white">
-  //           Recently Added
-  //         </h4>
-  //       </div>
+  const getBookings = async () => {
+    let response = await bookingsServices.getAllBookings();
+    setBookingsData(response.data);
+    setLoading(false);
+  };
 
-  //       {/* Recently Add NFTs */}
-  //       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-  //         <NftCard
-  //           bidders={[avatar1, avatar2, avatar3]}
-  //           title="Abstract Colors"
-  //           author="Esthera Jackson"
-  //           price="0.91"
-  //           image={NFt4}
-  //         />
-  //         <NftCard
-  //           bidders={[avatar1, avatar2, avatar3]}
-  //           title="ETH AI Brain"
-  //           author="Nick Wilson"
-  //           price="0.7"
-  //           image={NFt5}
-  //         />
-  //         <NftCard
-  //           bidders={[avatar1, avatar2, avatar3]}
-  //           title="Mesh Gradients"
-  //           author="Will Smith"
-  //           price="2.91"
-  //           image={NFt6}
-  //         />
-  //       </div>
-  //     </div>
+  const updateStatus = (countryId, status) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Update Status ",
+      text: "Are you sure you want to update status?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        bookingsServices
+          .updateStatus(countryId, status)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Updated",
+                text: "Update Status successfully.",
+                icon: "success",
+                allowOutsideClick: false
+              });
+              getBookings();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+                allowOutsideClick: false
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
+      } else {
+        window.location.reload();
+      }
+    });
+  };
 
-  //     {/* right side section */}
-
-  //     <div className="col-span-1 h-full w-full rounded-xl 2xl:col-span-1">
-  //       <TopCreatorTable
-  //         extra="mb-5"
-  //         tableData={tableDataTopCreators}
-  //         columnsData={tableColumnsTopCreators}
-  //       />
-  //       <HistoryCard />
-  //     </div>
-  //   </div>
-  // );
+  const softDeleteCountry = (countryId) => {
+    Swal.fire({
+      icon: "warning",
+      title: "Delete Country",
+      text: "Are you sure you want to delete country?",
+      showCancelButton: true,
+      confirmButtonText: "Confirm",
+      allowOutsideClick: false
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(countryId);
+        bookingsServices
+          .softDeleteCountry(countryId)
+          .then((result) => {
+            if (result.isSuccessful) {
+              Swal.fire({
+                title: "Deleted",
+                text: "Country has been deleted successfully.",
+                icon: "success",
+                allowOutsideClick: false
+              });
+              getBookings();
+            } else {
+              Swal.fire({
+                title: "Error!",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+                allowOutsideClick: false
+              });
+            }
+          })
+          .catch((errMsg) => {
+            console.error(errMsg);
+          });
+      }
+    });
+  };
+  return (
+    <>
+      {loading ? <Loader /> : (
+        <div className="list-table bookings">
+          <div className="add-row text-align-right mb-5 px-6">
+            <Link to="add" className="btn btn-primary">
+              Add Country
+            </Link>
+          </div>
+          <ComplexTable
+            columnsData={columnsDataComplex}
+            tableData={bookingsData}
+            element="bookings"
+            deleteElement={softDeleteCountry}
+            updateElement={updateStatus}
+          />
+          <Routes>
+            <Route path="/add" element={<AddCountry />} />
+          </Routes>
+        </div>
+      )}
+    </>
+  );
 };
 
 export default Bookings;
