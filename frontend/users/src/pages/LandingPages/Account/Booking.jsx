@@ -44,8 +44,8 @@ export default function Booking() {
                     <CardMedia
                       component="img"
                       height="140"
-                      image={booking.hotel_id}/*hotelimage*/
-                      alt={booking.hotel_id}/*hotelName*/
+                      image={booking.hotel_details[0].hotel_image[0]}/*hotelimage*/
+                      alt={booking.hotel_details[0].hotel_name}/*hotelName*/
                     />
                     <CardContent>
                       <p>{booking.country_details[0].country_name}</p>{/*coutryName*/}

@@ -14,12 +14,92 @@ export class BookingCollection {
     constructor(@InjectModel('Booking') private bookingModel: Model<Booking>) { }
 
     async getAllBookings(): Promise<Booking[]> {
-        return await this.bookingModel.find({
-            isDeleted: false,
-        })
-            .sort({
-                createdAt: -1
-            });
+        return await this.bookingModel.aggregate([
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'countries',
+                    let: { countryId: { $toObjectId: "$country_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$countryId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                country_code: 1,
+                                country_name: 1
+                            }
+                        }
+                    ],
+                    as: 'country_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'locations',
+                    let: { locationId: { $toObjectId: "$location_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$locationId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                location_code: 1,
+                                location_name: 1
+                            }
+                        }
+                    ],
+                    as: 'location_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'hotels',
+                    let: { hotelId: { $toObjectId: "$hotel_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$hotelId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                hotel_image: 1,
+                                hotel_name: 1
+                            }
+                        }
+                    ],
+                    as: 'hotel_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'room',
+                    let: { roomId: { $toObjectId: "$room_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$roomId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                room_name: 1
+                            }
+                        }
+                    ],
+                    as: 'room_details'
+                }
+            },
+        ]);
     }
 
     async getBookingById(id: string): Promise<Booking> {
@@ -109,6 +189,26 @@ export class BookingCollection {
                         }
                     ],
                     as: 'location_details'
+                }
+            },
+            {
+                $lookup: {
+                    from: 'hotels',
+                    let: { hotelId: { $toObjectId: "$hotel_id" } }, 
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$hotelId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                hotel_image: 1,
+                                hotel_name: 1
+                            }
+                        }
+                    ],
+                    as: 'hotel_details'
                 }
             },
             {

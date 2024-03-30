@@ -10,8 +10,36 @@ const Bookings = () => {
 
   const columnsDataComplex = [
     {
-      Header: " Name",
-      accessor: "booking_name",
+      Header: "Image",
+      accessor: "hotel_details[0].hotel_image[0]",
+    },
+    {
+      Header: "Hotel Name",
+      accessor: "hotel_details[0].hotel_name",
+    },
+    {
+      Header: "Country Name",
+      accessor: "country_details[0].country_name",
+    },
+    {
+      Header: "Location Name",
+      accessor: "location_details[0].location_name",
+    },
+    {
+      Header: "User Name",
+      accessor: "user_details[0].firstname",
+    },
+    {
+      Header: "Price",
+      accessor: "total_amount",
+    },
+    {
+      Header: "Check In",
+      accessor: "check_in",
+    },
+    {
+      Header: "Check Out",
+      accessor: "check_out",
     },
   ];
 

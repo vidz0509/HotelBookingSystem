@@ -164,7 +164,7 @@ const ComplexTable = (props) => {
                           </p>
                         </div>
                       );
-                    } else if (cell.column.Header === "Register On" || cell.column.Header === "Expired On" ) {
+                    } else if (cell.column.Header === "Register On" || cell.column.Header === "Expired On" || cell.column.Header === "Check In" || cell.column.Header === "Check Out" ) {
                       data = (
                         <p className="text-md font-bold text-navy-700 dark:text-white">
                           {formatDate(cell.value)}
