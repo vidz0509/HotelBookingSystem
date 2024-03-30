@@ -6,17 +6,6 @@ import { authServices } from "services/auth";
 import { bookingsServices } from "services/bookings";
 
 export default function Booking() {
-  // const [bookings, setBookings] = useState([]);
-
-  // const getBookingByUserId = async () => {
-  //   try {
-  //     const response = await fetch("getbookingbyuser");
-  //     const data = await response.json();
-  //     setBookings(data);
-  //   } catch (error) {
-  //     console.error("Error fetching bookings:", error);
-  //   }
-  // };
 
   const userData = authServices.getCurrentUser();
   const [user_id, setUserId] = useState(userData._id);

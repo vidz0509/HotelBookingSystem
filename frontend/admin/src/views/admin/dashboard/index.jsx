@@ -35,6 +35,7 @@ import {
   // MdReport,
   // MdRateReview,
 } from "react-icons/md";
+import { bookingsServices } from "services/bookings";
 
 const Dashboard = () => {
 
@@ -46,6 +47,7 @@ const Dashboard = () => {
   const [totalHotels, setTotalHotels] = useState(0);
   const [totalAmenities, setTotalAmenities] = useState(0);
   const [totalOffers, setTotalOffers] = useState(0);
+  const [totalBookings, setTotalBookings] = useState(0);
   const [totalReviews, setTotalReviews] = useState(0);
 
 
@@ -139,6 +141,17 @@ const Dashboard = () => {
   }
 
   useEffect(() => {
+    BookingsCount();
+  }, []);
+
+  const BookingsCount = async () => {
+    const result = await bookingsServices.BookingsCount();
+    if (result.isSuccessful) {
+      setTotalBookings(result.count);
+    }
+  }
+
+  useEffect(() => {
     ReviewsCount();
   }, []);
 
@@ -213,7 +226,7 @@ const Dashboard = () => {
           icon={<MdMenuBook className="h-7 w-7" />}
           title={"Bookings"}
           link={"/admin/bookings"}
-          subtitle={""}
+          subtitle={totalBookings}
         />
       </div>
     </div>
