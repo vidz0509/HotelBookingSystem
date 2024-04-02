@@ -55,11 +55,6 @@ div:where(.swal2-icon).swal2-warning {
 	color: #932595 !important;
 }
 
-/* .text-gray-600 {
-    --tw-text-opacity: 1 !important;
-    color: rgb(163 0 208 / var(--tw-text-opacity)) !important;
-} */
-
 .text-sm {
 	font-size: medium !important;
 	line-height: 1.25rem !important;
@@ -76,7 +71,6 @@ div:where(.swal2-icon).swal2-warning {
 
 .font-medium {
 	font-weight: 1 !important;
-	/* color: #932595; */
 }
 
 .text-navy-700 {

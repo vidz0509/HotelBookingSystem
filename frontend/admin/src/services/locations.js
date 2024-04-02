@@ -107,7 +107,6 @@ async function locationCount() {
                 return response.data
             })
             .catch((error) => {
-                // handle errors
                 console.log(error);
             });
         }

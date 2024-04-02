@@ -1,7 +1,5 @@
-// Material Kit 2 React components
 import MKTypography from "components/MKTypography";
 
-// Images
 import logoCT from "assets/images/dark-logo.png";
 
 const date = new Date().getFullYear();

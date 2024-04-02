@@ -10,7 +10,6 @@ export default function EditRoomType() {
   const params = useParams();
   const roomtypeId = params.id;
 
-  // const [roomtypeData, setroomtypeData] = useState(null);
 
   const [roomtypeName, setRoomTypeName] = useState("");
   const [max_adults, setMaxAdults] = useState(1);
@@ -26,13 +25,11 @@ export default function EditRoomType() {
 
   useEffect(() => {
     getRoomTypeById(roomtypeId);
-    // const result = await roomtypeServices.getroomtypeById(roomtypeId);
   }, [roomtypeId]);
 
   const getRoomTypeById = async (roomtypeId) => {
     const result = await roomtypeServices.getRoomTypeById(roomtypeId);
     if (result.isSuccessful) {
-      // setroomtypeData(result.data);
       setRoomTypeName(result.data?.roomtype_name);
       setMaxAdults(result.data?.max_adults);
       setMaxChildren(result.data?.max_children);
@@ -85,7 +82,6 @@ export default function EditRoomType() {
     };
     const result = await roomtypeServices.editRoomType(roomtypeId, requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
       Swal.fire({
         title: "Edited",
         text: "Roomtype has been Edited successfully.",
@@ -95,7 +91,6 @@ export default function EditRoomType() {
         if (result.isConfirmed) {
           setBtnDisabled(false);
           window.location.href = "/admin/roomtype/edit/"(roomtypeId);
-          // return <Navigate to="/admin/countries" />
         }
       });
     } else {
@@ -111,7 +106,6 @@ export default function EditRoomType() {
   return (
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <InputField
             variant="auth"
@@ -155,7 +149,6 @@ export default function EditRoomType() {
             maxLength={200}
           />
 
-          {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center"></div>
             <button

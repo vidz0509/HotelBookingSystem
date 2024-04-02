@@ -33,14 +33,6 @@ const Locations = () => {
       Header: "Country Code",
       accessor: "country_details[0].country_code",
     },
-    // {
-    //   Header: "Register On",
-    //   accessor: "createdAt",
-    // },
-    // {
-    //   Header: "Modify On",
-    //   accessor: "updatedAt",
-    // },
     {
       Header: "Status",
       accessor: "isActive",
@@ -52,7 +44,6 @@ const Locations = () => {
   ];
 
   useEffect(() => {
-    // debugger;
     getLocations();
   }, []);
 

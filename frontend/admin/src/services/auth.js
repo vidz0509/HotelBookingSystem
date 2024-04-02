@@ -56,7 +56,6 @@ async function forgotPassword(requestBody) {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
-        // console.error(errorObj);
         return errorObj;
     });
 }
@@ -109,7 +108,6 @@ async function uploadProfile(formData) {
             return response.data;
         })
         .catch((error) => {
-            // handle errors
             console.log(error);
         });
 }

@@ -3,22 +3,14 @@ import { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-// import { Link } from "react-router-dom";
-
-// @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 
-// Material Kit 2 React components
 import MKBox from "components/MKBox";
 import MKBadge from "components/MKBadge";
 import MKTypography from "components/MKTypography";
 
-// Presentation page components
 import ExampleCard from "pages/Presentation/components/ExampleCard";
-
-// Data
-// import data from "pages/Presentation/sections/data/designBlocksData";
 
 import { hotelsServices } from "services/hotels";
 

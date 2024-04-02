@@ -6,7 +6,6 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
-// import Information from "pages/Home/sections/Information";
 import DesignBlocks from "pages/Home/sections/DesignBlocks";
 import Pages from "pages/Home/sections/Pages";
 import Testimonials from "pages/Home/sections/Testimonials";
@@ -81,7 +80,6 @@ function Home(props) {
         <div className="location-slider">
           <DesignBlocks isSlider={true} />
         </div>
-        {/* <Information /> */}
         <Pages />
 
         <Testimonials />

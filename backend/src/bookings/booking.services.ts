@@ -71,7 +71,6 @@ export class BookingService {
       const currentUserData = await this.usersCollection.getUser(userId);
       const hotelData = await this.hotelCollection.getHotelById(paymentDto.hotelId);
       if (hotelData.length > 0) {
-        /* Create client in Revio */
         let revio_client_id = ""
         if(!currentUserData.revio_client_id){
 
@@ -104,7 +103,6 @@ export class BookingService {
               const currentClientData = await this.usersCollection.updateClient(customerResult.id,userId);          
   
               revio_client_id = customerResult.id
-              /* Create purchase for the created client */
               
               
             }
@@ -153,7 +151,6 @@ export class BookingService {
           throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
         }
 
-        /* Create object to add data in booking collection */
 
         let createBookingDto : CreateBookingDto = {
           check_in : paymentDto.check_in,

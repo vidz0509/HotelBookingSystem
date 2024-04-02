@@ -1,9 +1,7 @@
 import { Controller, Get, Post, Body, Param, Delete, Put, Query, Req, Res, HttpStatus } from '@nestjs/common';
 import { CreateUserDto } from './dto/register.dto';
 import { SignInUserDto } from './dto/login.dto';
-// import { Request } from 'express';
 import { AuthServices } from './auth.services';
-// import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Controller('auth')
 export class AuthController {

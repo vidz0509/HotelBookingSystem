@@ -7,7 +7,6 @@ import { hotelsServices } from "services/hotels";
 import { roomsServices } from "services/rooms";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-// import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 export default function AddRooms() {
@@ -107,7 +106,6 @@ export default function AddRooms() {
 
     setBtnDisabled(true);
     const requestBody = {
-      // room_name: roomName,
       hotel_id: hotelId,
       room_type_id: roomtypeId,
       price: parseFloat(price),
@@ -116,8 +114,6 @@ export default function AddRooms() {
 
     const result = await roomsServices.addRoom(requestBody);
     if (result.isSuccessful) {
-      // console.log(result.data._id);
-      /* Upload image */
       if (image !== "" && image != null) {
         const formData = new FormData();
         formData.append(
@@ -172,7 +168,6 @@ export default function AddRooms() {
   return (
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
             Hotel Name*
@@ -288,7 +283,6 @@ export default function AddRooms() {
             />
           </div>
 
-          {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center"></div>
             <button

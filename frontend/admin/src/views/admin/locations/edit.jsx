@@ -43,7 +43,6 @@ export default function EditLocation() {
 
   useEffect(() => {
     getLocationById(locationId);
-    // const result = await countriesServices.getLocationById(locationId);
   }, [locationId]);
 
   const getLocationById = async (locationId) => {
@@ -108,7 +107,6 @@ export default function EditLocation() {
       requestBody
     );
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
       if (locationImage !== "" && locationImage != null) {
         const formData = new FormData();
         formData.append("file", locationImage);

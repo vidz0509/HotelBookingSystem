@@ -3,8 +3,6 @@ import { authServices } from "../../services/auth";
 import { validation } from "../../services/validations";
 import { useState } from "react";
 import btnLoader from "../../assets/img/layout/btn-loader.gif";
-// import { FcGoogle } from "react-icons/fc";
-// import Checkbox from "components/checkbox";
 import {
   MdRemoveRedEye,
   MdOutlineRemoveRedEye,
@@ -17,7 +15,6 @@ export default function SignIn() {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  // const [error, setError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
   const [passwordType, setPasswordType] = useState("password");
 
@@ -89,7 +86,6 @@ export default function SignIn() {
   return (
     <form>
       <div className="mt-16 mb-16 flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/*  section */}
         <div className="mt-[10vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <h4 className="mb-2.5 text-4xl font-bold text-navy-700 dark:text-white">
             Sign In
@@ -135,11 +131,6 @@ export default function SignIn() {
               <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
               : <span>Log In</span>}
           </button>
-          {/* <div className="mt-4">
-            {error !== '' && <>
-              <p className="mb-9 ml-1 text-base text-red-500">{error}</p>
-            </>}
-          </div> */}
         </div>
       </div>
     </form>

@@ -149,7 +149,6 @@ export default function ChangePassword() {
   return (
     <form>
       <div className="flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <div className={`field${passwordError !== "" ? " has-error" : ""}`}>
             <InputField
@@ -198,17 +197,7 @@ export default function ChangePassword() {
           </div>
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center">
-              {/* <Checkbox />
-            <p className="ml-2 text-sm font-medium text-navy-700 dark:text-white">
-              Keep me logged In
-            </p> */}
             </div>
-            {/* <a
-                        className="text-sm font-medium text-brand-500 hover:text-brand-600 dark:text-white"
-                        href="/auth/forgot-password"
-                    >
-                        Forgot Password?
-                    </a> */}
           </div>
           <button className="linear mt-2 w-full rounded-xl bg-brand-500 py-[12px] text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200" onClick={(e) => handleSubmit(e)} type="submit">
             {btnDisabled ?

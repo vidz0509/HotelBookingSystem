@@ -6,29 +6,7 @@ import { countriesServices } from "services/countries";
 import { locationsServices } from "services/locations";
 import { validation } from "../../../services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-// import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
-
-
-// export  function AllCountry() {
-//   const [countryName, setCountryName] =useState('');
-//   const [countryNameError, setCountryNameError] = useState('');
-
-
-//   const handleCountryNameChange = (event) => {
-//     const value = event.target.value;
-//     setCountryName(value);
-//   }
-
-
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     setCountryNameError('');
-//     if (validation.isEmpty(locationName)) {
-//       setLocationNameError("Please enter valid location name.");
-//       return false;
-//     }
-// }
 
 
 export default function AddLocation() {
@@ -111,7 +89,6 @@ export default function AddLocation() {
     const result = await locationsServices.addLocation(requestBody);
     if (result.isSuccessful) {
       console.log(result.data._id);
-      /* Upload image */
       if (image !== '' && image != null) {
         const formData = new FormData();
         formData.append("file", image);

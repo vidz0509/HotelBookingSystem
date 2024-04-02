@@ -6,7 +6,6 @@ import { amenitiesServices } from "services/amenities";
 import { hotelsServices } from "services/hotels";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-// import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import Checkbox from "components/checkbox";
 
@@ -45,10 +44,6 @@ export default function AddHotel() {
     getCountries();
     getAmenities();
   }, []);
-
-  // useEffect(() => {
-  //   getLocations();
-  // }, []);
 
   const getCountries = async () => {
     const result = await countriesServices.getAllCountries();

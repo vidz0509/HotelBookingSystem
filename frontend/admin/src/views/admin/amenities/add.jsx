@@ -52,7 +52,6 @@ export default function AddAmenities() {
 
     const result = await amenitiesServices.addAmenities(requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
       Swal.fire({
         title: "Added",
         text: "Aminities has been Added successfully.",
@@ -62,7 +61,6 @@ export default function AddAmenities() {
         if (result.isConfirmed) {
           setBtnDisabled(false);
           window.location.href = '/admin/amenities';
-          // return <Navigate to="/admin/countries" />
         }
       });
     } else {
@@ -78,7 +76,6 @@ export default function AddAmenities() {
   return (
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <InputField
             variant="auth"
@@ -106,7 +103,6 @@ export default function AddAmenities() {
             value={amenitiesIcon}
             maxLength={70}
           />
-          {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center"></div>
             <button

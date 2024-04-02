@@ -1,17 +1,11 @@
 import React from "react";
 
-// Admin Imports
 import MainDashboard from "views/admin/dashboard";
-// import NFTMarketplace from "views/admin/marketplace";
 import Profile from "views/admin/profile";
-// import DataTables from "views/admin/tables";
-// import RTLDefault from "views/rtl/default";
 
-// Auth Imports
 import LogIn from "views/auth/LogIn";
 import ForgotPassword from "views/auth/ForgotPassword";
 
-// Icon Imports
 import Customers from "views/admin/customers";
 
 import Countries from "views/admin/countries";

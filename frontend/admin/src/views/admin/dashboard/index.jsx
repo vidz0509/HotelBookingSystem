@@ -10,15 +10,7 @@ import { amenitiesServices } from "services/amenities";
 import { offersServices } from "services/offers";
 import { reviewsServices } from "services/reviews";
 
-// import { columnsDataComplex } from "./variables/columnsData";
-// columnsDataCheck,
 import Widget from "components/widget/Widget";
-// import CheckTable from "views/admin/dashboard/components/CheckTable";
-// import ComplexTable from "views/admin/dashboard/components/ComplexTable";
-// import DailyTraffic from "views/admin/dashboard/components/DailyTraffic";
-// import TaskCard from "views/admin/dashboard/components/TaskCard";
-// import tableDataCheck from "./variables/tableDataCheck.json";
-// import tableDataComplex from "./variables/tableDataComplex.json";
 
 import {
   MdSupervisedUserCircle,
@@ -27,13 +19,10 @@ import {
   MdHotelClass,
   MdRoom,
   MdBedroomParent,
-  // MdPayments,
   MdWifi,
   MdHotel,
   MdLocalOffer,
   MdRateReview,
-  // MdReport,
-  // MdRateReview,
 } from "react-icons/md";
 import { bookingsServices } from "services/bookings";
 
@@ -164,7 +153,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      {/* Card widget */}
 
 
       <div className="mt-4 grid grid-cols-1 gap-7 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-4 ">

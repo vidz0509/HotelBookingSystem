@@ -9,7 +9,6 @@ import { SignInUserDto } from './dto/login.dto';
 
 import { VerificationCodesService } from '../verification-codes/verificationCodes.service';
 import { EmailService } from '../email/email.service';
-// import { RefreshTokenDto } from './dto/refresh-token.dto';
 
 @Injectable()
 export class AuthServices {
@@ -185,12 +184,10 @@ export class AuthServices {
 
     try {
       this.logger.debug(`current password for user :  ${user._id}`);
-      // const encryptedPwd = await this.helper.encryptString(requestData.password);
       await this.usersCollection.changePassword(user._id, requestData.password);
       return await this.helper.buildResponse(true);
     } catch (error) {
       if (error) {
-        // this.logger.error(`Failed to send email to : ${user.email}`);
         this.logger.error(JSON.stringify(error, null, 2));
         throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
       }

@@ -7,8 +7,6 @@ import { UsersCollection } from '../users/users.collection';
 
 import { AuthController } from './auth.controller';
 import { AuthServices } from './auth.services';
-// import { JwtModule } from '@nestjs/jwt';
-// import { jwtConstants } from './constants';
 import { EmailModule } from '../email/email.module';
 import { HelpersServices } from '../services/helpers/helpers.services';
 import { VerificationCode, VerificationCodeSchema } from 'src/verification-codes/schema/verificationCode.schema';
@@ -27,11 +25,6 @@ import { VerificationCodesCollection } from 'src/verification-codes/schema/verif
             }
         ]),
         EmailModule
-        // JwtModule.register({
-        //     global: true,
-        //     secret: jwtConstants.secret,
-        //     signOptions: { expiresIn: '3600s' },
-        // }),
     ],
     controllers: [AuthController],
     providers: [AuthServices, UsersCollection, UsersService, HelpersServices, VerificationCodesService, VerificationCodesCollection]

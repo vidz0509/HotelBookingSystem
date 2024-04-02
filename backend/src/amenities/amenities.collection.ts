@@ -2,7 +2,6 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { Model, model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { CreateAmenitiesDto } from './dto/create.dto';
-// import { SignInUserDto } from '../auth/dto/login.dto';
 import { Amenities } from './amenities.schema';
 import { UpdateAmenitiesDto } from './dto/update.dto';
 import { retry } from 'rxjs';
@@ -60,14 +59,6 @@ export class AmenitiesCollection {
         return newAmenities.save();
     }
 
-    // async getUserByName(name: string): Promise<Country> {
-    //     return await this.userModel.findOne({ name: name }).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
-
-    // async getUser(id: string) {
-    //     return await this.userModel.findById(id).select('_id fullname email phone createdAt updatedAt isDeleted isActive');
-    // }
-
     async getAmenitiesByName(amenities_name: string): Promise<Amenities> {
         return this.AmenitiesModel.findOne({ amenities_name: amenities_name });
     }
@@ -107,7 +98,6 @@ export class AmenitiesCollection {
     async sortedAmenitiess(order: string): Promise<Amenities[]> {
         return await this.AmenitiesModel.aggregate([
             { $sort: { amenities_name: order == 'desc' ? -1 : 1 } },
-            // { $set: { createAt: new Date(), isDeleted: true } },
         ]);
     }
 }

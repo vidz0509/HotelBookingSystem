@@ -34,7 +34,6 @@ const Customers = () => {
     },
     {
       Header: "Actions",
-      // accessor: "_id",
       accessor: d => `${d._id}_${d.isActive}`
     },
   ];

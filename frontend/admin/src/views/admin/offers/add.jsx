@@ -4,7 +4,6 @@ import InputField from "components/fields/InputField";
 import { offersServices } from "services/offers";
 import { validation } from "services/validations";
 import btnLoader from "../../../assets/img/layout/btn-loader.gif";
-// import { Navigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 import Checkbox from "components/checkbox";
 
@@ -104,7 +103,6 @@ export default function AddOffer() {
   return (
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <InputField
             variant="auth"
@@ -166,7 +164,6 @@ export default function AddOffer() {
             onChange={handleExpiredOnChange}
             value={expiredOn}
           />
-          {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center">
             </div>

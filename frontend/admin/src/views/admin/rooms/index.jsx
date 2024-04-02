@@ -1,9 +1,7 @@
 import ComplexTable from "../dashboard/components/ComplexTable";
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-// import { countriesServices } from "services/countries";
 import { Link } from "react-router-dom";
-// import AddCountry from "./add";
 import Swal from "sweetalert2";
 import { roomsServices } from "services/rooms";
 import AddRooms from "./add";

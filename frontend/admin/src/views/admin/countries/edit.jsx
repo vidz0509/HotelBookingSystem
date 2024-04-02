@@ -26,7 +26,6 @@ export default function EditCountry() {
 
   useEffect(() => {
     getCountryById(countryId);
-    // const result = await countriesServices.getCountryById(countryId);
   }, [countryId]);
 
   const getCountryById = async (countryId) => {

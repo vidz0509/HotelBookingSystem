@@ -82,7 +82,6 @@ async function uploadImage(formData, hotelId) {
             return response.data
         })
         .catch((error) => {
-            // handle errors
             console.log(error);
         });
 }

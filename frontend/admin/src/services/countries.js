@@ -81,7 +81,6 @@ async function uploadImage(formData, countryId) {
             return response.data
         })
         .catch((error) => {
-            // handle errors
             console.log(error);
         });
 }

@@ -15,7 +15,7 @@ function isValidEmail(email) {
 }
 
 function isValidPassword(pwd) {
-    const regex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{8,15}$/; /* Min 8 chars Max 15 chars: 1 digit 1 Uppercase and 1 special char */
+    const regex = /^(?=.*\d)(?=.*[A-Z])(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\-]).{8,15}$/; 
     return regex.test(pwd);
 }
 

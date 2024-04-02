@@ -20,7 +20,6 @@ function checkIfUserLoggedIn() {
 }
 
 async function login(requestBody) {
-    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
     const url = `${process.env.REACT_APP_API_URL}/auth/login?isCustomer=true`;
     console.log(requestBody)
     console.log(url)
@@ -33,7 +32,6 @@ async function login(requestBody) {
     });
 }
 async function register(requestBody) {
-    // const url = `${process.env.REACT_APP_API_URL}/auth/login`;
     const url = `${process.env.REACT_APP_API_URL}/auth/register`;
     console.log(requestBody)
     console.log(url)
@@ -70,7 +68,6 @@ async function uploadUserProfile(formData) {
             return response.data;
         })
         .catch((error) => {
-            // handle errors
             console.log(error);
         });
 }
@@ -92,7 +89,6 @@ async function forgotPassword(requestBody) {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
-        // console.error(errorObj);
         return errorObj;
     });
 }
@@ -102,7 +98,6 @@ async function getintouch(requestBody) {
         return response.data;
     }).catch(error => {
         let errorObj = error.response.data;
-        // console.error(errorObj);
         return errorObj;
     });
 }

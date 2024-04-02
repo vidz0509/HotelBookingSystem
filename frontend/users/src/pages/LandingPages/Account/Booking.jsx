@@ -44,17 +44,17 @@ export default function Booking() {
                     <CardMedia
                       component="img"
                       height="140"
-                      image={booking.hotel_details[0].hotel_image[0]}/*hotelimage*/
-                      alt={booking.hotel_details[0].hotel_name}/*hotelName*/
+                      image={booking.hotel_details[0].hotel_image[0]}
+                      alt={booking.hotel_details[0].hotel_name}
                     />
                     <CardContent>
-                      <p>{booking.country_details[0].country_name}</p>{/*coutryName*/}
-                      <p>{booking.location_details[0].location_name}</p>{/*locationName*/}
-                      <p>{booking.total_rooms}</p>{/*Rooms*/}
-                      <p>{booking.room_details}</p>{/*Roomtype*/}
-                      <p>{booking.total_amount}</p>{/*price*/}
-                      <p>{booking.check_in}</p>
-                      <p>{booking.check_out}</p>
+                      <p><b>Country Name : </b>{booking.country_details[0].country_name}</p>
+                      <p><b>Location Name : </b>{booking.location_details[0].location_name}</p>
+                      <p><b>Total Rooms : </b>{booking.total_rooms}</p>
+                      <p><b>Room Details : </b>{booking.room_details}</p>
+                      <p><b>Total Amount : </b>{booking.total_amount}</p>
+                      <p><b>Check IN  : </b>{booking.check_in}</p>
+                      <p><b>Check Out : </b>{booking.check_out}</p>
                     </CardContent>
                   </Card>
                 </Grid>

@@ -24,13 +24,11 @@ export default function EditAmenities() {
 
   useEffect(() => {
     getAmenitiesById(amenitiesId);
-    // const result = await amenitiesServices.getamenitiesById(amenitiesId);
   }, [amenitiesId]);
 
   const getAmenitiesById = async (amenitiesId) => {
     const result = await amenitiesServices.getAmenitiesById(amenitiesId);
     if (result.isSuccessful) {
-      // setamenitiesData(result.data);
       setAmenitiesName(result.data?.amenities_name);
       setAmenitiesIcon(result.data?.amenities_icon);
     }
@@ -69,7 +67,6 @@ export default function EditAmenities() {
     };
     const result = await amenitiesServices.editAmenities(amenitiesId, requestBody);
     if (result.isSuccessful) {
-      // setSuccessful("Country added successfully")
       Swal.fire({
         title: "Edited",
         text: "Amenities has been Edited successfully.",
@@ -79,7 +76,6 @@ export default function EditAmenities() {
         if (result.isConfirmed) {
           setBtnDisabled(false);
           window.location.href = '/admin/amenities/edit'(amenitiesId);
-          // return <Navigate to="/admin/countries" />
         }
       });
     } else {
@@ -95,7 +91,6 @@ export default function EditAmenities() {
   return (
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
           <InputField
             variant="auth"
@@ -123,7 +118,6 @@ export default function EditAmenities() {
             value={amenitiesIcon}
             maxLength={70}
           />
-          {/* Checkbox */}
           <div className="mb-4 flex items-center justify-between px-2">
             <div className="flex items-center">
             </div>
