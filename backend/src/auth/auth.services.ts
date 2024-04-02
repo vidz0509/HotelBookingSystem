@@ -122,7 +122,7 @@ export class AuthServices {
     if (!user) {
       throw new BadRequestException(await this.helper.buildResponse(false, 'This user is not registered.'));
     }
-    this.logger.debug(`User type: ${user.userType}, isCustomer: ${requestData.isCustomer}`);
+    this.logger.debug(`User type: ${user.userType}, isCustomer: ${requestData.isCustomer?true:false}`);
 
     const isCustomer = requestData.isCustomer || false;
 
