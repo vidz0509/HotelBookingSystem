@@ -104,7 +104,7 @@ export default function AddOffer() {
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-          {/* <InputField
+          <InputField
             variant="auth"
             extra="mb-3"
             label="Offer Type*"
@@ -116,10 +116,10 @@ export default function AddOffer() {
             errorMessage={offerTypeError !== "" ? offerTypeError : ""}
             value={offerType}
             maxLength={100}
-          /> */}
-          <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
-            Offer Type*
-          </label>
+          />
+          {/* <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+            Offer Type* */}
+          {/* </label>
           <select
             id="offerType"
             name="offerType"
@@ -128,13 +128,13 @@ export default function AddOffer() {
           >
             <option value="">-- Select Offer Type --</option>
             <option value="Percentage">Percentage</option>
-            <option value="Fix-rate">Fix-rate</option>
+            <option value="Fix-rate">Fix-rate</option> */}
             {/* {countriesData &&
               countriesData.length > 0 &&
               countriesData.map((item) => (
                 <option value={item._id}>{item.country_name}</option>
               ))} */}
-          </select>
+          {/* </select> */}
           {offerTypeError && (
             <span className="mb-3 ml-1 text-sm text-red-500">
               {offerTypeError}

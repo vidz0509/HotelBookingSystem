@@ -214,6 +214,12 @@ function Bookings() {
                             <MKTypography variant="h4" color="text">₹{bookingData?.finalSelectedRooms[0]?.amount.toFixed(2)}</MKTypography>
                           }
                         </MKBox>
+                        <MKBox className="hotel-detail-row flex-item price" px={3}>
+                          <MKTypography variant="h4" color="text">Discount</MKTypography>
+                          {bookingData?.finalSelectedRooms[0]?.amount &&
+                            <MKTypography variant="h4" color="text">₹{(parseFloat(bookingData?.finalSelectedRooms[0]?.amount*20)/100).toFixed(2)}</MKTypography>
+                          }
+                        </MKBox>
                       </>
                     }
                   </Grid>
