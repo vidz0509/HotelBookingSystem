@@ -39,8 +39,8 @@ export class OffersService {
     return response;
   }
 
-  async checkIfOfferExists(offer_name: string) {
-    const offer = await this.offerCollection.getOfferByName(offer_name);
+  async getOfferByCode(offer_code: string) {
+    const offer = await this.offerCollection.getOfferByCode(offer_code);
     return offer;
   }
 

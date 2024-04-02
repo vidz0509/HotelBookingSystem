@@ -21,6 +21,11 @@ export class OffersController {
         return await this.offerService.getAllOffer();
     }
 
+        @Get(':code')
+    async findOne(@Param('code') code: string) {
+        return this.offerService.getOfferByCode(code);
+    }
+
     @Get('/count')
     async getOfferCount(): Promise<number> {
         return this.offerService.getOfferCount();

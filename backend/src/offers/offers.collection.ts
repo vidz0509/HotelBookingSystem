@@ -53,8 +53,8 @@ export class OffersCollection {
         return newOffer.save();
     }
 
-    async getOfferByName(offer_name: string): Promise<Offers> {
-        return this.offerModel.findOne({ offer_name: offer_name });
+    async getOfferByCode(offer_code: string): Promise<Offers> {
+        return this.offerModel.findOne({ offer_code: offer_code });
     }
 
     async updateOffer(OfferID: string, updateOfferDto: UpdateOfferDto) {
