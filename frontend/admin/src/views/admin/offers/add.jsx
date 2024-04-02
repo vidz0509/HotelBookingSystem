@@ -18,7 +18,7 @@ export default function AddOffer() {
   const [offerTypeError, setOfferTypeError] = useState('');
   const [offerCodeError, setOfferCodeError] = useState('');
   const [offerAmountError, setOfferAmountError] = useState('');
-  
+
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
@@ -104,7 +104,7 @@ export default function AddOffer() {
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0 xl:max-w-[420px]">
-          <InputField
+          {/* <InputField
             variant="auth"
             extra="mb-3"
             label="Offer Type*"
@@ -116,7 +116,30 @@ export default function AddOffer() {
             errorMessage={offerTypeError !== "" ? offerTypeError : ""}
             value={offerType}
             maxLength={100}
-          />
+          /> */}
+          <label class="ml-1.5 text-sm font-medium text-navy-700 dark:text-white">
+            Offer Type*
+          </label>
+          <select
+            id="offerType"
+            name="offerType"
+            class="dark-border mt-2 flex h-12 w-full items-center justify-center rounded-xl border border-gray-200 bg-white/0 p-3 text-sm outline-none dark:!border-white/10 dark:text-white"
+            onChange={handleOfferTypeChange}
+          >
+            <option value="">-- Select Offer Type --</option>
+            <option value="Percentage">Percentage</option>
+            <option value="Fix-rate">Fix-rate</option>
+            {/* {countriesData &&
+              countriesData.length > 0 &&
+              countriesData.map((item) => (
+                <option value={item._id}>{item.country_name}</option>
+              ))} */}
+          </select>
+          {offerTypeError && (
+            <span className="mb-3 ml-1 text-sm text-red-500">
+              {offerTypeError}
+            </span>
+          )}
           <InputField
             variant="auth"
             extra="mb-3"
