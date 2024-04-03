@@ -15,20 +15,20 @@ export class OffersController {
         console.log(createOfferDto);
         return await this.offerService.createOffer(createOfferDto);
     }
+    
+    @Get('/count')
+    async getOffferCount(): Promise<number> {
+        return this.offerService.getOfferCount();
+    }
 
     @Get()
     async findAll() {
         return await this.offerService.getAllOffer();
     }
 
-        @Get(':code')
+    @Get(':code')
     async findOne(@Param('code') code: string) {
         return this.offerService.getOfferByCode(code);
-    }
-
-    @Get('/count')
-    async getOfferCount(): Promise<number> {
-        return this.offerService.getOfferCount();
     }
 
     @Put(':id')
