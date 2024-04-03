@@ -78,7 +78,6 @@ export default function ChangePassword() {
     }, []);
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log("vvv");
         setpasswordError('');
         setnewPasswordError('');
         setconfirmPasswordError('');
@@ -142,7 +141,6 @@ export default function ChangePassword() {
                 .then((result) => {
                     if (result.isConfirmed) {
                         setBtnDisabled(false);
-                        window.location.reload();
                     }
                 });
         }
@@ -209,16 +207,6 @@ export default function ChangePassword() {
                                         </MKButton>
                                         <MKButton className={`linear mt-2 w-full rounded-xl bg-brand-500 text-base font-medium text-white transition duration-200 hover:bg-brand-600 active:bg-brand-700 dark:bg-brand-400 dark:text-white dark:hover:bg-brand-300 dark:active:bg-brand-200 ${btnDisabled ? 'opacity-80 py-[10px]' : 'py-[12px]'}`} >
                                         </MKButton>
-                                        <MKBox className="mt-4">
-                                            {error !== '' && <>
-                                                <p className="error-msg">{error}</p>
-                                            </>}
-                                        </MKBox>
-                                        <MKBox className="mt-4">
-                                            {isSuccessfull !== '' && <>
-                                                <p className="mb-9 ml-1 text-base text-green-500">{isSuccessfull}</p>
-                                            </>}
-                                        </MKBox>
                                     </MKBox>
                                 </Grid>
                             </Grid>
