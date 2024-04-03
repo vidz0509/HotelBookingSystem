@@ -8,7 +8,7 @@ import { CreateUserDto } from './dto/register.dto'; ``
 import { SignInUserDto } from './dto/login.dto';
 
 import { VerificationCodesService } from '../verification-codes/verificationCodes.service';
-import { EmailService } from '../email/email.service';
+import { EmailService } from 'src/email/email.service';
 
 @Injectable()
 export class AuthServices {

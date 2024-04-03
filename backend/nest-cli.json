@@ -3,7 +3,13 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "assets": ["email/templates/**/*"],
-    "deleteOutDir": true
+    "assets": [
+      {
+        "include": "email",
+        "outDir": "dist",
+        "watchAssets": true
+      }
+    ],
+    "watchAssets": true
   }
 }
