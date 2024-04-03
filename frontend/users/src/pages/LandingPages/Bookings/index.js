@@ -24,7 +24,7 @@ import bgImage from "assets/images/auth.jpg";
 import { hotelsServices } from "services/hotels";
 import { bookingsServices } from "services/bookings";
 import { check } from "prettier";
-
+import { offersServices } from "services/offers";
 
 // Image
 // import bgImage from "assets/images/illustrations/illustration-reset.jpg";
@@ -33,6 +33,7 @@ function Bookings() {
 
   const [bookingData, setBookingData] = useState(null);
   const [hotelData, setHotelData] = useState(null);
+  const [offerData, setOfferData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState([]);
   const [contactError, setContactError] = useState('');
@@ -56,6 +57,21 @@ function Bookings() {
       setBtnDisabled(false);
     }
   };
+
+  useEffect(() => {
+    let offerData = JSON.parse(localStorage.getItem('offerData'));
+    getOffersByCode();
+  }, []);
+
+  const getOffersByCode = async () => {
+    let response = await offersServices.getOffersByCode();
+    setOfferData(response.data);
+  };
+
+  const handleOfferCodeChange = (event) => {
+    const value = event.target.value;
+    setOfferData(value);
+  }
 
   const handleUserDetailsChange = (event) => {
     const value = event.target.value;
@@ -85,7 +101,7 @@ function Bookings() {
     console.log(requestBody);
     const result = await bookingsServices.payment(requestBody);
     if (result.isSuccessful) {
-      localStorage.setItem('bookingData',null);
+      localStorage.setItem('bookingData', null);
       window.location.href = result.data.checkout_url;
     } else {
       setError(result.errorMessage);
@@ -161,6 +177,19 @@ function Bookings() {
                     </>
                   }
 
+                  <MKBox className="room-item" mt={3}>
+                    <MKBox className='room-title'>
+                      <MKTypography variant="h5" color="text">Discount Coupon</MKTypography>
+                    </MKBox>
+                  </MKBox>
+                  <MKBox className='adult-info adult-col'>
+                    <div className="adult-col">
+                      <input type="text" id="offer code" placeholder="Enter Coupon Code*" data-field={''}
+                      />
+                    </div>
+                    <MKButton variant="gradient" color="info" onClick={(e) => handleOfferCodeChange(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}><span>Apply Coupon</span>
+                    </MKButton>
+                  </MKBox>
                   <Grid container item xs={12} mt={5} mb={2}>
 
                     <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}><span>Proceed to payment</span>
@@ -217,7 +246,7 @@ function Bookings() {
                         <MKBox className="hotel-detail-row flex-item price" px={3}>
                           <MKTypography variant="h4" color="text">Discount</MKTypography>
                           {bookingData?.finalSelectedRooms[0]?.amount &&
-                            <MKTypography variant="h4" color="text">₹{(parseFloat(bookingData?.finalSelectedRooms[0]?.amount*20)/100).toFixed(2)}</MKTypography>
+                            <MKTypography variant="h4" color="text">₹{(parseFloat(bookingData?.finalSelectedRooms[0]?.amount * 20 /*offer_amount*/) / 100).toFixed(2)}</MKTypography>
                           }
                         </MKBox>
                       </>

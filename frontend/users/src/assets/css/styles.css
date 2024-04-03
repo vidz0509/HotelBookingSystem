@@ -678,3 +678,7 @@ img.user-profile {
     text-align: center;
     height: 180px;
 }
+
+.offer-code{
+    display: flex;
+}
