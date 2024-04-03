@@ -38,9 +38,6 @@ import EditRoomType from "views/admin/roomtype/edit";
 
 import Bookings from "views/admin/bookings/customers";
 
-import Paymentstatus from "views/admin/payment status/customers";
-
-import Reports from "views/admin/reports/customers";
 
 import Reviews from "views/admin/reviews/customers";
 
@@ -55,12 +52,10 @@ import {
   MdPublic,
   MdHotelClass,
   MdRoom,
-  MdPayments,
   MdBedroomParent,
   MdWifi,
   MdLocalOffer,
   MdHotel,
-  MdReport,
   MdRateReview,
 } from "react-icons/md";
 
@@ -318,24 +313,6 @@ const routes = [
     path: "bookings",
     icon: <MdMenuBook className="h-6 w-6" />,
     component: <Bookings />,
-    secondary: true,
-    addInMenu: true,
-  },
-  {
-    name: "Payment status",
-    layout: "/admin",
-    path: "Paymentstatus",
-    icon: <MdPayments className="h-6 w-6" />,
-    component: <Paymentstatus />,
-    secondary: true,
-    addInMenu: true,
-  },
-  {
-    name: "Reports",
-    layout: "/admin",
-    path: "Reports",
-    icon: <MdReport className="h-6 w-6" />,
-    component: <Reports />,
     secondary: true,
     addInMenu: true,
   },
