@@ -184,7 +184,7 @@ function ContactUs() {
                     </MKButton> */}
                       <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                         {btnDisabled ?
-                          <span className="flex items-center justify-center"><img src={btnLoader} className="xl:max-w-[25px]" alt="loader" /></span>
+                          <span className="flex items-center justify-center"><img src={btnLoader} className="xxl:max-w-[25px] btn-loader" alt="loader" /></span>
                           : <span>Send Message</span>}
                       </MKButton>
                       <MKBox className="mt-4">
