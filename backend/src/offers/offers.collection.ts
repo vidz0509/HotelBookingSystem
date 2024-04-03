@@ -19,11 +19,18 @@ export class OffersCollection {
             });
     }
 
+    async getOffersCount(): Promise<number> {
+        return await this.offerModel.countDocuments({
+            isDeleted: false,
+        });
+    }
+
     async getOfferCount(): Promise<number> {
         return await this.offerModel.countDocuments({
             isDeleted: false,
         });
     }
+
 
     async sortedOffers(order: string): Promise<Offers[]> {
         return await this.offerModel.aggregate([
