@@ -247,7 +247,6 @@ export default function EditHotel() {
   return (
     <form>
       <div className=" flex h-full w-full items-center justify-center px-2 md:mx-0 md:px-0 lg:mb-10 lg:items-center lg:justify-start">
-        {/* Sign in section */}
         <div className="mt-[1vh] w-full max-w-full flex-col items-center md:pl-4 lg:pl-0">
           <div className="hotel-data-fields xl:max-w-[420px]">
             <InputField
