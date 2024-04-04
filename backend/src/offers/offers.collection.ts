@@ -19,12 +19,6 @@ export class OffersCollection {
             });
     }
 
-    async getOffersCount(): Promise<number> {
-        return await this.offerModel.countDocuments({
-            isDeleted: false,
-        });
-    }
-
     async getOfferCount(): Promise<number> {
         return await this.offerModel.countDocuments({
             isDeleted: false,

@@ -15,7 +15,7 @@ export class OffersController {
         console.log(createOfferDto);
         return await this.offerService.createOffer(createOfferDto);
     }
-    
+
     @Get('/count')
     async getOffferCount(): Promise<number> {
         return this.offerService.getOfferCount();
@@ -26,8 +26,14 @@ export class OffersController {
         return await this.offerService.getAllOffer();
     }
 
+
+    @Get(':id')
+    async getById(@Param('id') id: string) {
+        return this.offerService.getOfferById(id);
+    }
+
     @Get(':code')
-    async findOne(@Param('code') code: string) {
+    async findOne(@Param('id') code: string) {
         return this.offerService.getOfferByCode(code);
     }
 
@@ -45,11 +51,6 @@ export class OffersController {
     @Get('/sortoffers')
     async sortedOffers(@Query('order') order: string) {
         return await this.offerService.sortedOffers(order);
-    }
-
-    @Get(':id')
-    async getById(@Param('id') id: string) {
-        return this.offerService.getOfferById(id);
     }
 
     @Put('/softdelete/:id')
