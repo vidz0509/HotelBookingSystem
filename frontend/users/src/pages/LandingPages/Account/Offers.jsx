@@ -14,7 +14,9 @@ export default function Offer() {
   const getOffers = async () => {
     const result = await offersServices.getAllOffers();
     if (result.isSuccessful) {
-      setOffers(result.data);
+      // setOffers(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setOffers(activeData);
     }
   };
   return (

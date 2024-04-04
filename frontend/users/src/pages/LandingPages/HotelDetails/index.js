@@ -49,7 +49,9 @@ function HotelDetail() {
     const result = await hotelsServices.getHotelById(hotelId);
     if (result.isSuccessful) {
       setLoading(false);
-      setHotelData(result.data);
+      // setHotelData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setHotelData(activeData);
       setHotelName(result.data?.hotel_name);
       setHotelAddress(result.data?.hotel_address);
       setAmenitiesData(result.data?.amenities);
@@ -59,7 +61,9 @@ function HotelDetail() {
   const getRoomsByHotelId = async (hotelId) => {
     const result = await hotelsServices.getRoomsByHotelId(hotelId);
     if (result.isSuccessful) {
-      setRoomsData(result.data);
+      // setRoomsData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setRoomsData(activeData);
     }
   };
 

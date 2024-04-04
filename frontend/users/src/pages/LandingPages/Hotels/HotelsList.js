@@ -43,7 +43,9 @@ function HotelsList(props) {
     if (searchBody) {
       let response = await hotelsServices.searchHotels(searchBody);
       if (response.isSuccessful) {
-        setHotelsData(response.data);
+        // setHotelsData(response.data);
+        const activeData = response.data.filter(item => item.isActive);
+        setHotelsData(activeData);
         setLoading(false);
       } else {
         setError(response.errorMessage);

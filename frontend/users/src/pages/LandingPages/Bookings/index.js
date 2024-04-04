@@ -55,7 +55,9 @@ function Bookings() {
     const result = await hotelsServices.getHotelById(hotelId);
     if (result.isSuccessful) {
       setLoading(false);
-      setHotelData(result.data);
+      // setHotelData(result.data);
+      const activeData = result.data.filter(item => item.isActive);
+      setHotelData(activeData);
       setError(result.errorMessage);
       setBtnDisabled(false);
     }

@@ -50,7 +50,9 @@ function SearchForm(props) {
     const getCountries = async () => {
         const result = await countriesServices.getAllCountries();
         if (result.isSuccessful) {
-            setCountriesData(result.data);
+            // setCountriesData(result.data);
+            const activeData = result.data.filter(item => item.isActive);
+            setCountriesData(activeData);
         }
     };
 
@@ -58,7 +60,9 @@ function SearchForm(props) {
         if (country_id) {
             const result = await locationsServices.getLocationByCountry(country_id);
             if (result.isSuccessful) {
-                setLocationsData(result.data);
+                // setLocationsData(result.data);
+                const activeData = result.data.filter(item => item.isActive);
+                setLocationsData(activeData);
             }
         }
     };
