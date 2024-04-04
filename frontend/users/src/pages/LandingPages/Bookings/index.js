@@ -33,8 +33,8 @@ function Bookings() {
 
   const [bookingData, setBookingData] = useState(null);
   const [hotelData, setHotelData] = useState(null);
-  const [offerData, setOfferData] = useState(null);
-  const [couponData, setCouponData] = useState(null);
+  // const [offerData, setOfferData] = useState(null);
+  // const [couponData, setCouponData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState([]);
   const [contactError, setContactError] = useState('');
@@ -62,6 +62,7 @@ function Bookings() {
   };
 
   // useEffect(() => {
+  //   let offerData = JSON.parse(localStorage.getItem('offerData'));
   //   getOffersByCode();
   //   discountByCode();
   // }, []);
@@ -76,21 +77,21 @@ function Bookings() {
   //   setCouponData(response.data);
   // };
 
-  useEffect(() => {
-    // getOffersByCode();
-    // discountByCode();
-  }, []);
+  // useEffect(() => {
+  //   // getOffersByCode();
+  //   // discountByCode();
+  // }, []);
 
-  const getOffersByCode = async () => {
-    let offerData = JSON.parse(localStorage.getItem('offerData'));
-    let response = await offersServices.getOffersByCode();
-    setOfferData(response.data);
-  };
+  // const getOffersByCode = async () => {
+  //   let offerData = JSON.parse(localStorage.getItem('offerData'));
+  //   let response = await offersServices.getOffersByCode();
+  //   setOfferData(response.data);
+  // };
 
-  const discountByCode = async () => {
-    let response = await offersServices.discountByCode();
-    setCouponData(response.data);
-  };
+  // const discountByCode = async () => {
+  //   let response = await offersServices.discountByCode();
+  //   setCouponData(response.data);
+  // };
 
   const handleUserDetailsChange = (event) => {
     const value = event.target.value;
