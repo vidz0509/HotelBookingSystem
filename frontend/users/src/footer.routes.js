@@ -33,9 +33,9 @@ export default {
     {
       name: "Contact Us",
       items: [
-        { name: "darshanmangukiya4@gmail.com", href: "https://www.creative-tim.com/terms" },
-        { name: "8866638422", href: "https://www.creative-tim.com/privacy" },
-        
+        { name: "darshanmangukiya4@gmail.com" },
+        { name: "8866638422" },
+
       ],
     },
   ],
