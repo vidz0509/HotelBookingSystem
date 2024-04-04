@@ -54,8 +54,19 @@ export class OffersCollection {
         return newOffer.save();
     }
 
-    async getOfferByCode(offer_code: string): Promise<Offers> {
-        return this.offerModel.findOne({ offer_code: offer_code });
+    async discountByCode(createOfferDto: CreateOfferDto) {
+        const newDiscountByCode = await new this.offerModel({
+            offer_code: createOfferDto.offer_code,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            isDeleted: false,
+            isActive: true,
+        });
+        return newDiscountByCode.save();
+    }
+
+    async getOfferByCode(offerCode: string): Promise<Offers> {
+        return this.offerModel.findOne({ offer_code: offerCode });
     }
 
     async updateOffer(OfferID: string, updateOfferDto: UpdateOfferDto) {

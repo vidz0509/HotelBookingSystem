@@ -37,6 +37,11 @@ export class OffersController {
         return this.offerService.getOfferByCode(code);
     }
 
+    @Post('calculateDiscount')
+    async discountByCode(@Body() requestData: { offerCode: string, price: number }) {
+        return await this.offerService.discountByCode(requestData);
+    }
+
     @Put(':id')
     async updateOffer(@Param('id') id: string,
         @Body() updateOfferDto: UpdateOfferDto) {

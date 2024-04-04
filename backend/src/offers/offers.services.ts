@@ -27,6 +27,49 @@ export class OffersService {
     }
   }
 
+  async getOfferByCode(offerCode: string) {
+    const offer = await this.offerCollection.getOfferByCode(offerCode);
+    return offer;
+  }
+
+  async discountByCode(requestData: { offerCode: string, price: number }) {
+    const offerDetails = await this.offerCollection.getOfferByCode(requestData.offerCode);
+    if (!offerDetails) {
+      throw new BadRequestException(
+        await this.helper.buildResponse(false, `Offer Code is invalid.`),
+      );
+    }
+
+    if (offerDetails.expired_on) {
+      const expDate = new Date(offerDetails.expired_on);
+      const currentDate = new Date();
+      if (expDate < currentDate) {
+        throw new BadRequestException(
+          await this.helper.buildResponse(false, `Sorry, this offer is expired now.`),
+        );
+      }
+    }
+
+    try {
+      const discount = requestData.price * parseInt(offerDetails.offer_amount) / 100;
+      const result = {
+        applied_coupon: offerDetails,
+        discount: discount
+      }
+      const response = await this.helper.buildResponse(true, null, result);
+      return response;
+    } catch (error) {
+      console.debug(`Failed to apply coupon: ${error}`);
+      console.debug(JSON.stringify(error, null, 2));
+      throw new InternalServerErrorException(await this.helper.buildResponse(false, error.message));
+    }
+  }
+
+  async checkIfOfferCodeExists(offer_code: string) {
+    const offer = await this.offerCollection.getOfferByCode(offer_code);
+    return offer;
+  }
+
   async getAllOffer(): Promise<any> {
     let data = await this.offerCollection.getAllOffer();
     const response = await this.helper.buildResponse(true, null, data);
@@ -37,11 +80,6 @@ export class OffersService {
     let count = await this.offerCollection.getOfferCount();
     const response = await this.helper.countResponse(true, null, count);
     return response;
-  }
-
-  async getOfferByCode(offer_code: string) {
-    const offer = await this.offerCollection.getOfferByCode(offer_code);
-    return offer;
   }
 
   async updateOffer(userId: string, updateOfferDto: UpdateOfferDto) {
