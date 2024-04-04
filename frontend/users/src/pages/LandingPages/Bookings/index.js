@@ -34,11 +34,14 @@ function Bookings() {
   const [bookingData, setBookingData] = useState(null);
   const [hotelData, setHotelData] = useState(null);
   const [offerData, setOfferData] = useState(null);
+  const [couponData, setCouponData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState([]);
   const [contactError, setContactError] = useState('');
   const [emailError, setEmailError] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);
+  const [couponCode, setCouponCode] = useState('');
+  const [discount, setDiscount] = useState(0);
   const [error, setError] = useState('');
 
 
@@ -58,20 +61,36 @@ function Bookings() {
     }
   };
 
+  // useEffect(() => {
+  //   getOffersByCode();
+  //   discountByCode();
+  // }, []);
+
+  // const getOffersByCode = async () => {
+  //   let response = await offersServices.getOffersByCode();
+  //   setOfferData(response.data);
+  // };
+
+  // const discountByCode = async () => {
+  //   let response = await offersServices.discountByCode();
+  //   setCouponData(response.data);
+  // };
+
   useEffect(() => {
-    let offerData = JSON.parse(localStorage.getItem('offerData'));
-    getOffersByCode();
+    // getOffersByCode();
+    // discountByCode();
   }, []);
 
   const getOffersByCode = async () => {
+    let offerData = JSON.parse(localStorage.getItem('offerData'));
     let response = await offersServices.getOffersByCode();
     setOfferData(response.data);
   };
 
-  const handleOfferCodeChange = (event) => {
-    const value = event.target.value;
-    setOfferData(value);
-  }
+  const discountByCode = async () => {
+    let response = await offersServices.discountByCode();
+    setCouponData(response.data);
+  };
 
   const handleUserDetailsChange = (event) => {
     const value = event.target.value;
@@ -83,6 +102,23 @@ function Bookings() {
       [fieldType]: value
     };
     setUserDetails(updatedUserDetails);
+  }
+
+  const handleOfferCodeChange = async (event) => {
+    setCouponCode(event.target.value);
+  }
+
+  const handleApplyCoupon = async (event) => {
+    event.preventDefault();
+    setBtnDisabled(false);
+    let requestBody = {
+      offerCode: couponCode,
+      price: bookingData?.finalSelectedRooms[0]?.amount
+    }
+    const couponData = await offersServices.discountByCode(requestBody);
+    if (couponData.isSuccessful) {
+      setDiscount(couponData.data.discount);
+    }
   }
 
   const handlesubmit = async (event) => {
@@ -184,10 +220,10 @@ function Bookings() {
                   </MKBox>
                   <MKBox className='adult-info adult-col'>
                     <div className="adult-col">
-                      <input type="text" id="offer code" placeholder="Enter Coupon Code*" data-field={''}
+                      <input type="text" id="offercode" placeholder="Enter Coupon Code*" onChange={handleOfferCodeChange}
                       />
                     </div>
-                    <MKButton variant="gradient" color="info" onClick={(e) => handleOfferCodeChange(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}><span>Apply Coupon</span>
+                    <MKButton variant="gradient" color="info" onClick={(e) => handleApplyCoupon(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}><span>Apply Coupon</span>
                     </MKButton>
                   </MKBox>
                   <Grid container item xs={12} mt={5} mb={2}>
@@ -243,12 +279,18 @@ function Bookings() {
                             <MKTypography variant="h4" color="text">₹{bookingData?.finalSelectedRooms[0]?.amount.toFixed(2)}</MKTypography>
                           }
                         </MKBox>
+                        {discount > 0 &&
+                          <MKBox className="hotel-detail-row flex-item price" px={3}>
+                            <MKTypography variant="h4" color="text">Discount</MKTypography>
+                            <MKTypography variant="h4" color="text">₹{discount.toFixed(2)}</MKTypography>
+                          </MKBox>
+                        }
+
                         <MKBox className="hotel-detail-row flex-item price" px={3}>
-                          <MKTypography variant="h4" color="text">Discount</MKTypography>
-                          {bookingData?.finalSelectedRooms[0]?.amount &&
-                            <MKTypography variant="h4" color="text">₹{(parseFloat(bookingData?.finalSelectedRooms[0]?.amount * 20 /*offer_amount*/) / 100).toFixed(2)}</MKTypography>
-                          }
+                          <MKTypography variant="h4" color="text">Total</MKTypography>
+                          <MKTypography variant="h4" color="text">₹{(bookingData?.finalSelectedRooms[0]?.amount - discount).toFixed(2)}</MKTypography>
                         </MKBox>
+
                       </>
                     }
                   </Grid>
