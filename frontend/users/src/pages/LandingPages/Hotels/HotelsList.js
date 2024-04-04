@@ -161,14 +161,14 @@ function HotelsList(props) {
 
                 </div>
               </div>
-              <div className="option-row">
+              {/* <div className="option-row">
                 <div className="title">
                   <span className="icon" name="caret-right"></span>
                   <h5>Price</h5>
                 </div>
                 <div className="options default-opts">
                 </div>
-              </div>
+              </div> */}
               <div className="option-row">
                 <div className="title">
                   <span className="icon" name="caret-right"></span>
