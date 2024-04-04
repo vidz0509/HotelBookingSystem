@@ -22,8 +22,27 @@ export class BookingCollection {
             },
             {
                 $lookup: {
+                    from: 'users',
+                    let: { userId: { $toObjectId: "$user_id" } },
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$userId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                fullname: 1,
+                            }
+                        }
+                    ],
+                    as: 'users_details'
+                }
+            },
+            {
+                $lookup: {
                     from: 'countries',
-                    let: { countryId: { $toObjectId: "$country_id" } }, 
+                    let: { countryId: { $toObjectId: "$country_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -43,7 +62,7 @@ export class BookingCollection {
             {
                 $lookup: {
                     from: 'locations',
-                    let: { locationId: { $toObjectId: "$location_id" } }, 
+                    let: { locationId: { $toObjectId: "$location_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -63,7 +82,7 @@ export class BookingCollection {
             {
                 $lookup: {
                     from: 'hotels',
-                    let: { hotelId: { $toObjectId: "$hotel_id" } }, 
+                    let: { hotelId: { $toObjectId: "$hotel_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -83,7 +102,7 @@ export class BookingCollection {
             {
                 $lookup: {
                     from: 'room',
-                    let: { roomId: { $toObjectId: "$room_id" } }, 
+                    let: { roomId: { $toObjectId: "$room_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -139,15 +158,15 @@ export class BookingCollection {
         return this.bookingModel.deleteOne({ _id: countryId });
     }
 
-    async getBookedHotels(hotelIds:string[]){
-        return this.bookingModel.find({ _id: { $nin : hotelIds } });
+    async getBookedHotels(hotelIds: string[]) {
+        return this.bookingModel.find({ _id: { $nin: hotelIds } });
     }
 
     async getBookingByUserId(user_id: string): Promise<Booking[]> {
         return await this.bookingModel.aggregate([
             {
                 $match: {
-                    user_id : user_id,
+                    user_id: user_id,
                 }
             },
             {
@@ -157,8 +176,27 @@ export class BookingCollection {
             },
             {
                 $lookup: {
+                    from: 'users',
+                    let: { userId: { $toObjectId: "$user_id" } },
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$userId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                fullname: 1,
+                            }
+                        }
+                    ],
+                    as: 'users_details'
+                }
+            },
+            {
+                $lookup: {
                     from: 'countries',
-                    let: { countryId: { $toObjectId: "$country_id" } }, 
+                    let: { countryId: { $toObjectId: "$country_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -178,7 +216,7 @@ export class BookingCollection {
             {
                 $lookup: {
                     from: 'locations',
-                    let: { locationId: { $toObjectId: "$location_id" } }, 
+                    let: { locationId: { $toObjectId: "$location_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -198,7 +236,7 @@ export class BookingCollection {
             {
                 $lookup: {
                     from: 'hotels',
-                    let: { hotelId: { $toObjectId: "$hotel_id" } }, 
+                    let: { hotelId: { $toObjectId: "$hotel_id" } },
                     pipeline: [
                         {
                             $match: {
@@ -218,7 +256,7 @@ export class BookingCollection {
             {
                 $lookup: {
                     from: 'room',
-                    let: { roomId: { $toObjectId: "$room_id" } }, 
+                    let: { roomId: { $toObjectId: "$room_id" } },
                     pipeline: [
                         {
                             $match: {

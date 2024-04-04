@@ -27,7 +27,7 @@ const Bookings = () => {
     },
     {
       Header: "User Name",
-      accessor: "user_details[0].firstname",
+      accessor: "users_details[0].fullname",
     },
     {
       Header: "Price",
