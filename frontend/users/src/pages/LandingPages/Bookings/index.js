@@ -138,7 +138,6 @@ function Bookings() {
       user_detail: userDetails,
       discount: discount,
     }
-    console.log(requestBody);
     const result = await bookingsServices.payment(requestBody);
     if (result.isSuccessful) {
       localStorage.setItem('bookingData', null);

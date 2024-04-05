@@ -66,7 +66,6 @@ export class BookingService {
 
   async payment(paymentDto: PaymentDto) {
     const userId = paymentDto?.user_id;
-
     if (userId) {
       const currentUserData = await this.usersCollection.getUser(userId);
       const hotelData = await this.hotelCollection.getHotelById(paymentDto.hotelId);
@@ -129,7 +128,7 @@ export class BookingService {
               language: "en",
               products: [{
                 "name": hotelData[0].hotel_name,
-                "price": ((paymentDto.finalSelectedRooms[0].amount - paymentDto.discount))
+                "price": ((paymentDto.finalSelectedRooms[0].amount - paymentDto.discount)) * 100
               }],
             },
             client_id: revio_client_id,
@@ -139,8 +138,6 @@ export class BookingService {
             cancel_redirect: process.env.SITE_URL,
           })
         };
-        console.log(options)
-        
         const purchaseResponse = await fetch(`${process.env.REVIO_PAY_URL}/purchases/`, options);
         const purchaseResult = await purchaseResponse.json();
         
@@ -151,7 +148,6 @@ export class BookingService {
           }
           throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong!'));
         }
-
 
         let createBookingDto : CreateBookingDto = {
           check_in : paymentDto.check_in,

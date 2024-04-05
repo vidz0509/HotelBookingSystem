@@ -10,8 +10,9 @@ export class PaymentDto {
     @IsString()
     @IsNotEmpty()
     readonly user_id: string;
-
-    readonly discount: any;
+    
+    @IsOptional()
+    readonly discount: number;
 
     @IsString()
     @IsNotEmpty()
