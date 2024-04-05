@@ -142,6 +142,7 @@ export class BookingCollection {
             total_children: createBookingDto.total_children,
             room_details: createBookingDto.room_details,
             user_details: createBookingDto.user_details,
+            discount: createBookingDto.discount,
             total_amount: createBookingDto.total_amount,
             transaction_id: createBookingDto.transaction_id,
             payment_method: createBookingDto.payment_method,

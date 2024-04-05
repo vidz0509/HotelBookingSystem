@@ -136,6 +136,7 @@ function Bookings() {
       roomList: bookingData.roomList,
       finalSelectedRooms: bookingData.finalSelectedRooms,
       user_detail: userDetails,
+      discount: discount,
     }
     console.log(requestBody);
     const result = await bookingsServices.payment(requestBody);

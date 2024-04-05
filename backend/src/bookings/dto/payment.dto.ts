@@ -11,16 +11,18 @@ export class PaymentDto {
     @IsNotEmpty()
     readonly user_id: string;
 
+    readonly discount: any;
+
     @IsString()
     @IsNotEmpty()
     readonly hotelId: string;
 
     @IsOptional()
-    readonly roomList : any[];
+    readonly roomList: any[];
 
     @IsOptional()
-    readonly finalSelectedRooms : any;
+    readonly finalSelectedRooms: any;
 
     @IsOptional()
-    readonly user_detail : any[];
+    readonly user_detail: any[];
 }
