@@ -23,6 +23,8 @@ export class CreateBookingDto {
     @IsNotEmpty()
     readonly country_id: string;
 
+    readonly discount: any;
+    
     @IsString()
     @IsNotEmpty()
     readonly room_type_id: string;

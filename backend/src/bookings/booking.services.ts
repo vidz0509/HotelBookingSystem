@@ -129,7 +129,7 @@ export class BookingService {
               language: "en",
               products: [{
                 "name": hotelData[0].hotel_name,
-                "price": paymentDto.finalSelectedRooms[0].amount * 100
+                "price": ((paymentDto.finalSelectedRooms[0].amount - paymentDto.discount))
               }],
             },
             client_id: revio_client_id,
@@ -139,6 +139,7 @@ export class BookingService {
             cancel_redirect: process.env.SITE_URL,
           })
         };
+        console.log(options)
         
         const purchaseResponse = await fetch(`${process.env.REVIO_PAY_URL}/purchases/`, options);
         const purchaseResult = await purchaseResponse.json();
@@ -165,6 +166,7 @@ export class BookingService {
           total_children : paymentDto.finalSelectedRooms[0]?.children,
           room_details : paymentDto.roomList,
           user_details : paymentDto.user_detail,
+          discount : paymentDto.discount,
           total_amount : paymentDto.finalSelectedRooms[0]?.amount,
           transaction_id : purchaseResult.id,
           payment_method : "Credit/Debit Card",
