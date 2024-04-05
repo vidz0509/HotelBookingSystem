@@ -25,7 +25,7 @@ function Information() {
             <DefaultReviewCard
               name="Nick Willever"
               date="1 day ago"
-              review="This is an excellent product, the documentation is excellent and helped me get things done more efficiently."
+              review="Looks exactly what is posted here. Great service and awesome stay!"
               rating={5}
             />
           </Grid>
@@ -34,7 +34,7 @@ function Information() {
               color="info"
               name="Shailesh Kushwaha"
               date="1 week ago"
-              review="I found solution to all my design needs from Creative Tim. I use them as a freelancer in my hobby projects for fun! And its really affordable, very humble guys !!!"
+              review="Brilliant hotel staff where excellent and very professionals"
               rating={5}
             />
           </Grid>
@@ -42,7 +42,7 @@ function Information() {
             <DefaultReviewCard
               name="Samuel Kamuli"
               date="3 weeks ago"
-              review="Great product. Helped me cut the time to set up a site. I used the components within instead of starting from scratch. I highly recommend for developers who want to spend more time on the backend!."
+              review="If you want to stay for a night and have a good privacy, book right now."
               rating={5}
             />
           </Grid>

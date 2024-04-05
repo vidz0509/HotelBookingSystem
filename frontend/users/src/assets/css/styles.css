@@ -682,3 +682,13 @@ img.user-profile {
 .offer-code{
     display: flex;
 }
+
+.booking-img{
+    height: 190px;
+    width: 327px;
+}
+
+.booking-details{
+    display: flex !important;
+    flex-direction: row !important;
+}

@@ -40,10 +40,11 @@ export default function Booking() {
             <Grid container spacing={3}>
               {bookings.map((booking, index) => (
                 <Grid item xs={12} key={index}>
-                  <Card>
+                  <Card className="booking-details">
                     <CardMedia
                       component="img"
-                      height="140"
+                      height="190"
+                      width={327}
                       image={booking.hotel_details[0].hotel_image[0]}
                       alt={booking.hotel_details[0].hotel_name}
                     />
@@ -51,7 +52,7 @@ export default function Booking() {
                       <p><b>Country Name : </b>{booking.country_details[0].country_name}</p>
                       <p><b>Location Name : </b>{booking.location_details[0].location_name}</p>
                       <p><b>Total Rooms : </b>{booking.total_rooms}</p>
-                      <p><b>Room Details : </b>{booking.room_details}</p>
+                      {/* <p><b>Room Details : </b>{booking.room_details}</p> */}
                       <p><b>Total Amount : </b>{booking.total_amount}</p>
                       <p><b>Check IN  : </b>{booking.check_in}</p>
                       <p><b>Check Out : </b>{booking.check_out}</p>
