@@ -192,37 +192,58 @@ function HotelsList(props) {
             </div>
           </div>
           <Grid container spacing={2} lg={9} className="hotels-wrapper">
-            {hotelsData && hotelsData?.map((hotel) => (
-              <Grid item md={4} sx={{ mb: 2 }} key={hotel._id} className="hotel-item">
-                <MKBox position="relative">
-                  <MKBox
-                    className="hotel-image"
-                    component="img"
-                    src={hotel.hotel_image[0]}
-                    alt={hotel.hotel_name}
-                    width="100%"
-                    my="auto"
-                    opacity={1}
-                  />
-                  <Link to={`/hotel-details/${hotel._id}?${window.location.search}`}>
-                    <MKBox mt={2} lineHeight={1}>
-                      <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
-                        {hotel.hotel_name}
-                      </MKTypography>
-                      <MKTypography variant="p" className="hotel-location">
-                        {hotel.location_details[0]?.location_name}
-                      </MKTypography>
-                    </MKBox>
-                  </Link>
-                </MKBox>
-                <MKBox mt={2} lineHeight={1}>
-                  <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
-                  ₹{hotel.room_price.toFixed(2)}
-                  </MKTypography>
-                </MKBox>
+            {hotelsData && hotelsData.length > 0 ? (
+              hotelsData && hotelsData?.map((hotel) => (
+                <Grid item md={4} sx={{ mb: 2 }} key={hotel._id} className="hotel-item">
+                  <MKBox position="relative">
+                    <MKBox
+                      className="hotel-image"
+                      component="img"
+                      src={hotel.hotel_image[0]}
+                      alt={hotel.hotel_name}
+                      width="100%"
+                      my="auto"
+                      opacity={1}
+                    />
+                    <Link to={`/hotel-details/${hotel._id}?${window.location.search}`}>
+                      <MKBox mt={2} lineHeight={1}>
+                        <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
+                          {hotel.hotel_name}
+                        </MKTypography>
+                        <MKTypography variant="p" className="hotel-location">
+                          {hotel.location_details[0]?.location_name}
+                        </MKTypography>
+                      </MKBox>
+                    </Link>
+                  </MKBox>
+                  <MKBox mt={2} lineHeight={1}>
+                    <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
+                      ₹{hotel.room_price.toFixed(2)}
+                    </MKTypography>
+                  </MKBox>
+                </Grid>
+              ))) : (
+              // <h2>All Properties Filtered Out!</h2>
+              <Grid
+                container
+                item
+                xs={12}
+                lg={6}
+                flexDirection="column"
+                alignItems="center"
+                sx={{ textAlign: "center", my: 1, mx: "auto", px: 0.75 }}
+              >
+                <MKBadge
+                  variant="contained"
+                  color="info"
+                  container
+                  sx={{ mb: 2 }}
+                />
+                <img src="/filter.png" className="customImage" width="100" height="100" />
+                <MKTypography variant="h3" fontWeight="bold">All Properties Filtered Out!</MKTypography>
+                <MKTypography variant="body2" color="text">We couldn`t find any properties matching the criteria. Please remove the filters applied and try again.</MKTypography>
               </Grid>
-            ))
-            }
+            )}
           </Grid>
         </Grid>
       </Container>
