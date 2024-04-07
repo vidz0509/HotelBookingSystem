@@ -52,6 +52,11 @@ export class AuthServices {
         await this.helper.buildResponse(false, 'This email is not registered.'),
       );
     }
+    if(!user.isActive || user.isDeleted){
+      throw new BadRequestException(
+        await this.helper.buildResponse(false, 'Your account is blocked.'),
+      );
+    }
     if (isCustomer && user.userType == 1) {
       throw new UnauthorizedException(
         await this.helper.buildResponse(false, 'Admin can not login as a customer'),

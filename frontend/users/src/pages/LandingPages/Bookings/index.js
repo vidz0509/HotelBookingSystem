@@ -25,6 +25,7 @@ import { hotelsServices } from "services/hotels";
 import { bookingsServices } from "services/bookings";
 import { check } from "prettier";
 import { offersServices } from "services/offers";
+import Swal from "sweetalert2";
 
 // Image
 // import bgImage from "assets/images/illustrations/illustration-reset.jpg";
@@ -126,25 +127,44 @@ function Bookings() {
 
   const handlesubmit = async (event) => {
     event.preventDefault();
-    setBtnDisabled(true);
-    const currentUser = authServices.getCurrentUser();
-    let requestBody = {
-      check_in: bookingData.check_in,
-      check_out: bookingData.check_out,
-      user_id: currentUser._id,
-      hotelId: bookingData.hotelId,
-      roomList: bookingData.roomList,
-      finalSelectedRooms: bookingData.finalSelectedRooms,
-      user_detail: userDetails,
-      discount: discount,
-    }
-    const result = await bookingsServices.payment(requestBody);
-    if (result.isSuccessful) {
-      localStorage.setItem('bookingData', null);
-      window.location.href = result.data.checkout_url;
+    let showError = false;
+    if (userDetails.length > 0) {
+      setBtnDisabled(true);
+      if (userDetails.length != bookingData.roomList.length) {
+        showError = true;
+      }
     } else {
-      setError(result.errorMessage);
-      setBtnDisabled(false);
+      showError = true;
+    }
+    if (showError) {
+      Swal.fire({
+        title: "Oops!",
+        text: "Please add all details!",
+        icon: "error",
+        allowOutsideClick: false
+      });
+    }
+    else {
+      const currentUser = authServices.getCurrentUser();
+      let requestBody = {
+        check_in: bookingData.check_in,
+        check_out: bookingData.check_out,
+        user_id: currentUser._id,
+        hotelId: bookingData.hotelId,
+        roomList: bookingData.roomList,
+        finalSelectedRooms: bookingData.finalSelectedRooms,
+        user_detail: userDetails,
+        discount: discount,
+      }
+      console.log(requestBody);
+      const result = await bookingsServices.payment(requestBody);
+      if (result.isSuccessful) {
+        localStorage.setItem('bookingData', null);
+        window.location.href = result.data.checkout_url;
+      } else {
+        setError(result.errorMessage);
+        setBtnDisabled(false);
+      }
     }
   }
 
