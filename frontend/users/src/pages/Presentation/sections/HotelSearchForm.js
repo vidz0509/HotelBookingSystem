@@ -4,6 +4,7 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { hotelsServices } from "services/hotels";
+import Swal from "sweetalert2";
 
 function HotelSearchForm(props) {
     const [currentIndex, setCurrentIndex] = useState(1);
@@ -151,31 +152,40 @@ function HotelSearchForm(props) {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        setBtnDisabled(true);
-        let roomList = resetRoomPopupData();
-        const requestBody = {
-            check_in: CheckIn.toISOString(),
-            check_out: CheckOut.toISOString(),
-            roomList: roomList
-        };
-        let fullURL = '';
-        if (!props.hideHotelDetail) {
-            fullURL = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
-            roomList.map((room, index) => {
-                fullURL += `&room[${index}][adult]=${room.adult}&room[${index}][children]=${room.children}`
-            });
-        } else {
-            let bookingData = {
+        if (props.finalSelectedRooms.length > 0) {
+            setBtnDisabled(true);
+            let roomList = resetRoomPopupData();
+            const requestBody = {
                 check_in: CheckIn.toISOString(),
                 check_out: CheckOut.toISOString(),
-                hotelId: props.hotelId,
-                roomList: resetRoomPopupData(),
-                finalSelectedRooms : props.finalSelectedRooms
+                roomList: roomList
+            };
+            let fullURL = '';
+            if (!props.hideHotelDetail) {
+                fullURL = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
+                roomList.map((room, index) => {
+                    fullURL += `&room[${index}][adult]=${room.adult}&room[${index}][children]=${room.children}`
+                });
+            } else {
+                let bookingData = {
+                    check_in: CheckIn.toISOString(),
+                    check_out: CheckOut.toISOString(),
+                    hotelId: props.hotelId,
+                    roomList: resetRoomPopupData(),
+                    finalSelectedRooms: props.finalSelectedRooms
+                }
+                localStorage.setItem('bookingData', JSON.stringify(bookingData));
+                fullURL = `/bookings`;
             }
-            localStorage.setItem('bookingData', JSON.stringify(bookingData));
-            fullURL = `/bookings`;
+            window.location.href = fullURL;
+        } else {
+            Swal.fire({
+                title: "No Rooms",
+                text: "Please select rooms.",
+                icon: "error",
+                allowOutsideClick: false
+            });
         }
-        window.location.href = fullURL;
     }
 
     const appendRoomData = () => {

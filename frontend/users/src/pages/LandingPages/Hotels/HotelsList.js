@@ -223,7 +223,6 @@ function HotelsList(props) {
                   </MKBox>
                 </Grid>
               ))) : (
-              // <h2>All Properties Filtered Out!</h2>
               <Grid
                 container
                 item
