@@ -14,15 +14,33 @@ function HotelSearchForm(props) {
     const [btnDisabled, setBtnDisabled] = useState(false);
     const [isRefresh, setIsRefresh] = useState(false);
 
+    const params = new URLSearchParams(window.location.search);
     let currentDate = new Date();
+    let currentCheckOutDate = new Date();
+    if (params.get('check_in')) {
+        let dateString = params.get('check_in');
+        const parts = dateString.split('-');
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
+        const year = parseInt(parts[2], 10);
+        currentDate = new Date(year, month, day);
+
+        let dateCkString = params.get('check_out');
+        const cparts = dateCkString.split('-');
+        const cday = parseInt(cparts[0], 10);
+        const cmonth = parseInt(cparts[1], 10) - 1; // Months are 0-indexed
+        const cyear = parseInt(cparts[2], 10);
+        currentCheckOutDate = new Date(cyear, cmonth, cday);
+    }
+
     const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-    const [CheckIn, CheckInOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
-    const [CheckOut, CheckOutOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1));
+    const [CheckIn, setCheckIn] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
+    const [CheckOut, setCheckOut] = useState(new Date(currentCheckOutDate.getFullYear(), currentCheckOutDate.getMonth(), currentCheckOutDate.getDate() + 1));
     let searchBody = {};
     if (props.isDetailPage) {
         searchBody = props.searchBody;
     } else {
-        const params = new URLSearchParams(window.location.search);
+        
         searchBody = {
             check_in: params.get('check_in') ? params.get('check_in') : '',
             check_out: params.get('check_out') ? params.get('check_out') : '',
@@ -119,6 +137,16 @@ function HotelSearchForm(props) {
             document.getElementById('addRoom').classList.add('disable');
         }
     }
+
+    const handleCheckInChange = (value) => {
+        let date = new Date(value.getFullYear(), value.getMonth(), value.getDate());
+        setCheckIn(date);
+    };
+
+    const handleCheckOutChange = (value) => {
+        let date = new Date(value.getFullYear(), value.getMonth(), value.getDate());
+        setCheckOut(date);
+    };
 
     function removeRoom() {
         resetRoomPopupData();
@@ -247,13 +275,13 @@ function HotelSearchForm(props) {
                     <div className="col">
                         <div className="field-group">
                             <label>Check-in</label>
-                            <DatePicker onChange={CheckInOnChange} value={CheckIn} format="dd-MM-yyyy" minDate={minDate} />
+                            <DatePicker onChange={handleCheckInChange} value={CheckIn} format="dd-MM-yyyy" minDate={minDate} />
                         </div>
                     </div>
                     <div className="col">
                         <div className="field-group">
                             <label>Check-out</label>
-                            <DatePicker onChange={CheckOutOnChange} value={CheckOut} format="dd-MM-yyyy" minDate={CheckIn} />
+                            <DatePicker onChange={handleCheckOutChange} value={CheckOut} format="dd-MM-yyyy" minDate={CheckIn} />
                         </div>
                     </div>
                     <div className="col">

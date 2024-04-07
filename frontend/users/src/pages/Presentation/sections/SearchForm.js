@@ -20,11 +20,28 @@ function SearchForm(props) {
     const [countryIdError, setCountryIdError] = useState("");
     const [btnDisabled, setBtnDisabled] = useState(false);
 
+    let params = new URLSearchParams(window.location.search);
     let currentDate = new Date();
+    let currentCheckOutDate = new Date();
+    if (params.get('check_in')) {
+        let dateString = params.get('check_in');
+        const parts = dateString.split('-');
+        const day = parseInt(parts[0], 10);
+        const month = parseInt(parts[1], 10) - 1; // Months are 0-indexed
+        const year = parseInt(parts[2], 10);
+        currentDate =  new Date(year, month, day);
+
+        let dateCkString = params.get('check_out');
+        const cparts = dateCkString.split('-');
+        const cday = parseInt(cparts[0], 10);
+        const cmonth = parseInt(cparts[1], 10) - 1; // Months are 0-indexed
+        const cyear = parseInt(cparts[2], 10);
+        currentCheckOutDate =  new Date(cyear, cmonth, cday);
+    }
+
     const minDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate());
-    const [CheckIn, CheckInOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
-    const [CheckOut, CheckOutOnChange] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate() + 1));
-    const params = new URLSearchParams(window.location.search);
+    const [CheckIn, setCheckIn] = useState(new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate()));
+    const [CheckOut, setCheckOut] = useState(new Date(currentCheckOutDate.getFullYear(), currentCheckOutDate.getMonth(), currentCheckOutDate.getDate() + 1));
     const searchBody = {
         check_in: params.get('check_in') ? params.get('check_in') : '',
         check_out: params.get('check_out') ? params.get('check_out') : '',
@@ -54,6 +71,16 @@ function SearchForm(props) {
             const activeData = result.data.filter(item => item.isActive);
             setCountriesData(activeData);
         }
+    };
+
+    const handleCheckInChange = (value) => {
+        let date = new Date(value.getFullYear(), value.getMonth(), value.getDate());
+        setCheckIn(date);
+    };
+
+    const handleCheckOutChange = (value) => {
+        let date = new Date(value.getFullYear(), value.getMonth(), value.getDate());
+        setCheckOut(date);
     };
 
     const getLocations = async (country_id) => {
@@ -193,6 +220,14 @@ function SearchForm(props) {
         return roomList;
     }
 
+    function formatDate(dateStr) {
+        const date = new Date(dateStr);
+        const day = date.getDate().toString().padStart(2, '0');
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const year = date.getFullYear();
+        return `${day}-${month}-${year}`;
+    }
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         setCountryIdError("");
@@ -209,10 +244,11 @@ function SearchForm(props) {
         const requestBody = {
             country_id: countryId,
             location_id: locationId,
-            check_in: CheckIn.toISOString(),
-            check_out: CheckOut.toISOString(),
+            check_in: formatDate(CheckIn),
+            check_out: formatDate(CheckOut),
             roomList: roomList
         };
+        console.log(requestBody);
         let fullURL = '';
         if (!props.hideHotelDetail) {
             fullURL = `/hotels?country_id=${requestBody.country_id}&location_id=${requestBody.location_id}&check_in=${requestBody.check_in}&check_out=${requestBody.check_out}`
@@ -320,13 +356,13 @@ function SearchForm(props) {
                     <div className="col">
                         <div className="field-group">
                             <label>Check-in</label>
-                            <DatePicker onChange={CheckInOnChange} value={CheckIn} format="dd-MM-yyyy" minDate={minDate} />
+                            <DatePicker onChange={handleCheckInChange} value={CheckIn} format="dd-MM-yyyy" minDate={minDate} />
                         </div>
                     </div>
                     <div className="col">
                         <div className="field-group">
                             <label>Check-out</label>
-                            <DatePicker onChange={CheckOutOnChange} value={CheckOut} format="dd-MM-yyyy" minDate={CheckIn} />
+                            <DatePicker onChange={handleCheckOutChange} value={CheckOut} format="dd-MM-yyyy" minDate={CheckIn} />
                         </div>
                     </div>
                     <div className="col">
