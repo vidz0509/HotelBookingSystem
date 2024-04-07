@@ -127,8 +127,8 @@ function HotelsList(props) {
             container
             sx={{ mb: 2 }}
           />
-          <MKTypography variant="h2" fontWeight="bold">Huge collection of sections</MKTypography>
-          <MKTypography variant="body1" color="text">We have created multiple options for you to put together and customise into pixel perfect pages.</MKTypography>
+          <MKTypography variant="h2" fontWeight="bold">Huge collection of Hotels</MKTypography>
+          <MKTypography variant="body1" color="text">Experience ultimate luxury at our five-star resort.</MKTypography>
         </Grid>
       </Container>
       <Container sx={{ mt: 6 }}>
