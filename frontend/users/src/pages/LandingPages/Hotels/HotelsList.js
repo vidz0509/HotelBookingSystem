@@ -4,7 +4,6 @@ import Grid from "@mui/material/Grid";
 import MKBox from "components/MKBox";
 import MKBadge from "components/MKBadge";
 import MKTypography from "components/MKTypography";
-// import ExampleCard from "pages/Presentation/components/ExampleCard";
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { hotelsServices } from "services/hotels";
@@ -161,14 +160,6 @@ function HotelsList(props) {
 
                 </div>
               </div>
-              {/* <div className="option-row">
-                <div className="title">
-                  <span className="icon" name="caret-right"></span>
-                  <h5>Price</h5>
-                </div>
-                <div className="options default-opts">
-                </div>
-              </div> */}
               <div className="option-row">
                 <div className="title">
                   <span className="icon" name="caret-right"></span>
@@ -196,16 +187,14 @@ function HotelsList(props) {
               hotelsData && hotelsData?.map((hotel) => (
                 <Grid item md={4} sx={{ mb: 2 }} key={hotel._id} className="hotel-item">
                   <MKBox position="relative">
-                    <MKBox
+                    <Link to={`/hotel-details/${hotel._id}?${window.location.search}`}>
+                    <img
                       className="hotel-image"
-                      component="img"
                       src={hotel.hotel_image[0]}
                       alt={hotel.hotel_name}
                       width="100%"
-                      my="auto"
                       opacity={1}
                     />
-                    <Link to={`/hotel-details/${hotel._id}?${window.location.search}`}>
                       <MKBox mt={2} lineHeight={1}>
                         <MKTypography variant="h5" fontWeight="bold" className="hotel-title">
                           {hotel.hotel_name}
