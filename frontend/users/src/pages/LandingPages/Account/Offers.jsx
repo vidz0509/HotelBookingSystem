@@ -44,6 +44,7 @@ export default function Offer() {
                       <CardContent className="offer-card">
                         <img src="/offers.png" className="customImage" width="100" height="100" />
                         <h5>{offers.offer_type}</h5>
+                        <h4>{offers.offer_code}</h4>
                       </CardContent>
                     </Card>
                   </Grid>
