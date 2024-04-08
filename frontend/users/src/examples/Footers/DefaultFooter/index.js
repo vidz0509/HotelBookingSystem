@@ -103,15 +103,28 @@ function DefaultFooter({ content }) {
                 </MKTypography>
               </div>
               <MKBox component="ul" p={0} m={0} sx={{ listStyle: "none", }}>
-                {items.map(({ name }) => (
+                {items.map(({ name,href }) => (
                   <MKBox key={name} component="li" p={0} m={0} lineHeight={1.25}>
                     <div className="footer-content">
+                    {href && (
+                        <MKTypography
+                          component="a"
+                          href={href}
+                          target="_blank"
+                          rel="noreferrer"
+                          variant="button"
+                          fontWeight="regular"
+                          textTransform="capitalize"
+                        >
+                          {name}
+                        </MKTypography>
+                      )}
                       < MKTypography
                         component="p"
                         fontWeight="regular"
                         textTransform="capitalize"
                       >
-                        {name}
+                        {/* {name} */}
                       </MKTypography>
                     </div>
                   </MKBox>

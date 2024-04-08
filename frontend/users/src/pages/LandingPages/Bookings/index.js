@@ -26,16 +26,10 @@ import { bookingsServices } from "services/bookings";
 import { check } from "prettier";
 import { offersServices } from "services/offers";
 import Swal from "sweetalert2";
-
-// Image
-// import bgImage from "assets/images/illustrations/illustration-reset.jpg";
-
 function Bookings() {
 
   const [bookingData, setBookingData] = useState(null);
   const [hotelData, setHotelData] = useState(null);
-  // const [offerData, setOfferData] = useState(null);
-  // const [couponData, setCouponData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [userDetails, setUserDetails] = useState([]);
   const [contactError, setContactError] = useState('');

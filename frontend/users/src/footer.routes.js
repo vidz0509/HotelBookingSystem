@@ -33,8 +33,8 @@ export default {
     {
       name: "Contact Us",
       items: [
-        { name: "darshanmangukiya4@gmail.com" },
-        { name: "8866638422" },
+        { name: "darshanmangukiya4@gmail.com", href: "mailto:darshanmangukiya4@gmail.com" },
+        { name: "8866638422", href:"tel:+91 8866638422" },
 
       ],
     },
