@@ -102,7 +102,7 @@ export default function Profile() {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         setBtnDisabled(false);
-                        // window.location.reload();
+                        window.location.reload();
                     }
                 });
             } else {
