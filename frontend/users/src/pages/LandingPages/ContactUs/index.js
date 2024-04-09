@@ -179,9 +179,6 @@ function ContactUs() {
                       </Grid>
                     </Grid>
                     <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
-                      {/* <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
-                      Send Message
-                    </MKButton> */}
                       <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handleSubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}>
                         {btnDisabled ?
                           <span className="flex items-center justify-center"><img src={btnLoader} className="xxl:max-w-[25px] btn-loader" alt="loader" /></span>

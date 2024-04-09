@@ -16,7 +16,6 @@ export default function ProfileOverview() {
   const [fullnameError, setFullNameError] = useState('');
   const [contactError, setContactError] = useState('');
 
-
   const [error, setError] = useState('');
   const [successful, setSuccessful] = useState('');
   const [btnDisabled, setBtnDisabled] = useState(false);

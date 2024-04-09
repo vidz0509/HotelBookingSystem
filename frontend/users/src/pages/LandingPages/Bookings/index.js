@@ -192,9 +192,6 @@ function Bookings() {
                                 <MKTypography variant="h5" color="text">{`Room ${index + 1}`}</MKTypography>
                               </MKBox>
                               <MKBox className='adult-details'>
-                                {/* <MKBox className='adult-title'>
-                                  <MKTypography variant="h6" color="text">Adult Details</MKTypography>
-                                </MKBox> */}
                                 <MKBox className='adult-info'>
                                   <div className="adult-col">
                                     <input type="text" id={`room-${index + 1}-adult-fname`} placeholder="First Name*" data-index={index} data-field={'firstname'}
@@ -247,9 +244,7 @@ function Bookings() {
 
                     <MKButton variant="gradient" color="info" fullWidth onClick={(e) => handlesubmit(e)} type="submit" disabled={btnDisabled ? 'disabled' : ''}><span>Proceed to payment</span>
                     </MKButton>
-
                   </Grid>
-
                 </Grid>
               </Grid >
             </Grid>
@@ -307,7 +302,6 @@ function Bookings() {
                           <MKTypography variant="h4" color="text">Total</MKTypography>
                           <MKTypography variant="h4" color="text">₹{(bookingData?.finalSelectedRooms[0]?.amount - discount).toFixed(2)}</MKTypography>
                         </MKBox>
-
                       </>
                     }
                   </Grid>
