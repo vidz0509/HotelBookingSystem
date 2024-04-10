@@ -42,4 +42,22 @@ export class EmailService {
             },
         });
     }
+
+    async sendBillToUser(fullname:string,email: string, check_in: Date, check_out: Date, hotel_Name: string, hotel_Address: string, totalRooms: string, price: string) {
+        await this.mailerService.sendMail({
+            to: email,
+            subject: 'Thank You For Reservation.',
+            template: './BillToUser', // `.hbs` extension is appended automatically
+            context: {
+                fullname: fullname,
+                email: email,
+                checkin: check_in,
+                checkout: check_out,
+                hotelName: hotel_Name,
+                hotelAddress: hotel_Address,
+                totalRooms: totalRooms,
+                totalPrice: price,
+            },
+        });
+    }
 }

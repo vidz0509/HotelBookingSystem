@@ -10,6 +10,7 @@ import axios from 'axios';
 import { PaymentDto } from './dto/payment.dto';
 import { UsersCollection } from 'src/users/users.collection';
 import { HotelsCollection } from 'src/hotels/hotels.collection';
+import { EmailService } from 'src/email/email.service';
 import { error } from 'console';
 
 @Injectable()
@@ -20,6 +21,7 @@ export class BookingService {
     private readonly usersCollection: UsersCollection,
     private readonly hotelCollection: HotelsCollection,
     private readonly helper: HelpersServices,
+    private readonly emailService: EmailService,
   ) { }
 
   async getAllBookings(): Promise<any> {
@@ -179,4 +181,18 @@ export class BookingService {
       throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Invalid User'));
     }
   }
+  
+async sendBill(requestData: { fullname:string,email: string, check_in: Date, check_out: Date, hotel_Name: string, hotel_Address: string, totalRooms: string, price: string }) {
+
+  try {
+    this.logger.debug(`Sending email to ${requestData.email}`);
+    await this.emailService.sendBillToUser(requestData.fullname, requestData.email, requestData.check_in, requestData.check_out, requestData.hotel_Name,requestData.hotel_Address, requestData.totalRooms, requestData.price);
+    return await this.helper.buildResponse(true);
+  } catch (error) {
+    if (error) {
+      this.logger.error(JSON.stringify(error, null, 2));
+      throw new InternalServerErrorException(await this.helper.buildResponse(false, 'Something went wrong.'));
+    }
+  }
+}
 }

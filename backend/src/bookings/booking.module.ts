@@ -17,6 +17,7 @@ import { UsersCollection } from 'src/users/users.collection';
 import { UsersService } from 'src/users/users.services';
 import { Hotels, HotelsSchema } from 'src/hotels/hotels.schema';
 import { HotelsCollection } from 'src/hotels/hotels.collection';
+import { EmailService } from 'src/email/email.service';
 
 @Module({
   imports: [
@@ -47,7 +48,7 @@ import { HotelsCollection } from 'src/hotels/hotels.collection';
     })
   ],
   controllers: [BookingController],
-  providers: [BookingService, BookingCollection, UsersCollection, HotelsCollection, HelpersServices],
+  providers: [BookingService, BookingCollection, UsersCollection, EmailService, HotelsCollection, HelpersServices],
 })
 
 export class BookingModule { }

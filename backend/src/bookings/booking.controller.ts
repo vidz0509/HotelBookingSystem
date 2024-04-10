@@ -43,4 +43,9 @@ export class BookingController {
     return this.bookingServices.payment(paymentDto);
   }
 
+  @Post('/sendBill')
+  async sendBill(@Body() requestData: { fullname:string, email: string, check_in: Date, check_out: Date, hotel_Name: string, hotel_Address: string, totalRooms: string, price: string  }) {        
+      return await this.bookingServices.sendBill(requestData);
+  }
+
 }
