@@ -12,6 +12,7 @@ import Container from "@mui/material/Container";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import btnLoader from "../../../assets/images/button-loader/btn-loader.gif";
+import Swal from "sweetalert2";
 
 // Routes
 import routes from "routes";
@@ -76,19 +77,40 @@ function ContactUs() {
       message: message,
     };
     const result = await authServices.getintouch(requestBody);
+    //   if (result.isSuccessful) {
+    //     setFullName('');
+    //     setEmail('');
+    //     setMessage('');
+    //     setBtnDisabled(false);
+    //     localStorage.setItem('currentUser', JSON.stringify(result.data));
+    //     setTimeout(function () {
+    //       setSuccessful("your message  successfully send")
+    //     }, 1000);
+    //   } else {
+    //     setError(result.errorMessage);
+    //     setSuccessful(result.errorMessage);
+    //     setBtnDisabled(false);
+    //   }
+    // }
     if (result.isSuccessful) {
-      setFullName('');
-      setEmail('');
-      setMessage('');
-      setBtnDisabled(false);
-      localStorage.setItem('currentUser', JSON.stringify(result.data));
-      setTimeout(function () {
-        setSuccessful("your message  successfully send")
-      }, 1000);
+      Swal.fire({
+        title: "Message Sent!",
+        text: "We will get back too you very soon.",
+        icon: "success",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.isConfirmed) {
+          setBtnDisabled(false);
+          window.location.reload();
+        }
+      });
     } else {
-      setError(result.errorMessage);
-      setSuccessful(result.errorMessage);
-      setBtnDisabled(false);
+      Swal.fire({
+        title: "Error!",
+        text: result.errorMessage,
+        icon: "error",
+        allowOutsideClick: false
+      });
     }
   }
 
@@ -134,7 +156,7 @@ function ContactUs() {
                 </MKBox>
                 <MKBox p={3}>
                   <MKTypography variant="body2" color="text" mb={3}>
-                  Are easy to find, so a visitor can quickly get in touch with you.
+                    Are easy to find, so a visitor can quickly get in touch with you.
                   </MKTypography>
                   <MKBox width="100%" component="form" method="post" autoComplete="off">
                     <Grid container spacing={3}>
