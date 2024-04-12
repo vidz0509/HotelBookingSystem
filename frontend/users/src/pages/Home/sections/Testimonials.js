@@ -26,7 +26,7 @@ function Information() {
               name="Nick Willever"
               date="1 day ago"
               review="Looks exactly what is posted here. Great service and awesome stay!"
-              rating={5}
+              rating={3}
             />
           </Grid>
           <Grid item xs={12} md={6} lg={4}>
@@ -43,7 +43,7 @@ function Information() {
               name="Samuel Kamuli"
               date="3 weeks ago"
               review="If you want to stay for a night and have a good privacy, book right now."
-              rating={5}
+              rating={4}
             />
           </Grid>
         </Grid>
