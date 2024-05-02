@@ -9,6 +9,10 @@ const Reviews = () => {
 
   const columnsDataComplex = [
     {
+      Header: "User Name",
+      accessor: "users_details[0].fullname",
+    },
+    {
       Header: "Review",
       accessor: "review_text",
     },

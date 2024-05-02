@@ -10,10 +10,33 @@ export class ReviewsCollection {
     constructor(@InjectModel('Reviews') private reviewModel: Model<Reviews>) { }
 
     async getAllReview(): Promise<Reviews[]> {
-        return await this.reviewModel.find()
-            .sort({
-                createdAt: -1
-            });
+        return await this.reviewModel.aggregate([
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            },
+            {
+                $lookup: {
+                    from: 'users',
+                    let: { userId: { $toObjectId: "$user_id" } },
+                    pipeline: [
+                        {
+                            $match: {
+                                $expr: { $eq: ["$_id", "$$userId"] }
+                            }
+                        },
+                        {
+                            $project: {
+                                fullname: 1,
+                                profileImg: 1,
+                            }
+                        }
+                    ],
+                    as: 'users_details'
+                }
+            }
+        ]);
     }
 
     async getReviewCount(): Promise<number> {
