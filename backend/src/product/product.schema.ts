@@ -11,6 +11,7 @@ export class Product {
   @Prop()
   ProductPrice: number;
 
+  
   @Prop()
   ProductStock: number;
 }
